@@ -12,6 +12,7 @@ describe('Timer', function() {
   }
   var spies = {}
 
+  jasmine.clock().install()
   beforeEach(function() {
     inject(function(_Timer_,_$interval_,$httpBackend){
       Timer = _Timer_
@@ -19,7 +20,6 @@ describe('Timer', function() {
     })
 
     resetTime()
-    jasmine.clock().install()
 
     spies.tick = spyOn(callbacks,'tick').and.callThrough()
     spies.stop = spyOn(callbacks,'stop').and.callThrough()
@@ -51,7 +51,7 @@ describe('Timer', function() {
   })
 
   it('returns remainingTime', function() {
-    expect( timer.getRemainingTime() ).toEqual(minutes+':00',minutes*60)    
+    expect( timer.getRemainingTime() ).toEqual(minutes+':00',minutes*60)
   })
 
   it('calls tickCallback with remainingTime and remainingSeconds', function() {
