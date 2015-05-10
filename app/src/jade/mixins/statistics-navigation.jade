@@ -1,0 +1,19 @@
+mixin statistics-navigation(type)
+  .statistics-navigation
+    .statistics-navigation__container
+      a.pagination.pagination--prev(ng-click="vm.goToPrev()",href="")
+        i.icon.ion-chevron-left
+
+      if 'daily' == type
+        a.twitter-share.animated.fadeIn(ng-if="vm.selected == 'Today' && vm.statistics.pomodoriFull > 0",ng-href="https://twitter.com/intent/tweet?text=Today I worked {{vm.statistics.pomodoriFull}} pomodori for a total of {{vm.statistics.hoursWorked}} hours using&url=http%3A%2F%2Fpomodoro.cc&hashtags=PomodoroTechnique%2C",target="_blank")
+          i.icon.ion-social-twitter
+      else
+        a.twitter-share.animated.fadeIn(ng-if="vm.selected == 'This week' && vm.statistics.pomodoriFull > 0",ng-href="https://twitter.com/intent/tweet?text=This week I worked {{vm.statistics.pomodoriFull}} pomodori for a total of {{vm.statistics.hoursWorked}} hours using&url=http%3A%2F%2Fpomodoro.cc&hashtags=PomodoroTechnique%2C",target="_blank")
+          i.icon.ion-social-twitter
+      
+      .statistics-type-tabs.animated.fadeIn
+        a.statistics-type-tab.statistics-type-tab--daily(ui-sref="statistics.daily",ng-class="{'active':containsPath('daily')}") daily
+        a.statistics-type-tab.statistics-type-tab--weekly(ui-sref="statistics.weekly",ng-class="{'active':containsPath('weekly')}") weekly
+
+      a.pagination.pagination--next(ng-click="vm.goToNext()",href="",ng-show="vm.hasNext()")
+        i.icon.ion-chevron-right

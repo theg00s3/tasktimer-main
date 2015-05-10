@@ -1,0 +1,12 @@
+.sticky
+  position fixed
+  z-index 9999
+  top (height_header*1.5)
+  transition all 0.1s ease
+
+  &.sticky--left
+    left 1em
+    for i in 1..10
+      @media (min-width limit+i*2*sticky_steps)
+        left (sticky_steps*i)
+

@@ -1,0 +1,24 @@
+.limit
+
+  h2.no.tac Public pomodoro
+  br
+  form(name="PublicChooseForm",ng-submit="vm.submit()")
+    input.tac.choose-room(autofocus="",placeholder="project-1",type="text", ng-model="vm.room", ng-pattern="/^[a-zA-Z0-9-_]*$/")
+
+  br
+  br
+  hr
+
+  hint.tac
+    p Got a feature request? What are you waiting for?
+    a(href="https://github.com/christian-fei/pomodoro/") Create a pull-request on Github or open an issue!
+
+  hr
+
+  h4.tac Remote pair programming
+  h6.no.tac a little less exhausting
+  br
+
+  p Working remotely with your colleague can be very exhausting, at least in my experience.
+  p Some of the pain points in remote pair programming is that you <strong>have to</strong> be 100% on the same wave-length of your partner or you lost it.
+  p This feature will try to lessen the frustration by introducing a shared pomodoro with your partner, so that when someone doesn't hear the ringing pomodoro, the other one most definitely will and you can relax a bit :)

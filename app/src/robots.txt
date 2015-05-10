@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /statistics
+Allow: /statistics/daily
+Allow: /statistics/weekly
+
+Sitemap: http://pomodoro.cc/sitemap.xml

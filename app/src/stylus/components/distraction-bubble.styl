@@ -1,0 +1,32 @@
+.distraction-bubble
+  position fixed
+  z-index 9500 !important
+  border-radius 50%
+  margin-top -(height_distraction_bubble/2)
+  margin-left -(width_distraction_bubble/2)
+  height height_distraction_bubble
+  width width_distraction_bubble
+  transform scale(0)
+  animation expand-bubble 1s cubic-bezier(0,.92,.48,.99)
+  transition all 2s cubic-bezier(0,.92,.48,.99)
+
+  background: color_pomodoro; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, darken(color_pomodoro,20%) 5%, rgba(color_pomodoro,50%) 96%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(5%,color_pomodoro), color-stop(96%,rgba(color_pomodoro,50%))); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, darken(color_pomodoro,20%) 5%,rgba(color_pomodoro,50%) 96%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, darken(color_pomodoro,20%) 5%,rgba(color_pomodoro,50%) 96%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, darken(color_pomodoro,20%) 5%,rgba(color_pomodoro,50%) 96%); /* IE10+ */
+  background: radial-gradient(ellipse at center, darken(color_pomodoro,20%) 5%,rgba(color_pomodoro,50%) 96%); /* W3C */
+
+@keyframes expand-bubble
+  0%
+    opacity 0
+    transform scale(0)
+  
+  60%
+    opacity 1
+    transform scale(1)
+
+  100%
+    opacity 0
+    transform scale(0)

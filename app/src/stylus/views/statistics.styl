@@ -1,0 +1,183 @@
+.statistics-numbers
+  padding-top 8rem
+  padding-bottom 2rem
+  margin-top -4rem
+  background darken(color_light,7)
+
+.statistics-timeline
+  @extends .limit
+  position relative
+  margin 1rem auto
+  padding-right 0.5rem
+  padding-left 2.5rem
+  list-style-type none
+
+  &:before
+    position absolute
+    content ''
+    display block
+    width 1px
+    top 0
+    left 1.25rem
+    bottom 0
+    background-color color_pomodoro
+    background-color rgba(color_pomodoro,.5)
+
+  li
+    position relative
+    padding 0.75rem 0
+    margin-top 0.25rem
+    max-width limit
+
+    &:before
+      position absolute
+      content ''
+      display block
+      border-radius 50%
+      width 10px
+      height @width
+      background-color color_pomodoro
+      background-color rgba(color_pomodoro,.9)
+      top 37%
+      left -24px
+
+    .text-container
+      overflow hidden
+      margin-bottom 0.2rem
+
+    .started-at
+      font-weight 700
+
+    .delimiter
+      display inline-block
+      margin-left 0.3rem
+      margin-right @margin-left
+      width 0.4rem
+      height 2px
+      background-color darken(color_light,20%)
+      vertical-align middle
+    
+    .duration
+      font-size 0.8rem
+      opacity 0.7
+
+    .tag
+      float right
+      padding 0.2rem 0.3rem
+      background white
+      color color_pomodoro_leaf
+      border 1px solid color_pomodoro_leaf
+      opacity .6
+
+    .percentual-duration
+      display inline-block
+      float left
+      clear both
+      height 2px
+      opacity 0.6
+      background-color color_pomodoro
+      &.break
+        background-color color_pomodoro_leaf
+        
+
+.counter-container
+  text-align center
+  margin 2em auto
+
+  .counter
+    position relative
+    text-align center
+    float none
+    height 10em !important
+    width  10em !important
+
+    &,*
+      transition all 0.2s ease-in-out
+
+    &:hover 
+      .number
+        transform scale(1.3)
+      .avg
+        opacity 1
+
+    &.col-1
+      width 100% !important
+
+    >*
+      position absolute
+      width 100%
+
+    .avg
+      top 0.3rem
+      opacity 0.8
+
+    .number
+      top 1.5rem
+      font-size 3.5rem
+      font-weight bold
+
+    .title
+      bottom 1.5rem
+      font-size 1.25em
+
+
+
+.tag-filter-container
+  span
+    opacity 0.5
+    
+  .filtered
+    opacity 1
+
+
+
+
+
+
+.graph-container
+  position relative
+  overflow auto
+  overflow-y hidden
+  margin 4em auto 4em
+  padding .5em 2em
+  height height_statistics
+
+  svg
+    position relative
+    min-width width_statistics
+    margin 0
+    padding 0 .75em
+    border-bottom 1px solid color_light
+
+    circle
+    rect
+      fill color_pomodoro
+      fill-opacity 0
+      stroke color_pomodoro
+      stroke-width 1.5px
+      transition opacity .3s ease
+
+      &.type-break
+        fill color_pomodoro_leaf
+        stroke color_pomodoro_leaf
+        stroke-opacity 0.5
+        
+    line
+      stroke darken(white,5%)
+
+
+    .small
+      font-size 0.8em
+
+    .time
+      font-size 10px
+
+    &.filtering
+      circle
+      rect
+        opacity 0.5
+
+    rect#x-axis
+      fill #F7F7F7
+      stroke none
+      fill-opacity 1

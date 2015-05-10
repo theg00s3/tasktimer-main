@@ -1,0 +1,9 @@
+div
+  .graph-container(ng-if="graph.data.length > 0")
+    svg.statistics(xmlns="http://www.w3.org/2000/svg", width="100%", height="300px")
+      line(ng-repeat="index in [1,2,3,4,5]", x1="3%", x2="100%", ng-attr-y1="{{ index*20 + '%' }}", ng-attr-y2="{{ index*20 + '%' }}")
+      line(ng-repeat="time in ::graph.axis.x", ng-attr-x1="{{ 2.5 + $index*95/(graph.axis.x.length-1) + '%' }}", ng-attr-x2="{{ 2.5 + $index*95/(graph.axis.x.length-1) + '%' }}", y1="0%", y2="100%")
+      text.small.animated.fadeIn(ng-repeat="index in [1,2,3,4,5]",x="0", ng-attr-y="{{ (100 - index*19  ) + '%' }}") {{ index*5 }}
+      rect(ng-repeat="data in ::graph.data",class="type-{{data.type}}", ng-class="{'cancelled':data.cancelled}", ng-attr-x="{{data.x}}", ng-attr-y="{{data.y}}",  ng-attr-width="{{data.width}}", ng-attr-height="{{data.height}}")
+      rect#x-axis(x="0",y="94.5%",width="100%",height="5%")
+      text.small.animated.fadeIn(ng-repeat="time in ::graph.axis.x", ng-attr-x="{{ 2.5 + $index*95/(graph.axis.x.length-1) + '%' }}" y="99%") {{ time }}

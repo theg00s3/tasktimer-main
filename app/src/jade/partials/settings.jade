@@ -1,0 +1,31 @@
+.limit.narrow.animated.fadeIn
+  h3 Settings
+
+  form(name="SettingsForm", ng-submit="save()")
+    div.input-group-container
+      h6.input-group-heading(ng-click="vm.toggle('soundsEnabled')") Sounds
+        i.checkbox.icon(ng-click="vm.toggle('soundsEnabled')",ng-class="vm.settings.soundsEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'",style="padding-left:1em;")
+
+      div.input-group(ng-class="{disabled:!vm.settings.soundsEnabled}")
+        label(ng-click="vm.toggle('ringingSoundEnabled')") ringing
+        i.checkbox.icon(ng-click="vm.toggle('ringingSoundEnabled')",ng-class="vm.settings.ringingSoundEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'")
+      div.input-group(ng-class="{disabled:!vm.settings.soundsEnabled}")
+        label(ng-click="vm.toggle('tickingSoundEnabled')") Ticking sound
+        i.checkbox.icon(ng-click="vm.toggle('tickingSoundEnabled')",ng-class="vm.settings.tickingSoundEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'")
+    div.input-group
+      label(ng-click="vm.toggle('notificationsEnabled')") Notifications
+      i.checkbox.icon(ng-click="vm.toggle('notificationsEnabled')",ng-class="vm.settings.notificationsEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'")
+
+  h3 API Key
+  .api-key-container(ng-if="user")
+    .api-key {{ user.apikey }}
+    h6 Example usage
+    .api-key-example curl https://pomodoro.cc/api/pomodoro?day={{ vm.todayEncoded }}&apikey={{ user.apikey }}
+  h6(ng-if="!user") Log in to get your API Key
+
+  h3 Trello integration
+  div(ng-switch="vm.trello.isAuthorized()")
+    div(ng-switch-when="true",style="overflow:hidden")
+      h6(style="float:left") Authenticated!
+      span.link(ng-click="vm.trello.deauthorize()",style="float:right;") Deauthorize
+    a.link(ng-switch-default,ng-href="{{ vm.trello.getGrantUrl() }}") Authenticate on Trello

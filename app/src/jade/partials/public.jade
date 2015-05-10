@@ -1,0 +1,31 @@
+.limit
+  h3.no.tac {{vm.roomTitle}}
+  .public-clients-count.tac.animated.fadeIn
+    a(ng-href="https://twitter.com/intent/tweet?text=Share a pomodoro with me on https://pomodoro.cc/public/{{vm.roomId}}", target="_blank")
+      i.icon.ion-social-twitter
+    div(ng-show="vm.clientsCount == 1")
+      strong You're alone in this room
+      br
+      span Waiting for others to join..
+    div(ng-show="vm.clientsCount > 1")
+      strong {{vm.clientsCount}}
+      span &nbsp;clients connected
+
+  div.sticky.sticky--left(ng-show="vm.pomodoro.inProgress()")
+    i.dashboard-action.icon.mute-sound(ng-click="vm.toggleSound()",ng-class="vm.soundsEnabled ? 'ion-volume-medium active' : 'ion-volume-mute'")
+
+  .pomodoro-timer.animated.bounceIn {{ vm.pomodoro.getRemainingTime() }}
+
+  .pomodoro-control-buttons-container.animated.bounceIn
+    button.block.start-pomodoro(ng-click="vm.startStopPomodoro(25,'pomodoro-public')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getType() == 'break-public'", tabindex="21")
+      i.icon.ion-ios7-bolt
+      span &nbsp; {{ vm.pomodoro.getType()=='pomodoro-public' ? 'cancel' : 'start' }} pomodoro
+    .row.no-outer-margins
+      .col-2
+        button.block.break-5(ng-click="vm.startStopPomodoro(5,'break-public')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 5", tabindex="22")
+          i.icon.ion-ios7-pause
+          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==5) ? 'cancel' : '' }} 5min break
+      .col-2
+        button.block.break-15(ng-click="vm.startStopPomodoro(15,'break-public')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 15", tabindex="23")
+          i.icon.ion-ios7-pause
+          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==15) ? 'cancel' : '' }} 15min break

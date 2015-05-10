@@ -1,0 +1,27 @@
+include ../../mixins/statistics-navigation.jade
++statistics-navigation('daily')
+
+h5.ng-cloak.tac.breath(ng-if="vm.dataAvailable === false")
+  | no data available :(
+
+div.statistics-numbers.animated.fadeIn(ng-if="vm.dataAvailable && vm.statistics.graph.data.length > 0")
+  .counter-container.row
+    .counter.col-2
+      .number {{ vm.statistics.pomodori }}
+      .title pomodor{{ vm.statistics.pomodori <= 1 ? 'o' : 'i' }}
+    .counter.col-2
+      .number {{ vm.statistics.hoursWorked }}
+      .title hours
+
+div.statistics-graph
+  histogram(graph="vm.statistics.graph")
+
+ul.statistics-timeline(ng-if="vm.statistics.graph.data.length > 0")
+  li(ng-repeat="stat in vm.statistics.graph.data")
+    .text-container
+      span.started-at {{:: stat.startedAt }}
+      span.delimiter
+      span.duration {{:: stat.duration }}min
+      span.tag(ng-repeat="tag in stat.tags") {{ tag }}
+
+    span.percentual-duration(style="width:{{:: stat.percentualDuration }}%;",ng-class="stat.type")

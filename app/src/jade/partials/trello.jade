@@ -1,0 +1,7 @@
+.limit
+  h1 Trello integration
+  div(ng-switch="vm.token")
+    h5(ng-switch-when="invalid") Something went wrong :(
+    div(ng-switch-default)
+      span Your Trello API token is:
+      pre {{ vm.token }}

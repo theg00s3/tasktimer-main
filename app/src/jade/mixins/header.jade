@@ -1,0 +1,34 @@
+mixin header
+  header.ng-cloak
+    .header__container
+      a.brand(href="/about", tabindex="10") P
+        span.rest omodoro
+        span.tld .cc
+      ul.header__menu
+        li#navigate-login.ng-cloak(ng-hide="user",ui-sref-active="active",tabindex="22")
+          a.button.simple.login(ui-sref="login")
+            span.small login
+        li.user-profile.rollover-menu-container.ng-cloak(ng-show="user", ng-init="menuOpened=false", ng-click="menuOpened=!menuOpened", ng-class="{'opened':menuOpened}")
+          button.reset(tabindex="20")
+            img.avatar(ng-src="{{::user.avatar}}")
+            ul.rollover-menu
+              li
+                a.block(analytics-on="click", analytics-event="logout", href="/auth/logout", target="_self", style="width: 100%;",tabindex="21") logout &nbsp;
+                  i.icon.ion-log-out
+        li(ng-show="loggingIn")
+          i.block.icon.ion-loading-c
+        li(ui-sref-active="active")
+          a.button.simple.inverted#navigate-settings(ui-sref="settings",tabindex="15")
+            i.icon.ion-ios7-gear
+        li(ui-sref-active="active")
+          a.button.simple.inverted#navigate-statistics(ui-sref="statistics.daily",tabindex="14")
+            i.icon.ion-stats-bars
+        li(ui-sref-active="active")
+          a.button.simple.inverted(ui-sref="statistics.global",tabindex="13")
+            i.icon.ion-earth
+        li(ui-sref-active="active")
+          a.button.simple.inverted#navigate-public-choose(ui-sref="public.choose",tabindex="12")
+            i.icon.ion-person-stalker
+        li(ui-sref-active="active")
+          a.button.simple.inverted#navigate-dashboard(ui-sref="dashboard",tabindex="11")
+            i.icon.ion-speedometer

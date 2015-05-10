@@ -1,0 +1,50 @@
+body > header
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 9000
+  background color_header
+  margin auto
+  transition none
+  height height_header
+
+  .header__container
+    @extend .limit
+    padding-top 0
+    padding-bottom 0
+
+  ul.header__menu
+    float right
+    margin 0
+    padding 0
+    list-style-type none
+    position relative
+
+    > li
+      margin 0
+      padding 0
+      float right
+      text-align center
+      border-bottom 1px solid transparent
+      width width_header_links
+
+      &.active
+        color color_link
+        color #333
+
+        a
+          color inherit
+
+      a
+        margin 0
+        width 100%
+        line-height 2
+        height height_header
+        vertical-align middle
+
+        &.simple
+          font-size 0.9rem
+
+      &.active
+        border-bottom 2px solid color_pomodoro
