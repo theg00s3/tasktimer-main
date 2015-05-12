@@ -1,4 +1,10 @@
 .limit
+  hint.tac(ng-if="!vm.tour.acknowledged('featureRequest')")
+    .x(ng-click="vm.tour.acknowledge('featureRequest')") x
+    p Got a feature request? What are you waiting for?
+    a(href="https://github.com/christian-fei/pomodoro/") Create a pull-request on Github or open an issue! &nbsp;
+      span.icon.ion-social-github
+
   div.sticky.sticky--left(ng-show="vm.pomodoro.inProgress()")
     i.dashboard-action.icon.mute-sound(ng-click="vm.toggleSound()",ng-class="vm.soundsEnabled ? 'ion-volume-medium active' : 'ion-volume-mute'")
 
@@ -35,9 +41,3 @@
       .x(ng-click="vm.tour.acknowledge('shortcutHint')") x
       i.icon.ion-android-information
       span &nbsp; Tip: Hit 'Shift + ?' to see the keyboard shortcuts
-    hr
-
-  hint.tac
-    strong Request a feature &nbsp;
-    a(href="https://github.com/christian-fei/pomodoro.cc/issues/new",target="_blank")
-      span.icon.ion-social-github
