@@ -5,16 +5,25 @@ mixin header
         span.rest omodoro
         span.tld .cc
       ul.header__menu
-        li#navigate-login.ng-cloak(ng-hide="user",ui-sref-active="active",tabindex="22")
-          a.button.simple.login(ui-sref="login")
-            span.small login
-        li.dropdown.ng-cloak(ng-show="user", ng-init="userMenuOpened=false", ng-click="userMenuOpened=!userMenuOpened", ng-class="{'opened':userMenuOpened}")
+        li#navigate-login.dropdown.ng-cloak(ng-hide="user", ng-init="loginDropdownOpened=false", ng-click="loginDropdownOpened=!loginDropdownOpened", ng-class="{'opened':loginDropdownOpened}")
+          button.reset(tabindex="22")
+            span.login-menu-text Login
+            .menu.login
+              ul.row.no-outer-margins(style="margin:0")
+                li.col-2
+                  a.twitter(href="/auth/twitter",target="_self")
+                    i.icon.ion-social-twitter
+                li.col-2
+                  a.github(href="/auth/github",target="_self")
+                    i.icon.ion-social-github
+        li.dropdown.ng-cloak(ng-show="user", ng-init="userDropdownOpened=false", ng-click="userDropdownOpened=!userDropdownOpened", ng-class="{'opened':userDropdownOpened}")
           button.reset(tabindex="20")
             img.avatar(ng-src="{{::user.avatar}}")
-            ul.menu
-              li
-                a.block(analytics-on="click", analytics-event="logout", href="/auth/logout", target="_self", style="width: 100%;",tabindex="21") logout &nbsp;
-                  i.icon.ion-log-out
+            .menu
+              ul
+                li
+                  a.block(analytics-on="click", analytics-event="logout", href="/auth/logout", target="_self", style="width: 100%;",tabindex="21") logout &nbsp;
+                    i.icon.ion-log-out
         li(ng-show="loggingIn")
           i.block.icon.ion-loading-c
         li(ui-sref-active="active")

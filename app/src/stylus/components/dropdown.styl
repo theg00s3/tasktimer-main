@@ -5,6 +5,9 @@
   line-height 1.8
   vertical-align middle
 
+  > button
+    vertical-align sub
+
   &:after
     content ''
     display block
@@ -25,7 +28,7 @@
     background white
     box-shadow 0px 5px 25px -5px #333
     list-style-type none
-    width 6rem
+    width 12rem
     border-radius 5px
     top 111%
     right 0
@@ -42,10 +45,12 @@
       width 30px
       height 12px
       top -10px
-      left 60px
+      right 20px
       background-image url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAMCAQAAABPNLx2AAAAyUlEQVR4AZ3MS2qFMBTG8c9XEl876Aq8XF8bFQRBcODMgXvoShzoLopO0tOGgodWvfX7j3IIP7ww67vbs3a5EHDZ5QZiU2JMPt7HhDh6/QfcIZQDOTy2WettHh6Q9LYZeAUZhHKh+idBtC+sf0LRzTHgOcYZD36XGugH61L48Dh3BhlGIGgzA+2xNkMAYbgjjEMSYZOvi/61dWlyhJCHGIMEJKK6YBDD6gIRJMRfGIcU4qo00BFWlYihOHYDOsfY9Jue9PUm+gfeJ3CO3uZSFnkYAAAAAElFTkSuQmCC')
       background-size contain
 
+    ul
+      border-radius inherit
 
     li
       a
@@ -62,7 +67,7 @@
   .menu
     display block
     transform scale(0)
-    transform-origin 100px 0px
-    transition all 300ms cubic-bezier(0.34,1.61,0.7,1)
+    transform-origin 90% 5%
+    transition all 300ms cubic-bezier(0.34,1.3,0.7,1)
   .dropdown.opened .menu
     transform scale(1) !important
