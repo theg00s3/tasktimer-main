@@ -8,5 +8,4 @@ Feature: Navigation on the page
     Then I should be on "/"
 
   Scenario: Clicking on login
-    Given I click on "#navigate-login a"
-    Then I should be on "/login"
+    Given I click on "#navigate-login button"
