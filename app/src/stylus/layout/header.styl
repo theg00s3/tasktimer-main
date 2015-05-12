@@ -24,6 +24,7 @@ body > header
     > li
       margin 0
       padding 0
+      position relative
       float right
       text-align center
       border-bottom 1px solid transparent
@@ -48,3 +49,14 @@ body > header
 
       &.active
         border-bottom 2px solid color_pomodoro
+
+      &.attention-new:after
+        position absolute
+        bottom 2px
+        right 0
+        transform translateX(-25%) rotate(-45deg)
+        font-size .45rem
+        display block
+        content 'NEW'
+        color color_pomodoro
+
