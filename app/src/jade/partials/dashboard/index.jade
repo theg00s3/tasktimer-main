@@ -2,16 +2,6 @@
   div.sticky.sticky--left(ng-show="vm.pomodoro.inProgress()")
     i.dashboard-action.icon.mute-sound(ng-click="vm.toggleSound()",ng-class="vm.soundsEnabled ? 'ion-volume-medium active' : 'ion-volume-mute'")
 
-  div(ng-if="!vm.tour.acknowledged('publicPomodoroHint')")
-    hint.tac
-      strong New feature!
-      .x(ng-click="vm.tour.acknowledge('publicPomodoroHint')") x
-      br
-      a(ui-sref="public.choose") Pair program remotely with your partner, with a shared pomodoro!
-    hr
-
-
-
   .pomodoro-timer.animated.bounceIn {{ vm.pomodoro.getRemainingTime() }}
 
   .pomodoro-control-buttons-container.animated.bounceIn
