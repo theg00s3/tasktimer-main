@@ -5,7 +5,7 @@ mixin header
         span.rest omodoro
         span.tld .cc
       ul.header__menu
-        li#navigate-login.dropdown.ng-cloak(ng-hide="user", ng-init="loginDropdownOpened=false", ng-click="loginDropdownOpened=!loginDropdownOpened", ng-class="{'opened':loginDropdownOpened}")
+        li#navigate-login.dropdown.ng-cloak(ng-if="!user", ng-init="loginDropdownOpened=false", ng-click="loginDropdownOpened=!loginDropdownOpened", ng-class="{'opened':loginDropdownOpened}")
           button.reset(tabindex="22")
             span.login-menu-text Login
             .menu.login
@@ -16,7 +16,7 @@ mixin header
                 li.col-2
                   a.github(href="/auth/github",target="_self")
                     i.icon.ion-social-github
-        li.dropdown.ng-cloak(ng-show="user", ng-init="userDropdownOpened=false", ng-click="userDropdownOpened=!userDropdownOpened", ng-class="{'opened':userDropdownOpened}")
+        li.dropdown.ng-cloak(ng-if="user", ng-init="userDropdownOpened=false", ng-click="userDropdownOpened=!userDropdownOpened", ng-class="{'opened':userDropdownOpened}")
           button.reset(tabindex="20")
             img.avatar(ng-src="{{::user.avatar}}")
             .menu
