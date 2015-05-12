@@ -5,10 +5,10 @@ mixin header
         span.rest omodoro
         span.tld .cc
       ul.header__menu
-        li#navigate-login.ng-cloak(ng-hide="!user",ui-sref-active="active",tabindex="22")
+        li#navigate-login.ng-cloak(ng-hide="user",ui-sref-active="active",tabindex="22")
           a.button.simple.login(ui-sref="login")
             span.small login
-        li.user-profile.dropdown.ng-cloak(ng-show="!user", ng-init="userMenuOpened=false", ng-click="userMenuOpened=!userMenuOpened", ng-class="{'opened':userMenuOpened}")
+        li.dropdown.ng-cloak(ng-show="user", ng-init="userMenuOpened=false", ng-click="userMenuOpened=!userMenuOpened", ng-class="{'opened':userMenuOpened}")
           button.reset(tabindex="20")
             img.avatar(ng-src="{{::user.avatar}}")
             ul.menu
