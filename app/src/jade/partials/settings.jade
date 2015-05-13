@@ -22,10 +22,3 @@
     h6 Example usage
     .api-key-example curl https://pomodoro.cc/api/pomodoro?day={{ vm.todayEncoded }}&apikey={{ user.apikey }}
   h6(ng-if="!user") Log in to get your API Key
-
-  h3 Trello integration
-  div(ng-switch="vm.trello.isAuthorized()")
-    div(ng-switch-when="true",style="overflow:hidden")
-      h6(style="float:left") Authenticated!
-      span.link(ng-click="vm.trello.deauthorize()",style="float:right;") Deauthorize
-    a.link(ng-switch-default,ng-href="{{ vm.trello.getGrantUrl() }}") Authenticate on Trello

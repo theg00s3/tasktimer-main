@@ -29,7 +29,7 @@ var entryFiles = {
 }
 
 var glob = {
-  stylus: ['./src/stylus/**/*.styl'],
+  stylus: ['./src/*.styl'],
   js: {
     vendor: [
       './src/lib/angular/angular.min.js',
@@ -49,10 +49,10 @@ var glob = {
       './src/lib/angular-inview/angular-inview.js',
       './src/lib/HTML5-Desktop-Notifications/desktop-notify-min.js',
       './src/lib/loadScript.js',
-      './src/js/vendor/**/*.js',
+      './src/js/vendor/*.js',
     ],
     custom: [
-      './src/js/**/*.js',
+      './src/*.js',
       '!./src/js/vendor/**/*.js',
       '!./src/js/utils/analytics.disable.js',
     ]
@@ -69,7 +69,7 @@ var glob = {
   ],
   seo: ['./src/sitemap.xml','./src/robots.txt'],
   appCache: ['./src/app.manifest'],
-  assets: ['./src/assets/**/*'],
+  assets: ['./src/assets/*'],
   favicon: ['./src/favicon.png'],
   build: ['./www/js/constants.js','./www/app.manifest']
 }

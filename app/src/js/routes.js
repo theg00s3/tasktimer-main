@@ -51,11 +51,6 @@ angular.module('app')
       controller: 'AboutCtrl as vm',
       templateUrl: 'about.html',
     })
-    .state('trello', {
-      url: '/trello',
-      controller: 'TrelloGrantCtrl as vm',
-      templateUrl: 'trello.html',
-    })
     .state('settings', {
       url: '/settings',
       controller: 'SettingsCtrl as vm',

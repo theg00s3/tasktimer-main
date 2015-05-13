@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('SettingsCtrl', function(Settings,Trello,utils){
+.controller('SettingsCtrl', function(Settings,utils){
   var vm = this
 
   Settings.get().then(function(settings){
@@ -22,6 +22,4 @@ angular.module('app')
   }
 
   vm.todayEncoded = encodeURIComponent( utils.getCurrentDay() )
-
-  vm.trello = Trello
 })
