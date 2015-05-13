@@ -2,8 +2,9 @@
 
   h2.no.tac Public pomodoro
   br
-  form(name="PublicChooseForm",ng-submit="vm.submit()")
+  form.tac(name="PublicChooseForm",ng-submit="vm.submit()")
     input.tac.choose-room(autofocus="",placeholder="project-1",type="text", ng-model="vm.room", ng-pattern="/^[a-zA-Z0-9-_]*$/")
+    button Join!
 
   br
   br

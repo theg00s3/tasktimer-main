@@ -38,8 +38,6 @@ angular.module('app')
   $scope.$on('$destroy', function(){
     socket.removeAllListeners()
     socket.disconnect()
-    socket.close()
-    socket.destroy()
   })
 
   vm.startStopPomodoro = function(minutes,type,remoteOperation){
