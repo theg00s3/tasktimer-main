@@ -9,7 +9,7 @@ angular.module('app')
     data.pomodoriFull = Math.round(data.pomodori)
     data.hoursWorked = utils.trimDecimals(data.pomodoriFull*25/60,1)
     data.recordedDistractions = _.reduce(day, function(memo, pomodoro, key, list){
-      return memo + pomodoro.distractions.length
+      return memo + pomodoro.distractions ? pomodoro.distractions.length : 0
     }, 0)
 
     data.tags = StatisticsUtils.getTagsForData( day )
