@@ -29,7 +29,7 @@ var entryFiles = {
 }
 
 var glob = {
-  stylus: ['./src/*.styl'],
+  stylus: ['./src/stylus/**/*.styl'],
   js: {
     vendor: [
       './src/lib/angular/angular.min.js',
@@ -49,10 +49,10 @@ var glob = {
       './src/lib/angular-inview/angular-inview.js',
       './src/lib/HTML5-Desktop-Notifications/desktop-notify-min.js',
       './src/lib/loadScript.js',
-      './src/js/vendor/*.js',
+      './src/js/vendor/**/*.js',
     ],
     custom: [
-      './src/*.js',
+      './src/js/**/*.js',
       '!./src/js/vendor/**/*.js',
       '!./src/js/utils/analytics.disable.js',
     ]
@@ -69,7 +69,7 @@ var glob = {
   ],
   seo: ['./src/sitemap.xml','./src/robots.txt'],
   appCache: ['./src/app.manifest'],
-  assets: ['./src/assets/*'],
+  assets: ['./src/assets/**/*'],
   favicon: ['./src/favicon.png'],
   build: ['./www/js/constants.js','./www/app.manifest']
 }
@@ -152,7 +152,6 @@ gulp.task('templateCache', function(){
 
 gulp.task('js:vendor', function(){
   return gulp.src(glob.js.vendor)
-    .pipe(ngAnnotate())
     .pipe(uglify({mangle: true,compress:true}))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('./www/js/'))
