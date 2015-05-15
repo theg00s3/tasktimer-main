@@ -3,9 +3,10 @@ Feature: Navigation on the page
   I should be able to navigate through the site
   So that I can interact with it
 
-  Scenario: Clicking on dashboard
-    Given I click on "#navigate-dashboard"
-    Then I should be on "/"
-
-  Scenario: Clicking on login
-    Given I click on "#navigate-login button"
+  Scenario: Clicking on Menu
+    Given I click on "#nav-menu"
+    Then I should see "Dashboard"
+    Then I should see "Settings"
+    Then I should see "Public"
+    Then I should see "Statistics"
+    Then I should see "Login"

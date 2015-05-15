@@ -6,7 +6,7 @@ mixin header
         span.tld .cc
       ul.header__menu
         li.dropdown(ng-init="loginDropdownOpened=false", ng-click="loginDropdownOpened=!loginDropdownOpened", ng-class="{'opened':loginDropdownOpened}")
-          button.reset(tabindex="11")
+          button#nav-menu.reset(tabindex="11")
             img.avatar(ng-if="user", ng-src="{{::user.avatar}}")
             span.menu-text Menu
             ul.menu
@@ -15,7 +15,7 @@ mixin header
               li
                 a(ui-sref="settings",tabindex="13") Settings
               li
-                a(ui-sref="public.choose",tabindex="13") Public
+                a#nav-public-pomodoro(ui-sref="public.choose",tabindex="13") Public
               li.divider Statistics
               li
                 a(ui-sref="statistics.daily",tabindex="16") Statistics
