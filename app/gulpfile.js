@@ -152,7 +152,7 @@ gulp.task('templateCache', function(){
 
 gulp.task('js:vendor', function(){
   return gulp.src(glob.js.vendor)
-    .pipe(uglify({mangle: true,compress:true}))
+    // .pipe(uglify({mangle: true,compress:true}))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('./www/js/'))
     .pipe(connect.reload())
