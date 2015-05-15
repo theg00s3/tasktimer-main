@@ -95,7 +95,7 @@ gulp.task('watch-connect', ['watch','connect'], function(){})
 gulp.task('connect',function(){
   connect.server({
     root: 'www',
-    // livereload: true,
+    livereload: true,
     port: process.env.PORT || 9000,
     // middleware: function(connect, opt) {
     //   return [ historyApiFallback ]
