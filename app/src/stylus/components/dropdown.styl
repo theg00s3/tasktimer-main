@@ -18,23 +18,28 @@
     width  8px
     position absolute
     top   50%
-    right -5%
+    right -7%
+
   &.opened:after
     transform rotate(180deg)
 
+  .menu-text
+    font-size 0.8em
+    color color_text_dark
+
   .menu
     position absolute
+    top 100%
+    right 0
+    width 6.5rem
     display none
     background white
+    color color_text_dark
     box-shadow 0px 5px 25px -5px #333
     list-style-type none
-    width 12rem
     border-radius 5px
-    top 111%
-    right 0
     text-align left
     z-index 10000
-    text-indent 0.5rem
     font-weight bold
     font-size 0.8rem
 
@@ -53,11 +58,31 @@
       border-radius inherit
 
     li
+      text-indent 0.75rem
+
+      &.divider
+        margin-top 0.5rem
+
       a
         display block
-        width 100%
-        padding .5rem .25rem
-        color black
+        font-size 0.77rem
+        line-height 1em
+        white-space nowrap
+        padding 0.6rem 0.2rem
+        font-smoothing subpixel-antialiased
+        font-weight 400
+        margin 0
+        color color_text !important
+
+        &:hover
+          text-decoration none
+          font-weight 500 !important
+          color darken(color_text_dark,5%) !important
+        // display block
+        // width 100%
+        // padding 1rem 0
+        // margin 0
+        // color black
 
 .dropdown.opened .menu
   display block !important

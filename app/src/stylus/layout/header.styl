@@ -8,6 +8,7 @@ body > header
   margin auto
   transition none
   height height_header
+  border-bottom 1px solid color_light_grey
 
   .header__container
     @extend .limit
@@ -29,34 +30,3 @@ body > header
       text-align center
       border-bottom 1px solid transparent
       width width_header_links
-
-      &.active
-        color color_link
-        color #333
-
-        a
-          color inherit
-
-      a
-        margin 0
-        width 100%
-        line-height 2
-        height height_header
-        vertical-align middle
-
-        &.simple
-          font-size 0.9rem
-
-      &.active
-        border-bottom 2px solid color_pomodoro
-
-      &.attention-new:after
-        position absolute
-        bottom 2px
-        right 0
-        transform translateX(-25%) rotate(-45deg)
-        font-size .45rem
-        display block
-        content 'NEW'
-        color color_pomodoro
-
