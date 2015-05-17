@@ -20,7 +20,7 @@ mixin header
                 a(ui-sref="about",tabindex="12") About
               li.divider Statistics
               li
-                a(ui-sref="statistics.daily",tabindex="16") Statistics
+                a(ui-sref="statistics.daily",tabindex="16") Personal
               li
                 a(ui-sref="statistics.global",tabindex="17") Global
               div(ng-if="!user")
@@ -30,6 +30,7 @@ mixin header
                     i.icon.ion-social-twitter(style="float:left")
                   a(href="/auth/github",target="_self", style="width: 3em; float:left; display:inline-block; text-indent: 0")
                     i.icon.ion-social-github(style="float:left")
+              hr(style="margin: 0.2em 0")
               div(ng-if="user")
                 li
                   a(href="/auth/logout", target="_self") Logout &nbsp;

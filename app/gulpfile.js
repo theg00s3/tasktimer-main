@@ -112,6 +112,7 @@ gulp.task('assets', function(){
 gulp.task('stylus', function(){
   return gulp.src(entryFiles.stylus)
     .pipe( stylus({use: [nib()]}))
+    .on('error',function(){console.log('stylus::ERROR'); return this})
     .pipe(gulp.dest('./www/css/'))
     .pipe(connect.reload())
     .on('error',function(){console.log('stylus::ERROR')})
