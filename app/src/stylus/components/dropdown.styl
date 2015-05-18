@@ -20,7 +20,7 @@
     top   50%
     right -7%
 
-  &:hover:after, &.opened:after
+  &:hover:after
     transform rotate(180deg)
 
   .menu-text
@@ -59,11 +59,9 @@
 
     li
       text-indent 0.75rem
-      // border 1px solid lighten(color_light_grey, 10%)
 
       &.divider
         margin-top 0.5rem
-        // border-top 1px solid lighten(color_light_grey, 10%)
 
       a
         display block
@@ -81,7 +79,7 @@
           font-weight 400 !important
           color darken(color_text_dark,100%) !important
 
-.dropdown:hover .menu, .dropdown.opened .menu
+.dropdown:hover .menu
   display block !important
 
 
@@ -91,5 +89,5 @@
     transform scale(0)
     transform-origin 90% 5%
     transition all 300ms cubic-bezier(0.34,1.3,0.7,1)
-  .dropdown:hover .menu, .dropdown.opened .menu
+  .dropdown:hover .menu
     transform scale(1) !important
