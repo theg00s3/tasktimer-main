@@ -4,7 +4,7 @@ include ../../mixins/statistics-navigation.jade
 h5.ng-cloak.tac(ng-if="vm.dataAvailable === false")
   | no data available :(
 
-div.statistics-numbers.animated.fadeIn(ng-if="vm.dataAvailable")
+div.statistics-numbers(ng-if="vm.dataAvailable")
   .counter-container.row
     .counter.col-2
       .avg {{ vm.statistics.avgPomodoriPerDay }} pom / day

@@ -4,7 +4,7 @@ include ../../mixins/statistics-navigation.jade
 h5.ng-cloak.tac.breath(ng-if="vm.dataAvailable === false")
   | no data available :(
 
-div.statistics-numbers.animated.fadeIn(ng-if="vm.dataAvailable && vm.statistics.graph.data.length > 0")
+div.statistics-numbers(ng-if="vm.dataAvailable && vm.statistics.graph.data.length > 0")
   .counter-container.row
     .counter.col-2
       .number {{ vm.statistics.pomodori }}

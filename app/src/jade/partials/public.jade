@@ -1,6 +1,6 @@
 .limit
   h3.no.tac {{vm.roomTitle}}
-  .public-clients-count.tac.animated.fadeIn
+  .public-clients-count.tac
     a(ng-href="https://twitter.com/intent/tweet?text=Share a pomodoro with me on https://pomodoro.cc/public/{{vm.roomId}}", target="_blank")
       i.icon.ion-social-twitter
     div(ng-show="vm.clientsCount == 1")

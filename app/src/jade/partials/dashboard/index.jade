@@ -24,7 +24,7 @@
           i.icon.ion-ios7-pause
           span &nbsp; {{ (vm.pomodoro.getType()=='break' && vm.pomodoro.getMinutes()==15) ? 'cancel' : '' }} 15min break
 
-  div.tac.animated.fadeInUp(ng-if="vm.pomodoro.getDistractions().length > 0")
+  div.tac(ng-if="vm.pomodoro.getDistractions().length > 0")
     b {{vm.pomodoro.getDistractions().length  }}
     | &nbsp; distraction{{ vm.pomodoro.getDistractions().length > 1 ? 's' : '' }} recorded
 
