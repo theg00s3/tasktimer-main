@@ -31,7 +31,7 @@ html(lang="en", ng-app="app", manifest=(!!PRODUCTION ? "/app.manifest" : undefin
     include mixins/header.jade
     +header
 
-    .content(ui-view="",autoscroll="true")
+    .content.animated.fadeIn(ui-view="",autoscroll="true")
 
     include mixins/footer.jade
     +footer
