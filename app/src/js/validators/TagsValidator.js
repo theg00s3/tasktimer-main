@@ -6,11 +6,9 @@ angular.module('app')
     if( !tag ){
       return false
     }
-    if( angular.isArray(tag) ){
-      return areValidTags(tag)
-    }else{
-      return isValidTag(tag)
-    }
+    return angular.isArray(tag)
+      ? areValidTags(tag)
+      : isValidTag(tag)
   }
 
   self.canAddTo = function(tags,tag){
