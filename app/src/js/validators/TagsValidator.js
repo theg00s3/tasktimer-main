@@ -3,15 +3,13 @@ angular.module('app')
   var self = this
 
   self.validate = function(tag){
-    if( !tag ){
-      return false
-    }
+    tag = tag || ''
     return angular.isArray(tag)
       ? areValidTags(tag)
       : isValidTag(tag)
   }
 
-  self.canAddTo = function(tags,tag){
+  self.canAddTo = function(tags, tag){
     if( !self.validate(tags) || tag !== undefined && !self.validate(tag) ){
       return false
     }
@@ -22,10 +20,7 @@ angular.module('app')
   }
 
   function areValidTags(tags){
-    if(!tags || tags.length>constants.tagsLimit){
-      return false
-    }
-    if( hasDuplicates(tags) ){
+    if(!tags || tags.length>constants.tagsLimit || hasDuplicates(tags) ){
       return false
     }
     for (var i = tags.length - 1; i >= 0; i--) {
@@ -38,9 +33,7 @@ angular.module('app')
   }
 
   function isValidTag(tag){
-    if(!tag){
-      return false
-    }
+    tag = tag || ''
     tag = tag.trim()
     return tag.length > 0 && tag.length < 20
   }
