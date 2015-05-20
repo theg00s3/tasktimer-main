@@ -29,7 +29,7 @@ angular.module('app')
   Settings.changed(function(settings){
     vm.soundsEnabled = settings.soundsEnabled
     vm.tickingSoundEnabled = settings.tickingSoundEnabled
-  });
+  })
 
 
   function keyboardShortcut(e){

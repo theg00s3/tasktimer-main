@@ -1,7 +1,7 @@
 module.exports = function(){
-  ptor = protractor.getInstance();
+  ptor = protractor.getInstance()
 
   browser.addMockModule('app', function(){
-    angular.module('app').service('landingPageRedirect',angular.noop);
-  });
-};
+    angular.module('app').service('landingPageRedirect',angular.noop)
+  })
+}
