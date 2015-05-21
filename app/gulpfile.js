@@ -15,6 +15,7 @@ var gulp = require('gulp')
   , templateCache = require('gulp-angular-templatecache')
 
 var PRODUCTION = !!process.env.PRODUCTION
+console.log('--PRODUCTION', PRODUCTION)
 
 require('shelljs/global')
 
