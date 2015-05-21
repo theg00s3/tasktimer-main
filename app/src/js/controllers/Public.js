@@ -8,8 +8,8 @@ angular.module('app')
   vm.pomodoro = Pomodoro
   vm.clientsCount = 1
 
-  var socket = new Socket('/'+vm.roomId, {forceNew: true, reconnect: true})
-  // socket.emit('room', vm.roomId)
+  var socket = new Socket('/', {forceNew: true, reconnect: true})
+  socket.emit('room', vm.roomId)
   socket.on('start', function(minutes, type){
     if( !vm.pomodoro.inProgress() ){
       vm.startStopPomodoro(minutes, type, true)
