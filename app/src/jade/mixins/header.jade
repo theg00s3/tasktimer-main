@@ -13,11 +13,9 @@ mixin header
               li
                 a(ui-sref="dashboard",tabindex="12") Dashboard
               li
-                a(ui-sref="settings",tabindex="13") Settings
+                a(ui-sref="about",tabindex="12") About
               li
                 a#nav-public-pomodoro(ui-sref="public.choose",tabindex="13") Public
-              li
-                a(ui-sref="about",tabindex="12") About
               li.divider Statistics
               li
                 a(ui-sref="statistics.daily",tabindex="16") Personal
@@ -35,3 +33,5 @@ mixin header
                 li
                   a(href="/auth/logout", target="_self") Logout &nbsp;
                     i.icon.ion-log-out
+      a.header--link.unlink.right(ui-sref="settings")
+        i.icon.ion-ios7-gear
