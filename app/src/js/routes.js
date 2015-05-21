@@ -11,6 +11,11 @@ angular.module('app')
       controller: 'LoginCtrl as vm',
       templateUrl: 'login.html',
     })
+    .state('developers', {
+      url: '/developers',
+      controller: 'DevelopersCtrl as vm',
+      templateUrl: 'developers.html',
+    })
     .state('public', {
       abstract: true,
       url: '/public',
