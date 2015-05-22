@@ -6,7 +6,6 @@ Feature: Navigation on the page
   Scenario: Clicking on Menu
     Given I click on "#nav-menu"
     Then I should see "Dashboard"
-    Then I should see "Settings"
     Then I should see "Public"
     Then I should see "Statistics"
     Then I should see "Login"
