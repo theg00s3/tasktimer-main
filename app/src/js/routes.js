@@ -31,21 +31,21 @@ angular.module('app')
         controller: 'PublicCtrl as vm',
         templateUrl: 'public.html',
       })
-    .state('statistics', authenticate({
+    .state('statistics', {
       url: '/statistics',
       templateUrl: 'statistics/layout.html',
       abstract: true
-    }))
-      .state('statistics.daily', {
+    })
+      .state('statistics.daily', authenticate({
         url: '/daily/{day:dayFormat}',
         controller: 'StatisticsDailyCtrl as vm',
         templateUrl: 'statistics/daily.html',
-      })
-      .state('statistics.weekly', {
+      }))
+      .state('statistics.weekly', authenticate({
         url: '/weekly/{week:weekFormat}',
         controller: 'StatisticsWeeklyCtrl as vm',
         templateUrl: 'statistics/weekly.html',
-      })
+      }))
       .state('statistics.global', {
         url: '/global',
         controller: 'StatisticsGlobalCtrl as vm',
@@ -74,11 +74,7 @@ angular.module('app')
   function authenticate(config){
     return angular.extend(config, {
       resolve: {
-        user: function($location,User){
-          console.log( $location.$$path )
-          if( /^\/statistics\/global/.test($location.$$path) ){
-            return true
-          }
+        user: function(User){
           return User.authenticate()
         }
       }
