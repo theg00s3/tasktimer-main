@@ -6,9 +6,9 @@ describe('Graph', function() {
   }))
 
 
-  it('fails', function() {
-    expect(false).toBeTruthy()
-  })
+  // it('fails', function() {
+  //   expect(false).toBeTruthy()
+  // })
 
 
 })
