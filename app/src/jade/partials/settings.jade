@@ -7,7 +7,7 @@
         i.checkbox.icon(ng-click="vm.toggle('soundsEnabled')",ng-class="vm.settings.soundsEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'",style="padding-left:1em;")
 
       div.input-group(ng-class="{disabled:!vm.settings.soundsEnabled}")
-        label(ng-click="vm.toggle('ringingSoundEnabled')") ringing
+        label(ng-click="vm.toggle('ringingSoundEnabled')") Ringing
         i.checkbox.icon(ng-click="vm.toggle('ringingSoundEnabled')",ng-class="vm.settings.ringingSoundEnabled ? 'ion-ios7-checkmark' : 'ion-ios7-checkmark-outline'")
       div.input-group(ng-class="{disabled:!vm.settings.soundsEnabled}")
         label(ng-click="vm.toggle('tickingSoundEnabled')") Ticking sound
