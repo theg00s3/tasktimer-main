@@ -24,8 +24,8 @@
       .col-2
         button.block.break-5(ng-click="vm.startStopPomodoro(5,'break-public')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 5", tabindex="22")
           i.icon.ion-ios7-pause
-          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==5) ? 'cancel' : '' }} 5min break
+          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==5) ? 'cancel' : '' }} 5 min break
       .col-2
         button.block.break-15(ng-click="vm.startStopPomodoro(15,'break-public')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 15", tabindex="23")
           i.icon.ion-ios7-pause
-          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==15) ? 'cancel' : '' }} 15min break
+          span &nbsp; {{ (vm.pomodoro.getType()=='break-public' && vm.pomodoro.getMinutes()==15) ? 'cancel' : '' }} 15 min break
