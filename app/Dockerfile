@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:1.9.1
 RUN ["rm", "/etc/nginx/nginx.conf"]
 RUN ["mkdir", "-p", "/var/www/pomodoro.cc/"]
 RUN ["mkdir", "-p", "/etc/nginx/ssl/pomodoro.cc/"]
