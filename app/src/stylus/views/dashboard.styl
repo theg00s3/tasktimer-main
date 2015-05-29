@@ -1,7 +1,7 @@
 .pomodoro-timer
   font-size 9em
   margin 0.5rem auto
-  padding-top 1rem
+  padding-top 2rem
   padding-bottom @padding-top
   text-align center
   user-select none
@@ -11,16 +11,25 @@
 
 .pomodoro-control-buttons-container
   margin 1rem auto
+  max-width limit * 0.8
   overflow hidden
 
   button
     @extends button.center
-
-  button.start-pomodoro
-    font-size 1.15em
-    padding 1.5em inherit !important
-
-
+    width (100%/3)
+    float left
+    padding 1em
+    border-radius 0
+    border-left 1px solid color_pomodoro
+    border-right @border-left
+    &:first-child
+      border-top-left-radius 0.5rem
+      border-bottom-left-radius @border-top-left-radius
+      border-left none
+    &:last-child
+      border-top-right-radius 0.5rem
+      border-bottom-right-radius @border-top-right-radius
+      border-right none
 
 
 .dashboard-action

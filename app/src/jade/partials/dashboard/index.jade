@@ -12,17 +12,14 @@
 
   .pomodoro-control-buttons-container.animated.bounceIn
     button.block.start-pomodoro(ng-click="vm.startStopPomodoro(25,'pomodoro')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getType() == 'break'", tabindex="21")
-      i.icon.ion-ios7-bolt
-      span &nbsp; {{ vm.pomodoro.getType()=='pomodoro' ? 'cancel' : 'start' }} pomodoro
-    .row.no-outer-margins
-      .col-2
-        button.block.break-5(ng-click="vm.startStopPomodoro(5,'break')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 5", tabindex="22")
-          i.icon.ion-ios7-pause
-          span &nbsp; {{ (vm.pomodoro.getType()=='break' && vm.pomodoro.getMinutes()==5) ? 'cancel' : '' }} 5min break
-      .col-2
-        button.block.break-15(ng-click="vm.startStopPomodoro(15,'break')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 15", tabindex="23")
-          i.icon.ion-ios7-pause
-          span &nbsp; {{ (vm.pomodoro.getType()=='break' && vm.pomodoro.getMinutes()==15) ? 'cancel' : '' }} 15min break
+      i.icon.pomodoro
+      span &nbsp; 25 min
+    button.block.break-5(ng-click="vm.startStopPomodoro(5,'break')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 5", tabindex="22")
+      i.icon.ion-ios7-pause
+      span &nbsp; 5 min
+    button.block.break-15(ng-click="vm.startStopPomodoro(15,'break')", ng-disabled="vm.pomodoro.inProgress() && vm.pomodoro.getMinutes() != 15", tabindex="23")
+      i.icon.ion-ios7-pause
+      span &nbsp; 15 min
 
   div.tac(ng-if="vm.pomodoro.getDistractions().length > 0")
     b {{vm.pomodoro.getDistractions().length  }}
