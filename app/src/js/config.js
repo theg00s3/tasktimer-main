@@ -17,13 +17,13 @@ angular.module('app')
 
   $urlMatcherFactoryProvider.type('dayFormat',
     angular.extend(urlMatcherGenericOptions,{
-      pattern: /(^\/\d{1,2}\/\d{1,2}\/\d{4}|.{1})/
+      pattern: /^\/\d{1,2}\/\d{1,2}\/\d{4}|.*/
     })
   )
 
   $urlMatcherFactoryProvider.type('weekFormat',
     angular.extend(urlMatcherGenericOptions,{
-      pattern: /(^\/\d{1,2}\/\d{4}|.{1})/
+      pattern: /^\/\d{1,2}\/\d{4}|.*/
     })
   )
 
