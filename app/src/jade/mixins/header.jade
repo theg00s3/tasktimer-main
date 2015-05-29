@@ -6,32 +6,32 @@ mixin header
         span.tld .cc
       ul.header__menu
         li.dropdown(ng-init="loginDropdownOpened=false", ng-click="loginDropdownOpened=!loginDropdownOpened", ng-class="{'opened':loginDropdownOpened}")
-          button#nav-menu.reset(tabindex="11")
-            img.avatar(ng-if="user", ng-src="{{::user.avatar}}")
-            span.menu-text Menu
-            ul.menu
+          //- button#nav-menu.reset(tabindex="11")
+          img.avatar(ng-if="user", ng-src="{{::user.avatar}}")
+          span.menu-text Menu
+          ul.menu
+            li
+              a(ui-sref="dashboard",tabindex="12") Dashboard
+            li
+              a#nav-public-pomodoro(ui-sref="public.choose",tabindex="13") Public
+            li
+              a(ui-sref="about",tabindex="12") About
+            li.divider Statistics
+            li
+              a(ui-sref="statistics.daily",tabindex="16") Personal
+            li
+              a(ui-sref="statistics.global",tabindex="17") Global
+            div(ng-if="!user")
+              li.divider Login
               li
-                a(ui-sref="dashboard",tabindex="12") Dashboard
+                a(href="/auth/twitter",target="_self", style="width: 3em; margin-left: 1em; float:left; display:inline-block; text-indent: 0")
+                  i.icon.ion-social-twitter(style="float:left")
+                a(href="/auth/github",target="_self", style="width: 3em; float:left; display:inline-block; text-indent: 0")
+                  i.icon.ion-social-github(style="float:left")
+            hr(style="margin: 0.2em 0")
+            div(ng-if="user")
               li
-                a#nav-public-pomodoro(ui-sref="public.choose",tabindex="13") Public
-              li
-                a(ui-sref="about",tabindex="12") About
-              li.divider Statistics
-              li
-                a(ui-sref="statistics.daily",tabindex="16") Personal
-              li
-                a(ui-sref="statistics.global",tabindex="17") Global
-              div(ng-if="!user")
-                li.divider Login
-                li
-                  a(href="/auth/twitter",target="_self", style="width: 3em; margin-left: 1em; float:left; display:inline-block; text-indent: 0")
-                    i.icon.ion-social-twitter(style="float:left")
-                  a(href="/auth/github",target="_self", style="width: 3em; float:left; display:inline-block; text-indent: 0")
-                    i.icon.ion-social-github(style="float:left")
-              hr(style="margin: 0.2em 0")
-              div(ng-if="user")
-                li
-                  a(href="/auth/logout", target="_self") Logout &nbsp;
-                    i.icon.ion-log-out
+                a(href="/auth/logout", target="_self") Logout &nbsp;
+                  i.icon.ion-log-out
       a.header--link.unlink.right(ui-sref="settings")
         i.icon.ion-ios7-gear
