@@ -5,7 +5,7 @@ Feature: Starting a public pomodoro
 
   Scenario: Starting a public pomodoro
     Given I go to "/"
-    Then I click on "#nav-menu"
+    Then I click on ".dropdown"
     Then I click on "#nav-public-pomodoro"
     Then I should see "Remote pair programming"
     When I insert the public room "project-1"

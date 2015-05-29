@@ -4,7 +4,7 @@ Feature: Navigation on the page
   So that I can interact with it
 
   Scenario: Clicking on Menu
-    Given I click on "#nav-menu"
+    Given I click on ".dropdown"
     Then I should see "Dashboard"
     Then I should see "Public"
     Then I should see "Statistics"
