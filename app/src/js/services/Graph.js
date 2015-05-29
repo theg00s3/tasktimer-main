@@ -17,6 +17,7 @@ angular.module('app')
       , timeMax = moment(timeSpan.timeMax)
       , timeMin = moment(timeSpan.timeMin)
 
+
     var margin = 5
     graph.data = _.map(data, function(pomodoro, key, list){
       var actualMinutes = getActualMinutesFor(pomodoro)
@@ -60,11 +61,15 @@ angular.module('app')
   }
 
   function getFirstPomodoro(data){
-    return _.min(data, function(pomodoro, key, list){return pomodoro.startedAt})
+    return _.min(data, function(pomodoro, key, list){
+      return moment(pomodoro.startedAt).unix()
+    })
   }
 
   function getLastPomodoro(data){
-    return _.max(data, function(pomodoro, key, list){return pomodoro.startedAt + pomodoro.minutes*60*1000})
+    return _.max(data, function(pomodoro, key, list){
+      return moment(pomodoro.startedAt).unix() + pomodoro.minutes*60
+    })
   }
 
   function getActualMinutesFor(pomodoro){
