@@ -5,7 +5,7 @@ var source = require('vinyl-source-stream')
 
 var paths = {
   browserify_entry: ['src/index.js'],
-  js: ['src/js/**/*.js']
+  js: ['src/**/*.js']
 }
 
 gulp.task('js', function(){
@@ -17,7 +17,7 @@ gulp.task('js', function(){
 })
 
 gulp.task('watch', function(){
-  return gulp.watch(paths.js, ['js'])
+  gulp.watch(paths.js, ['js'])
 })
 
 gulp.task('static', function(){
