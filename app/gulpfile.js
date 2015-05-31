@@ -25,7 +25,7 @@ gulp.task('js', function(){
 
 gulp.task('stylus', function(){
   return gulp.src(entryFiles.stylus)
-    .pipe( stylus({use: [nib()]}))
+    .pipe(stylus({use: [nib()]}))
     .on('error',function(){console.log('stylus::ERROR'); return this})
     .pipe(gulp.dest('www/'))
 })

@@ -1,13 +1,23 @@
-@import "../node_modules/normalize.css/normalize.css"
+@import 'general/normalize'
 
 header_padding = .75em
 header_height  = header_padding + 1em
+limit = 42em
+
+.limit
+  max-width limit
+  margin-left auto
+  margin-right @margin-left
 
 
 header[role=header]
   position fixed
   top 0
   left 0
+  right 0
+  background lightgrey
   padding header_padding
   height header_height
   border-bottom 1px solid black
+  .content
+    @extend .limit
