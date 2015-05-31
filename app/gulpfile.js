@@ -8,7 +8,8 @@ var gulp = require('gulp')
 
 var paths = {
   js: ['src/**/*.js'],
-  stylus: ['src/**/*.styl']
+  stylus: ['src/**/*.styl'],
+  jade: ['src/**/*.jade']
 }
 
 var entryFiles = {
@@ -43,7 +44,7 @@ gulp.task('jade', function(){
 gulp.task('watch', ['default'], function(){
   gulp.watch(paths.js, ['js'])
   gulp.watch(paths.stylus, ['stylus'])
-  gulp.watch(paths.stylus, ['stylus'])
+  gulp.watch(paths.jade, ['jade'])
   gulp.watch('src/index.html', ['static'])
 })
 
