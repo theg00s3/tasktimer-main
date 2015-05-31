@@ -5,18 +5,22 @@ color_body = #FCFCFC
 color_pomodoro = #ED5A3A
 color_pomodoro_leaf = #24b524
 color_header = lighten(color_body,17%)
+color_light = #FEFEFE
 color_light_grey = #E9E9E9
 
 
-header_padding = .75em
-header_height  = header_padding + 0.6em
+header_padding = .75rem
+header_height  = header_padding + 0.6rem
 limit = 42em
+
+main
+  margin-top (header_height*2)
+  min-height 500px
 
 .limit
   max-width limit
   margin-left auto
   margin-right @margin-left
-
 
 header[role=header]
   position fixed
@@ -27,8 +31,6 @@ header[role=header]
   padding header_padding
   height header_height
   border-bottom 1px solid color_light_grey
-  .content
-    @extend .limit
 
 
 .brand
@@ -60,3 +62,16 @@ header[role=header]
     opacity 0
     transition .3s all ease
 
+
+footer[role=footer]
+  position relative
+  font-size 0.9rem
+  padding 2em .25em
+  background darken(color_light,5%)
+  box-shadow 0 1px 1px 0 darken(color_light,3%) inset
+
+  .donate
+    margin 1.5em auto
+
+.tac
+  text-align center

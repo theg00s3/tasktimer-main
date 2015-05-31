@@ -34,6 +34,7 @@ gulp.task('stylus', function(){
 gulp.task('watch', ['default'], function(){
   gulp.watch(paths.js, ['js'])
   gulp.watch(paths.stylus, ['stylus'])
+  gulp.watch('src/index.html', ['static'])
 })
 
 gulp.task('static', function(){
