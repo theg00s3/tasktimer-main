@@ -1,7 +1,15 @@
 @import 'general/normalize'
 
+/* COLORS */
+color_body = #FCFCFC
+color_pomodoro = #ED5A3A
+color_pomodoro_leaf = #24b524
+color_header = lighten(color_body,17%)
+color_light_grey = #E9E9E9
+
+
 header_padding = .75em
-header_height  = header_padding + 1em
+header_height  = header_padding + 0.6em
 limit = 42em
 
 .limit
@@ -15,9 +23,40 @@ header[role=header]
   top 0
   left 0
   right 0
-  background lightgrey
+  background color_header
   padding header_padding
   height header_height
-  border-bottom 1px solid black
+  border-bottom 1px solid color_light_grey
   .content
     @extend .limit
+
+
+.brand
+  margin 0
+  padding 0
+  border 0
+  font-size 1.1em
+  margin-left 0.5rem
+  margin-top (header_height/5)
+  color #333
+  opacity 0.7
+  text-decoration none
+  transition all .3s ease
+
+  &:hover
+    opacity 1
+    background-color transparent
+    text-decoration none
+    color #333
+    .tld
+      opacity 1
+
+  span:first-child
+    color color_pomodoro
+    font-weight bold
+
+  span.tld
+    font-size 0.6em
+    opacity 0
+    transition .3s all ease
+
