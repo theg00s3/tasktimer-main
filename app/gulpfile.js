@@ -1,23 +1,39 @@
 var gulp = require('gulp')
-var browserify = require('browserify')
-var reactify = require('reactify')
-var source = require('vinyl-source-stream')
+  , stylus = require('gulp-stylus')
+  , nib = require('nib')
+  , browserify = require('browserify')
+  , reactify = require('reactify')
+  , source = require('vinyl-source-stream')
 
 var paths = {
-  browserify_entry: ['src/index.js'],
-  js: ['src/**/*.js']
+  js: ['src/**/*.js'],
+  stylus: ['src/**/*.styl']
+}
+
+var entryFiles = {
+  browserify: 'src/index.js',
+  stylus: 'src/index.styl'
 }
 
 gulp.task('js', function(){
-  return browserify(paths.browserify_entry)
+  return browserify(entryFiles.browserify)
     .transform(reactify)
     .bundle()
-    .pipe(source('bundle.js'))
+    .pipe(source('index.js'))
     .pipe(gulp.dest('www/'))
 })
 
-gulp.task('watch', function(){
+gulp.task('stylus', function(){
+  return gulp.src(entryFiles.stylus)
+    .pipe( stylus({use: [nib()]}))
+    .on('error',function(){console.log('stylus::ERROR'); return this})
+    .pipe(gulp.dest('www/'))
+})
+
+
+gulp.task('watch', ['default'], function(){
   gulp.watch(paths.js, ['js'])
+  gulp.watch(paths.stylus, ['stylus'])
 })
 
 gulp.task('static', function(){
@@ -25,4 +41,4 @@ gulp.task('static', function(){
     .pipe(gulp.dest('www/'))
 })
 
-gulp.task('default', ['js','static'])
+gulp.task('default', ['js','stylus','static'])
