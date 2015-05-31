@@ -1,47 +1,11 @@
 {
-  "name": "pomodoro",
+  "name": "app",
   "version": "1.0.0",
-  "description": "a pomodoro timer",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/christian-fei/pomodoro.git"
-  },
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start test/karma.conf.js --single-run --no-auto-watch",
-    "test-watch": "karma start test/karma.conf.js",
-    "e2e-test": "sh test/e2e_test.sh"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "bower": "latest",
-    "connect-history-api-fallback": "latest",
-    "gulp": "latest",
-    "gulp-angular-templatecache": "latest",
-    "gulp-concat": "2.2.0",
-    "gulp-connect": "latest",
-    "gulp-if": "latest",
-    "gulp-jade": "latest",
-    "gulp-minify-css": "latest",
-    "gulp-ng-annotate": "latest",
-    "gulp-plumber": "latest",
-    "gulp-rename": "latest",
-    "gulp-replace": "latest",
-    "gulp-stylus": "latest",
-    "gulp-uglify": "latest",
-    "gulp-using": "latest",
-    "gulp-util": "3.0.1",
-    "gulp-jshint": "^1.9.2",
-    "jshint-stylish": "^1.0.1",
-    "nib": "latest",
-    "shelljs": "latest"
-  },
-  "devDependencies": {
-    "chai": "^1.10.0",
-    "cucumber": "^0.4.7",
-    "karma": "latest",
-    "karma-growl-reporter": "latest",
-    "karma-jasmine": "^0.3.3",
-    "karma-mocha-reporter": "^0.3.1",
-    "karma-phantomjs-launcher": "latest",
-    "protractor": "^1.3.1"
-  }
+  "author": "",
+  "license": "ISC"
 }
