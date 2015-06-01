@@ -10,7 +10,8 @@ var gulp = require('gulp')
 var paths = {
   js: ['src/**/*.js'],
   stylus: ['src/**/*.styl'],
-  jade: ['src/**/*.jade']
+  jade: ['src/**/*.jade'],
+  test: ['test/**/*.js']
 }
 
 var entryFiles = {
@@ -43,11 +44,12 @@ gulp.task('jade', function(){
 gulp.task('test', function(){
   return gulp.src('test/unit/**/*.js', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
-    .pipe(mocha({reporter: 'nyan'}))
+    .pipe(mocha({reporter: 'nyan', bail:true}))
 })
 
 gulp.task('watch', ['default'], function(){
-  gulp.watch(paths.js, ['js'])
+  gulp.watch(paths.js, ['js','test'])
+  gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
   gulp.watch(paths.jade, ['jade'])
   gulp.watch('src/index.html', ['static'])
@@ -58,4 +60,4 @@ gulp.task('static', function(){
     .pipe(gulp.dest('www/'))
 })
 
-gulp.task('default', ['js','stylus','jade','static'])
+gulp.task('default', ['js','stylus','test','jade','static'])
