@@ -22,7 +22,10 @@ var entryFiles = {
 }
 
 gulp.task('js', function(){
-  return browserify(entryFiles.browserify)
+  return browserify({
+      entries:entryFiles.browserify,
+      debug: true
+    })
     .transform(reactify)
     .bundle()
     .pipe(plumber())
