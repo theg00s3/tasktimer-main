@@ -1,10 +1,10 @@
 var React = require('react')
+var moment = require('moment')
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      seconds: 0,
-      time: '00:00'
+      remaining: '00:00'
     }
   },
   componentDidMount: function() {

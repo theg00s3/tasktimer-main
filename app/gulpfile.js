@@ -2,6 +2,7 @@ var gulp = require('gulp')
   , stylus = require('gulp-stylus')
   , nib = require('nib')
   , jade = require('gulp-jade')
+  , mocha = require('gulp-mocha')
   , browserify = require('browserify')
   , reactify = require('reactify')
   , source = require('vinyl-source-stream')
@@ -39,7 +40,11 @@ gulp.task('jade', function(){
     .pipe(gulp.dest('www/'))
 })
 
-
+gulp.task('test', function(){
+  return gulp.src('test/unit/**/*.js', {read: false})
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha({reporter: 'nyan'}))
+})
 
 gulp.task('watch', ['default'], function(){
   gulp.watch(paths.js, ['js'])
