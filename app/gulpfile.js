@@ -56,8 +56,10 @@ gulp.task('watch', ['default'], function(){
 })
 
 gulp.task('static', function(){
-  return gulp.src('src/index.html')
+  gulp.src('src/index.html')
     .pipe(gulp.dest('www/'))
+  gulp.src('./src/assets/**/*')
+    .pipe(gulp.dest('www/assets/'))
 })
 
 gulp.task('default', ['js','stylus','test','jade','static'])

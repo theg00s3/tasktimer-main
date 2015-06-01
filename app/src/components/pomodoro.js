@@ -5,15 +5,21 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       remaining: 0,
-      time: '00:00'
+      time: '00:00',
+      disabled25: false,
+      disabled15: false,
+      disabled5: false,
     }
   },
   componentDidMount: function() {
-    var remaining = parseInt(localStorage.remaining, 10)
-    if( remaining != undefined && remaining > 0 ){
-      this.state.remaining = remaining
-      console.log( '-- remaining', remaining )
-      this._startTimer()
+    var pomodoro = localStorage.pomodoro
+    if( pomodoro && pomodoro.startedAt && pomodoro.minutes ){
+      var remaining = parseInt(localStorage.remaining, 10)
+      if( remaining != undefined && remaining > 0 ){
+        this.state.remaining = remaining
+        console.log( '-- remaining', remaining )
+        this._startTimer()
+      }
     }
   },
   componentWillUnmount: function(){
@@ -52,16 +58,16 @@ module.exports = React.createClass({
     return  <div>
               <div className="pomodoro">{this.state.time}</div>
               <div className="pomodoro-control-buttons-container">
-                <button onClick={this._start(25,"pomodoro")}>
+                <button disabled={this.state.disabled25} onClick={this._start(25,"pomodoro")}>
                   <i className="icon pomodoro"></i>
                   <span>&nbsp; 25 min</span>
                 </button>
                 <button onClick={this._start(5,"break")}>
-                  <i className="icon ion-ios7-pause"></i>
+                  <i className="icon ion-pause"></i>
                   <span>&nbsp; 5 min</span>
                 </button>
                 <button onClick={this._start(15,"break")}>
-                  <i className="icon ion-ios7-pause"></i>
+                  <i className="icon ion-pause"></i>
                   <span>&nbsp; 15 min</span>
                 </button>
               </div>
