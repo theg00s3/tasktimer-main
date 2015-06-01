@@ -1,5 +1,5 @@
 var React = require('react')
-var Pomodoro = require('./pomodoro')
+var Pomodoro = require('./Pomodoro')
 
 module.exports = React.createClass({
   render: function() {

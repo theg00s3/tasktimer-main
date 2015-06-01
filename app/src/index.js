@@ -4,6 +4,6 @@ var router = require('./router')
 
 router.start()
 
-var Header = require('./components/header')
+var Header = require('./components/Header')
 
 React.render(<Header/>, document.getElementById('main-header'))
