@@ -1,4 +1,5 @@
 var gulp = require('gulp')
+  , plumber = require('gulp-plumber')
   , stylus = require('gulp-stylus')
   , nib = require('nib')
   , jade = require('gulp-jade')
@@ -24,6 +25,7 @@ gulp.task('js', function(){
   return browserify(entryFiles.browserify)
     .transform(reactify)
     .bundle()
+    .pipe(plumber())
     .pipe(source('index.js'))
     .pipe(gulp.dest('www/'))
 })
@@ -31,18 +33,20 @@ gulp.task('js', function(){
 gulp.task('stylus', function(){
   return gulp.src(entryFiles.stylus)
     .pipe(stylus({use: [nib()]}))
-    .on('error',function(){console.log('stylus::ERROR'); return this})
+    .pipe(plumber())
     .pipe(gulp.dest('www/'))
 })
 
 gulp.task('jade', function(){
   return gulp.src(entryFiles.jade)
+    .pipe(plumber())
     .pipe(jade())
     .pipe(gulp.dest('www/'))
 })
 
 gulp.task('test', function(){
   return gulp.src('test/unit/**/*.js', {read: false})
+    .pipe(plumber())
     // gulp-mocha needs filepaths so you can't have any plugins before it
     .pipe(mocha({reporter: 'nyan', bail:true}))
 })
@@ -57,8 +61,10 @@ gulp.task('watch', ['default'], function(){
 
 gulp.task('static', function(){
   gulp.src('src/index.html')
+    .pipe(plumber())
     .pipe(gulp.dest('www/'))
   gulp.src('./src/assets/**/*')
+    .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
 })
 
