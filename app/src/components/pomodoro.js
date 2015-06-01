@@ -9,8 +9,8 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    var remaining = localStorage.remaining
-    if (remaining != undefined) {
+    var remaining = parseInt(localStorage.remaining, 10)
+    if (remaining != undefined && remaining > 0) {
       this.state.remaining = remaining
       console.log( '-- remaining', remaining )
       this._startTimer()
@@ -25,10 +25,15 @@ module.exports = React.createClass({
     var time = TimeFormatter.formatSeconds(remaining)
     console.log('-- tick', remaining, time)
     localStorage.remaining = remaining
-    this.setState({
-      remaining: remaining - 1,
-      time: time,
-    })
+    if( remaining > 0 ){
+      this.setState({
+        remaining: remaining - 1,
+        time: time,
+      })
+    }else{
+      this._stopTimer()
+      localStorage.remaining = 0
+    }
   },
   _start: function(minutes, type){
     return function(){
