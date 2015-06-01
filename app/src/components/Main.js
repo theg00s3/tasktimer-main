@@ -1,5 +1,5 @@
 var React = require('react')
-var Pomodoro = require('./Pomodoro')
+var PomodoroTimer = require('./PomodoroTimer')
 var store = require('store')
 var moment = require('moment')
 
@@ -14,19 +14,20 @@ module.exports = React.createClass({
     }else{
       store.remove('pomodoroData')
     }
-    var pomodoroEvent = function(eventName, minutes, type){
-      if( eventName === 'stop' ){
-        store.remove('pomodoroData')
-        return
-      }
-      store.set('pomodoroData', {
-        minutes: minutes,
-        type: type,
-        startedAt: Date.now()
-      })
-    }
     return  <div className="main">
-              <Pomodoro remaining={remaining} data={pomodoroData} notify={pomodoroEvent}/>
+              <PomodoroTimer remaining={remaining} data={pomodoroData} notify={pomodoroEvent}/>
             </div>
   }
 })
+
+function pomodoroEvent(eventName, minutes, type){
+  if( eventName === 'stop' ){
+    store.remove('pomodoroData')
+    return
+  }
+  store.set('pomodoroData', {
+    minutes: minutes,
+    type: type,
+    startedAt: Date.now()
+  })
+}

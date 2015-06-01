@@ -92,9 +92,9 @@ module.exports = React.createClass({
     }
   },
   render: function(){
-    return  <div>
-              <div className="pomodoro">{this.state.time}</div>
-              <div className="pomodoro-control-buttons-container">
+    return  <div className="pomodoro">
+              <div className="timer">{this.state.time}</div>
+              <div className="control-buttons-container">
                 <button disabled={this.state.disabled25} onClick={this._startStop(25,"pomodoro")}>
                   <i className="icon pomodoro"></i>
                   <span>&nbsp; 25 min</span>
