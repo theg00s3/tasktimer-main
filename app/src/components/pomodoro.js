@@ -6,7 +6,7 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       remaining: 0,
-      time: '00:00',
+      time: TimeFormatter.formatSeconds(0),
       disabled25: false,
       disabled15: false,
       disabled5: false,
@@ -15,6 +15,15 @@ module.exports = React.createClass({
   componentDidMount: function() {
     if( this.props.data ){
       this.state.remaining = parseInt(this.props.remaining,10)
+      this.setState({
+        disabled25: true,
+        disabled15: true,
+        disabled5: true,
+      })
+      var newState = {disabled25: true, disabled15: true,disabled5: true}
+      newState['disabled'+this.props.data.minutes] = false
+      this.setState(newState)
+
       this._startTimer()
     }
   },
@@ -36,25 +45,45 @@ module.exports = React.createClass({
   },
   _startStop: function(minutes, type){
     return function(){
+      var eventName = this.interval ? 'stop' : 'start'
       if( this.props.notify ){
-        this.props.notify(minutes, type)
+        this.props.notify(eventName, minutes, type)
       }
-      console.log( '-- start', minutes, type )
-      this._stopTimer()
-      this.state.remaining =  minutes * 60
-      this.setState({
-        disabled25: true,
-        disabled15: true,
-        disabled5: true,
-      })
-      var disabledMinutes = {}
-      disabledMinutes['disabled'+minutes] = false
-      this.setState(disabledMinutes)
-      this._startTimer()
+
+      if( eventName === 'start' ) {
+        this._start(minutes, type)
+      }else{
+        this._stop(minutes, type)
+      }
     }.bind(this)
+  },
+  _start: function(minutes, type){
+    console.log( '-- start', minutes, type )
+    this._stopTimer()
+    this.state.remaining =  minutes * 60
+    this.setState({
+      disabled25: true,
+      disabled15: true,
+      disabled5: true,
+    })
+    var disabledMinutes = {}
+    disabledMinutes['disabled'+minutes] = false
+    this.setState(disabledMinutes)
+    this._startTimer()
+  },
+  _stop: function(minutes, type){
+    this._stopTimer()
+    this.setState({
+      disabled25: false,
+      disabled15: false,
+      disabled5: false,
+      remaining: 0,
+      time: TimeFormatter.formatSeconds(0)
+    })
   },
   _stopTimer: function(){
     clearInterval(this.interval)
+    this.interval = undefined
   },
   _startTimer: function(){
     if( this.state.remaining > 0 ){

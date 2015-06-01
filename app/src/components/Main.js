@@ -14,7 +14,11 @@ module.exports = React.createClass({
     }else{
       store.remove('pomodoroData')
     }
-    var pomodoroEvent = function(minutes, type){
+    var pomodoroEvent = function(eventName, minutes, type){
+      if( eventName === 'stop' ){
+        store.remove('pomodoroData')
+        return
+      }
       store.set('pomodoroData', {
         minutes: minutes,
         type: type,
