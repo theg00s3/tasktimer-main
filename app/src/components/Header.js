@@ -13,7 +13,7 @@ module.exports = React.createClass({
     return  <header role="header">
               <div className="content">
                 <a href="/" className="brand">P<span className="rest">omodoro</span><span className="tld">.cc</span></a>
-                <Dropdown items={items}></Dropdown>
+                <Dropdown text="Menu" items={items}></Dropdown>
               </div>
             </header>
   }
