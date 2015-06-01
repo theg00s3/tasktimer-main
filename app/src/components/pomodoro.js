@@ -12,15 +12,8 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    var pomodoro = localStorage.pomodoro
-    if( pomodoro && pomodoro.startedAt && pomodoro.minutes ){
-      var remaining = parseInt(localStorage.remaining, 10)
-      if( remaining != undefined && remaining > 0 ){
-        this.state.remaining = remaining
-        console.log( '-- remaining', remaining )
-        this._startTimer()
-      }
-    }
+    this.state.remaining = parseInt(this.props.remaining,10)
+    this._startTimer()
   },
   componentWillUnmount: function(){
     console.log( 'componentWillUnmount', this.state.remaining )
@@ -44,6 +37,14 @@ module.exports = React.createClass({
       console.log( '-- start', minutes, type )
       this._stopTimer()
       this.state.remaining =  minutes * 60
+      this.setState({
+        disabled25: true,
+        disabled15: true,
+        disabled5: true,
+      })
+      var disabledMinutes = {}
+      disabledMinutes['disabled'+minutes] = false
+      this.setState(disabledMinutes)
       this._startTimer()
     }.bind(this)
   },
@@ -51,8 +52,10 @@ module.exports = React.createClass({
     clearInterval(this.interval)
   },
   _startTimer: function(){
-    this.tick()
-    this.interval = setInterval(this.tick, 1000)
+    if( this.state.remaining > 0 ){
+      this.tick()
+      this.interval = setInterval(this.tick, 1000)
+    }
   },
   render: function(){
     return  <div>
@@ -62,11 +65,11 @@ module.exports = React.createClass({
                   <i className="icon pomodoro"></i>
                   <span>&nbsp; 25 min</span>
                 </button>
-                <button onClick={this._start(5,"break")}>
+                <button disabled={this.state.disabled5} onClick={this._start(5,"break")}>
                   <i className="icon ion-pause"></i>
                   <span>&nbsp; 5 min</span>
                 </button>
-                <button onClick={this._start(15,"break")}>
+                <button disabled={this.state.disabled15} onClick={this._start(15,"break")}>
                   <i className="icon ion-pause"></i>
                   <span>&nbsp; 15 min</span>
                 </button>

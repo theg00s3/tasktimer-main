@@ -3,8 +3,9 @@ var Pomodoro = require('./Pomodoro')
 
 module.exports = React.createClass({
   render: function() {
+    var remaining = parseInt(localStorage.remaining, 10)
     return  <div className="main">
-              <Pomodoro/>
+              <Pomodoro remaining={remaining}/>
             </div>
   }
 })
