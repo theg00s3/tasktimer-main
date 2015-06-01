@@ -10,7 +10,7 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     var remaining = parseInt(localStorage.remaining, 10)
-    if (remaining != undefined && remaining > 0) {
+    if( remaining != undefined && remaining > 0 ){
       this.state.remaining = remaining
       console.log( '-- remaining', remaining )
       this._startTimer()
