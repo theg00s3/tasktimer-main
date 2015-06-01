@@ -1,9 +1,15 @@
 var React = require('react')
 
 module.exports = React.createClass({
+  getInitialState: function() {
+    return {
+      seconds: 0,
+      time: '00:00'
+    }
+  },
   render: function(){
     return  <div className="pomodoro">
-              <h1>00:00</h1>
+              {this.state.time}
             </div>
   }
 })
