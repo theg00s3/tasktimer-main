@@ -1,5 +1,5 @@
 var React = require('react')
 
-var MainHeader = require('./components/MainHeader')
+var header = require('./components/header')
 
-React.render(<MainHeader/>, document.getElementById('main-header'))
+React.render(<header/>, document.getElementById('main-header'))
