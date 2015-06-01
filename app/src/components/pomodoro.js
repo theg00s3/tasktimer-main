@@ -25,14 +25,12 @@ module.exports = React.createClass({
     var time = TimeFormatter.formatSeconds(remaining)
     console.log('-- tick', remaining, time)
     localStorage.remaining = remaining
-    if( remaining > 0 ){
-      this.setState({
-        remaining: remaining - 1,
-        time: time,
-      })
-    }else{
+    this.setState({
+      remaining: remaining - 1,
+      time: time,
+    })
+    if( remaining <= 0 ){
       this._stopTimer()
-      localStorage.remaining = 0
     }
   },
   _start: function(minutes, type){
