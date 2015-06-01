@@ -8,6 +8,11 @@ module.exports = React.createClass({
   },
   render: function(){
     var listItems = this.props.items.map(function(item){
+      if( /raw/.test(item.type) ){
+        return (
+          <li dangerouslySetInnerHTML={{__html: item.text}}></li>
+        )
+      }
       if( /divider/.test(item.type) ){
         return (
           <li className="divider">{item.text}</li>
