@@ -1,5 +1,6 @@
 var React = require('react')
 var TimeFormatter = require('../modules/TimeFormatter')
+var store = require('store')
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -12,8 +13,10 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    this.state.remaining = parseInt(this.props.remaining,10)
-    this._startTimer()
+    if( this.props.data ){
+      this.state.remaining = parseInt(this.props.remaining,10)
+      this._startTimer()
+    }
   },
   componentWillUnmount: function(){
     console.log( 'componentWillUnmount', this.state.remaining )
@@ -23,7 +26,6 @@ module.exports = React.createClass({
     var remaining = this.state.remaining
     var time = TimeFormatter.formatSeconds(remaining)
     console.log('-- tick', remaining, time)
-    localStorage.remaining = remaining
     this.setState({
       remaining: remaining - 1,
       time: time,
@@ -32,8 +34,11 @@ module.exports = React.createClass({
       this._stopTimer()
     }
   },
-  _start: function(minutes, type){
+  _startStop: function(minutes, type){
     return function(){
+      if( this.props.notify ){
+        this.props.notify(minutes, type)
+      }
       console.log( '-- start', minutes, type )
       this._stopTimer()
       this.state.remaining =  minutes * 60
@@ -61,15 +66,15 @@ module.exports = React.createClass({
     return  <div>
               <div className="pomodoro">{this.state.time}</div>
               <div className="pomodoro-control-buttons-container">
-                <button disabled={this.state.disabled25} onClick={this._start(25,"pomodoro")}>
+                <button disabled={this.state.disabled25} onClick={this._startStop(25,"pomodoro")}>
                   <i className="icon pomodoro"></i>
                   <span>&nbsp; 25 min</span>
                 </button>
-                <button disabled={this.state.disabled5} onClick={this._start(5,"break")}>
+                <button disabled={this.state.disabled5} onClick={this._startStop(5,"break")}>
                   <i className="icon ion-pause"></i>
                   <span>&nbsp; 5 min</span>
                 </button>
-                <button disabled={this.state.disabled15} onClick={this._start(15,"break")}>
+                <button disabled={this.state.disabled15} onClick={this._startStop(15,"break")}>
                   <i className="icon ion-pause"></i>
                   <span>&nbsp; 15 min</span>
                 </button>
