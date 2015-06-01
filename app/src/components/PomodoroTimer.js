@@ -40,7 +40,10 @@ module.exports = React.createClass({
       time: time,
     })
     if( remaining <= 0 ){
-      this._stopTimer()
+      this._stop()
+      if( this.props.notify ){
+        this.props.notify('stop', this.props.data.minutes, this.props.data.type)
+      }
     }
   },
   _startStop: function(minutes, type){
