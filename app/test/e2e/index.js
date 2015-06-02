@@ -21,6 +21,18 @@ module.exports = {
       .click('.control-buttons-container button:first-child')
       .assert.containsText('.timer', '00:00')
   },
+  "start a break": function(browser){
+    browser
+      .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:nth-child(2)')
+      .assert.containsText('.timer', '05:00')
+      .click('.control-buttons-container button:nth-child(2)')
+      .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:nth-child(3)')
+      .assert.containsText('.timer', '15:00')
+      .click('.control-buttons-container button:nth-child(3)')
+      .assert.containsText('.timer', '00:00')
+  },
 
   // "As a user\
   // I want to be able to continue editing the text\
