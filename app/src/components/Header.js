@@ -6,10 +6,10 @@ var LoginLogout = require('./LoginLogout')
 module.exports = React.createClass({
   render: function() {
     var items = [
-      <li><a href="/">Dashboard</a></li>,
-      <li><a href="/about">About</a></li>,
-      <li className="divider"></li>,
-      <LoginLogout/>
+      <li key="1"><a href="/">Dashboard</a></li>,
+      <li key="2"><a href="/about">About</a></li>,
+      <li key="3" className="divider"></li>,
+      <LoginLogout key="4"/>
     ]
     return  <header role="header">
               <div className="content">
