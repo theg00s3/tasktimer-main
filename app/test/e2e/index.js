@@ -33,20 +33,9 @@ module.exports = {
       .click('.control-buttons-container button:nth-child(3)')
       .assert.containsText('.timer', '00:00')
   },
-
-  // "As a user\
-  // I want to be able to continue editing the text\
-  // That I was writing during the session before": function(browser){
-  //   browser
-  //     .clearValue('textarea')
-  //     .setValue('textarea', '# marked\n##down')
-  //     .pause(100)
-  //     .assert.containsText('#rendered', 'marked\ndown')
-
-  //     .url("http://localhost:9000?test")
-  //     .waitForElementVisible('zen-editor', 1000)
-  //     .pause(100)
-  //     .assert.containsText('#rendered', 'marked\ndown')
-  //     .end()
-  // }
+  "navigate to about page": function(browser){
+    browser
+      .click('.grid-menu a:nth-child(3)')
+      .assert.containsText('main', 'Boost your productivity')
+  }
 }
