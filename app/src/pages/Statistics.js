@@ -23,10 +23,12 @@ var Statistics = React.createClass({
   componentDidMount: function(){
     this.props.dataPromise
       .then(function(response){
-        this.setState({
-          data: response.data,
-          loaded: true
-        })
+        setTimeout(function(){
+          this.setState({
+            data: response.data,
+            loaded: true
+          })
+        }.bind(this), 500)
       }.bind(this))
   },
   render: function(){
