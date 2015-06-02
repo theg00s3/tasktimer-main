@@ -3,6 +3,7 @@ var PomodoroTimer = require('../components/PomodoroTimer')
 var GridMenu = require('../components/GridMenu')
 var store = require('store')
 var moment = require('moment')
+var axios = require('axios')
 
 
 module.exports = function(context){
@@ -37,6 +38,9 @@ var Main = React.createClass({
 
 function pomodoroEvent(eventName, minutes, type, time){
   if( eventName === 'stop' ){
+    axios.post('/api/pomodoro', store.get('pomodoroData'))
+      .then(function(){})
+      .catch(function(){})
     store.remove('pomodoroData')
     return
   }
