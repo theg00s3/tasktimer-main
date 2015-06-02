@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/gulp/bin/gulp.js test",
+    "e2e": "sh scripts/e2e.sh"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "chai": "^2.3.0",
     "del": "^1.2.0",
     "gulp": "^3.8.11",
+    "gulp-jade": "^1.0.1",
     "gulp-mocha": "^2.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-react": "^3.0.1",
@@ -21,6 +23,7 @@
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
     "nib": "^1.1.0",
+    "nightwatch": "^0.6.13",
     "normalize.css": "^3.0.3",
     "page": "^1.6.3",
     "react": "^0.13.3",
