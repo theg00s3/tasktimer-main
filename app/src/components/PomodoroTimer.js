@@ -39,7 +39,7 @@ module.exports = React.createClass({
     var remaining = mountedAt - now + this.remaining
 
     var time = TimeFormatter.formatSeconds(remaining)
-    if( this.props.notify && this.props.data ){
+    if( this.props.notify ){
       this.props.notify('tick', this.minutes, this.type, time)
     }
     this.setState({
