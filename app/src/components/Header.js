@@ -1,21 +1,15 @@
 var React = require('react')
 var Dropdown = require('./dropdown')
 var UserProfile = require('./UserProfile')
+var LoginLogout = require('./LoginLogout')
 
 module.exports = React.createClass({
   render: function() {
     var items = [
       <li><a href="/">Dashboard</a></li>,
       <li><a href="/about">About</a></li>,
-      <li className="divider">Something</li>,
-      <li>
-        <a href="/auth/twitter" target="_self" className="login-button first">
-          <i className="icon ion-social-twitter"></i>
-        </a>
-        <a href="/auth/github" target="_self" className="login-button">
-          <i className="icon ion-social-github"></i>
-        </a>
-      </li>,
+      <li className="divider"></li>,
+      <LoginLogout/>
     ]
     return  <header role="header">
               <div className="content">
