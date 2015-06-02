@@ -37,5 +37,10 @@ module.exports = {
     browser
       .click('.grid-menu a:nth-child(3)')
       .assert.containsText('main', 'Boost your productivity')
+  },
+  "navigate to statistics page": function(browser){
+    browser
+      .click('.grid-menu a:nth-child(1)')
+      .assert.containsText('main', 'Statistics')
   }
 }
