@@ -77,6 +77,8 @@ module.exports = React.createClass({
       disabled25: true,
       disabled15: true,
       disabled5: true,
+      minutes: minutes,
+      type: type
     })
     var disabledMinutes = {}
     disabledMinutes['disabled'+minutes] = false
