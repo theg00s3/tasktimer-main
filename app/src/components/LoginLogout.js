@@ -22,17 +22,18 @@ module.exports = React.createClass({
   },
   render: function(){
     if( !this.state.loggedIn ) {
-      return  <li>
-                <a href="/auth/twitter" target="_self" className="login-button first">
-                  <i className="icon ion-social-twitter"></i>
-                </a>
+      return  <div className="login-logout">
+                <span className="text">Login with</span>
                 <a href="/auth/github" target="_self" className="login-button">
                   <i className="icon ion-social-github"></i>
                 </a>
-              </li>
+                <a href="/auth/twitter" target="_self" className="login-button first">
+                  <i className="icon ion-social-twitter"></i>
+                </a>
+              </div>
     }
-    return  <li>
+    return  <div className="login-logout">
               <a href="/auth/logout">Logout</a>
-            </li>
+            </div>
   }
 })
