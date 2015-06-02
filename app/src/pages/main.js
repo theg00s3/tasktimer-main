@@ -1,5 +1,6 @@
 var React = require('react')
 var PomodoroTimer = require('../components/PomodoroTimer')
+var GridMenu = require('../components/GridMenu')
 var store = require('store')
 var moment = require('moment')
 
@@ -29,6 +30,7 @@ var Main = React.createClass({
     }
     return  <div className="main">
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={pomodoroEvent}/>
+              <GridMenu className="limit extended"/>
             </div>
   }
 })

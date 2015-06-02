@@ -1,15 +1,16 @@
 /* COLORS */
+color_dark = #394240
 color_pomodoro = #ED5A3A
 color_pomodoro_leaf = #24b524
 color_body = #FCFCFC
 color_header = lighten(color_body,17%)
 color_text = #494949
+color_text_light = lighten(color_dark, 30%)
 color_text_dark = #292e31
 color_heading = darken(color_text,25%)
 color_link = #03a9f4
 color_light = #FEFEFE
 color_light_grey = #E9E9E9
-color_dark = #394240
 color_twitter = #019CD7
 color_github = #333333
 
@@ -32,6 +33,9 @@ main
   margin-right @margin-left
   padding-left 0.5em
   padding-right @padding-left
+
+  &.extended
+    max-width limit*1.4
 
 .content
   @extend .limit
