@@ -3,26 +3,39 @@
   background #fff linear-gradient(rgba(0,58,91,0),rgba(0,58,91,0.02))
   box-shadow 0 1px 3px rgba(0,0,0,0.15),0 0 0 1px rgba(0,0,0,0.05)
   border-radius 3px
-  margin-top 2em
-  margin-bottom @margin-top
+  margin-top 5em
+  margin-bottom 2em
 
   .col
     position relative
     height 12em
     padding .5em
     text-align center
+
     border-left 1px solid darken(color_light, 5%)
     &:first-child
       border-left none
     &:last-child
       border-right none
+    @media all and (max-width limit)
+      border-left none
+      border-top 1px solid darken(color_light, 5%)
+      &:first-child
+        border-left top
 
-    .heading, .lead
+
+    .heading, .lead, i.main-icon
       position absolute
       margin 0
       left 0.5em
       right 0.5em
       text-align center
+
+    i.main-icon
+      font-size 6em
+      top 1.5rem
+      color rgb(98, 98, 98)
+      color color_text_dark
 
     .heading
       top 0.5em
