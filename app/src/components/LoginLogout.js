@@ -24,10 +24,10 @@ module.exports = React.createClass({
     if( !this.state.loggedIn ) {
       return  <div className="login-logout">
                 <span className="text">Login with</span>
-                <a href="/auth/github" target="_self" className="login-button">
+                <a href="/auth/github" target="_self" className="login-button github">
                   <i className="icon ion-social-github"></i>
                 </a>
-                <a href="/auth/twitter" target="_self" className="login-button first">
+                <a href="/auth/twitter" target="_self" className="login-button twitter first">
                   <i className="icon ion-social-twitter"></i>
                 </a>
               </div>
