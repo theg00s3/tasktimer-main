@@ -4,13 +4,22 @@ module.exports = {
       .url("http://localhost:9000")
       .waitForElementVisible('main', 1000)
   },
-  "As a user\
-  I want to be able to start a pomodoro\
-  So that I can keep track of my time spent on a specific task": function(browser){
+  "refreshing the browser retains state": function(browser){
+    browser
+      .click('.control-buttons-container button:first-child')
+      .assert.containsText('.timer', '25:00')
+      .refresh()
+      .pause(1000)
+      .assert.containsText('.timer', '24:58')
+      .click('.control-buttons-container button:first-child')
+  },
+  "start a pomodoro": function(browser){
     browser
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:first-child')
       .assert.containsText('.timer', '25:00')
+      .click('.control-buttons-container button:first-child')
+      .assert.containsText('.timer', '00:00')
   },
 
   // "As a user\
