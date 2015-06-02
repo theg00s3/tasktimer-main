@@ -7,12 +7,16 @@ module.exports = React.createClass({
     return {
       remaining: 0,
       time: TimeFormatter.formatSeconds(0),
+      minutes: 0,
+      type: '',
       disabled25: false,
       disabled15: false,
       disabled5: false,
+      mountedAt: 0
     }
   },
   componentDidMount: function() {
+    this.state.mountedAt = parseInt(Date.now()/1000, 10)
     if( this.props.data ){
       this.state.remaining = parseInt(this.props.remaining,10)
       this.setState({
@@ -28,21 +32,25 @@ module.exports = React.createClass({
     }
   },
   componentWillUnmount: function(){
-    console.log( 'componentWillUnmount', this.state.remaining )
     clearInterval(this.interval)
   },
   tick: function(){
-    var remaining = this.state.remaining
+    var now = parseInt(Date.now()/1000, 10)
+    var mountedAt = this.state.mountedAt
+    var remaining = mountedAt - now + this.props.remaining
+
     var time = TimeFormatter.formatSeconds(remaining)
-    console.log('-- tick', remaining, time)
+    if( this.props.notify && this.props.data ){
+      this.props.notify('tick', this.props.data.minutes, this.props.data.type, time)
+    }
     this.setState({
-      remaining: remaining - 1,
+      remaining: remaining,
       time: time,
     })
     if( remaining <= 0 ){
       this._stop()
-      if( this.props.notify ){
-        this.props.notify('stop', this.props.data.minutes, this.props.data.type)
+    if( this.props.notify ){
+        this.props.notify('stop', this.state.minutes, this.state.type)
       }
     }
   },
@@ -61,9 +69,10 @@ module.exports = React.createClass({
     }.bind(this)
   },
   _start: function(minutes, type){
-    console.log( '-- start', minutes, type )
+    this.state.mountedAt = parseInt(Date.now()/1000, 10)
     this._stopTimer()
-    this.state.remaining =  minutes * 60
+    this.state.remaining = minutes * 60
+    this.props.remaining = minutes * 60
     this.setState({
       disabled25: true,
       disabled15: true,

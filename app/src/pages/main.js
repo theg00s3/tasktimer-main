@@ -35,9 +35,14 @@ var Main = React.createClass({
   }
 })
 
-function pomodoroEvent(eventName, minutes, type){
+function pomodoroEvent(eventName, minutes, type, time){
   if( eventName === 'stop' ){
     store.remove('pomodoroData')
+    return
+  }
+  if( eventName === 'tick' ) {
+    console.log( 'tick', time )
+    document.title = time
     return
   }
   store.set('pomodoroData', {
