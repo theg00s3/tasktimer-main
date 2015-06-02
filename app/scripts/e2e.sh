@@ -9,7 +9,7 @@ else
   wget http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar -O $SELENIUM_JAR
 fi
 
-./node_modules/gulp/bin/gulp.js
+# ./node_modules/gulp/bin/gulp.js
 cd www
 python -m SimpleHTTPServer 9000 > /dev/null 2>&1 &
 SERVER_PID=$!

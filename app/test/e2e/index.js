@@ -8,7 +8,9 @@ module.exports = {
   I want to be able to start a pomodoro\
   So that I can keep track of my time spent on a specific task": function(browser){
     browser
-
+      .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:first-child')
+      .assert.containsText('.timer', '25:00')
   },
 
   // "As a user\
