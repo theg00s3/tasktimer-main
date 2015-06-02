@@ -7,8 +7,6 @@ module.exports = React.createClass({
     return {
       remaining: 0,
       time: TimeFormatter.formatSeconds(0),
-      minutes: 0,
-      type: '',
       disabled25: false,
       disabled15: false,
       disabled5: false,
@@ -17,8 +15,9 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.state.mountedAt = parseInt(Date.now()/1000, 10)
-    if( this.props.data ){
-      this.state.remaining = parseInt(this.props.remaining,10)
+    if( this.props.remaining && this.props.data ){
+      this.remaining = this.props.remaining
+      this.state.remaining = parseInt(this.remaining,10)
       this.setState({
         disabled25: true,
         disabled15: true,
@@ -37,11 +36,11 @@ module.exports = React.createClass({
   tick: function(){
     var now = parseInt(Date.now()/1000, 10)
     var mountedAt = this.state.mountedAt
-    var remaining = mountedAt - now + this.props.remaining
+    var remaining = mountedAt - now + this.remaining
 
     var time = TimeFormatter.formatSeconds(remaining)
     if( this.props.notify && this.props.data ){
-      this.props.notify('tick', this.props.data.minutes, this.props.data.type, time)
+      this.props.notify('tick', this.minutes, this.type, time)
     }
     this.setState({
       remaining: remaining,
@@ -50,7 +49,7 @@ module.exports = React.createClass({
     if( remaining <= 0 ){
       this._stop()
     if( this.props.notify ){
-        this.props.notify('stop', this.state.minutes, this.state.type)
+        this.props.notify('stop', this.minutes, this.type)
       }
     }
   },
@@ -72,14 +71,14 @@ module.exports = React.createClass({
     this.state.mountedAt = parseInt(Date.now()/1000, 10)
     this._stopTimer()
     this.state.remaining = minutes * 60
-    this.props.remaining = minutes * 60
+    this.remaining = minutes * 60
     this.setState({
       disabled25: true,
       disabled15: true,
-      disabled5: true,
-      minutes: minutes,
-      type: type
+      disabled5: true
     })
+    this.minutes = minutes
+    this.type = type
     var disabledMinutes = {}
     disabledMinutes['disabled'+minutes] = false
     this.setState(disabledMinutes)
