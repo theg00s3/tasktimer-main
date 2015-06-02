@@ -1,5 +1,5 @@
 var React = require('react')
-var Dropdown = require('./dropdown')
+var Dropdown = require('./Dropdown')
 var UserProfile = require('./UserProfile')
 var LoginLogout = require('./LoginLogout')
 
