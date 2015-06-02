@@ -9,7 +9,6 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function(){
-    // debugger
     axios.get('/auth/info')
       .then(function(response){
         if( this.isMounted() && response.status === 200 ){
