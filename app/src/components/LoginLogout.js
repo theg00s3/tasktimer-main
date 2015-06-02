@@ -18,7 +18,7 @@ module.exports = React.createClass({
         this.setState({
           loggedIn: false
         })
-      })
+      }.bind(this))
   },
   render: function(){
     if( !this.state.loggedIn ) {
