@@ -37,7 +37,7 @@ var Main = React.createClass({
 })
 
 function pomodoroEvent(eventName, minutes, type, time){
-  if( eventName === 'stop' ){
+  if( eventName === 'end' ){
     axios.post('/api/pomodoro', store.get('pomodoroData'))
       .then(function(){})
       .catch(function(){})

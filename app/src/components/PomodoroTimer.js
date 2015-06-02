@@ -49,13 +49,13 @@ module.exports = React.createClass({
     if( remaining <= 0 ){
       this._stop()
     if( this.props.notify ){
-        this.props.notify('stop', this.minutes, this.type)
+        this.props.notify('end', this.minutes, this.type)
       }
     }
   },
   _startStop: function(minutes, type){
     return function(){
-      var eventName = this.interval ? 'stop' : 'start'
+      var eventName = this.interval ? 'end' : 'start'
       if( this.props.notify ){
         this.props.notify(eventName, minutes, type)
       }
