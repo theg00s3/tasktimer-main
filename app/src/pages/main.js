@@ -10,18 +10,25 @@ module.exports = function(context){
 
 
 var Main = React.createClass({
+  getInitialState: function(){
+    return {
+      pomodoroData: null
+    }
+  },
+  componentWillMount: function(){
+    this.setState({
+      pomodoroData: store.get('pomodoroData')
+    })
+  },
   render: function() {
-    var pomodoroData = store.get('pomodoroData')
     var remaining = 0
-    console.log( '-- pomodoroData', pomodoroData )
-    if( pomodoroData && pomodoroData.minutes && pomodoroData.startedAt ){
-      remaining = parseInt((moment(pomodoroData.startedAt).unix() + pomodoroData.minutes*60 - moment().unix()),10)
-      // debugger
+    if( this.state.pomodoroData && this.state.pomodoroData.minutes && this.state.pomodoroData.startedAt ){
+      remaining = parseInt((moment(this.state.pomodoroData.startedAt).unix() + this.state.pomodoroData.minutes*60 - moment().unix()),10)
     }else{
       store.remove('pomodoroData')
     }
     return  <div className="main">
-              <PomodoroTimer remaining={remaining} data={pomodoroData} notify={pomodoroEvent}/>
+              <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={pomodoroEvent}/>
             </div>
   }
 })
