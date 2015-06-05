@@ -4,7 +4,11 @@ header[role=header]
   left 0
   right 0
   z-index 9999
-  background darken(color_light, 1%)
+  background color_light
   padding-left 0.5em
   padding-right @padding-left
-  border-bottom 1px solid color_light_grey
+
+  .content
+    border-bottom 1px solid color_light_grey
+    overflow hidden
+    padding 0
