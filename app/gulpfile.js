@@ -51,7 +51,7 @@ gulp.task('test', function(){
   return gulp.src('test/unit/**/*.js', {read: false})
     .pipe(plumber())
     // gulp-mocha needs filepaths so you can't have any plugins before it
-    .pipe(mocha({reporter: 'nyan', bail:true}))
+    .pipe(mocha({reporter: 'dot', bail:true}))
 })
 
 gulp.task('watch', ['default'], function(){
