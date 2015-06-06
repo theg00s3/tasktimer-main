@@ -8,6 +8,9 @@ var moment = require('moment')
 var PieChart = require("react-chartjs").Pie
 
 
+var mainHeader = document.getElementById('main-header')
+
+
 module.exports = function(context){
   var day = moment().format('DD/MM/YYYY')
   var dataPromise = axios.get('/api/pomodoro',{
@@ -15,7 +18,7 @@ module.exports = function(context){
       day: day
     }
   })
-  React.render(<Statistics dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
+  React.render(<Statistics day={day} dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
 }
 
 var chartOptions = {
@@ -26,28 +29,33 @@ var chartOptions = {
   animateScale : false,
   tooltipTemplate: "<%=label%>: <%= value %>min",
 }
+var chartData = [{
+  value: 0,
+  color:"#DF2E2E",
+  highlight: "#DF2E2E",
+  label: "Pomodori"
+},
+{
+  value: 0,
+  color: "#24b524",
+  highlight: "#24b524",
+  label: "Breaks"
+}]
 
 var Statistics = React.createClass({
   getInitialState: function(){
     return {
       data: [],
       loaded: false,
-      chartData: []
+      chartData: [],
+      authorized: true
     }
   },
+  componentWillUnmount: function(){
+    mainHeader.classList.remove('white')
+  },
   componentDidMount: function(){
-    var chartData = [{
-      value: 0,
-      color:"#DF2E2E",
-      highlight: "#DF2E2E",
-      label: "Pomodori"
-    },
-    {
-      value: 0,
-      color: "#24b524",
-      highlight: "#24b524",
-      label: "Breaks"
-    }]
+    mainHeader.classList.add('white')
     this.props.dataPromise
       .then(function(response){
         var data = response.data
@@ -62,16 +70,31 @@ var Statistics = React.createClass({
             loaded: true,
             chartData: chartData
           })
-        }.bind(this), 500)
+        }.bind(this), 300)
+      }.bind(this))
+      .catch(function(response){
+        this.setState({
+          loaded:true,
+          authorized: false
+        })
       }.bind(this))
   },
   render: function(){
-    var data = this.state.data || []
+    var content = !this.state.authorized ? null : [
+                  <PieChart data={this.state.chartData} options={chartOptions}/>,
+                  <Timeline data={this.state.data}/>
+                ]
     return  <Loader loaded={this.state.loaded}>
-              <div className="content">
-                <h1 className="tac">Statistics</h1>
-                <PieChart data={this.state.chartData} options={chartOptions}/>
-                <Timeline data={this.state.data}/>
+              <div className="statistics-content">
+                <header className="statistics-header">
+                  <div className="content">
+                    <h1 className="statistics-heading">Statistics</h1>
+                    <h5 className="statistics-day">{this.props.day}</h5>
+                  </div>
+                </header>
+                <div className="content breath">
+                  {content}
+                </div>
               </div>
             </Loader>
   }

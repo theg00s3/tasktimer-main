@@ -2,6 +2,7 @@
 color_dark = #394240
 color_pomodoro = #DF2E2E
 color_pomodoro_leaf = #24b524
+color_orange = rgb(253, 164, 0)
 color_text = #292e31
 color_text_light = #6f7c82
 color_text_dark = #292e31
@@ -21,6 +22,7 @@ limit = 47em
 
 @import 'general/*'
 @import 'components/*'
+@import 'pages/*'
 
 body
   background color_light
@@ -42,6 +44,9 @@ main
 .content
   @extend .limit
 
+.breath
+  margin-top 1em
+  margin-bottom @margin-top
 
 .tac
   text-align center
