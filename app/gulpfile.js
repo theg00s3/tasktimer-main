@@ -60,6 +60,7 @@ gulp.task('jade', function(){
         PRODUCTION: PRODUCTION
       }
     }))
+    .pipe(replace('{SEGMENT_WRITE_KEY}', PRODUCTION ? 'DI4YQLtpCkiyMnlITlg8o3pO6UDrnmbx' : 'u8FtwJOHxRRYAfIhZOv78SGzcQta1Yty'))
     .pipe(gulp.dest('www/'))
     .pipe(browserSync.stream())
 })
