@@ -11,11 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.5.4",
+    "browser-sync": "^2.7.6",
     "browserify": "^10.2.3",
     "chai": "^2.3.0",
     "chart.js": "^1.0.2",
     "del": "^1.2.0",
-    "gulp": "^3.8.11",
+    "gulp": "^3.9.0",
     "gulp-jade": "^1.0.1",
     "gulp-mocha": "^2.1.0",
     "gulp-plumber": "^1.0.1",

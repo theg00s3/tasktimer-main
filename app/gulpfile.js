@@ -1,4 +1,5 @@
 var gulp = require('gulp')
+  , browserSync = require('browser-sync').create()
   , plumber = require('gulp-plumber')
   , stylus = require('gulp-stylus')
   , nib = require('nib')
@@ -31,6 +32,7 @@ gulp.task('js', function(){
     .pipe(plumber())
     .pipe(source('index.js'))
     .pipe(gulp.dest('www/'))
+    .pipe(browserSync.stream())
 })
 
 gulp.task('stylus', function(){
@@ -38,6 +40,7 @@ gulp.task('stylus', function(){
     .pipe(stylus({use: [nib()]}))
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
+    .pipe(browserSync.stream())
 })
 
 gulp.task('jade', function(){
@@ -45,6 +48,7 @@ gulp.task('jade', function(){
     .pipe(plumber())
     .pipe(jade())
     .pipe(gulp.dest('www/'))
+    .pipe(browserSync.stream())
 })
 
 gulp.task('test', function(){
@@ -54,7 +58,13 @@ gulp.task('test', function(){
     .pipe(mocha({reporter: 'dot', bail:true}))
 })
 
-gulp.task('watch', ['default'], function(){
+gulp.task('browser-sync', function(){
+  browserSync.init({
+      proxy: 'https://pomodoro.dev'
+  });
+})
+
+gulp.task('watch', ['default', 'browser-sync'], function(){
   gulp.watch(paths.js, ['js','test'])
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
