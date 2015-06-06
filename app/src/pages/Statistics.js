@@ -24,6 +24,7 @@ var chartOptions = {
   animationEasing : "easeOutBounce",
   animateRotate : true,
   animateScale : false,
+  tooltipTemplate: "<%=label%>: <%= value %>min",
 }
 
 var Statistics = React.createClass({
