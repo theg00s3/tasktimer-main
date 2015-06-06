@@ -18,5 +18,6 @@ UserService.authenticate()
     username: user.username
   })
 })
+.catch(function(){})
 
 AnalyticsService.track('test')
