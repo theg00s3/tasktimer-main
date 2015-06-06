@@ -1,0 +1,12 @@
+CACHE MANIFEST
+
+# BUILD {BUILD}
+
+CACHE:
+https://pomodoro.cc/index.js
+https://pomodoro.cc/index.css
+https://pomodoro.cc/index.html
+https://pomodoro.cc/assets/img/graph.png
+
+NETWORK:
+*

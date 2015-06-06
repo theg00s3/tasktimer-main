@@ -1,6 +1,7 @@
 var gulp = require('gulp')
   , browserSync = require('browser-sync').create()
   , plumber = require('gulp-plumber')
+  , replace = require('gulp-replace')
   , stylus = require('gulp-stylus')
   , nib = require('nib')
   , jade = require('gulp-jade')
@@ -9,15 +10,22 @@ var gulp = require('gulp')
   , reactify = require('reactify')
   , source = require('vinyl-source-stream')
 
+require('shelljs/global')
+var PRODUCTION = !!process.env.PRODUCTION
+var BUILD = exec('git rev-parse HEAD').output.toString().substring(0,10) || Date.now()
+
+console.log('-- PRODUCTION', PRODUCTION)
+console.log('-- BUILD', BUILD)
+
 var paths = {
   js: ['src/**/*.js'],
   stylus: ['src/**/*.styl'],
   jade: ['src/**/*.jade'],
   test: ['test/**/*.js'],
-  assets: ['./src/assets/**/*']
+  static: ['./src/index.html','./src/app.manifest','./src/assets/**/*']
 }
 
-var entryFiles = {
+var entryFile = {
   browserify: 'src/index.js',
   stylus: 'src/index.styl',
   jade: 'src/index.jade',
@@ -25,7 +33,7 @@ var entryFiles = {
 
 gulp.task('js', function(){
   return browserify({
-      entries:entryFiles.browserify,
+      entries:entryFile.browserify,
       debug: true
     })
     .transform(reactify)
@@ -37,7 +45,7 @@ gulp.task('js', function(){
 })
 
 gulp.task('stylus', function(){
-  return gulp.src(entryFiles.stylus)
+  return gulp.src(entryFile.stylus)
     .pipe(stylus({use: [nib()]}))
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
@@ -45,9 +53,13 @@ gulp.task('stylus', function(){
 })
 
 gulp.task('jade', function(){
-  return gulp.src(entryFiles.jade)
+  return gulp.src(entryFile.jade)
     .pipe(plumber())
-    .pipe(jade())
+    .pipe(jade({
+      locals: {
+        PRODUCTION: PRODUCTION
+      }
+    }))
     .pipe(gulp.dest('www/'))
     .pipe(browserSync.stream())
 })
@@ -70,15 +82,18 @@ gulp.task('watch', ['default', 'browser-sync'], function(){
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
   gulp.watch(paths.jade, ['jade'])
-  gulp.watch('src/index.html', ['static'])
-  gulp.watch(paths.assets, ['static'])
+  gulp.watch(paths.static, ['static'])
 })
 
 gulp.task('static', function(){
-  gulp.src('src/index.html')
+  gulp.src('./src/index.html')
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
-  gulp.src(paths.assets)
+  gulp.src('./src/app.manifest')
+    .pipe(plumber())
+    .pipe(replace('{BUILD}', BUILD))
+    .pipe(gulp.dest('www/'))
+  gulp.src(paths.static)
     .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
 })

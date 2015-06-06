@@ -8,13 +8,13 @@ var  _ = require('underscore')
 var moment = require('moment')
 var PieChart = require("react-chartjs").Pie
 
-var url = require('url').parse
+var url = require('url')
 
 var mainHeader = document.getElementById('main-header')
 
 
 module.exports = function(context){
-  var query = parseUrl(window.location.href, true).query
+  var query = url.parse(window.location.href, true).query
   var day = query.day || moment().format('DD/MM/YYYY')
   var dataPromise = axios.get('/api/pomodoro',{
     params: {
