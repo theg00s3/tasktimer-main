@@ -10,7 +10,11 @@ module.exports = {
       .assert.containsText('.timer', '25:00')
       .refresh()
       .pause(1000)
-      .assert.containsText('.timer', '24:58')
+      .getText('.timer', function(result){
+        var text = result.value
+        this.assert.ok(/24:\d\d/.test(text))
+      })
+      // .assert.containsText('.timer', '24:58')
       .click('.control-buttons-container button:first-child')
   },
   "start a pomodoro": function(browser){
@@ -35,7 +39,7 @@ module.exports = {
   },
   "navigate to about page": function(browser){
     browser
-      .click('.grid-menu a:nth-child(3)')
+      .click('.grid-menu a:nth-child(2)')
       .assert.containsText('main', 'Boost your productivity')
   },
   "navigate to statistics page": function(browser){
