@@ -80,10 +80,12 @@ var Statistics = React.createClass({
       }.bind(this))
   },
   render: function(){
-    var content = !this.state.authorized ? null : [
+    var authorizedContent = [
                   <PieChart data={this.state.chartData} options={chartOptions}/>,
                   <Timeline data={this.state.data}/>
                 ]
+    var unauthorizedContent = [<h1>Unauthorized</h1>]
+    var content = !this.state.authorized ? unauthorizedContent : authorizedContent
     return  <div className="statistics-content">
                 <header className="statistics-header">
                   <div className="content">
