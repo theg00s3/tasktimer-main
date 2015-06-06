@@ -3,11 +3,12 @@ var React = require('react')
 var axios = require('axios')
 var PomodoroUtils = require('../../../shared/PomodoroUtils')
 var  _ = require('underscore')
+var moment = require('moment')
 var PieChart = require("react-chartjs").Pie
 
 
 module.exports = function(context){
-  var day = '02/06/2015'
+  var day = moment().format('DD/MM/YYYY')
   var dataPromise = axios.get('/api/pomodoro',{
     params: {
       day: day
