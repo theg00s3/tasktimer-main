@@ -15,7 +15,7 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.state.mountedAt = parseInt(Date.now()/1000, 10)
-    if( this.props.remaining && this.props.data ){
+    if( this.props.remaining > 0 && this.props.data ){
       this.remaining = this.props.remaining
       this.state.remaining = parseInt(this.remaining,10)
       this.setState({
