@@ -1,5 +1,6 @@
 var Loader = require('react-loader')
 var React = require('react')
+var Timeline = require('../components/Timeline')
 var axios = require('axios')
 var PomodoroUtils = require('../../../shared/PomodoroUtils')
 var  _ = require('underscore')
@@ -18,27 +19,17 @@ module.exports = function(context){
 }
 
 var chartOptions = {
-  //Number - The percentage of the chart that we cut out of the middle
-  percentageInnerCutout : 35, // This is 0 for Pie charts
-
-  //Number - Amount of animation steps
-  animationSteps : 100,
-
-  //String - Animation easing effect
+  percentageInnerCutout : 35,
+  animationSteps : 75,
   animationEasing : "easeOutBounce",
-
-  //Boolean - Whether we animate the rotation of the Doughnut
   animateRotate : true,
-
-  //Boolean - Whether we animate scaling the Doughnut from the centre
   animateScale : false,
-
 }
 
 var Statistics = React.createClass({
   getInitialState: function(){
     return {
-      data: null,
+      data: [],
       loaded: false,
       chartData: []
     }
@@ -61,7 +52,7 @@ var Statistics = React.createClass({
         var data = response.data
         _.reduce(data, function(memo, pomodoro){
           var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
-          memo[indexType].value += PomodoroUtils.getDuration(pomodoro)
+          memo[indexType].value += PomodoroUtils.getDuration(pomodoro)/60
           return memo
         }, chartData)
         setTimeout(function(){
@@ -76,18 +67,16 @@ var Statistics = React.createClass({
   render: function(){
     var data = this.state.data || []
 
-    var debugData = data.map(function(dat){
-      return  <li>
-                {dat.minutes} - {dat.type} - {dat.startedAt}
+    var timeline = data.map(function(dataPoint){
+      return  <li className={"type-"+dataPoint.type}>
+                {dataPoint.minutes} - {dataPoint.startedAt}
               </li>
     })
 
     return  <Loader loaded={this.state.loaded}>
               <div className="content">
                 <h1 className="tac">Statistics</h1>
-                <ul>
-                  {debugData}
-                </ul>
+                <Timeline data={this.state.data}/>
                 <PieChart data={this.state.chartData} options={chartOptions}/>
               </div>
             </Loader>
