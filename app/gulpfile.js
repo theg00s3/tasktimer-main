@@ -13,7 +13,8 @@ var paths = {
   js: ['src/**/*.js'],
   stylus: ['src/**/*.styl'],
   jade: ['src/**/*.jade'],
-  test: ['test/**/*.js']
+  test: ['test/**/*.js'],
+  assets: ['./src/assets/**/*']
 }
 
 var entryFiles = {
@@ -70,13 +71,14 @@ gulp.task('watch', ['default', 'browser-sync'], function(){
   gulp.watch(paths.stylus, ['stylus'])
   gulp.watch(paths.jade, ['jade'])
   gulp.watch('src/index.html', ['static'])
+  gulp.watch(paths.assets, ['static'])
 })
 
 gulp.task('static', function(){
   gulp.src('src/index.html')
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
-  gulp.src('./src/assets/**/*')
+  gulp.src(paths.assets)
     .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
 })
