@@ -84,8 +84,7 @@ var Statistics = React.createClass({
                   <PieChart data={this.state.chartData} options={chartOptions}/>,
                   <Timeline data={this.state.data}/>
                 ]
-    return  <Loader loaded={this.state.loaded}>
-              <div className="statistics-content">
+    return  <div className="statistics-content">
                 <header className="statistics-header">
                   <div className="content">
                     <h1 className="statistics-heading">Statistics</h1>
@@ -93,9 +92,10 @@ var Statistics = React.createClass({
                   </div>
                 </header>
                 <div className="content breath">
-                  {content}
+                  <Loader loaded={this.state.loaded}>
+                    {content}
+                  </Loader>
                 </div>
               </div>
-            </Loader>
   }
 })
