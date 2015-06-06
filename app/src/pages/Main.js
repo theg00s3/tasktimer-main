@@ -4,6 +4,7 @@ var GridMenu = require('../components/GridMenu')
 var store = require('store')
 var moment = require('moment')
 var axios = require('axios')
+var constants = require('../constants')
 
 
 module.exports = function(context){
@@ -16,6 +17,9 @@ var Main = React.createClass({
     return {
       pomodoroData: null
     }
+  },
+  componentWillUnmount: function(){
+    resetTitle()
   },
   componentWillMount: function(){
     this.setState({
@@ -44,11 +48,12 @@ function pomodoroEvent(eventName, minutes, type, time){
       .then(function(){})
       .catch(function(){})
     store.remove('pomodoroData')
+    resetTitle()
     return
   }
   if( eventName === 'tick' ) {
     console.log( 'tick', time )
-    document.title = time
+    document.title = time + ' - ' + constants.title
     return
   }
   store.set('pomodoroData', {
@@ -56,4 +61,9 @@ function pomodoroEvent(eventName, minutes, type, time){
     type: type,
     startedAt: Date.now()
   })
+}
+
+
+function resetTitle(){
+  document.title = constants.title
 }
