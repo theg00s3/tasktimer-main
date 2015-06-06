@@ -1,5 +1,5 @@
 var React = require('react')
-var axios = require('axios')
+var UserService = require('../modules/UserService')
 
 module.exports = React.createClass({
   getInitialState: function(){
@@ -9,7 +9,7 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function(){
-    axios.get('/auth/info')
+    UserService.authenticate()
       .then(function(response){
         if( this.isMounted() && response.status === 200 ){
           this.setState(response.data)
