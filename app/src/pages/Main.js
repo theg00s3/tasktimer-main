@@ -4,7 +4,7 @@ var GridMenu = require('../components/GridMenu')
 var store = require('store')
 var moment = require('moment')
 var axios = require('axios')
-var constants = require('../constants')
+var constants = require('../../../shared/constants')
 
 
 module.exports = function(context){

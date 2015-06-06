@@ -1,26 +1,32 @@
 var Loader = require('react-loader')
 var React = require('react')
-var Timeline = require('../components/Timeline')
-var StatisticsDetailsList = require('../components/StatisticsDetailsList')
 var axios = require('axios')
-var PomodoroUtils = require('../../../shared/PomodoroUtils')
 var  _ = require('underscore')
 var moment = require('moment')
-var PieChart = require("react-chartjs").Pie
-
 var url = require('url')
+var PieChart = require('react-chartjs').Pie
+var page = require('page')
+
+var Timeline = require('../components/Timeline')
+var StatisticsDetailsList = require('../components/StatisticsDetailsList')
+var ArrowNavigation = require('../components/ArrowNavigation')
+
+var PomodoroUtils = require('../../../shared/PomodoroUtils')
+var constants = require('../../../shared/constants')
 
 var mainHeader = document.getElementById('main-header')
 
 
+
+var query = url.parse(window.location.href, true).query
+var day = query.day || moment().format(constants.dayFormat)
+var dataPromise = axios.get('/api/pomodoro',{
+  params: {
+    day: day
+  }
+})
+
 module.exports = function(context){
-  var query = url.parse(window.location.href, true).query
-  var day = query.day || moment().format('DD/MM/YYYY')
-  var dataPromise = axios.get('/api/pomodoro',{
-    params: {
-      day: day
-    }
-  })
   React.render(<Statistics day={day} dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
 }
 
@@ -82,6 +88,16 @@ var Statistics = React.createClass({
         })
       }.bind(this))
   },
+  _navigateBack: function(){
+    var prev = moment(day, constants.dayFormat).subtract(1, 'days').format(constants.dayFormat)
+    // page.show('/statistics?day='+prev)
+    window.location.href = '/statistics?day='+prev
+  },
+  _navigateForward: function(){
+    var prev = moment(day, constants.dayFormat).add(1, 'days').format(constants.dayFormat)
+    // page.show('/statistics?day='+prev)
+    window.location.href = '/statistics?day='+prev
+  },
   render: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
     if( this.state.data.length > 0 ){
@@ -110,6 +126,7 @@ var Statistics = React.createClass({
                   <div className="content">
                     <h1 className="statistics-heading">Statistics</h1>
                     <h5 className="statistics-day">{this.props.day}</h5>
+                    <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
                     <div className="statistics-graph-image"></div>
                   </div>
                 </header>
