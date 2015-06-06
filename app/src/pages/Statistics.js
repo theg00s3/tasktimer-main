@@ -8,12 +8,14 @@ var  _ = require('underscore')
 var moment = require('moment')
 var PieChart = require("react-chartjs").Pie
 
+var url = require('url').parse
 
 var mainHeader = document.getElementById('main-header')
 
 
 module.exports = function(context){
-  var day = moment().format('DD/MM/YYYY')
+  var query = parseUrl(window.location.href, true).query
+  var day = query.day || moment().format('DD/MM/YYYY')
   var dataPromise = axios.get('/api/pomodoro',{
     params: {
       day: day
@@ -81,17 +83,23 @@ var Statistics = React.createClass({
       }.bind(this))
   },
   render: function(){
+    var availableContent = <h1 className="tac no">No data!</h1>
+    if( this.state.data.length > 0 ){
+      availableContent =  [
+                            <div className="col border-right">
+                              <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
+                              <hr/>
+                              <StatisticsDetailsList data={this.state.data}/>
+                            </div>,
+                            <div className="col">
+                              <Timeline className="col" data={this.state.data}/>
+                            </div>
+                          ]
+    }
     var unauthorizedContent = [<h1>Unauthorized</h1>]
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
-                                <div className="col border-right">
-                                  <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
-                                  <hr/>
-                                  <StatisticsDetailsList data={this.state.data}/>
-                                </div>
-                                <div className="col">
-                                  <Timeline className="col" data={this.state.data}/>
-                                </div>
+                                {availableContent}
                               </div>
                             </div>
 
