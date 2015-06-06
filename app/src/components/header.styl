@@ -1,4 +1,7 @@
 header[role=header]
+  overflow hidden
+  position relative
+  z-index 9000
   background color_white
   padding-left 0.5em
   padding-right @padding-left
@@ -9,5 +12,10 @@ header[role=header]
     padding 0
 
 #main-header
+  overflow hidden
   &.white, &.white *
     color white !important
+
+  header[role=header]
+    background none
+    border-bottom none

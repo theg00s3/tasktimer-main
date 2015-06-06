@@ -102,6 +102,7 @@ var Statistics = React.createClass({
                   <div className="content">
                     <h1 className="statistics-heading">Statistics</h1>
                     <h5 className="statistics-day">{this.props.day}</h5>
+                    <div className="statistics-graph-image"></div>
                   </div>
                 </header>
                 <div className="content breath">
