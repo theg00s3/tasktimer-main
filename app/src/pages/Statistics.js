@@ -96,7 +96,7 @@ var Statistics = React.createClass({
                             </div>
                           ]
     }
-    var unauthorizedContent = [<h1>Unauthorized</h1>]
+    var unauthorizedContent = <h1>Unauthorized</h1>
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
                                 {availableContent}
@@ -106,7 +106,7 @@ var Statistics = React.createClass({
     var content = !this.state.authorized ? unauthorizedContent : authorizedContent
 
     return  <div className="statistics-content">
-                <header className="statistics-header">
+                <header className="prominent-header">
                   <div className="content">
                     <h1 className="statistics-heading">Statistics</h1>
                     <h5 className="statistics-day">{this.props.day}</h5>
