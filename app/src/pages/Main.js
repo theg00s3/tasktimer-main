@@ -38,7 +38,9 @@ var Main = React.createClass({
 
 function pomodoroEvent(eventName, minutes, type, time){
   if( eventName === 'end' ){
-    axios.post('/api/pomodoro', store.get('pomodoroData'))
+    var pomodoroData = store.get('pomodoroData')
+    pomodoroData.cancelledAt = Date.now()
+    axios.post('/api/pomodoro', pomodoroData)
       .then(function(){})
       .catch(function(){})
     store.remove('pomodoroData')
