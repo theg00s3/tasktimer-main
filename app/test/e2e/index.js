@@ -42,5 +42,6 @@ module.exports = {
     browser
       .click('.grid-menu a:nth-child(1)')
       .assert.containsText('main', 'Statistics')
+      .assert.containsText('main', 'Unauthorized')
   }
 }
