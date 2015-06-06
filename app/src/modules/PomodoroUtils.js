@@ -3,5 +3,11 @@ module.exports = {
 }
 
 function getDuration(pomodoro){
-  return 25*60
+  if( !pomodoro || pomodoro.startedAt === undefined || pomodoro.minutes === undefined ) {
+    return 0
+  }
+  if( pomodoro.cancelledAt === undefined && pomodoro.minutes ){
+    return pomodoro.minutes * 60
+  }
+  return 0
 }
