@@ -52,7 +52,7 @@ var Statistics = React.createClass({
         var data = response.data
         _.reduce(data, function(memo, pomodoro){
           var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
-          memo[indexType].value += PomodoroUtils.getDuration(pomodoro)/60
+          memo[indexType].value += PomodoroUtils.getDurationInMinutes(pomodoro)
           return memo
         }, chartData)
         setTimeout(function(){
@@ -66,18 +66,11 @@ var Statistics = React.createClass({
   },
   render: function(){
     var data = this.state.data || []
-
-    var timeline = data.map(function(dataPoint){
-      return  <li className={"type-"+dataPoint.type}>
-                {dataPoint.minutes} - {dataPoint.startedAt}
-              </li>
-    })
-
     return  <Loader loaded={this.state.loaded}>
               <div className="content">
                 <h1 className="tac">Statistics</h1>
-                <Timeline data={this.state.data}/>
                 <PieChart data={this.state.chartData} options={chartOptions}/>
+                <Timeline data={this.state.data}/>
               </div>
             </Loader>
   }
