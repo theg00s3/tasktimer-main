@@ -83,11 +83,16 @@ var Statistics = React.createClass({
   render: function(){
     var unauthorizedContent = [<h1>Unauthorized</h1>]
     var authorizedContent = <div>
-                              <div className="row">
-                                <PieChart className="col" data={this.state.chartData} options={chartOptions}/>
-                                <StatisticsDetailsList className="col" data={this.state.data}/>
+                              <div className="row block block-with-padding">
+                                <div className="col border-right">
+                                  <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
+                                  <hr/>
+                                  <StatisticsDetailsList data={this.state.data}/>
+                                </div>
+                                <div className="col">
+                                  <Timeline className="col" data={this.state.data}/>
+                                </div>
                               </div>
-                              <Timeline className="col" data={this.state.data}/>
                             </div>
 
     var content = !this.state.authorized ? unauthorizedContent : authorizedContent
