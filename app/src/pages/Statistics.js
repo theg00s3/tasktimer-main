@@ -1,6 +1,7 @@
 var Loader = require('react-loader')
 var React = require('react')
 var Timeline = require('../components/Timeline')
+var StatisticsDetailsList = require('../components/StatisticsDetailsList')
 var axios = require('axios')
 var PomodoroUtils = require('../../../shared/PomodoroUtils')
 var  _ = require('underscore')
@@ -80,10 +81,13 @@ var Statistics = React.createClass({
       }.bind(this))
   },
   render: function(){
-    var authorizedContent = [
-                  <PieChart data={this.state.chartData} options={chartOptions}/>,
-                  <Timeline data={this.state.data}/>
-                ]
+    var authorizedContent = <div>
+                              <div className="row">
+                                <PieChart className="col" data={this.state.chartData} options={chartOptions}/>
+                                <StatisticsDetailsList className="col" data={this.state.chartData}/>
+                              </div>
+                              <Timeline className="col" data={this.state.data}/>
+                            </div>
     var unauthorizedContent = [<h1>Unauthorized</h1>]
     var content = !this.state.authorized ? unauthorizedContent : authorizedContent
     return  <div className="statistics-content">
