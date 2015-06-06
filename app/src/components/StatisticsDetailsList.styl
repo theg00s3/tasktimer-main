@@ -1,2 +1,32 @@
 .statistics-details-list
-  border 1px solid red
+
+  ul
+    max-width 20em
+
+    padding 0
+    margin 0 auto
+    list-style-type none
+    background color_light_grey
+    border 1px solid darken(color_light_grey, 10%)
+    border-radius 5px
+
+    li
+      padding .75em .45em
+      border-bottom 1px solid darken(color_light_grey, 10%)
+      &:last-child
+        border-bottom none
+
+    .count
+      padding-right 1.3em
+      padding-left (@padding-right / 2)
+      margin-right @padding-right
+      font-weight bold
+      border-right 1px solid darken(color_light_grey, 10%)
+
+    .time
+      float right
+      padding-right 1.3em
+      padding-left (@padding-right / 2)
+      font-weight bold
+      border-left 1px solid darken(color_light_grey, 10%)
+

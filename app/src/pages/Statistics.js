@@ -84,7 +84,7 @@ var Statistics = React.createClass({
     var authorizedContent = <div>
                               <div className="row">
                                 <PieChart className="col" data={this.state.chartData} options={chartOptions}/>
-                                <StatisticsDetailsList className="col" data={this.state.chartData}/>
+                                <StatisticsDetailsList className="col" data={this.state.data}/>
                               </div>
                               <Timeline className="col" data={this.state.data}/>
                             </div>
