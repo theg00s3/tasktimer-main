@@ -14,7 +14,6 @@ module.exports = {
         var text = result.value
         this.assert.ok(/24:\d\d/.test(text))
       })
-      // .assert.containsText('.timer', '24:58')
       .click('.control-buttons-container button:first-child')
   },
   "start a pomodoro": function(browser){
