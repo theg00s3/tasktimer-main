@@ -3,7 +3,9 @@ var page = require('page')
 var router = require('./router')
 var UserService = require('./modules/UserService')
 var AnalyticsService = require('./modules/AnalyticsService')
+var logger = require('./modules/logger')
 
+logger.enable( /pomodoro\.dev/.test(window.location.host) )
 
 router.start()
 

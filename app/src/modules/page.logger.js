@@ -1,4 +1,5 @@
+var logger = require('./logger')
 module.exports = function(context, next){
-  console.log('-- page: ', context.path, context.pathname)
+  logger.log('-- page: ', context.path, context.pathname)
   next()
 }

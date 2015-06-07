@@ -44,23 +44,24 @@ var Main = React.createClass({
 })
 
 function pomodoroEvent(eventName, minutes, type, time){
-  if( eventName === 'end' ){
-    var pomodoroData = store.get('pomodoroData')
-    pomodoroData.cancelledAt = Date.now()
-    PomodoroService.create(pomodoroData)
-    store.remove('pomodoroData')
-    resetTitle()
-    return
+  switch( eventName ){
+    case 'start':
+      store.set('pomodoroData', {
+        minutes: minutes,
+        type: type,
+        startedAt: Date.now()
+      })
+      break
+    case 'end':
+      var pomodoroData = store.get('pomodoroData')
+      pomodoroData.cancelledAt = Date.now()
+      PomodoroService.create(pomodoroData)
+      store.remove('pomodoroData')
+      resetTitle()
+      break
+    case 'tick':
+      document.title = time + ' - ' + constants.title
   }
-  if( eventName === 'tick' ) {
-    document.title = time + ' - ' + constants.title
-    return
-  }
-  store.set('pomodoroData', {
-    minutes: minutes,
-    type: type,
-    startedAt: Date.now()
-  })
 }
 
 
