@@ -23,4 +23,8 @@ cd ..
 
 ./node_modules/nightwatch/bin/nightwatch
 
+NIGHTWATCH_EXIT_CODE $?
+
 kill -9 $SERVER_PID
+
+exit NIGHTWATCH_EXIT_CODE
