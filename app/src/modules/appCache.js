@@ -9,7 +9,9 @@ function onUpdateReady(callback){
   if( appCache ){
     try {
       appCache.addEventListener('updateready', function(e) {
-        callback(appCache)
+        if (appCache.status == appCache.UPDATEREADY) {
+          callback(appCache)
+        }
       })
     } catch(e){}
   }

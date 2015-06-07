@@ -41,3 +41,4 @@ function setCancelledAtIfNeeded(pomodoroData){
 function resetTitle(){
   document.title = constants.title
 }
+
