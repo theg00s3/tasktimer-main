@@ -4,6 +4,7 @@ var router = require('./router')
 var UserService = require('./modules/UserService')
 var AnalyticsService = require('./modules/AnalyticsService')
 var logger = require('./modules/Logger')
+var appCache = require('./modules/appCache')
 
 logger.enable( /pomodoro\.dev/.test(window.location.host) )
 
@@ -23,3 +24,5 @@ UserService.authenticate()
 .catch(function(){})
 
 AnalyticsService.track('test')
+
+appCache.onUpdateReady(appCache.doSwapCache)
