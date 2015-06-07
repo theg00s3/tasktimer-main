@@ -46,9 +46,11 @@ var Statistics = React.createClass({
     }
   },
   componentWillUnmount: function(){
+    document.body.removeEventListener('keydown', this._handleKeyboardNavigation)
     mainHeader.classList.remove('white')
   },
   componentDidMount: function(){
+    document.body.addEventListener('keydown', this._handleKeyboardNavigation.bind(this))
     mainHeader.classList.add('white')
     this.props.dataPromise
       .then(function(response){
@@ -76,6 +78,16 @@ var Statistics = React.createClass({
       newDay = moment(day, constants.dayFormat).add(1, 'days').format(constants.dayFormat)
     }
     page.show('/statistics?day='+newDay)
+  },
+  _handleKeyboardNavigation: function(event){
+    switch( event.keyCode ){
+      case 37:
+        this._navigateBack()
+        break
+      case 39:
+        this._navigateForward()
+        break
+    }
   },
   _navigateBack: function(){
     this._navigate('back')
