@@ -25,4 +25,9 @@ UserService.authenticate()
 
 AnalyticsService.track('test')
 
-appCache.onUpdateReady(appCache.doSwapCache)
+appCache.onUpdateReady(function(){
+  appCache.doSwapCache()
+  if( window.location ){
+    window.location.reload()
+  }
+})
