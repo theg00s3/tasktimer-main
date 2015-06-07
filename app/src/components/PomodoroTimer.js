@@ -18,11 +18,7 @@ module.exports = React.createClass({
     if( this.props.remaining > 0 && this.props.data ){
       this.remaining = this.props.remaining
       this.state.remaining = parseInt(this.remaining,10)
-      this.setState({
-        disabled25: true,
-        disabled15: true,
-        disabled5: true,
-      })
+      this._disableButtons()
       var newState = {disabled25: true, disabled15: true,disabled5: true}
       newState['disabled'+this.props.data.minutes] = false
       this.setState(newState)
@@ -33,7 +29,14 @@ module.exports = React.createClass({
   componentWillUnmount: function(){
     clearInterval(this.interval)
   },
-  tick: function(){
+  _disableButtons: function(){
+    this.setState({
+      disabled25: true,
+      disabled15: true,
+      disabled5: true
+    })
+  },
+  _tick: function(){
     var now = parseInt(Date.now()/1000, 10)
     var mountedAt = this.state.mountedAt
     var remaining = mountedAt - now + this.remaining
@@ -72,11 +75,7 @@ module.exports = React.createClass({
     this._stopTimer()
     this.state.remaining = minutes * 60
     this.remaining = minutes * 60
-    this.setState({
-      disabled25: true,
-      disabled15: true,
-      disabled5: true
-    })
+    this._disableButtons()
     this.minutes = minutes
     this.type = type
     var disabledMinutes = {}
@@ -100,8 +99,8 @@ module.exports = React.createClass({
   },
   _startTimer: function(){
     if( this.state.remaining > 0 ){
-      this.tick()
-      this.interval = setInterval(this.tick, 1000)
+      this._tick()
+      this.interval = setInterval(this._tick, 1000)
     }
   },
   render: function(){
