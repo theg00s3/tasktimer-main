@@ -6,6 +6,7 @@ var moment = require('moment')
 var url = require('url')
 var PieChart = require('react-chartjs').Pie
 var page = require('page')
+window.page = page
 
 var Timeline = require('../components/Timeline')
 var StatisticsDetailsList = require('../components/StatisticsDetailsList')
@@ -18,15 +19,14 @@ var mainHeader = document.getElementById('main-header')
 
 
 
-var query = url.parse(window.location.href, true).query
-var day = query.day || moment().format(constants.dayFormat)
-var dataPromise = axios.get('/api/pomodoro',{
-  params: {
-    day: day
-  }
-})
 
 module.exports = function(context){
+  var day = extractDay(context.path)
+  var dataPromise = axios.get('/api/pomodoro',{
+    params: {
+      day: day
+    }
+  })
   React.render(<Statistics day={day} dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
 }
 
@@ -88,15 +88,22 @@ var Statistics = React.createClass({
         })
       }.bind(this))
   },
+  _navigate: function(direction){
+    var domNode = this.getDOMNode()
+    if( !domNode ) return
+    React.unmountComponentAtNode(domNode.parentNode)
+    var day = extractDay(window.location.href)
+    var newDay = moment(day, constants.dayFormat).subtract(1, 'days').format(constants.dayFormat)
+    if( direction === 'forward' ){
+      newDay = moment(day, constants.dayFormat).add(1, 'days').format(constants.dayFormat)
+    }
+    page.show('/statistics?day='+newDay)
+  },
   _navigateBack: function(){
-    var prev = moment(day, constants.dayFormat).subtract(1, 'days').format(constants.dayFormat)
-    // page.show('/statistics?day='+prev)
-    window.location.href = '/statistics?day='+prev
+    this._navigate('back')
   },
   _navigateForward: function(){
-    var prev = moment(day, constants.dayFormat).add(1, 'days').format(constants.dayFormat)
-    // page.show('/statistics?day='+prev)
-    window.location.href = '/statistics?day='+prev
+    this._navigate('forward')
   },
   render: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
@@ -138,3 +145,22 @@ var Statistics = React.createClass({
               </div>
   }
 })
+
+function navigate(direction){
+  return function(){
+    React.unmountComponentAtNode(this.getDOMNode().parentNode)
+    var day = extractDay(window.location.href)
+    var newDay = moment(day, constants.dayFormat).subtract(1, 'days').format(constants.dayFormat)
+    if( direction === 'forward' ){
+      newDay = moment(day, constants.dayFormat).add(1, 'days').format(constants.dayFormat)
+    }
+    page.show('/statistics?day='+newDay)
+  }
+}
+
+
+function extractDay(string){
+  var query = url.parse(string, true).query
+  return query.day || moment().format(constants.dayFormat)
+}
+
