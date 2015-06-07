@@ -16,16 +16,25 @@ module.exports = function(eventName, minutes, type, time){
       break
     case 'end':
       var pomodoroData = store.get('pomodoroData')
-      pomodoroData.cancelledAt = Date.now()
-      AnalyticsService.track('timer-end', pomodoroData)
-      PomodoroService.create(pomodoroData)
+      if( pomodoroData && pomodoroData.minutes && pomodoroData.startedAt ){
+        pomodoroData = setCancelledAtIfNeeded(pomodoroData)
+        AnalyticsService.track('timer-end', pomodoroData)
+        PomodoroService.create(pomodoroData)
+      }
       store.remove('pomodoroData')
       resetTitle()
       break
     case 'tick':
       document.title = time + ' - ' + constants.title
   }
+}
 
+function setCancelledAtIfNeeded(pomodoroData){
+  var now = Date.now()
+  if( pomodoroData.startedAt + pomodoroData.minutes*60*1000 < now ){
+    pomodoroData.cancelledAt = Date.now()
+  }
+  return pomodoroData
 }
 
 
