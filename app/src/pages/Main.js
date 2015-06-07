@@ -2,6 +2,7 @@ var React = require('react')
 var PomodoroTimer = require('../components/PomodoroTimer')
 var GridMenu = require('../components/GridMenu')
 var PomodoroService = require('../modules/PomodoroService')
+var PomodoroEventHandler = require('../modules/PomodoroEventHandler')
 var store = require('store')
 var moment = require('moment')
 var constants = require('../../../shared/constants')
@@ -37,7 +38,7 @@ var Main = React.createClass({
       store.remove('pomodoroData')
     }
     return  <div className="main">
-              <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={pomodoroEvent}/>
+              <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
               <GridMenu className="limit extended1"/>
             </div>
   }

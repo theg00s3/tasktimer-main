@@ -29,24 +29,12 @@ module.exports = function(context){
 
 var chartOptions = {
   percentageInnerCutout : 35,
-  animationSteps : 75,
+  animationSteps : 50,
   animationEasing : "easeOutBounce",
   animateRotate : true,
   animateScale : false,
   tooltipTemplate: "<%=label%>: <%= value %>min",
 }
-var chartData = [{
-  value: 0,
-  color:"#DF2E2E",
-  highlight: "#DF2E2E",
-  label: "Pomodori"
-},
-{
-  value: 0,
-  color: "#24b524",
-  highlight: "#24b524",
-  label: "Breaks"
-}]
 
 var Statistics = React.createClass({
   getInitialState: function(){
@@ -65,18 +53,11 @@ var Statistics = React.createClass({
     this.props.dataPromise
       .then(function(response){
         var data = response.data
-        _.reduce(data, function(memo, pomodoro){
-          var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
-          memo[indexType].value += PomodoroUtils.getDurationInMinutes(pomodoro)
-          return memo
-        }, chartData)
-        setTimeout(function(){
-          this.setState({
-            data: data,
-            loaded: true,
-            chartData: chartData
-          })
-        }.bind(this), 300)
+        this.setState({
+          data: data,
+          loaded: true,
+          chartData: getChartData(data)
+        })
       }.bind(this))
       .catch(function(response){
         this.setState({
@@ -161,3 +142,23 @@ function extractDay(string){
   return query.day || moment().format(constants.dayFormat)
 }
 
+function getChartData(data){
+  var chartData = [{
+    value: 0,
+    color:"#DF2E2E",
+    highlight: "#DF2E2E",
+    label: "Pomodori"
+  },
+  {
+    value: 0,
+    color: "#24b524",
+    highlight: "#24b524",
+    label: "Breaks"
+  }]
+
+  return _.reduce(data, function(memo, pomodoro){
+    var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
+    memo[indexType].value += PomodoroUtils.getDurationInMinutes(pomodoro)
+    return memo
+  }, chartData)
+}
