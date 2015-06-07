@@ -31,8 +31,8 @@ module.exports = function(eventName, minutes, type, time){
 
 function setCancelledAtIfNeeded(pomodoroData){
   var now = Date.now()
-  if( pomodoroData.startedAt + pomodoroData.minutes*60*1000 < now ){
-    pomodoroData.cancelledAt = Date.now()
+  if( (now - pomodoroData.startedAt)/60/1000 < pomodoroData.minutes ){
+    pomodoroData.cancelledAt = now
   }
   return pomodoroData
 }
