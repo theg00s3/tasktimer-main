@@ -34,8 +34,7 @@ var Main = React.createClass({
       }
     }
     if( remaining < 0 ){
-      PomodoroService.create(this.state.pomodoroData)
-      store.remove('pomodoroData')
+      PomodoroEventHandler('end', this.state.pomodoroData.minutes, this.state.pomodoroData.type)
     }
     return  <div className="main">
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
@@ -43,28 +42,6 @@ var Main = React.createClass({
             </div>
   }
 })
-
-function pomodoroEvent(eventName, minutes, type, time){
-  switch( eventName ){
-    case 'start':
-      store.set('pomodoroData', {
-        minutes: minutes,
-        type: type,
-        startedAt: Date.now()
-      })
-      break
-    case 'end':
-      var pomodoroData = store.get('pomodoroData')
-      pomodoroData.cancelledAt = Date.now()
-      PomodoroService.create(pomodoroData)
-      store.remove('pomodoroData')
-      resetTitle()
-      break
-    case 'tick':
-      document.title = time + ' - ' + constants.title
-  }
-}
-
 
 function resetTitle(){
   document.title = constants.title
