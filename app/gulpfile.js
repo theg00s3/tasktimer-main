@@ -74,11 +74,12 @@ gulp.task('test', function(){
 
 gulp.task('browser-sync', function(){
   browserSync.init({
-      proxy: 'https://pomodoro.dev'
+    server: './www',
+    port: 9001
   });
 })
 
-gulp.task('watch', ['default', 'browser-sync'], function(){
+gulp.task('watch', ['browser-sync', 'default'], function(){
   gulp.watch(paths.js, ['js','test'])
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
