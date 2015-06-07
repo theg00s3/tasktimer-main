@@ -1,3 +1,6 @@
+var moment = require('moment')
+var constants = require('../../src/constants')
+
 module.exports = {
   beforeEach: function(browser){
     browser
@@ -46,5 +49,49 @@ module.exports = {
       .click('.grid-menu a:nth-child(1)')
       .assert.containsText('main', 'Statistics')
       .assert.containsText('main', 'Unauthorized')
+  },
+  "navigate in statistics page": function(browser){
+    var today = getToday()
+    var previousDay = getYesterday()
+    var nextDay = getTomorrow()
+    browser
+      .click('.grid-menu a:nth-child(1)')
+      .assert.containsText('main', 'Statistics')
+      .click('.ion-ios-arrow-back')
+      .assert.containsText('main', previousDay)
+      .click('.ion-ios-arrow-forward')
+      .assert.containsText('main', today)
+      .click('.ion-ios-arrow-forward')
+      .assert.containsText('main', nextDay)
   }
+}
+
+function getToday(){
+  var date = new Date()
+  var day = pad(date.getDate())
+  var month = pad((date.getMonth()+1))
+  var year = date.getFullYear()
+  return day + '/' + month + '/' + year
+}
+
+function getYesterday(){
+  var date = new Date()
+  date.setDate(date.getDate()-1)
+  var day = pad(date.getDate())
+  var month = pad((date.getMonth()+1))
+  var year = date.getFullYear()
+  return day + '/' + month + '/' + year
+}
+
+function getTomorrow(){
+  var date = new Date()
+  date.setDate(date.getDate()+1)
+  var day = pad(date.getDate())
+  var month = pad((date.getMonth()+1))
+  var year = date.getFullYear()
+  return day + '/' + month + '/' + year
+}
+
+function pad(number){
+  return number < 10 ? '0'+number : number
 }

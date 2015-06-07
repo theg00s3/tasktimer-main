@@ -6,7 +6,6 @@ var moment = require('moment')
 var url = require('url')
 var PieChart = require('react-chartjs').Pie
 var page = require('page')
-window.page = page
 
 var Timeline = require('../components/Timeline')
 var StatisticsDetailsList = require('../components/StatisticsDetailsList')
@@ -16,8 +15,6 @@ var PomodoroUtils = require('../../../shared/PomodoroUtils')
 var constants = require('../../../shared/constants')
 
 var mainHeader = document.getElementById('main-header')
-
-
 
 
 module.exports = function(context){
