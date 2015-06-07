@@ -31,3 +31,4 @@ appCache.onUpdateReady(function(){
     window.location.reload()
   }
 })
+
