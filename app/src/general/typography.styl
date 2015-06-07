@@ -66,15 +66,6 @@ button
   *
     color inherit
 
-  &.reset
-    background inherit
-    padding inherit
-    margin inherit
-    border-radius inherit
-    &:hover
-      background inherit
-
-
   &.block
     display block
     width 100%
@@ -89,21 +80,20 @@ button
   &:active
     background lighten(color_pomodoro,10%)
 
-  &.no-border
-    border none
+  &.rounded
+    border-radius 25px
+
+  &.inverted
+    background white
+    color color_pomodoro
+    &:hover
+      background color_pomodoro
+      color white
+      text-decoration none
+
 
   &.bordered
     border 1px solid color_pomodoro
-
-  &.simple
-    background-color inherit
-    color black
-
-  &.center
-    display block
-    margin-left auto
-    margin-right @margin-left
-    text-align center
 
   &[disabled]
     cursor not-allowed

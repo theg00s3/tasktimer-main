@@ -28,7 +28,7 @@ var About = React.createClass({
                   <a className="simple" href="http://pomodorotechnique.com/" target="_blank">Pomodoro technique &reg;</a>
                   you ll be able to boost your productivity, work in more concentrated bursts and have frequent, mind refreshing breaks.
                 </p>
-                <a className="button block tac first-pomodoro-cta" href="/">start your first pomodoro!</a>
+                <a className="button bordered inverted rounded block tac first-pomodoro-cta" href="/">start your first pomodoro!</a>
               </div>
             </div>
   }
