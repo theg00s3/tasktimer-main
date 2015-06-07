@@ -1,11 +1,10 @@
 var React = require('react')
 var PomodoroTimer = require('../components/PomodoroTimer')
 var GridMenu = require('../components/GridMenu')
+var PomodoroService = require('../modules/PomodoroService')
 var store = require('store')
 var moment = require('moment')
-var axios = require('axios')
 var constants = require('../../../shared/constants')
-
 
 module.exports = function(context){
   React.render(<Main></Main>, document.querySelector('main'))
@@ -28,9 +27,13 @@ var Main = React.createClass({
   },
   render: function() {
     var remaining = 0
-    if( this.state.pomodoroData && this.state.pomodoroData.minutes && this.state.pomodoroData.startedAt ){
-      remaining = parseInt((moment(this.state.pomodoroData.startedAt).unix() + this.state.pomodoroData.minutes*60 - moment().unix()),10)
-    }else{
+    if( this.state.pomodoroData ){
+      if( this.state.pomodoroData.minutes && this.state.pomodoroData.startedAt ){
+        remaining = parseInt((moment(this.state.pomodoroData.startedAt).unix() + this.state.pomodoroData.minutes*60 - moment().unix()),10)
+      }
+    }
+    if( remaining < 0 ){
+      PomodoroService.create(this.state.pomodoroData)
       store.remove('pomodoroData')
     }
     return  <div className="main">
@@ -44,15 +47,12 @@ function pomodoroEvent(eventName, minutes, type, time){
   if( eventName === 'end' ){
     var pomodoroData = store.get('pomodoroData')
     pomodoroData.cancelledAt = Date.now()
-    axios.post('/api/pomodoro', pomodoroData)
-      .then(function(){})
-      .catch(function(){})
+    PomodoroService.create(pomodoroData)
     store.remove('pomodoroData')
     resetTitle()
     return
   }
   if( eventName === 'tick' ) {
-    console.log( 'tick', time )
     document.title = time + ' - ' + constants.title
     return
   }
