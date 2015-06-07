@@ -8,6 +8,7 @@ var PieChart = require('react-chartjs').Pie
 var page = require('page')
 
 var Timeline = require('../components/Timeline')
+var LoginLogout = require('../components/LoginLogout')
 var StatisticsDetailsList = require('../components/StatisticsDetailsList')
 var ArrowNavigation = require('../components/ArrowNavigation')
 
@@ -109,7 +110,9 @@ var Statistics = React.createClass({
                             </div>
                           ]
     }
-    var unauthorizedContent = <h1>Unauthorized</h1>
+    var unauthorizedContent = [
+                                <LoginLogout onlyLogin={true} className="big left"/>
+                              ]
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
                                 {availableContent}
