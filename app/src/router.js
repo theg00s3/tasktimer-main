@@ -1,5 +1,5 @@
 var page = require('page')
-var logger = require('./modules/logger')
+var logger = require('./modules/Logger')
 
 page('*', require('./modules/page.logger'), require('./modules/page.tracker'), require('./modules/page.scrollToTop'))
 page('/', require('./pages/Main'))
