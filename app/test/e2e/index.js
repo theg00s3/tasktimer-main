@@ -4,7 +4,7 @@ var constants = require('../../src/constants')
 module.exports = {
   beforeEach: function(browser){
     browser
-      .url("http://localhost:9000")
+      .url('https://pomodoro.dev')
       .waitForElementVisible('main', 1000)
   },
   "refreshing the browser retains state": function(browser){
