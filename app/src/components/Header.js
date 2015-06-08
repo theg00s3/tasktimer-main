@@ -1,7 +1,7 @@
 var React = require('react')
-var Dropdown = require('./Dropdown')
-var UserProfile = require('./UserProfile')
-var LoginLogout = require('./LoginLogout')
+  , Dropdown = require('./Dropdown')
+  , UserProfile = require('./UserProfile')
+  , LoginLogout = require('./LoginLogout')
 
 module.exports = React.createClass({
   render: function() {

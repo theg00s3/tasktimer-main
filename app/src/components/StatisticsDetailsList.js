@@ -1,6 +1,6 @@
 var React = require('react')
-var _ = require('underscore')
-var PomodoroUtils = require('../../../shared/PomodoroUtils')
+  , _ = require('underscore')
+  , PomodoroUtils = require('../../../shared/PomodoroUtils')
 
 module.exports = React.createClass({
   render: function(){

@@ -1,6 +1,6 @@
 var React = require('react')
-var moment = require('moment')
-var PomodoroUtils = require('../../../shared/PomodoroUtils')
+  , moment = require('moment')
+  , PomodoroUtils = require('../../../shared/PomodoroUtils')
 
 module.exports = React.createClass({
   render: function(){

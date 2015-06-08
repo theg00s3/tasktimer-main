@@ -1,11 +1,7 @@
-var track = registerEvent('track')
-var identify = registerEvent('identify')
-var page = registerEvent('page')
-
 module.exports = {
-  track: track,
-  identify: identify,
-  page: page,
+  track: registerEvent('track'),
+  identify: registerEvent('identify'),
+  page: registerEvent('page'),
 }
 
 function registerEvent(eventName){

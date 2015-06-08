@@ -1,11 +1,11 @@
 var React = require('react')
-var PomodoroTimer = require('../components/PomodoroTimer')
-var GridMenu = require('../components/GridMenu')
-var PomodoroService = require('../modules/PomodoroService')
-var PomodoroEventHandler = require('../modules/PomodoroEventHandler')
-var store = require('store')
-var moment = require('moment')
-var constants = require('../../../shared/constants')
+  , PomodoroTimer = require('../components/PomodoroTimer')
+  , GridMenu = require('../components/GridMenu')
+  , PomodoroService = require('../modules/PomodoroService')
+  , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
+  , store = require('store')
+  , moment = require('moment')
+  , constants = require('../../../shared/constants')
 
 module.exports = function(context){
   React.render(<Main></Main>, document.querySelector('main'))

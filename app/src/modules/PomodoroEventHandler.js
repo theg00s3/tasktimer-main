@@ -1,7 +1,7 @@
 var store = require('store')
-var PomodoroService = require('./PomodoroService')
-var constants = require('../constants')
-var AnalyticsService = require('./AnalyticsService')
+  , PomodoroService = require('./PomodoroService')
+  , constants = require('../constants')
+  , AnalyticsService = require('./AnalyticsService')
 
 module.exports = function(eventName, minutes, type, time){
   switch( eventName ){

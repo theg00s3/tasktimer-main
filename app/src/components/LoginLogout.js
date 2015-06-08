@@ -1,5 +1,5 @@
 var React = require('react')
-var AuthService = require('../modules/AuthService')
+  , AuthService = require('../modules/AuthService')
 
 module.exports = React.createClass({
   getInitialState: function(){
