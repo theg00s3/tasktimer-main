@@ -1,19 +1,19 @@
 var Loader = require('react-loader')
-var React = require('react')
-var axios = require('axios')
-var  _ = require('underscore')
-var moment = require('moment')
-var url = require('url')
-var PieChart = require('react-chartjs').Pie
-var page = require('page')
+  , React = require('react')
+  , axios = require('axios')
+  ,  _ = require('underscore')
+  , moment = require('moment')
+  , url = require('url')
+  , PieChart = require('react-chartjs').Pie
+  , page = require('page')
 
 var Timeline = require('../components/Timeline')
-var LoginLogout = require('../components/LoginLogout')
-var StatisticsDetailsList = require('../components/StatisticsDetailsList')
-var ArrowNavigation = require('../components/ArrowNavigation')
+  , LoginLogout = require('../components/LoginLogout')
+  , StatisticsDetailsList = require('../components/StatisticsDetailsList')
+  , ArrowNavigation = require('../components/ArrowNavigation')
 
 var PomodoroUtils = require('../../../shared/PomodoroUtils')
-var constants = require('../../../shared/constants')
+  , constants = require('../../../shared/constants')
 
 var ChartUtils = require('../modules/ChartUtils')
 
