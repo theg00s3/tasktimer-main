@@ -27,7 +27,7 @@ module.exports = {
 
 
 function getPieChartDataFrom(data, _chartData){
-  var chartData = _chartData || defaultChartData
+  var chartData = _.clone(_chartData || defaultChartData)
 
   return _.reduce(data, function(memo, pomodoro){
     var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
