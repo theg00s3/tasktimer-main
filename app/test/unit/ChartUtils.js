@@ -9,18 +9,10 @@ describe('ChartUtils', function () {
       minutes: 25,
       startedAt: Date.now()
     }]
-    var expectedChartData = [{
-      value: 25,
-      color: '#DF2E2E',
-      highlight: '#DF2E2E',
-      label: 'Pomodori'
-    }, {
-      value: 0,
-      color: '#24b524',
-      highlight: '#24b524',
-      label: 'Breaks'
-    }]
     var chartData = ChartUtils.getPieChartDataFrom(data)
-    expect( chartData ).to.deep.equal(expectedChartData)
+    expect( chartData[0] ).to.be.defined
+    expect( chartData[1] ).to.be.defined
+    expect( chartData[0].value ).to.equal(25)
+    expect( chartData[1].value ).to.equal(0)
   })
 })
