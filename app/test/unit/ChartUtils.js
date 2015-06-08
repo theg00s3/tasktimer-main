@@ -3,6 +3,12 @@ var ChartUtils = require('../../src/modules/ChartUtils')
 var expect = require('chai').expect
 
 describe('ChartUtils', function () {
+  it('gets chart data for pie chart for empty data', function () {
+    var data = []
+    var chartData = ChartUtils.getPieChartDataFrom(data)
+    expect( chartData ).to.eql( ChartUtils.chartData )
+  })
+
   it('gets chart data for pie chart', function () {
     var durationFirstPomodoro = 25
     var durationSecondPomodoro = 5

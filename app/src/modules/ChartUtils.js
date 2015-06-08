@@ -1,7 +1,3 @@
-module.exports = {
-  getPieChartDataFrom: getPieChartDataFrom
-}
-
 var _ = require('underscore')
   , PomodoroUtils = require('../../../shared/PomodoroUtils')
 
@@ -19,6 +15,16 @@ var colorPomodoro = "#DF2E2E"
     highlight: colorBreak,
     label: "Breaks"
   }]
+
+
+
+
+module.exports = {
+  getPieChartDataFrom: getPieChartDataFrom,
+  chartData: defaultChartData
+}
+
+
 
 function getPieChartDataFrom(data, _chartData){
   var chartData = _chartData || defaultChartData
