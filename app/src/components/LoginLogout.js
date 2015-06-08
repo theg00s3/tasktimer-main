@@ -1,5 +1,5 @@
 var React = require('react')
-var UserService = require('../modules/UserService')
+var AuthService = require('../modules/AuthService')
 
 module.exports = React.createClass({
   getInitialState: function(){
@@ -8,7 +8,7 @@ module.exports = React.createClass({
     }
   },
   componentWillMount: function(){
-    UserService.authenticate()
+    AuthService.authenticate()
       .then(function(response){
         this.setState({
           loggedIn: true

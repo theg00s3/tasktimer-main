@@ -1,7 +1,7 @@
 var React = require('react')
 var page = require('page')
 var router = require('./router')
-var UserService = require('./modules/UserService')
+var AuthService = require('./modules/AuthService')
 var AnalyticsService = require('./modules/AnalyticsService')
 var logger = require('./modules/Logger')
 var appCache = require('./modules/appCache')
@@ -14,7 +14,7 @@ var Header = require('./components/Header')
 
 React.render(<Header/>, document.getElementById('main-header'))
 
-UserService.authenticate()
+AuthService.authenticate()
 .then(function(response){
   var user = response.data
   AnalyticsService.identify(user.id, {

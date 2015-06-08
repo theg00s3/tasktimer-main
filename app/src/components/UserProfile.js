@@ -1,5 +1,5 @@
 var React = require('react')
-var UserService = require('../modules/UserService')
+var AuthService = require('../modules/AuthService')
 
 module.exports = React.createClass({
   getInitialState: function(){
@@ -9,7 +9,7 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function(){
-    UserService.authenticate()
+    AuthService.authenticate()
       .then(function(response){
         if( this.isMounted() && response.status === 200 ){
           this.setState(response.data)
