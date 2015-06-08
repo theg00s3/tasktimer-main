@@ -3,21 +3,25 @@ module.exports = {
 }
 
 var _ = require('underscore')
-var PomodoroUtils = require('../../../shared/PomodoroUtils')
+  , PomodoroUtils = require('../../../shared/PomodoroUtils')
 
-function getPieChartDataFrom(data){
-  var chartData = [{
+var colorPomodoro = "#DF2E2E"
+  , colorBreak = "#24b524"
+  , defaultChartData = [{
     value: 0,
-    color:"#DF2E2E",
-    highlight: "#DF2E2E",
+    color: colorPomodoro,
+    highlight: colorPomodoro,
     label: "Pomodori"
   },
   {
     value: 0,
-    color: "#24b524",
-    highlight: "#24b524",
+    color: colorBreak,
+    highlight: colorBreak,
     label: "Breaks"
   }]
+
+function getPieChartDataFrom(data, _chartData){
+  var chartData = _chartData || defaultChartData
 
   return _.reduce(data, function(memo, pomodoro){
     var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
