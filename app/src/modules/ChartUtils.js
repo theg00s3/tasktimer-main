@@ -2,6 +2,9 @@ module.exports = {
   getPieChartDataFrom: getPieChartDataFrom
 }
 
+var _ = require('underscore')
+var PomodoroUtils = require('../../../shared/PomodoroUtils')
+
 function getPieChartDataFrom(data){
   var chartData = [{
     value: 0,
