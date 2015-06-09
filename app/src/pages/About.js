@@ -17,8 +17,10 @@ var About = React.createClass({
   render: function(){
     return  <div>
               <header className="prominent-header">
-                <h1 className="tac">Boost your productivity</h1>
-                <h5 className="tac">Manage your time more effectively</h5>
+                <div className="content">
+                  <h1>Boost your productivity</h1>
+                  <h5>Manage your time more effectively</h5>
+                </div>
               </header>
               <div className="content breath">
                 <p className="breath">
