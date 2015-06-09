@@ -39,23 +39,12 @@ module.exports = {
       .click('.control-buttons-container button:nth-child(3)')
       .assert.containsText('.timer', '00:00')
   },
-  "navigate to about page": function(browser){
-    browser
-      .click('.grid-menu a:nth-child(2)')
-      .assert.containsText('main', 'Boost your productivity')
-  },
-  "navigate to statistics page": function(browser){
-    browser
-      .click('.grid-menu a:nth-child(1)')
-      .assert.containsText('main', 'Statistics')
-      .assert.containsText('main', 'Login with')
-  },
   "navigate in statistics page": function(browser){
     var today = getToday()
     var previousDay = getYesterday()
     var nextDay = getTomorrow()
     browser
-      .click('.grid-menu a:nth-child(1)')
+      .url('https://pomodoro.dev/statistics')
       .assert.containsText('main', 'Statistics')
       .click('.ion-ios-arrow-back')
       .assert.containsText('main', previousDay)
