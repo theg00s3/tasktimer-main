@@ -6,7 +6,7 @@ var AnalyticsService = require('./modules/AnalyticsService')
 var logger = require('./modules/Logger')
 var appCache = require('./modules/appCache')
 
-logger.enable( /pomodoro\.dev/.test(window.location.host) )
+logger.enable( !/pomodoro\.cc/.test(window.location.host) )
 
 router.start()
 
