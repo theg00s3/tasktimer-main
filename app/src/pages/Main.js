@@ -38,7 +38,9 @@ var Main = React.createClass({
     }
     return  <div className="main">
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
+              {/*
               <GridMenu className="limit extended1"/>
+              */}
             </div>
   }
 })
