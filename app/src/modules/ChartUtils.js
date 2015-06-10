@@ -3,7 +3,17 @@ var _ = require('underscore')
 
 var colorPomodoro = "#DF2E2E"
   , colorBreak = "#24b524"
-  , defaultChartData = [{
+
+
+
+
+module.exports = {
+  getPieChartDataFrom: getPieChartDataFrom,
+  chartData: getDefaultChartData()
+}
+
+function getDefaultChartData(){
+  return defaultChartData = [{
     value: 0,
     color: colorPomodoro,
     highlight: colorPomodoro,
@@ -15,19 +25,12 @@ var colorPomodoro = "#DF2E2E"
     highlight: colorBreak,
     label: "Breaks"
   }]
-
-
-
-
-module.exports = {
-  getPieChartDataFrom: getPieChartDataFrom,
-  chartData: defaultChartData
 }
 
 
 
 function getPieChartDataFrom(data, _chartData){
-  var chartData = _.clone(_chartData || defaultChartData)
+  var chartData = _.clone(_chartData || getDefaultChartData())
 
   return _.reduce(data, function(memo, pomodoro){
     var indexType = pomodoro.type === 'pomodoro' ? 0 : 1
