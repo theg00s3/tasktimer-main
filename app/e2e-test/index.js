@@ -1,5 +1,5 @@
 var moment = require('moment')
-var constants = require('../../src/constants')
+var constants = require('../src/constants')
 
 module.exports = {
   beforeEach: function(browser){
