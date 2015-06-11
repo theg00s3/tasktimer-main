@@ -32,6 +32,16 @@ var entryFile = {
   jade: 'src/index.jade',
 }
 
+gulp.task('default', ['js','stylus','test','jade','static'])
+
+gulp.task('watch', ['browser-sync', 'default'], function(){
+  gulp.watch(paths.js, ['js','test'])
+  gulp.watch(paths.test, ['test'])
+  gulp.watch(paths.stylus, ['stylus'])
+  gulp.watch(paths.jade, ['jade'])
+  gulp.watch(paths.static, ['static'])
+})
+
 gulp.task('js', function(){
   return browserify({
       entries:entryFile.browserify,
@@ -89,13 +99,6 @@ gulp.task('browser-sync', function(){
   });
 })
 
-gulp.task('watch', ['browser-sync', 'default'], function(){
-  gulp.watch(paths.js, ['js','test'])
-  gulp.watch(paths.test, ['test'])
-  gulp.watch(paths.stylus, ['stylus'])
-  gulp.watch(paths.jade, ['jade'])
-  gulp.watch(paths.static, ['static'])
-})
 
 gulp.task('static', function(){
   gulp.src('./src/index.html')
@@ -109,5 +112,3 @@ gulp.task('static', function(){
     .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
 })
-
-gulp.task('default', ['js','stylus','test','jade','static'])
