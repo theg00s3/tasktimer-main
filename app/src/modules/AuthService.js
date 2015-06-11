@@ -11,6 +11,5 @@ function authenticate(){
 }
 
 function doAuthenticate(){
-  authenticatePromise = axios.get('/auth/info')
-  return authenticatePromise
+  return authenticatePromise = axios.get('/auth/info')
 }
