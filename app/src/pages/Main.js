@@ -1,6 +1,5 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
-  , GridMenu = require('../components/GridMenu')
   , LoginLogout = require('../components/LoginLogout')
   , PomodoroService = require('../modules/PomodoroService')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
