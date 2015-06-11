@@ -1,15 +1,20 @@
 .login-logout
   float right
-  padding 0.6rem 0.75rem
+  padding 0.6rem 0
 
   &.big
     font-size 1.35em
+
+    .text
+      @extend h6
+      text-shadow none
 
   &.left
     float left
 
   .text
-    margin-left 1em
+    // margin-left 1em
+    text-shadow none
 
   .text, a
     color color_text

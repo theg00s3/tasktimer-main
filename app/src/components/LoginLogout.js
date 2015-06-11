@@ -23,7 +23,7 @@ module.exports = React.createClass({
   render: function(){
     if( !this.state.loggedIn ) {
       return  <div className={this.props.className + " login-logout"}>
-                <span className="text">Login with</span>
+                <span className="text">{this.props.text || "Login with"}</span>
                 <a href="/auth/github" target="_self" className="login-button github">
                   <i className="icon ion-social-github"></i>
                 </a>
