@@ -22,8 +22,8 @@ var paths = {
   js: ['src/**/*.js'],
   stylus: ['src/**/*.styl'],
   jade: ['src/**/*.jade'],
-  test: ['test/**/*.js'],
-  static: ['./src/index.html','./src/app.manifest','./src/assets/**/*']
+  test: ['src/**/*.test.js'],
+  static: ['src/index.html','src/app.manifest','src/assets/**/*']
 }
 
 var entryFile = {
@@ -77,7 +77,7 @@ gulp.task('jade', function(){
 })
 
 gulp.task('test', function(){
-  return gulp.src('test/unit/**/*.js', {read: false})
+  return gulp.src(paths.test, {read: false})
     .pipe(plumber())
     // gulp-mocha needs filepaths so you can't have any plugins before it
     .pipe(mocha({reporter: 'dot', bail:true}))
@@ -91,7 +91,7 @@ gulp.task('browser-sync', function(){
   }
   browserSync.init({
     server: {
-      baseDir: './www'
+      baseDir: 'www'
     },
     port: 9001,
     ui: false,
@@ -101,10 +101,10 @@ gulp.task('browser-sync', function(){
 
 
 gulp.task('static', function(){
-  gulp.src('./src/index.html')
+  gulp.src('src/index.html')
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
-  gulp.src('./src/app.manifest')
+  gulp.src('src/app.manifest')
     .pipe(plumber())
     .pipe(replace('{BUILD}', BUILD))
     .pipe(gulp.dest('www/'))

@@ -1,4 +1,4 @@
-var ChartUtils = require('../../src/modules/ChartUtils')
+var ChartUtils = require('./ChartUtils')
 
 var expect = require('chai').expect
 

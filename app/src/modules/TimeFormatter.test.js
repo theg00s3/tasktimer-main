@@ -1,5 +1,5 @@
 var expect = require('chai').expect
-var TimeFormatter = require('../../src/modules/TimeFormatter')
+var TimeFormatter = require('./TimeFormatter')
 
 describe('TimeFormatter', function () {
   it('formats seconds to timer display', function () {
