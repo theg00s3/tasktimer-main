@@ -11,8 +11,10 @@ logger.enable( !/pomodoro\.cc/.test(window.location.host) )
 router.start()
 
 var Header = require('./components/Header')
+var Footer = require('./components/Footer')
 
 React.render(<Header/>, document.getElementById('main-header'))
+React.render(<Footer/>, document.getElementById('main-footer'))
 
 AuthService.authenticate()
 .then(function(response){
