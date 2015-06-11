@@ -19,6 +19,7 @@
   .text
     text-shadow none
 
+
   .text, a
     color color_text
     font-size 0.8em
@@ -31,16 +32,21 @@
   i
     vertical-align sub
 
+.login-buttons
+  float right
+
+.center .login-buttons
+  float none
+
 .login-button
   width 1.5em
-  float right
   display inline-block
   text-indent 0
   text-align center
   padding-left 0.5em
   padding-right @padding-left
 
-  &.first
+  &:first-child
     margin-left 0.5em !important
     border-right 1px solid color_light_grey
 
