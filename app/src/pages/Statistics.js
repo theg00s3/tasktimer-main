@@ -72,8 +72,6 @@ var Statistics = React.createClass({
       }.bind(this))
   },
   render: function(){
-    var content = this._getContent()
-
     return  <div className="statistics-content">
                 <header className="prominent-header">
                   <div className="content">
@@ -85,7 +83,7 @@ var Statistics = React.createClass({
                 </header>
                 <div className="content breath">
                   <Loader loaded={this.state.loaded}>
-                    {content}
+                    {this._getContent()}
                   </Loader>
                 </div>
               </div>

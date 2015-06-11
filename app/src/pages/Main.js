@@ -1,6 +1,7 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , GridMenu = require('../components/GridMenu')
+  , LoginLogout = require('../components/LoginLogout')
   , PomodoroService = require('../modules/PomodoroService')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , store = require('store')
@@ -36,11 +37,11 @@ var Main = React.createClass({
     if( remaining < 0 ){
       PomodoroEventHandler('end', this.state.pomodoroData.minutes, this.state.pomodoroData.type)
     }
-    return  <div className="main">
+    return  <div>
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
-              {/*
-              <GridMenu className="limit extended1"/>
-              */}
+              <div className="content breath">
+                <LoginLogout onlyLogin={true} className="big left"/>
+              </div>
             </div>
   }
 })
