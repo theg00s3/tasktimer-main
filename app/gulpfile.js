@@ -12,6 +12,7 @@ var gulp = require('gulp')
 
 require('shelljs/global')
 var PRODUCTION = !!process.env.PRODUCTION
+var CROSS_BROWSER = !!process.env.CROSS_BROWSER
 var BUILD = exec('git rev-parse HEAD').output.toString().substring(0,10) || Date.now()
 
 console.log('-- PRODUCTION', PRODUCTION)
@@ -73,9 +74,19 @@ gulp.task('test', function(){
 })
 
 gulp.task('browser-sync', function(){
+  var fs = require('fs')
+  var browsers = ['google chrome']
+  if( CROSS_BROWSER ){
+    browsers.push('firefox')
+    browsers.push('safari')
+  }
   browserSync.init({
-    server: './www',
-    port: 9001
+    server: {
+      baseDir: './www'
+    },
+    port: 9001,
+    ui: false,
+    browser: browsers
   });
 })
 
