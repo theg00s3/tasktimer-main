@@ -19,9 +19,7 @@ var Main = React.createClass({
       pomodoroData: null
     }
   },
-  componentWillUnmount: function(){
-    resetTitle()
-  },
+  componentWillUnmount: resetTitle,
   componentWillMount: function(){
     this.setState({
       pomodoroData: store.get('pomodoroData')
