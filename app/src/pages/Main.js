@@ -37,7 +37,7 @@ var Main = React.createClass({
     return  <div>
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
               <div className="content breath">
-                <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big left"/>
+                <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
               </div>
             </div>
   }
