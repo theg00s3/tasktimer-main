@@ -7,10 +7,7 @@ module.exports = {
 }
 
 function authenticate(){
-  if( !authenticatePromise ) {
-    return doAuthenticate()
-  }
-  return authenticatePromise
+  return authenticatePromise ? authenticatePromise : doAuthenticate()
 }
 
 function doAuthenticate(){
