@@ -74,7 +74,6 @@ gulp.task('test', function(){
 })
 
 gulp.task('browser-sync', function(){
-  var fs = require('fs')
   var browsers = ['google chrome']
   if( CROSS_BROWSER ){
     browsers.push('firefox')
