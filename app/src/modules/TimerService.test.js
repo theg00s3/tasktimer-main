@@ -16,4 +16,10 @@ describe('TimerService', function () {
     TimerService.start()
     expect( TimerService.start() ).not.to.be.ok
   })
+
+  it('stops a timer', function () {
+    TimerService.start()
+    expect( TimerService.stop() ).to.be.ok
+  })
+
 })
