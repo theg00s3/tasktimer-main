@@ -2,6 +2,11 @@ module.exports = {
   start: start
 }
 
+var startedAt = undefined
+
 function start(){
-  return Date.now()
+  if( !startedAt ){
+    startedAt = Date.now()
+    return startedAt
+  }
 }

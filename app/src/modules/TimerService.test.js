@@ -11,4 +11,9 @@ describe('TimerService', function () {
   it('starts a timer', function () {
     expect( TimerService.start() ).to.be.ok
   })
+
+  it('refuses to start another timer when one is in progress', function () {
+    TimerService.start()
+    expect( TimerService.start() ).not.to.be.ok
+  })
 })
