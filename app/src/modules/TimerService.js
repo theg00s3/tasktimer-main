@@ -1,1 +1,7 @@
-module.exports = 42
+module.exports = {
+  start: start
+}
+
+function start(){
+  return Date.now()
+}
