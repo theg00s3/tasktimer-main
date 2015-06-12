@@ -18,7 +18,6 @@ module.exports = React.createClass({
     if( this.props.remaining > 0 && this.props.data ){
       this.remaining = this.props.remaining
       this.state.remaining = parseInt(this.remaining,10)
-      this._disableButtons()
       var newState = {disabled25: true, disabled15: true,disabled5: true}
       newState['disabled'+this.props.data.minutes] = false
       this.setState(newState)
@@ -29,12 +28,8 @@ module.exports = React.createClass({
   componentWillUnmount: function(){
     clearInterval(this.interval)
   },
-  _disableButtons: function(){
-    this.setState({
-      disabled25: true,
-      disabled15: true,
-      disabled5: true
-    })
+  _resetButtons: function(){
+    this.setState({disabled25: true, disabled15: true, disabled5: true })
   },
   _tick: function(){
     var now = parseInt(Date.now()/1000, 10)
@@ -75,7 +70,7 @@ module.exports = React.createClass({
     this._stopTimer()
     this.state.remaining = minutes * 60
     this.remaining = minutes * 60
-    this._disableButtons()
+    this._resetButtons()
     this.minutes = minutes
     this.type = type
     var disabledMinutes = {}
