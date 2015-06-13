@@ -14,13 +14,12 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    // debugger
     if( Timer.isInProgress() ){
-      Timer.on('tick', this._tick.bind(this))
+      Timer.on('tick', this._tick)
     } else {
       if( this.props.remaining > 0 && this.props.data ){
         Timer.start(this.props.remaining)
-        Timer.on('tick', this._tick.bind(this))
+        Timer.on('tick', this._tick)
       }
     }
     if( this.props.data && this.props.data.minutes ){
@@ -35,19 +34,20 @@ module.exports = React.createClass({
     this.setState({disabled25: true, disabled15: true, disabled5: true })
   },
   _tick: function(){
-    var time = TimeFormatter.formatSeconds(Timer.getRemaining())
+    var remaining = Timer.getRemaining()
+    var time = TimeFormatter.formatSeconds(remaining)
     if( this.props.notify ){
       this.props.notify('tick', this.minutes, this.type, time)
     }
     this.setState({
       time: time,
     })
-    // if( remaining <= 0 ){
-    //   this._stop()
-    // if( this.props.notify ){
-    //     this.props.notify('end', this.minutes, this.type)
-    //   }
-    // }
+    if( remaining <= 0 ){
+      this._stop()
+    if( this.props.notify ){
+        this.props.notify('end', this.minutes, this.type)
+      }
+    }
   },
   _startStop: function(minutes, type){
     return function(){
@@ -66,7 +66,7 @@ module.exports = React.createClass({
   _start: function(minutes, type){
     if( !Timer.isInProgress() ){
       Timer.start(minutes*60)
-      Timer.on('tick', this._tick.bind(this))
+      Timer.on('tick', this._tick)
     }
     this.minutes = minutes
     this.type = type
