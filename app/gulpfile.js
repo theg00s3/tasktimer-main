@@ -76,6 +76,10 @@ gulp.task('jade', function(){
     .pipe(browserSync.stream())
 })
 
+gulp.task('test-watch', function(){
+  gulp.watch(paths.test, ['test'])
+})
+
 gulp.task('test', function(){
   return gulp.src(paths.test, {read: false})
     // .pipe(plumber())
