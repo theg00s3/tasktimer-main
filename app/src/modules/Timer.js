@@ -8,7 +8,7 @@ var startedAt = undefined
 var seconds = undefined
 
 function start(_seconds){
-  if( validateSeconds(_seconds) )
+  if( !validateSeconds(_seconds) )
     return
   if( !startedAt ){
     startedAt = Date.now()
@@ -32,5 +32,5 @@ function getRemaining(){
 
 
 function validateSeconds(seconds){
-  return seconds !== parseInt(seconds, 10 ) || seconds < 0
+  return seconds === parseInt(seconds, 10 ) && seconds >= 0
 }
