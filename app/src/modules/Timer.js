@@ -31,6 +31,7 @@ function getRemaining(){
 }
 
 function on(event, fn){
+  fn()
   return module.exports
 }
 
