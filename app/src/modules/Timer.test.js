@@ -2,15 +2,16 @@ var Timer = require('./Timer')
 
 var expect = require('chai').expect
 var sinon = require('sinon')
+var clock
 
 
 
 describe('Timer', function () {
-  beforeEach(function () {
+  before(function () {
     clock = sinon.useFakeTimers()
     clock.tick(1000*60*60)
   })
-  afterEach(function () {
+  after(function () {
     clock.restore()
   })
 
@@ -35,7 +36,10 @@ describe('Timer', function () {
   })
 
   it('returns the remaining time', function () {
+    expect( Timer.start(25*60) ).to.be.ok
+    clock.tick(1)
     expect( Timer.getRemaining() ).to.be.ok
+    expect( Timer.getRemaining() ).to.eql( 25*60 -1 )
   })
 
 })

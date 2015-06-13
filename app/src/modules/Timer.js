@@ -5,25 +5,29 @@ module.exports = {
 }
 
 var startedAt = undefined
+var seconds = undefined
 
-function start(seconds){
-  if( validateSeconds(seconds) )
+function start(_seconds){
+  if( validateSeconds(_seconds) )
     return
   if( !startedAt ){
     startedAt = Date.now()
-    return startedAt
+    seconds = _seconds
+    return seconds
   }
 }
 
 function stop(){
   if( startedAt ){
     startedAt = undefined
+    seconds = undefined
     return Date.now()
   }
 }
 
 function getRemaining(){
-  return 42
+  var now = Date.now()
+  return startedAt - now + seconds
 }
 
 
