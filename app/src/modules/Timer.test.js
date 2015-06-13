@@ -59,12 +59,23 @@ describe('Timer', function () {
     beforeEach(function () {
       callback.reset()
     })
-    it('lets a user subscribe to a tick event', function () {
+    it('adds a listener for tick event', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
       expect( callback.called ).not.to.be.true
       clock.tick(1000)
       expect( callback.called ).to.be.true
+    })
+
+    it('stops tick callback when timer is stopped', function () {
+      Timer.on('tick', callback)
+      Timer.start(25*60)
+      expect( callback.called ).not.to.be.true
+      clock.tick(1000)
+      callback.reset()
+      Timer.stop()
+      clock.tick(1000)
+      expect( callback.called ).not.to.be.true
     })
   })
 
