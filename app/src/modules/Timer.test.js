@@ -29,6 +29,13 @@ describe('Timer', function () {
       expect( Timer.start(25*60) ).to.be.ok
     })
 
+    it('tells if Timer is in progress', function () {
+      expect( Timer.start(25*60) ).to.be.ok
+      expect( Timer.isInProgress() ).to.be.true
+      expect( Timer.stop() ).to.be.ok
+      expect( Timer.isInProgress() ).to.be.false
+    })
+
     it('refuses to start another timer when one is in progress', function () {
       Timer.start(25*60)
       expect( Timer.start(25*60) ).not.to.be.ok

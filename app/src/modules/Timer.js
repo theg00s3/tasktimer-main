@@ -2,6 +2,7 @@ module.exports = {
   start: start,
   stop: stop,
   getRemaining: getRemaining,
+  isInProgress: isInProgress,
   on: on,
 }
 
@@ -34,6 +35,10 @@ function stop(){
 function getRemaining(){
   var now = Date.now()
   return intValue(startedAt/1000) - intValue(now/1000) + seconds
+}
+
+function isInProgress(){
+  return !!startedAt
 }
 
 function on(event, fn){
