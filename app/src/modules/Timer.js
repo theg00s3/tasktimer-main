@@ -50,10 +50,14 @@ function on(event, fn){
 
 
 function tick(){
+  var remaining = getRemaining()
   events.tick.forEach(function(cb){
     if( cb instanceof Function )
-      cb(getRemaining())
+      cb(remaining)
   })
+  if( remaining <= 0 ){
+    stop()
+  }
 }
 
 function intValue(number){
