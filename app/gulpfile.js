@@ -49,8 +49,8 @@ gulp.task('js', function(){
     })
     .transform(reactify)
     .bundle()
-    .pipe(plumber())
     .pipe(source('index.js'))
+    // .pipe(plumber())
     .pipe(gulp.dest('www/'))
     .pipe(browserSync.stream())
 })
@@ -78,7 +78,7 @@ gulp.task('jade', function(){
 
 gulp.task('test', function(){
   return gulp.src(paths.test, {read: false})
-    .pipe(plumber())
+    // .pipe(plumber())
     // gulp-mocha needs filepaths so you can't have any plugins before it
     .pipe(mocha({reporter: 'dot', bail:true}))
 })

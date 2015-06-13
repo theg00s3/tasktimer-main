@@ -1,6 +1,18 @@
 var React = require('react')
   , TimeFormatter = require('../modules/TimeFormatter')
   , Timer = require('../modules/Timer')
+  , Buzz = require('../modules/Buzz')
+
+var ringingSound = new Buzz.sound('/assets/audio/ring.mp3', {
+  preload: true,
+  loop: false,
+  webAudioApi: true,
+})
+var tickingSound = new Buzz.sound('/assets/audio/tick.mp3', {
+  preload: true,
+  loop: true,
+  webAudioApi: true,
+})
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -13,13 +25,9 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    if( Timer.isInProgress() ){
-      Timer.on('tick', this._tick)
-    } else {
-      if( this.props.remaining > 0 && this.props.data ){
-        Timer.start(this.props.remaining)
-        Timer.on('tick', this._tick)
-      }
+    Timer.on('tick', this._tick)
+    if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
+      Timer.start(this.props.remaining)
     }
     if( this.props.data && this.props.data.minutes ){
       var newState = {disabled25: true, disabled15: true,disabled5: true}
@@ -33,6 +41,7 @@ module.exports = React.createClass({
     this.setState({disabled25: true, disabled15: true, disabled5: true })
   },
   _tick: function(){
+    tickingSound.play()
     var remaining = Timer.getRemaining()
     var time = TimeFormatter.formatSeconds(remaining)
     if( this.props.notify ){
@@ -75,6 +84,8 @@ module.exports = React.createClass({
     this.setState(disabledMinutes)
   },
   _stop: function(minutes, type){
+    tickingSound.stop()
+    ringingSound.play()
     Timer.stop()
     this.setState({
       disabled25: false,
