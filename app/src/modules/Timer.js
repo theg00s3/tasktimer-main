@@ -8,13 +8,12 @@ var startedAt = undefined
 var seconds = undefined
 
 function start(_seconds){
-  if( !validateSeconds(_seconds) )
+  if( !validateSeconds(_seconds) || isTicking() )
     return
-  if( !startedAt ){
-    startedAt = Date.now()
-    seconds = _seconds
-    return seconds
-  }
+
+  startedAt = Date.now()
+  seconds = _seconds
+  return seconds
 }
 
 function stop(){
@@ -31,6 +30,11 @@ function getRemaining(){
 }
 
 
+
 function validateSeconds(seconds){
   return seconds === parseInt(seconds, 10 ) && seconds >= 0
+}
+
+function isTicking(){
+  return !!startedAt
 }
