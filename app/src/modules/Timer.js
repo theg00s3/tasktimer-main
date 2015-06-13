@@ -2,6 +2,7 @@ module.exports = {
   start: start,
   stop: stop,
   getRemaining: getRemaining,
+  on: on,
 }
 
 var startedAt = undefined
@@ -29,6 +30,9 @@ function getRemaining(){
   return startedAt - now + seconds
 }
 
+function on(event, fn){
+  return module.exports
+}
 
 
 function validateSeconds(seconds){

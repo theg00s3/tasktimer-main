@@ -47,4 +47,10 @@ describe('Timer', function () {
     })
   })
 
+  describe('events', function () {
+    it('lets a user subscribe to a tick event', function () {
+      expect( Timer.on('tick') ).to.be.ok
+    })
+  })
+
 })
