@@ -7,6 +7,9 @@ var clock
 
 
 describe('Timer', function () {
+  afterEach(function(){
+    Timer.stop()
+  })
   before(function () {
     clock = sinon.useFakeTimers()
     // start at a given point in time (instead of at 0)
