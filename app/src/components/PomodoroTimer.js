@@ -1,11 +1,11 @@
 var React = require('react')
   , TimeFormatter = require('../modules/TimeFormatter')
+  , Timer = require('../modules/Timer')
   , store = require('store')
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      remaining: 0,
       time: TimeFormatter.formatSeconds(0),
       disabled25: false,
       disabled15: false,
@@ -14,46 +14,44 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    this.state.startedAt = parseInt(Date.now()/1000, 10)
-    if( this.props.remaining > 0 && this.props.data ){
-      this.remaining = this.props.remaining
-      this.state.remaining = parseInt(this.remaining,10)
-      var newState = {disabled25: true, disabled15: true,disabled5: true}
-      newState['disabled'+this.props.data.minutes] = false
-      this.setState(newState)
-
-      this._startTimer()
+    // debugger
+    if( Timer.isInProgress() ){
+      Timer.on('tick', this._tick.bind(this))
+    } else {
+      if( this.props.remaining > 0 && this.props.data ){
+        Timer.start(this.props.remaining)
+        Timer.on('tick', this._tick.bind(this))
+      }
     }
-  },
-  componentWillUnmount: function(){
-    clearInterval(this.interval)
+    if( this.props.data && this.props.data.minutes ){
+      var newState = {disabled25: true, disabled15: true,disabled5: true}
+      if( this.props.data && this.props.data.minutes !== undefined ){
+        newState['disabled'+this.props.data.minutes] = false
+      }
+      this.setState(newState)
+    }
   },
   _resetButtons: function(){
     this.setState({disabled25: true, disabled15: true, disabled5: true })
   },
   _tick: function(){
-    var now = parseInt(Date.now()/1000, 10)
-    var startedAt = this.state.startedAt
-    var remaining = startedAt - now + this.remaining
-
-    var time = TimeFormatter.formatSeconds(remaining)
+    var time = TimeFormatter.formatSeconds(Timer.getRemaining())
     if( this.props.notify ){
       this.props.notify('tick', this.minutes, this.type, time)
     }
     this.setState({
-      remaining: remaining,
       time: time,
     })
-    if( remaining <= 0 ){
-      this._stop()
-    if( this.props.notify ){
-        this.props.notify('end', this.minutes, this.type)
-      }
-    }
+    // if( remaining <= 0 ){
+    //   this._stop()
+    // if( this.props.notify ){
+    //     this.props.notify('end', this.minutes, this.type)
+    //   }
+    // }
   },
   _startStop: function(minutes, type){
     return function(){
-      var eventName = this.interval ? 'end' : 'start'
+      var eventName = Timer.isInProgress() ? 'end' : 'start'
       if( this.props.notify ){
         this.props.notify(eventName, minutes, type)
       }
@@ -66,37 +64,25 @@ module.exports = React.createClass({
     }.bind(this)
   },
   _start: function(minutes, type){
-    this.state.startedAt = parseInt(Date.now()/1000, 10)
-    this._stopTimer()
-    this.state.remaining = minutes * 60
-    this.remaining = minutes * 60
-    this._resetButtons()
+    if( !Timer.isInProgress() ){
+      Timer.start(minutes*60)
+      Timer.on('tick', this._tick.bind(this))
+    }
     this.minutes = minutes
     this.type = type
+    this._resetButtons()
     var disabledMinutes = {}
     disabledMinutes['disabled'+minutes] = false
     this.setState(disabledMinutes)
-    this._startTimer()
   },
   _stop: function(minutes, type){
-    this._stopTimer()
+    Timer.stop()
     this.setState({
       disabled25: false,
       disabled15: false,
       disabled5: false,
-      remaining: 0,
       time: TimeFormatter.formatSeconds(0)
     })
-  },
-  _stopTimer: function(){
-    clearInterval(this.interval)
-    this.interval = undefined
-  },
-  _startTimer: function(){
-    if( this.state.remaining > 0 ){
-      this._tick()
-      this.interval = setInterval(this._tick, 1000)
-    }
   },
   render: function(){
     return  <div className="pomodoro">

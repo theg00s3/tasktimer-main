@@ -34,6 +34,7 @@ var Main = React.createClass({
     if( remaining < 0 ){
       PomodoroEventHandler('end', this.state.pomodoroData.minutes, this.state.pomodoroData.type)
     }
+    // debugger
     return  <div>
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
               <div className="content breath">
