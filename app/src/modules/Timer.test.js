@@ -77,6 +77,17 @@ describe('Timer', function () {
       clock.tick(1000)
       expect( callback.called ).not.to.be.true
     })
+
+    it('removes listener for tick event', function () {
+      Timer.on('tick', callback)
+      Timer.start(25*60)
+      expect( callback.called ).not.to.be.true
+      clock.tick(1000)
+      callback.reset()
+      Timer.off('tick', callback)
+      clock.tick(1000)
+      expect( callback.called ).not.to.be.true
+    })
   })
 
 })

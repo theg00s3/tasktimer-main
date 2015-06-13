@@ -4,6 +4,7 @@ var Timer = {
   getRemaining: getRemaining,
   isInProgress: isInProgress,
   on: on,
+  off: off,
 }
 
 module.exports = Timer
@@ -46,6 +47,17 @@ function isInProgress(){
 function on(event, fn){
   if( events[event] !== undefined && fn instanceof Function ){
     events[event].push(fn)
+  }
+  return Timer
+}
+
+function off(event, fn){
+  if( events[event] !== undefined && fn instanceof Function ){
+    events[event].forEach(function(callback, index){
+      if(fn === callback){
+        delete events[event][index] // TODO: better delete
+      }
+    })
   }
   return Timer
 }
