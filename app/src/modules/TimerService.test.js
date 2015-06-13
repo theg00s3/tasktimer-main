@@ -8,17 +8,22 @@ describe('TimerService', function () {
     TimerService = require('./TimerService')
   })
 
-  it('starts a timer', function () {
-    expect( TimerService.start() ).to.be.ok
+  it('refuses to start a timer with invalid seconds', function () {
+    expect( TimerService.start(123.2) ).not.to.be.ok
+    expect( TimerService.start(-1) ).not.to.be.ok
+  })
+
+  it('starts a timer with given seconds', function () {
+    expect( TimerService.start(25*60) ).to.be.ok
   })
 
   it('refuses to start another timer when one is in progress', function () {
-    TimerService.start()
-    expect( TimerService.start() ).not.to.be.ok
+    TimerService.start(25*60)
+    expect( TimerService.start(25*60) ).not.to.be.ok
   })
 
   it('stops a timer', function () {
-    TimerService.start()
+    TimerService.start(25*60)
     expect( TimerService.stop() ).to.be.ok
   })
 
