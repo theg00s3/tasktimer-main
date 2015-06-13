@@ -1,7 +1,7 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , LoginLogout = require('../components/LoginLogout')
-  , PomodoroService = require('../modules/PomodoroService')
+  , PomodoroRepository = require('../modules/PomodoroRepository')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , store = require('store')
   , moment = require('moment')

@@ -1,5 +1,5 @@
 var store = require('store')
-  , PomodoroService = require('./PomodoroService')
+  , PomodoroRepository = require('./PomodoroRepository')
   , constants = require('../constants')
   , AnalyticsService = require('./AnalyticsService')
 
@@ -19,7 +19,7 @@ module.exports = function(eventName, minutes, type, time){
       if( pomodoroData && pomodoroData.minutes && pomodoroData.startedAt ){
         pomodoroData = setCancelledAtIfNeeded(pomodoroData)
         AnalyticsService.track('timer-end', pomodoroData)
-        PomodoroService.create(pomodoroData)
+        PomodoroRepository.create(pomodoroData)
       }
       store.remove('pomodoroData')
       resetTitle()
