@@ -49,6 +49,11 @@ module.exports = {
       .assert.containsText('main', today)
       .click('.ion-ios-arrow-forward')
       .assert.containsText('main', nextDay)
+  },
+  "navigates to about page": function(browser){
+    browser
+      .url('https://pomodoro.dev/about')
+      .assert.containsText('main', 'Manage your time more effectively')
   }
 }
 
