@@ -1,12 +1,19 @@
-var Timer
+var Timer = require('./Timer')
 
 var expect = require('chai').expect
+var sinon = require('sinon')
+
 
 
 describe('Timer', function () {
   beforeEach(function () {
-    Timer = require('./Timer')
+    clock = sinon.useFakeTimers()
+    clock.tick(1000*60*60)
   })
+  afterEach(function () {
+    clock.restore()
+  })
+
 
   it('refuses to start a timer with invalid seconds', function () {
     expect( Timer.start(123.2) ).not.to.be.ok
