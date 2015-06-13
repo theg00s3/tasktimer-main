@@ -7,7 +7,7 @@ module.exports = {
 var startedAt = undefined
 
 function start(seconds){
-  if( seconds !== parseInt(seconds, 10 ) || seconds < 0 )
+  if( validateSeconds(seconds) )
     return
   if( !startedAt ){
     startedAt = Date.now()
@@ -24,4 +24,9 @@ function stop(){
 
 function getRemaining(){
   return 42
+}
+
+
+function validateSeconds(seconds){
+  return seconds !== parseInt(seconds, 10 ) || seconds < 0
 }
