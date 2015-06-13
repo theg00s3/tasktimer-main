@@ -55,8 +55,11 @@ describe('Timer', function () {
   })
 
   describe('events', function () {
+    var callback = sinon.spy()
+    beforeEach(function () {
+      callback.reset()
+    })
     it('lets a user subscribe to a tick event', function () {
-      var callback = sinon.spy()
       Timer.on('tick', callback)
       Timer.start(25*60)
       expect( callback.called ).not.to.be.true
@@ -66,4 +69,3 @@ describe('Timer', function () {
   })
 
 })
-
