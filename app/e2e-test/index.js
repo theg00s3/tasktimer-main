@@ -10,20 +10,17 @@ module.exports = {
   "refreshing the browser retains state": function(browser){
     browser
       .click('.control-buttons-container button:first-child')
-      .assert.containsText('.timer', '25:00')
+      .getText('.timer', containsRegExp(/2[45]:\d\d/))
       .refresh()
       .pause(1000)
-      .getText('.timer', function(result){
-        var text = result.value
-        this.assert.ok(/24:\d\d/.test(text))
-      })
+      .getText('.timer', containsRegExp(/24:\d\d/))
       .click('.control-buttons-container button:first-child')
   },
   "start a pomodoro": function(browser){
     browser
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:first-child')
-      .assert.containsText('.timer', '25:00')
+      .getText('.timer', containsRegExp(/2[45]:\d\d/))
       .click('.control-buttons-container button:first-child')
       .assert.containsText('.timer', '00:00')
   },
@@ -31,11 +28,11 @@ module.exports = {
     browser
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:nth-child(2)')
-      .assert.containsText('.timer', '05:00')
+      .getText('.timer', containsRegExp(/0[45]:\d\d/))
       .click('.control-buttons-container button:nth-child(2)')
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:nth-child(3)')
-      .assert.containsText('.timer', '15:00')
+      .getText('.timer', containsRegExp(/1[45]:\d\d/))
       .click('.control-buttons-container button:nth-child(3)')
       .assert.containsText('.timer', '00:00')
   },
@@ -83,4 +80,12 @@ function getTomorrow(){
 
 function pad(number){
   return number < 10 ? '0'+number : number
+}
+
+
+function containsRegExp(regexp){
+  return function(result){
+    var text = result.value
+    this.assert.ok(regexp.test(text))
+  }
 }
