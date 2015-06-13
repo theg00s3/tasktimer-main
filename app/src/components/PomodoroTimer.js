@@ -1,7 +1,6 @@
 var React = require('react')
   , TimeFormatter = require('../modules/TimeFormatter')
   , Timer = require('../modules/Timer')
-  , store = require('store')
 
 module.exports = React.createClass({
   getInitialState: function() {

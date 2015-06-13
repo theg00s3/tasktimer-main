@@ -1,7 +1,6 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , LoginLogout = require('../components/LoginLogout')
-  , PomodoroRepository = require('../modules/PomodoroRepository')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , store = require('store')
   , moment = require('moment')
@@ -34,7 +33,6 @@ var Main = React.createClass({
     if( remaining < 0 ){
       PomodoroEventHandler('end', this.state.pomodoroData.minutes, this.state.pomodoroData.type)
     }
-    // debugger
     return  <div>
               <PomodoroTimer remaining={remaining} data={this.state.pomodoroData} notify={PomodoroEventHandler}/>
               <div className="content breath">
