@@ -22,4 +22,8 @@ describe('TimerService', function () {
     expect( TimerService.stop() ).to.be.ok
   })
 
+  it('returns the remaining time', function () {
+    expect( TimerService.getRemaining() ).to.be.ok
+  })
+
 })

@@ -1,6 +1,7 @@
 module.exports = {
   start: start,
   stop: stop,
+  getRemaining: getRemaining,
 }
 
 var startedAt = undefined
@@ -17,4 +18,8 @@ function stop(){
     startedAt = undefined
     return Date.now()
   }
+}
+
+function getRemaining(){
+  return 42
 }
