@@ -49,7 +49,11 @@ describe('Timer', function () {
 
   describe('events', function () {
     it('lets a user subscribe to a tick event', function () {
-      expect( Timer.on('tick') ).to.be.ok
+      var callback = sinon.spy()
+      Timer.on('tick', callback)
+      Timer.start(25*60)
+      clock.tick(1)
+      expect( callback.called ).to.be.true
     })
   })
 
