@@ -9,6 +9,7 @@ var clock
 describe('Timer', function () {
   before(function () {
     clock = sinon.useFakeTimers()
+    // start at a given point in time (instead of at 0)
     clock.tick(1000*60*60)
   })
   after(function () {
