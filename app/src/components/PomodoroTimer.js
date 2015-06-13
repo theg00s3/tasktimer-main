@@ -24,6 +24,9 @@ module.exports = React.createClass({
       startedAt: 0
     }
   },
+  componentDidUnmount: function(){
+    Timer.off('tick', this._tick)
+  },
   componentDidMount: function() {
     Timer.on('tick', this._tick)
     if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
