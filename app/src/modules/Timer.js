@@ -37,7 +37,7 @@ function getRemaining(){
 }
 
 function on(event, fn){
-  if( events[event] !== undefined ){
+  if( events[event] !== undefined && fn instanceof Function ){
     events[event].push(fn)
   }
   return module.exports
@@ -46,7 +46,8 @@ function on(event, fn){
 
 function tick(){
   events.tick.forEach(function(cb){
-    cb(getRemaining())
+    if( cb instanceof Function )
+      cb(getRemaining())
   })
 }
 
