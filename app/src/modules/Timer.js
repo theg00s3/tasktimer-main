@@ -1,10 +1,12 @@
-module.exports = {
+var Timer = {
   start: start,
   stop: stop,
   getRemaining: getRemaining,
   isInProgress: isInProgress,
   on: on,
 }
+
+module.exports = Timer
 
 var startedAt = undefined
 var seconds = undefined
@@ -45,7 +47,7 @@ function on(event, fn){
   if( events[event] !== undefined && fn instanceof Function ){
     events[event].push(fn)
   }
-  return module.exports
+  return Timer
 }
 
 
