@@ -45,7 +45,6 @@ function on(event, fn){
 
 
 function tick(){
-  console.log( 'tick', getRemaining() )
   events.tick.forEach(function(cb){
     cb(getRemaining())
   })
