@@ -23,7 +23,7 @@ var paths = {
   stylus: ['src/**/*.styl'],
   jade: ['src/**/*.jade'],
   test: ['src/**/*.test.js'],
-  static: ['src/index.html','src/app.manifest','src/assets/**/*']
+  assets: ['src/assets/**/*']
 }
 
 var entryFile = {
@@ -32,14 +32,14 @@ var entryFile = {
   jade: 'src/index.jade',
 }
 
-gulp.task('default', ['js','stylus','test','jade','static'])
+gulp.task('default', ['js','stylus','test','jade','assets'])
 
 gulp.task('watch', ['browser-sync', 'default'], function(){
   gulp.watch(paths.js, ['js','test'])
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
   gulp.watch(paths.jade, ['jade'])
-  gulp.watch(paths.static, ['static'])
+  gulp.watch(paths.assets, ['assets'])
 })
 
 gulp.task('js', function(){
@@ -100,15 +100,12 @@ gulp.task('browser-sync', function(){
 })
 
 
-gulp.task('static', function(){
-  gulp.src('src/index.html')
-    .pipe(plumber())
-    .pipe(gulp.dest('www/'))
+gulp.task('assets', function(){
   gulp.src('src/app.manifest')
     .pipe(plumber())
     .pipe(replace('{BUILD}', BUILD))
     .pipe(gulp.dest('www/'))
-  gulp.src(paths.static)
+  gulp.src(paths.assets)
     .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
 })
