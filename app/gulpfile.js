@@ -1,14 +1,20 @@
 var gulp = require('gulp')
-  , browserSync = require('browser-sync').create()
   , plumber = require('gulp-plumber')
   , replace = require('gulp-replace')
   , stylus = require('gulp-stylus')
-  , nib = require('nib')
+  , gutil = require('gulp-util')
   , jade = require('gulp-jade')
   , mocha = require('gulp-mocha')
+  , gulpif = require('gulp-if')
+  , browserSync = require('browser-sync').create()
+  , uglify = require('gulp-uglify')
+  , nib = require('nib')
   , browserify = require('browserify')
+  , watchify = require('watchify')
   , reactify = require('reactify')
   , source = require('vinyl-source-stream')
+  , buffer = require('vinyl-buffer')
+
 
 require('shelljs/global')
 var PRODUCTION = !!process.env.PRODUCTION
@@ -42,18 +48,28 @@ gulp.task('watch', ['browser-sync', 'default'], function(){
   gulp.watch(paths.assets, ['assets'])
 })
 
-gulp.task('js', function(){
-  return browserify({
-      entries:entryFile.browserify,
-      debug: true
-    })
-    .transform(reactify)
-    .bundle()
+var b = watchify(browserify({
+      entries: entryFile.browserify,
+      insertGlobals: false
+    }))
+b.transform(reactify)
+
+function bundle(){
+  return b.bundle()
+    // log errors if they happen
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('index.js'))
-    // .pipe(plumber())
-    .pipe(gulp.dest('www/'))
+    // // optional, remove if you don't need to buffer file contents
+    .pipe(buffer())
+    .pipe(gulpif(PRODUCTION, uglify()))
+    .pipe(gulp.dest('./www'))
     .pipe(browserSync.stream())
-})
+}
+
+gulp.task('js', bundle) // so you can run `gulp js` to build the file
+b.on('update', bundle) // on any dep update, runs the bundler
+b.on('log', gutil.log) // output build logs to terminal
+
 
 gulp.task('stylus', function(){
   return gulp.src(entryFile.stylus)
