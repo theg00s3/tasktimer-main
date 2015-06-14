@@ -38,9 +38,20 @@ var entryFile = {
   jade: 'src/index.jade',
 }
 
+var b = browserify({
+      entries: entryFile.browserify,
+      insertGlobals: false
+    })
+b.transform(reactify)
+
 gulp.task('default', ['js','stylus','test','jade','assets'])
 
 gulp.task('watch', ['browser-sync', 'default'], function(){
+  b = watchify(browserify({
+        entries: entryFile.browserify,
+        insertGlobals: false
+      }))
+  b.transform(reactify)
   gulp.watch(paths.js, ['js','test'])
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
@@ -48,11 +59,6 @@ gulp.task('watch', ['browser-sync', 'default'], function(){
   gulp.watch(paths.assets, ['assets'])
 })
 
-var b = watchify(browserify({
-      entries: entryFile.browserify,
-      insertGlobals: false
-    }))
-b.transform(reactify)
 
 function bundle(){
   return b.bundle()
