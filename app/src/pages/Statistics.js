@@ -121,7 +121,7 @@ var Statistics = React.createClass({
       availableContent =  [
                             <div className="col border-right">
                               <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
-                              <hr/>
+                              <br/>
                               <StatisticsDetailsList data={this.state.data}/>
                             </div>,
                             <div className="col">
