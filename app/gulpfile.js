@@ -99,6 +99,7 @@ gulp.task('jade', function(){
 })
 
 gulp.task('test-watch', function(){
+  gulp.watch(paths.js, ['test'])
   gulp.watch(paths.test, ['test'])
 })
 
