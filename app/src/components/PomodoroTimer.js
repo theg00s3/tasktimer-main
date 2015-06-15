@@ -69,11 +69,7 @@ module.exports = React.createClass({
         this.props.notify(eventName, minutes, type)
       }
 
-      if( eventName === 'start' ) {
-        this._start(minutes, type)
-      }else{
-        this._stop(minutes, type)
-      }
+      this[eventName === 'start' ? '_start' : '_stop'](minutes, type)
     }.bind(this)
   },
   _start: function(minutes, type){
