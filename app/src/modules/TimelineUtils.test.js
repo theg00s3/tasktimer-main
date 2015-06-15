@@ -20,4 +20,8 @@ describe('TimelineUtils', function () {
   it('calculates the start time', function () {
     expect( TimelineUtils.getStart(data) ).to.eql( data[0].startedAt )
   })
+
+  it('calculates the end time', function () {
+    expect( TimelineUtils.getEnd(data) ).to.eql( data[data.length-1].startedAt )
+  })
 })
