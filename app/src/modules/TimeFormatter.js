@@ -3,7 +3,7 @@ module.exports = {
 }
 
 function formatSeconds(seconds){
-  if(seconds<0){
+  if(!seconds || seconds < 0){
     return '00:00'
   }
   var minutes = parseInt(seconds/60,10)
