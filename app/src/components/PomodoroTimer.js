@@ -44,6 +44,8 @@ module.exports = React.createClass({
     this.setState({disabled25: true, disabled15: true, disabled5: true })
   },
   _tick: function(){
+    if( !this.isMounted() )
+      return
     tickingSound.play()
     var remaining = Timer.getRemaining()
     var time = TimeFormatter.formatSeconds(remaining)
