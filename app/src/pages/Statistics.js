@@ -118,18 +118,20 @@ var Statistics = React.createClass({
   _getContent: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
     if( this.state.data.length > 0 ){
-      availableContent =  <div>
+      availableContent =  [
                             <div className="col border-right">
                               <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
                               <br/>
                               <StatisticsDetailsList data={this.state.data}/>
-                            </div>
+                            </div>,
                             <div className="col">
                               <Timeline className="col" data={this.state.data}/>
                             </div>
-                          </div>
+                          ]
     }
-    var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
+    var unauthorizedContent = [
+                                <LoginLogout onlyLogin={true} className="big left"/>
+                              ]
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
                                 {availableContent}
