@@ -33,6 +33,7 @@ module.exports = React.createClass({
     Timer.on('end', this._end)
     if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
       Timer.start(this.props.remaining)
+      tickingSound.play()
     }
     if( this.props.data && this.props.data.minutes ){
       var newState = {disabled25: true, disabled15: true,disabled5: true}
