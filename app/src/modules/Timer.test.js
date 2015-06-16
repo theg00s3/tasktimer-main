@@ -88,6 +88,14 @@ describe('Timer', function () {
       clock.tick(1000)
       expect( callback.called ).not.to.be.true
     })
+
+    it('adds a listener for end event', function () {
+      Timer.on('end', callback)
+      Timer.start(1)
+      expect( callback.called ).not.to.be.true
+      clock.tick(1000)
+      expect( callback.called ).to.be.true
+    })
   })
 
 })

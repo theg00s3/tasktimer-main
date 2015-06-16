@@ -13,7 +13,8 @@ var startedAt = undefined
 var seconds = undefined
 var interval = undefined
 var events = {
-  tick: []
+  tick: [],
+  end: [],
 }
 
 function start(_seconds){
@@ -28,6 +29,11 @@ function start(_seconds){
 
 function stop(){
   if( startedAt ){
+    var remaining = getRemaining()
+    events.end.forEach(function(cb){
+      if( cb instanceof Function )
+        cb(remaining)
+    })
     startedAt = undefined
     seconds = undefined
     clearInterval(interval)
