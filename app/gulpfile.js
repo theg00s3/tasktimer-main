@@ -66,7 +66,7 @@ function bundle(){
       gutil.log('Browserify Error')
       this.emit('end')
     })
-    .pipe(source(entryFile.browserify))
+    .pipe(source('index.js'))
     // // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
     .pipe(gulpif(PRODUCTION, uglify()))
