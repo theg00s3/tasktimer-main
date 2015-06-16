@@ -38,20 +38,19 @@ var entryFile = {
   jade: 'src/index.jade',
 }
 
-var b = browserify({
+var bundler = browserify({
       entries: entryFile.browserify,
-      insertGlobals: false
+      insertGlobals: false,
+      // watchify requires these options
+      cache: {}, packageCache: {}, fullPaths: true
     })
-b.transform(reactify)
+bundler.transform(reactify)
 
 gulp.task('default', ['js','stylus','test','jade','assets'])
 
 gulp.task('watch', ['browser-sync', 'default'], function(){
-  b = watchify(browserify({
-        entries: entryFile.browserify,
-        insertGlobals: false
-      }))
-  b.transform(reactify)
+  bundler = watchify(bundler)
+  bundler.on('update', bundle)
   gulp.watch(paths.js, ['js','test'])
   gulp.watch(paths.test, ['test'])
   gulp.watch(paths.stylus, ['stylus'])
@@ -61,10 +60,13 @@ gulp.task('watch', ['browser-sync', 'default'], function(){
 
 
 function bundle(){
-  return b.bundle()
+  return bundler.bundle()
     // log errors if they happen
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('index.js'))
+    .on('error', function(){
+      gutil.log('Browserify Error')
+      this.emit('end')
+    })
+    .pipe(source(entryFile.browserify))
     // // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
     .pipe(gulpif(PRODUCTION, uglify()))
@@ -72,9 +74,8 @@ function bundle(){
     .pipe(browserSync.stream())
 }
 
-gulp.task('js', bundle) // so you can run `gulp js` to build the file
-b.on('update', bundle) // on any dep update, runs the bundler
-b.on('log', gutil.log) // output build logs to terminal
+gulp.task('js', bundle)
+bundler.on('log', gutil.log)
 
 
 gulp.task('stylus', function(){
