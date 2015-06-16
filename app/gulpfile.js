@@ -80,6 +80,10 @@ bundler.on('log', gutil.log)
 
 gulp.task('stylus', function(){
   return gulp.src(entryFile.stylus)
+    .on('error', function(){
+      gutil.log('stylus Error')
+      this.emit('end')
+    })
     .pipe(stylus({use: [nib()]}))
     .pipe(plumber())
     .pipe(gulp.dest('www/'))
