@@ -26,9 +26,11 @@ module.exports = React.createClass({
   },
   componentDidUnmount: function(){
     Timer.off('tick', this._tick)
+    Timer.off('end', this._end)
   },
   componentDidMount: function() {
     Timer.on('tick', this._tick)
+    Timer.on('end', this._end)
     if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
       Timer.start(this.props.remaining)
     }
@@ -46,7 +48,6 @@ module.exports = React.createClass({
   _tick: function(){
     if( !this.isMounted() )
       return
-    tickingSound.play()
     var remaining = Timer.getRemaining()
     var time = TimeFormatter.formatSeconds(remaining)
     if( this.props.notify ){
@@ -73,10 +74,11 @@ module.exports = React.createClass({
     }.bind(this)
   },
   _start: function(minutes, type){
-    if( !Timer.isInProgress() ){
-      Timer.start(minutes*60)
-      Timer.on('tick', this._tick)
+    if( Timer.isInProgress() ){
+      return
     }
+    Timer.start(minutes*60)
+    tickingSound.play()
     this.minutes = minutes
     this.type = type
     this._resetButtons()
@@ -94,6 +96,9 @@ module.exports = React.createClass({
       disabled5: false,
       time: TimeFormatter.formatSeconds(0)
     })
+  },
+  _end: function(){
+
   },
   render: function(){
     return  <div className="pomodoro">
