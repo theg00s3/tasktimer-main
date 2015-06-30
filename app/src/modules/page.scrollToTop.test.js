@@ -17,7 +17,7 @@ describe('scrollToTop', function () {
     expect(routeInstance(context, next)).to.be.undefined
     expect( next.called ).to.be.true
   })
-  it('calls scrollTo if route matches exceptions', function (done) {
+  it('calls scrollTo if no route matches exceptions', function (done) {
     var scrollTo = sinon.spy()
     var routeInstance = scrollToTop([exceptionPath+'-not'], scrollTo)
     expect(routeInstance(context, next)).to.be.undefined
@@ -26,4 +26,13 @@ describe('scrollToTop', function () {
       done()
     }, 1)
   })
+  it('does not call scrollTo if route matches expections', function (done) {
+    var scrollTo = sinon.spy()
+    var routeInstance = scrollToTop([exceptionPath], scrollTo)
+    expect(routeInstance(context, next)).to.be.undefined
+    setTimeout(function(){
+      expect( scrollTo.notCalled ).to.be.true
+      done()
+    }, 1)    
+  });
 })
