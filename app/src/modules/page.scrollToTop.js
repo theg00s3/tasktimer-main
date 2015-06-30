@@ -8,7 +8,6 @@ module.exports = function(exceptions, scrollTo){
     })
     if( scrollTo && !isExcpection){
       setTimeout(function(){
-        console.log( 'scrollTo called' )
         scrollTo(0,0)
       })
     }
