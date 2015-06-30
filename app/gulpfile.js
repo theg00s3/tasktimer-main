@@ -42,6 +42,7 @@ var entryFile = {
 var bundler = browserify({
       entries: entryFile.browserify,
       insertGlobals: false,
+      debug: false,
       // watchify requires these options
       cache: {}, packageCache: {}, fullPaths: true
     })
