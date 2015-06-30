@@ -142,6 +142,8 @@ gulp.task('assets', function(){
     .pipe(plumber())
     .pipe(replace('{BUILD}', BUILD))
     .pipe(gulp.dest('www/'))
+  gulp.src('src/favicon.ico')
+    .pipe(gulp.dest('www/'))
   gulp.src(paths.assets)
     .pipe(plumber())
     .pipe(gulp.dest('www/assets/'))
