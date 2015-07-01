@@ -21,7 +21,15 @@ describe('TimelineUtils', function () {
     expect( TimelineUtils.getStart(data) ).to.eql( data[0].startedAt )
   })
 
+  it('calculates the start time in hour format', function () {
+    expect( TimelineUtils.getStartHour(data) ).to.eql( '11:00' )
+  })
+  
   it('calculates the end time', function () {
     expect( TimelineUtils.getEnd(data) ).to.eql( data[data.length-1].startedAt )
   })
+
+  it('calculates the end time in hour format', function () {
+    expect( TimelineUtils.getEndHour(data) ).to.eql( '12:00' )
+  })  
 })
