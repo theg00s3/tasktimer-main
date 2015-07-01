@@ -1,4 +1,4 @@
-var appCache = require('./modules/appCache')
+var appCache = require('../modules/appCache')
 
 module.exports = function(){
   appCache.onUpdateReady(function(){

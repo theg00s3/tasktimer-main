@@ -29,7 +29,6 @@ module.exports = React.createClass({
     Timer.off('end', this._end)
   },
   componentDidMount: function() {
-    debugger
     Timer.on('tick', this._tick)
     Timer.on('end', this._end)
     if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
