@@ -74,13 +74,7 @@ var Statistics = React.createClass({
   render: function(){
     return  <div className="statistics-content">
                 <header className="prominent-header">
-                  <div className="content">
-                    <h1 className="statistics-heading">Statistics</h1>
-                    <h5 className="statistics-day">{this.props.day}</h5>
-                    <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
-                    <Timeline className="col" data={this.state.data}/>
-                    <div className="statistics-graph-image"></div>
-                  </div>
+                  {this._getHeaderContent()}
                 </header>
                 <div className="content breath">
                   <Loader loaded={this.state.loaded}>
@@ -115,6 +109,20 @@ var Statistics = React.createClass({
         this._navigateForward()
         break
     }
+  },
+  _getHeaderContent: function(){
+    var loggedInContent = this.state.authorized ? 
+      [
+        <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>,
+        <Timeline className="col" data={this.state.data}/>
+      ] :
+      null
+    return  <div className="content">
+              <h1 className="statistics-heading">Statistics</h1>
+              <h5 className="statistics-day">{this.props.day}</h5>
+              {loggedInContent}
+              <div className="statistics-graph-image"></div>
+            </div>
   },
   _getContent: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
