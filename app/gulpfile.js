@@ -64,8 +64,9 @@ gulp.task('watch', ['browser-sync', 'default'], function(){
 function bundle(){
   return bundler.bundle()
     // log errors if they happen
-    .on('error', function(){
+    .on('error', function(err){
       gutil.log('Browserify Error')
+      gutil.log(err.message)
       this.emit('end')
     })
     .pipe(source('index.js'))
