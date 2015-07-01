@@ -16,7 +16,6 @@ var PomodoroUtils = require('../../../shared/PomodoroUtils')
   , constants = require('../../../shared/constants')
 
 var ChartUtils = require('../modules/ChartUtils')
-var TimelineUtils = require('../modules/TimelineUtils')
 
 var mainHeader = document.getElementById('main-header')
 
@@ -63,8 +62,6 @@ var Statistics = React.createClass({
           data: data,
           loaded: true,
           chartData: ChartUtils.getPieChartDataFrom(data),
-          startHour: TimelineUtils.getStartHour(data),
-          endHour: TimelineUtils.getEndHour(data),
         })
       }.bind(this))
       .catch(function(response){
@@ -81,6 +78,7 @@ var Statistics = React.createClass({
                     <h1 className="statistics-heading">Statistics</h1>
                     <h5 className="statistics-day">{this.props.day}</h5>
                     <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
+                    <Timeline className="col" data={this.state.data}/>
                     <div className="statistics-graph-image"></div>
                   </div>
                 </header>
@@ -126,14 +124,11 @@ var Statistics = React.createClass({
                               <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
                               <br/>
                               <StatisticsDetailsList data={this.state.data}/>
-                            </div>,
-                            <div className="col">
-                              <Timeline className="col" data={this.state.data}/>
                             </div>
-                          <div>
+                          </div>
     }
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
-    
+
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
                                 {availableContent}
