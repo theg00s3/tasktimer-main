@@ -16,6 +16,7 @@ var PomodoroUtils = require('../../../shared/PomodoroUtils')
   , constants = require('../../../shared/constants')
 
 var ChartUtils = require('../modules/ChartUtils')
+var TimelineUtils = require('../modules/TimelineUtils')
 
 var mainHeader = document.getElementById('main-header')
 
@@ -61,7 +62,9 @@ var Statistics = React.createClass({
         this.setState({
           data: data,
           loaded: true,
-          chartData: ChartUtils.getPieChartDataFrom(data)
+          chartData: ChartUtils.getPieChartDataFrom(data),
+          startHour: TimelineUtils.getStartHour(data),
+          endHour: TimelineUtils.getEndHour(data),
         })
       }.bind(this))
       .catch(function(response){
@@ -118,7 +121,7 @@ var Statistics = React.createClass({
   _getContent: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
     if( this.state.data.length > 0 ){
-      availableContent =  [
+      availableContent =  <div>
                             <div className="col border-right">
                               <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
                               <br/>
@@ -127,11 +130,10 @@ var Statistics = React.createClass({
                             <div className="col">
                               <Timeline className="col" data={this.state.data}/>
                             </div>
-                          ]
+                          <div>
     }
-    var unauthorizedContent = [
-                                <LoginLogout onlyLogin={true} className="big left"/>
-                              ]
+    var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
+    
     var authorizedContent = <div>
                               <div className="row block block-with-padding">
                                 {availableContent}
