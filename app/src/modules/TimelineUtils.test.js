@@ -22,7 +22,7 @@ describe('TimelineUtils', function () {
   })
 
   it('calculates the start time in hour format', function () {
-    expect( TimelineUtils.getStartHour(data) ).to.eql( '11:00' )
+    expect( TimelineUtils.getStartHour(data) ).to.eql( '10:00' )
   })
   
   it('calculates the end time', function () {
@@ -30,7 +30,7 @@ describe('TimelineUtils', function () {
   })
 
   it('calculates the end time in hour format', function () {
-    expect( TimelineUtils.getEndHour(data) ).to.eql( '11:59' )
+    expect( TimelineUtils.getEndHour(data) ).to.eql( '10:59' )
   })
 
   it('can be used to get the start time from a single item', function () {

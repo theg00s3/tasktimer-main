@@ -19,7 +19,7 @@ function getStart(data){
 }
 
 function getStartHour(data){
-  return moment(getStart(data)).startOf('hour').format(hourFormat)
+  return moment(getStart(data)).utc().startOf('hour').format(hourFormat)
 }
 
 function getEnd(data){
@@ -30,7 +30,7 @@ function getEnd(data){
 }
 
 function getEndHour(data){
-  return moment(getEnd(data)).endOf('hour').format(hourFormat)
+  return moment(getEnd(data)).utc().endOf('hour').format(hourFormat)
 }
 
 function getPercentPosition(point, data){
