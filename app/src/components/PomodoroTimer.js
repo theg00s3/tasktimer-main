@@ -24,21 +24,31 @@ module.exports = React.createClass({
       startedAt: 0
     }
   },
-  componentDidUnmount: function(){
+  componentWillUnmount: function(){
     Timer.off('tick', this._tick)
     Timer.off('end', this._end)
+    tickingSound.stop()
   },
   componentDidMount: function() {
+    debugger
     Timer.on('tick', this._tick)
     Timer.on('end', this._end)
-    if( !Timer.isInProgress() && this.props.remaining > 0 && this.props.data ){
-      Timer.start(this.props.remaining)
-      tickingSound.play()
+
+    var canRestoreMinutes = this.props.data && /(5|15|25)/.test(this.props.data.minutes)
+
+    if( canRestoreMinutes ){
       var newState = {disabled25: true, disabled15: true,disabled5: true}
-      if( this.props.data && this.props.data.minutes !== undefined ){
-        newState['disabled'+this.props.data.minutes] = false
-      }
+      newState['disabled'+this.props.data.minutes] = false
       this.setState(newState)
+    }
+
+    if( Timer.isInProgress() ){
+      tickingSound.play()
+    } else {
+      if( this.props.remaining > 0 && canRestoreMinutes ){
+        Timer.start(this.props.remaining)
+        tickingSound.play()
+      }
     }
   },
   _resetButtons: function(){
