@@ -30,6 +30,18 @@ describe('TimelineUtils', function () {
   })
 
   it('calculates the end time in hour format', function () {
-    expect( TimelineUtils.getEndHour(data) ).to.eql( '12:00' )
-  })  
+    expect( TimelineUtils.getEndHour(data) ).to.eql( '11:59' )
+  })
+
+  it('can be used to get the start time from a single item', function () {
+    expect( TimelineUtils.getStart(data[0]) ).to.eql( data[0].startedAt )
+  })
+
+  it('can be used to get the end time from a single item', function () {
+    expect( TimelineUtils.getEnd(data[0]) ).to.eql( data[0].startedAt )
+  })
+
+  it('calculates the position in percent relative to start and end time', function () {
+    expect( TimelineUtils.getPercentPosition(data[2], data) ).to.eql( '66,66%' )
+  })
 })
