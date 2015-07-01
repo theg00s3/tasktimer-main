@@ -25,8 +25,6 @@ AuthService.authenticate()
 })
 .catch(function(){})
 
-AnalyticsService.track('test')
-
 appCache.onUpdateReady(function(){
   appCache.doSwapCache()
   if( window.location ){

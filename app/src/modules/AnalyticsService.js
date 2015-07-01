@@ -6,7 +6,7 @@ module.exports = {
 
 function registerEvent(eventName){
   return function(){
-    if( window.analytics && window.analytics[eventName] )
-      window.analytics[eventName].apply(null, arguments)
+    if( window.analytics && window.analytics[eventName] && window.analytics[eventName] instanceof Function )
+      window.analytics[eventName].apply(window.analytics, arguments)
   }
 }
