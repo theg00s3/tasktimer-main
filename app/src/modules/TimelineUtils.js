@@ -8,6 +8,8 @@ module.exports = {
 var _ = require('underscore')
 var moment = require('moment')
 
+var hourFormat = 'HH:mm'
+
 function getStart(data){
   return _.min(data, function(value, key, list){
     return value.startedAt
@@ -15,7 +17,7 @@ function getStart(data){
 }
 
 function getStartHour(data){
-  return moment(getStart(data)).startOf('hour').format('HH:mm')
+  return moment(getStart(data)).startOf('hour').format(hourFormat)
 }
 
 function getEnd(data){
@@ -25,6 +27,6 @@ function getEnd(data){
 }
 
 function getEndHour(data){
-  return moment(getEnd(data)).endOf('hour').add(1,'minute').format('HH:mm')
+  return moment(getEnd(data)).endOf('hour').add(1,'minute').format(hourFormat)
 }
 
