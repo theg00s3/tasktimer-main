@@ -23,7 +23,9 @@ AuthService.authenticate()
     username: user.username
   })
 })
-.catch(function(){})
+.catch(function(){
+  AnalyticsService.track('login error', arguments)
+})
 
 appCache.onUpdateReady(function(){
   appCache.doSwapCache()
