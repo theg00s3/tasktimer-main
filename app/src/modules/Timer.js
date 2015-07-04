@@ -15,6 +15,7 @@ var interval = undefined
 var events = {
   tick: [],
   end: [],
+  start: [],
 }
 
 function start(_seconds){
@@ -25,6 +26,9 @@ function start(_seconds){
   seconds = _seconds
   interval = setInterval(tick, 500)
   tick()
+  events.start.forEach(function(callback){
+    callback(seconds)
+  })
   return seconds
 }
 

@@ -69,6 +69,13 @@ describe('Timer', function () {
       expect( callback.called ).to.be.true
     })
 
+    it('adds a listener for start event', function () {
+      Timer.on('start', callback)
+      Timer.start(25*60)
+      expect( callback.called ).to.be.true
+      expect( callback.calledWith(25*60) ).to.be.true
+    })
+
     it('stops tick callback when timer is stopped', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
