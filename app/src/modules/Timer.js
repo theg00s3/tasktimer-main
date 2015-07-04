@@ -24,6 +24,7 @@ function start(_seconds){
   startedAt = Date.now()
   seconds = _seconds
   interval = setInterval(tick, 500)
+  tick()
   return seconds
 }
 

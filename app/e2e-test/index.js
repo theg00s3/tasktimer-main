@@ -12,7 +12,7 @@ module.exports = {
       .click('.control-buttons-container button:first-child')
       .getText('.timer', containsRegExp(/2[45]:\d\d/))
       .refresh()
-      .pause(1000)
+      .pause(1500)
       .getText('.timer', containsRegExp(/24:\d\d/))
       .click('.control-buttons-container button:first-child')
   },
