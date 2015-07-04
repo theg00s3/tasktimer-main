@@ -62,16 +62,12 @@ describe('Timer', function () {
     it('adds a listener for tick event', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       expect( callback.called ).to.be.true
     })
 
     it('stops tick callback when timer is stopped', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       callback.reset()
       Timer.stop()
       clock.tick(1000)
@@ -81,8 +77,6 @@ describe('Timer', function () {
     it('removes listener for tick event', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       callback.reset()
       Timer.off('tick', callback)
       clock.tick(1000)
