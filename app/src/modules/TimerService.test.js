@@ -21,9 +21,10 @@ describe('TimerService', function () {
     DocumentTitleUpdateCommand.execute.reset()
   })
 
-  it('subscribes to Timer on tick event', function () {
+  it('subscribes to Timer events', function () {
     MockTimer.expects('on').once().withArgs('tick').returns(Timer)
     MockTimer.expects('on').once().withArgs('end').returns(Timer)
+    MockTimer.expects('on').once().withArgs('start').returns(Timer)
 
     TimerService.start(MockTimer.object)
 
