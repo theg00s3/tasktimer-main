@@ -4,6 +4,7 @@ var expect = require('chai').expect
 var TimerService
   , Timer = require('./Timer')
   , MockTimer = sinon.mock(Timer)
+  , FakeTimer = require('../../fixtures/FakeTimer')
 
 
 describe('TimerService', function () {
@@ -21,5 +22,11 @@ describe('TimerService', function () {
     TimerService.start(MockTimer.object)
 
     MockTimer.verify()
+  })
+
+  it('calls the collaborator DocumentTitleService.update with remaining time', function () {
+    var DocumentTitleService = sinon.spy()
+    TimerService.start(FakeTimer, DocumentTitleService)
+    expect( DocumentTitleService.called ).to.be.true
   })
 })

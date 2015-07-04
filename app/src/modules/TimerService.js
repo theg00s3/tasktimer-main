@@ -2,8 +2,15 @@ module.exports = {
   start: start
 }
 
-function start(Timer){
+var DocumentTitleService
+
+function start(Timer, _DocumentTitleService){
   Timer.on('tick', onTick)
+  DocumentTitleService = _DocumentTitleService
 }
 
-function onTick(){}
+function onTick(){
+  if( DocumentTitleService && DocumentTitleService.update ) {
+    DocumentTitleService.update()
+  }
+}
