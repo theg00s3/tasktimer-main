@@ -11,6 +11,8 @@ var FakeTimer = {
 module.exports = FakeTimer
 
 function on(event, fn){
-  fn(0)
+  if( event === 'end' ){
+    fn(0)
+  }
   return FakeTimer
 }
