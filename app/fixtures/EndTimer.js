@@ -1,5 +1,5 @@
 var noop = function(){}
-var StartTimer = {
+var EndTimer = {
   start: noop,
   stop: noop,
   getRemaining: noop,
@@ -8,15 +8,15 @@ var StartTimer = {
   off: noop,
 }
 
-module.exports = StartTimer
+module.exports = EndTimer
 
 var events = {
   tick: [],
 }
 
 function on(event, fn){
-  if( event === 'start' ){
-    fn(25*60)
+  if( event === 'end' ){
+    fn(0)
   }
-  return StartTimer
+  return EndTimer
 }

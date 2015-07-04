@@ -28,6 +28,9 @@ function onEnd(remaining){
   if( DocumentTitleService && DocumentTitleService.execute ) {
     DocumentTitleService.execute(remaining)
   }
+  if( tickingSound && tickingSound.stop ){
+    tickingSound.stop()
+  }  
 }
 
 function onStart(){

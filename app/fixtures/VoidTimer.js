@@ -1,5 +1,5 @@
 var noop = function(){}
-var FakeTimer = {
+var VoidTimer = {
   start: noop,
   stop: noop,
   getRemaining: noop,
@@ -8,11 +8,11 @@ var FakeTimer = {
   off: noop,
 }
 
-module.exports = FakeTimer
+module.exports = VoidTimer
 
 function on(event, fn){
   if( event === 'end' ){
     fn(0)
   }
-  return FakeTimer
+  return VoidTimer
 }

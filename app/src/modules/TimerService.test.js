@@ -7,12 +7,14 @@ var TimerService
   , FakeTimer = require('../../fixtures/FakeTimer')
   , VoidTimer = require('../../fixtures/VoidTimer')
   , StartTimer = require('../../fixtures/StartTimer')
+  , EndTimer = require('../../fixtures/EndTimer')
   , DocumentTitleUpdateCommand = {
     execute: sinon.spy()
   }
   , Sounds = {
     tick: {
-      play: sinon.spy()
+      play: sinon.spy(),
+      stop: sinon.spy(),
     }
   }
 
@@ -40,6 +42,11 @@ describe('TimerService', function () {
   it('starts ticking sound when timer starts', function () {
     TimerService.start(StartTimer, DocumentTitleUpdateCommand, Sounds)
     expect( Sounds.tick.play.called ).to.be.true
+  })
+
+  it('stops ticking sound when timer ends', function () {
+    TimerService.start(EndTimer, DocumentTitleUpdateCommand, Sounds)
+    expect( Sounds.tick.stop.called ).to.be.true    
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
