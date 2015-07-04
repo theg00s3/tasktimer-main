@@ -1,7 +1,6 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , LoginLogout = require('../components/LoginLogout')
-  , Alert = require('../components/Alert')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , store = require('store')
   , moment = require('moment')
@@ -39,10 +38,6 @@ var Main = React.createClass({
               <div className="content breath">
                 <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
               </div>
-              <Alert>
-                <i className="icon ion-information-circled"></i> &nbsp;
-                <strong>As seen on <a href="http://www.producthunt.com/e/productivity-hacks" target="_blank">ProductHunt</a></strong>
-              </Alert>
             </div>
   }
 })
