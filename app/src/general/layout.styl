@@ -1,0 +1,19 @@
+.limit
+  max-width limit
+  margin-left auto
+  margin-right @margin-left
+  padding-left 0.5em
+  padding-right @padding-left
+
+  &.small
+    max-width limit_small
+
+  &.extended
+    max-width limit*1.4
+
+.content
+  @extend .limit
+
+.breath
+  margin-top 1em
+  margin-bottom @margin-top
