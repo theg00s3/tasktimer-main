@@ -22,10 +22,7 @@ module.exports = function(eventName, minutes, type, time){
         PomodoroRepository.create(pomodoroData)
       }
       store.remove('pomodoroData')
-      resetTitle()
       break
-    case 'tick':
-      document.title = time + ' - ' + constants.title
   }
 }
 
@@ -36,9 +33,3 @@ function setCancelledAtIfNeeded(pomodoroData){
   }
   return pomodoroData
 }
-
-
-function resetTitle(){
-  document.title = constants.title
-}
-

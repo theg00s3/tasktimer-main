@@ -17,7 +17,6 @@ var Main = React.createClass({
       pomodoroData: null
     }
   },
-  componentWillUnmount: resetTitle,
   componentWillMount: function(){
     this.setState({
       pomodoroData: store.get('pomodoroData')
@@ -41,7 +40,3 @@ var Main = React.createClass({
             </div>
   }
 })
-
-function resetTitle(){
-  document.title = constants.title
-}

@@ -11,5 +11,6 @@ router.start()
 
 require('./init/auth')()
 require('./init/appCache')()
+require('./init/Timer')()
 
 logger.enable( !/pomodoro\.cc/.test(window.location.host) )

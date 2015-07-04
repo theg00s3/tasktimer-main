@@ -23,16 +23,15 @@ function start(_seconds){
 
   startedAt = Date.now()
   seconds = _seconds
-  interval = setInterval(tick, 100)
+  interval = setInterval(tick, 500)
   return seconds
 }
 
 function stop(){
   if( startedAt ){
-    var remaining = getRemaining()
     events.end.forEach(function(cb){
       if( cb instanceof Function )
-        cb(remaining)
+        cb(0)
     })
     startedAt = undefined
     seconds = undefined
