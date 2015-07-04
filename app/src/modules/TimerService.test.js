@@ -8,18 +8,10 @@ var TimerService
   , VoidTimer = require('../../fixtures/VoidTimer')
   , StartTimer = require('../../fixtures/StartTimer')
   , EndTimer = require('../../fixtures/EndTimer')
-  , DocumentTitleUpdateCommand = {
-    execute: sinon.spy()
-  }
+  , DocumentTitleUpdateCommand = sinon.mock({execute:function(){}})
   , Sounds = {
-    tick: {
-      play: sinon.spy(),
-      stop: sinon.spy(),
-    },
-    ring: {
-      play: sinon.spy(),
-      stop: sinon.spy(),
-    },
+    tick: sinon.mock({play:function(){},stop:function(){}}),
+    ring: sinon.mock({play:function(){},stop:function(){}}),
   }
 
 
@@ -30,11 +22,9 @@ describe('TimerService', function () {
 
   afterEach(function () {
     MockTimer.restore()
-    DocumentTitleUpdateCommand.execute.reset()
-    Sounds.tick.play.reset()
-    Sounds.tick.stop.reset()
-    Sounds.ring.play.reset()
-    Sounds.ring.stop.reset()
+    Sounds.tick.restore()
+    Sounds.ring.restore()
+    DocumentTitleUpdateCommand.restore()
   })
 
   it('subscribes to Timer events', function () {
@@ -48,30 +38,40 @@ describe('TimerService', function () {
   })
 
   it('starts ticking sound when timer starts', function () {
-    TimerService.start(StartTimer, DocumentTitleUpdateCommand, Sounds)
-    expect( Sounds.tick.play.called ).to.be.true
+    Sounds.tick.expects('play').once()
+
+    TimerService.start(StartTimer, {}, {
+      tick: Sounds.tick.object,
+    })
+    
+    Sounds.tick.verify()
   })
 
   it('stops ticking sound when timer ends', function () {
-    TimerService.start(EndTimer, DocumentTitleUpdateCommand, Sounds)
-    expect( Sounds.tick.stop.called ).to.be.true    
+    Sounds.tick.expects('stop').once()
+
+    TimerService.start(EndTimer, {}, {
+      tick: Sounds.tick.object,
+    })
+    
+    Sounds.tick.verify()
   })
 
   it('starts ringing sound when timer ends', function () {
-    TimerService.start(EndTimer, DocumentTitleUpdateCommand, Sounds)
-    expect( Sounds.ring.play.called ).to.be.true    
+    Sounds.ring.expects('play').once()
+
+    TimerService.start(EndTimer, {}, {
+      ring: Sounds.ring.object,
+    })
+    
+    Sounds.ring.verify()
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
-    TimerService.start(FakeTimer, DocumentTitleUpdateCommand)
-    expect( DocumentTitleUpdateCommand.execute.called ).to.be.true
-    expect( DocumentTitleUpdateCommand.execute.calledWith(25*60) ).to.be.true
-  })
+    DocumentTitleUpdateCommand.expects('execute').once().withArgs(25*60)
 
-  it('calls DocumentTitleUpdateCommand.execute with 0 when Timer is stopped', function () {
-    TimerService.start(VoidTimer, DocumentTitleUpdateCommand)
+    TimerService.start(FakeTimer, DocumentTitleUpdateCommand.object)
 
-    expect( DocumentTitleUpdateCommand.execute.called ).to.be.true
-    expect( DocumentTitleUpdateCommand.execute.calledWith(0) ).to.be.true
+    DocumentTitleUpdateCommand.verify()
   })
 })

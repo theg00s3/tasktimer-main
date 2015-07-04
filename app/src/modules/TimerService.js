@@ -42,6 +42,12 @@ function onStart(){
   }
 }
 
+
+
+
+
+
+
 function isSound(sound){
   return sound && sound.play && sound.stop
 }

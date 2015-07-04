@@ -15,6 +15,8 @@ var events = {
 }
 
 function on(event, fn){
-  fn(25*60)
+  if( event === 'tick' ){
+    fn(25*60)
+  }
   return FakeTimer
 }
