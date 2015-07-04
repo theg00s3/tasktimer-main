@@ -30,7 +30,10 @@ function onEnd(remaining){
   }
   if( tickingSound && tickingSound.stop ){
     tickingSound.stop()
-  }  
+  }
+  if( ringingSound && ringingSound.play ){
+    ringingSound.play()
+  }
 }
 
 function onStart(){

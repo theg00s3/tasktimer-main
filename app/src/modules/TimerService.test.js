@@ -15,7 +15,10 @@ var TimerService
     tick: {
       play: sinon.spy(),
       stop: sinon.spy(),
-    }
+    },
+    ring: {
+      play: sinon.spy(),
+    },
   }
 
 
@@ -47,6 +50,11 @@ describe('TimerService', function () {
   it('stops ticking sound when timer ends', function () {
     TimerService.start(EndTimer, DocumentTitleUpdateCommand, Sounds)
     expect( Sounds.tick.stop.called ).to.be.true    
+  })
+
+  it('starts ringing sound when timer ends', function () {
+    TimerService.start(EndTimer, DocumentTitleUpdateCommand, Sounds)
+    expect( Sounds.ring.play.called ).to.be.true    
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
