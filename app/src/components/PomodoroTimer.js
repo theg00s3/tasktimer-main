@@ -1,18 +1,6 @@
 var React = require('react')
   , TimeFormatter = require('../modules/TimeFormatter')
   , Timer = require('../modules/Timer')
-  , Buzz = require('../modules/Buzz')
-
-var ringingSound = new Buzz.sound('/assets/audio/ring.mp3', {
-  preload: true,
-  loop: false,
-  webAudioApi: true,
-})
-var tickingSound = new Buzz.sound('/assets/audio/tick.mp3', {
-  preload: true,
-  loop: true,
-  webAudioApi: true,
-})
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -27,7 +15,6 @@ module.exports = React.createClass({
   componentWillUnmount: function(){
     Timer.off('tick', this._tick)
     Timer.off('end', this._end)
-    tickingSound.stop()
   },
   componentDidMount: function() {
     Timer.on('tick', this._tick)
@@ -42,11 +29,9 @@ module.exports = React.createClass({
     }
 
     if( Timer.isInProgress() ){
-      tickingSound.play()
     } else {
       if( this.props.remaining > 0 && canRestoreMinutes ){
         Timer.start(this.props.remaining)
-        tickingSound.play()
       }
     }
   },
@@ -86,7 +71,6 @@ module.exports = React.createClass({
       return
     }
     Timer.start(minutes*60)
-    tickingSound.play()
     this.minutes = minutes
     this.type = type
     this._resetButtons()
@@ -95,8 +79,6 @@ module.exports = React.createClass({
     this.setState(disabledMinutes)
   },
   _stop: function(minutes, type){
-    tickingSound.stop()
-    ringingSound.play()
     Timer.stop()
     this.setState({
       disabled25: false,

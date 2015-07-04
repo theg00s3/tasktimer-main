@@ -57,8 +57,11 @@ describe('Timer', function () {
 
   describe('events', function () {
     var callback = sinon.spy()
-    beforeEach(function () {
+    afterEach(function () {
       callback.reset()
+      Timer.off('tick', callback)
+      Timer.off('end', callback)
+      Timer.off('start', callback)
     })
     it('adds a listener for tick event', function () {
       Timer.on('tick', callback)
