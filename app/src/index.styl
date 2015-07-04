@@ -18,8 +18,8 @@ color_github = #333333
 
 header_padding = .75rem
 header_height  = header_padding + 0.7rem
-limit = 55em
-limit_small = 30em
+limit = 55rem
+limit_small = 30rem
 
 
 @import 'general/*'
@@ -41,6 +41,9 @@ main
   margin-right @margin-left
   padding-left 0.5em
   padding-right @padding-left
+
+  &.small
+    max-width limit_small
 
   &.extended
     max-width limit*1.4

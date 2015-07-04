@@ -30,7 +30,6 @@ module.exports = React.createClass({
     tickingSound.stop()
   },
   componentDidMount: function() {
-    debugger
     Timer.on('tick', this._tick)
     Timer.on('end', this._end)
 
