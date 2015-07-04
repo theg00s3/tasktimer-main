@@ -18,6 +18,7 @@ var TimerService
     },
     ring: {
       play: sinon.spy(),
+      stop: sinon.spy(),
     },
   }
 
@@ -30,6 +31,10 @@ describe('TimerService', function () {
   afterEach(function () {
     MockTimer.restore()
     DocumentTitleUpdateCommand.execute.reset()
+    Sounds.tick.play.reset()
+    Sounds.tick.stop.reset()
+    Sounds.ring.play.reset()
+    Sounds.ring.stop.reset()
   })
 
   it('subscribes to Timer events', function () {

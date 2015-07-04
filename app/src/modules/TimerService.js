@@ -28,16 +28,20 @@ function onEnd(remaining){
   if( DocumentTitleService && DocumentTitleService.execute ) {
     DocumentTitleService.execute(remaining)
   }
-  if( tickingSound && tickingSound.stop ){
+  if( isSound(tickingSound) ){
     tickingSound.stop()
   }
-  if( ringingSound && ringingSound.play ){
+  if( isSound(ringingSound) ){
     ringingSound.play()
   }
 }
 
 function onStart(){
-  if( tickingSound && tickingSound.play ){
+  if( isSound(tickingSound) ){
     tickingSound.play()
   }
+}
+
+function isSound(sound){
+  return sound && sound.play && sound.stop
 }
