@@ -5,6 +5,9 @@ module.exports = {
 var DocumentTitleService
   , Buzz
 
+var ringingSound
+  , tickingSound
+
 function start(Timer, _DocumentTitleService, _Buzz){
   DocumentTitleService = _DocumentTitleService
   Buzz = _Buzz
@@ -13,7 +16,16 @@ function start(Timer, _DocumentTitleService, _Buzz){
   Timer.on('start', onStart)
 
   if( Buzz && Buzz.sound ){
-    new Buzz.sound()
+    ringingSound = new Buzz.sound('/assets/audio/ring.mp3', {
+      preload: true,
+      loop: false,
+      webAudioApi: true,
+    })
+    ringingSound = new Buzz.sound('/assets/audio/tick.mp3', {
+      preload: true,
+      loop: false,
+      webAudioApi: true,
+    })
   }
 }
 
@@ -29,7 +41,4 @@ function onEnd(remaining){
 }
 
 function onStart(){
-  if( Buzz && Buzz.foo ){
-    Buzz.foo()
-  }
 }

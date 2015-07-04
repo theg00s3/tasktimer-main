@@ -35,9 +35,11 @@ describe('TimerService', function () {
     MockTimer.verify()
   })
 
-  it('instanciated ticking sound', function () {
+  it('instanciated sounds', function () {
     TimerService.start(StartTimer, DocumentTitleUpdateCommand, Buzz)
     expect( Buzz.sound.calledWithNew() ).to.be.true
+    expect( Buzz.sound.calledWith('/assets/audio/tick.mp3') ).to.be.true
+    expect( Buzz.sound.calledWith('/assets/audio/ring.mp3') ).to.be.true
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
