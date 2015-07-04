@@ -24,9 +24,11 @@ describe('TimerService', function () {
     MockTimer.verify()
   })
 
-  it('calls the collaborator DocumentTitleService.update with remaining time', function () {
-    var DocumentTitleService = sinon.spy()
-    TimerService.start(FakeTimer, DocumentTitleService)
-    expect( DocumentTitleService.called ).to.be.true
+  it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
+    var DocumentTitleUpdateCommand = {
+      execute: sinon.spy()
+    }
+    TimerService.start(FakeTimer, DocumentTitleUpdateCommand)
+    expect( DocumentTitleUpdateCommand.execute.called ).to.be.true
   })
 })

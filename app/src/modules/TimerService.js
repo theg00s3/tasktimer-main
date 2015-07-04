@@ -5,12 +5,12 @@ module.exports = {
 var DocumentTitleService
 
 function start(Timer, _DocumentTitleService){
-  Timer.on('tick', onTick)
   DocumentTitleService = _DocumentTitleService
+  Timer.on('tick', onTick)
 }
 
 function onTick(){
-  if( DocumentTitleService && DocumentTitleService.update ) {
-    DocumentTitleService.update()
+  if( DocumentTitleService && DocumentTitleService.execute ) {
+    DocumentTitleService.execute()
   }
 }

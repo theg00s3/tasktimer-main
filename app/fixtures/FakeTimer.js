@@ -4,9 +4,17 @@ var FakeTimer = {
   stop: noop,
   getRemaining: noop,
   isInProgress: noop,
-  on: noop,
+  on: on,
   off: noop,
 }
 
 module.exports = FakeTimer
 
+var events = {
+  tick: [],
+}
+
+function on(event, fn){
+  fn(25*60)
+  return FakeTimer
+}
