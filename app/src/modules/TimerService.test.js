@@ -30,5 +30,6 @@ describe('TimerService', function () {
     }
     TimerService.start(FakeTimer, DocumentTitleUpdateCommand)
     expect( DocumentTitleUpdateCommand.execute.called ).to.be.true
+    expect( DocumentTitleUpdateCommand.execute.calledWith(25*60) ).to.be.true
   })
 })

@@ -9,8 +9,8 @@ function start(Timer, _DocumentTitleService){
   Timer.on('tick', onTick)
 }
 
-function onTick(){
+function onTick(remaining){
   if( DocumentTitleService && DocumentTitleService.execute ) {
-    DocumentTitleService.execute()
+    DocumentTitleService.execute(remaining)
   }
 }
