@@ -19,8 +19,12 @@ describe('Timer', function () {
 
   describe('behaviour', function () {
     it('refuses to start a timer with invalid seconds', function () {
+      expect( Timer.start("123.2") ).not.to.be.ok
+      expect( Timer.start("123") ).not.to.be.ok
+      expect( Timer.start([]) ).not.to.be.ok
       expect( Timer.start(123.2) ).not.to.be.ok
       expect( Timer.start(-1) ).not.to.be.ok
+      expect( Timer.start(0) ).not.to.be.ok
     })
 
     it('starts a timer with given seconds', function () {
