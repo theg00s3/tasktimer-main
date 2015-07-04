@@ -6,8 +6,12 @@ var TimerService
   , MockTimer = sinon.mock(Timer)
   , FakeTimer = require('../../fixtures/FakeTimer')
   , VoidTimer = require('../../fixtures/VoidTimer')
+  , StartTimer = require('../../fixtures/StartTimer')
   , DocumentTitleUpdateCommand = {
     execute: sinon.spy()
+  }
+  , Buzz = {
+    sound: sinon.spy()
   }
 
 
@@ -29,6 +33,11 @@ describe('TimerService', function () {
     TimerService.start(MockTimer.object)
 
     MockTimer.verify()
+  })
+
+  it('instanciated ticking sound', function () {
+    TimerService.start(StartTimer, DocumentTitleUpdateCommand, Buzz)
+    expect( Buzz.sound.calledWithNew() ).to.be.true
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
