@@ -28,8 +28,11 @@ module.exports = React.createClass({
       this.setState(newState)
     }
   },
-  _resetButtons: function(){
+  _disableButtons: function(){
     this.setState({disabled25: true, disabled15: true, disabled5: true })
+  },
+  _enableButtons: function(){
+    this.setState({disabled25: false, disabled15: false, disabled5: false })
   },
   _tick: function(){
     if( !this.isMounted() )
@@ -63,7 +66,7 @@ module.exports = React.createClass({
     Timer.start(minutes*60)
     this.minutes = minutes
     this.type = type
-    this._resetButtons()
+    this._disableButtons()
     var disabledMinutes = {}
     disabledMinutes['disabled'+minutes] = false
     this.setState(disabledMinutes)
@@ -73,7 +76,7 @@ module.exports = React.createClass({
     this._end()
   },
   _end: function(){
-    this._resetButtons()
+    this._enableButtons()
     this.setState({
       time: TimeFormatter.formatSeconds(Timer.getRemaining())
     })
