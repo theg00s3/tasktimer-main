@@ -7,6 +7,9 @@ module.exports = {
       .url('https://pomodoro.dev')
       .waitForElementVisible('main', 1000)
   },
+  after: function(browser){
+    browser.end()
+  },
   "trolling is ok": function(browser){
     browser
       .click('.control-buttons-container button:first-child')
