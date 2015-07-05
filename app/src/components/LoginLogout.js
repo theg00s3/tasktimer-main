@@ -21,7 +21,7 @@ module.exports = React.createClass({
       }.bind(this))
   },
   render: function(){
-    if( this.state.loggedIn === undefined || !!this.props.onlyLogin) {
+    if( this.state.loggedIn === undefined ) {
       return null
     }
     if( !this.state.loggedIn ) {
@@ -36,6 +36,9 @@ module.exports = React.createClass({
                   </a>
                 </div>
               </div>
+    }
+    if( !!this.props.onlyLogin ) {
+      return null
     }
     return  <div className="login-logout">
               <a href="/auth/logout" className="logout">Logout</a>
