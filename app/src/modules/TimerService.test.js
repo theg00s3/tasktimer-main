@@ -21,9 +21,6 @@ var TimerService
 describe('TimerService', function () {
   beforeEach(function () {
     TimerService = require('./TimerService')
-  })
-
-  afterEach(function () {
     MockTimer.restore()
     Sounds.tick.restore()
     Sounds.ring.restore()
