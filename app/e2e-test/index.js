@@ -51,12 +51,36 @@ module.exports = {
   "can see the remaining time in the title": function(browser){
     browser
       .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:nth-child(1)')
+      .getText('.timer', containsRegExp(/2[45]:\d\d/))
+      .getTitle(function(title) {
+        this.assert.ok(/2[45]:\d\d/.test(title))
+      })
+      .click('.control-buttons-container button:nth-child(1)')
+      .assert.containsText('.timer', '00:00')
+      .getTitle(function(title) {
+        this.assert.ok(/Pomodoro\.cc/.test(title))
+      })
+      
+      .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:nth-child(2)')
       .getText('.timer', containsRegExp(/0[45]:\d\d/))
       .getTitle(function(title) {
         this.assert.ok(/0[45]:\d\d/.test(title))
       })
       .click('.control-buttons-container button:nth-child(2)')
+      .assert.containsText('.timer', '00:00')
+      .getTitle(function(title) {
+        this.assert.ok(/Pomodoro\.cc/.test(title))
+      })
+
+      .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:nth-child(3)')
+      .getText('.timer', containsRegExp(/1[45]:\d\d/))
+      .getTitle(function(title) {
+        this.assert.ok(/1[45]:\d\d/.test(title))
+      })
+      .click('.control-buttons-container button:nth-child(3)')
       .assert.containsText('.timer', '00:00')
       .getTitle(function(title) {
         this.assert.ok(/Pomodoro\.cc/.test(title))
