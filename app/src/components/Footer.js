@@ -6,16 +6,18 @@ module.exports = React.createClass({
     return  <footer role="footer">
               <div className="content">
                 <div className="limit tac">
+                  <Alert>
+                    <i className="icon ion-information-circled"></i> &nbsp;
+                    <strong>As seen on <a href="http://www.producthunt.com/e/productivity-hacks" target="_blank">ProductHunt</a></strong>
+                  </Alert>
+                </div>
+                <div className="limit tac">
                   <p>
                     by <a href="http://christian.fei.ninja" target="_blank">Christian Fei</a>
                   </p>
                   <p>
                     hosted on <a href="https://www.digitalocean.com/?refcode=880e8f681b50">digitalocean</a>
                   </p>
-                  <Alert>
-                    <i className="icon ion-information-circled"></i> &nbsp;
-                    <strong>As seen on <a href="http://www.producthunt.com/e/productivity-hacks" target="_blank">ProductHunt</a></strong>
-                  </Alert>
                 </div>
                 <div className="limit tac">
                   <p className="small light">
