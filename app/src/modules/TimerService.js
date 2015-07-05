@@ -37,7 +37,6 @@ function onEnd(remaining){
 }
 
 function onStart(){
-  debugger
   if( isSound(tickingSound) ){
     tickingSound.play()
   }

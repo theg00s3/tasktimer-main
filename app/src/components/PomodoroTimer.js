@@ -28,11 +28,8 @@ module.exports = React.createClass({
       this.setState(newState)
     }
 
-    if( Timer.isInProgress() ){
-    } else {
-      if( this.props.remaining > 0 && canRestoreMinutes ){
-        Timer.start(this.props.remaining)
-      }
+    if( !Timer.isInProgress() && this.props.remaining > 0 && canRestoreMinutes ){
+      Timer.start(this.props.remaining)
     }
   },
   _resetButtons: function(){

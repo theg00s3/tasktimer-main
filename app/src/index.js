@@ -7,10 +7,11 @@ var Footer = require('./components/Footer')
 React.render(<Header/>, document.getElementById('main-header'))
 React.render(<Footer/>, document.getElementById('main-footer'))
 
-router.start()
 
+require('./init/Timer')()
 require('./init/auth')()
 require('./init/appCache')()
-require('./init/Timer')()
+
+router.start()
 
 logger.enable( !/pomodoro\.cc/.test(window.location.host) )
