@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/gulp/bin/gulp.js watch",
+    "start": "NODE_PATH=node_modules ./node_modules/gulp/bin/gulp.js watch",
     "test": "./node_modules/gulp/bin/gulp.js test",
     "e2e": "sh scripts/e2e.sh"
   },
