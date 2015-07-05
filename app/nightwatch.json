@@ -6,7 +6,11 @@
     "start_process" : true,
     "server_path" : "selenium.jar",
     "host" : "127.0.0.1",
-    "port" : 4444
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "bin/chromedriver",
+      "webdriver.firefox.profile" : ""
+    }
   },
 
   "test_settings" : {
@@ -18,11 +22,24 @@
       "screenshots" : {
         "enabled" : false,
         "path" : ""
-      },
-      "desiredCapabilities" : {
-        "browserName" : "firefox",
-        "javascriptEnabled" : true,
-        "acceptSslCerts" : true
+      }
+    },
+    "safari" : {
+      "desiredCapabilities": {
+        "browserName": "safari"
+      }
+    },
+    "chrome" : {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args":["disable-web-security", "ignore-certificate-errors"]
+        }
+      }
+    },
+    "firefox" : {
+      "desiredCapabilities": {
+        "browserName": "firefox"
       }
     }
   }
