@@ -48,6 +48,20 @@ module.exports = {
       .click('.control-buttons-container button:nth-child(3)')
       .assert.containsText('.timer', '00:00')
   },
+  "can see the remaining time in the title": function(browser){
+    browser
+      .assert.containsText('.timer', '00:00')
+      .click('.control-buttons-container button:nth-child(2)')
+      .getText('.timer', containsRegExp(/0[45]:\d\d/))
+      .getTitle(function(title) {
+        this.assert.ok(/0[45]:\d\d/.test(title))
+      })
+      .click('.control-buttons-container button:nth-child(2)')
+      .assert.containsText('.timer', '00:00')
+      .getTitle(function(title) {
+        this.assert.ok(/Pomodoro\.cc/.test(title))
+      })
+  },
   "navigate in statistics page": function(browser){
     var today = getToday()
     var previousDay = getYesterday()
@@ -103,6 +117,8 @@ function pad(number){
 function containsRegExp(regexp){
   return function(result){
     var text = result.value
+    if( !text )return
+    console.log( 'TESTING REGEXP', text, regexp)
     this.assert.ok(regexp.test(text))
   }
 }
