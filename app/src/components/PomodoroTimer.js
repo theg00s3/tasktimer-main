@@ -27,10 +27,6 @@ module.exports = React.createClass({
       newState['disabled'+this.props.data.minutes] = false
       this.setState(newState)
     }
-
-    if( !Timer.isInProgress() && this.props.remaining > 0 && canRestoreMinutes ){
-      Timer.start(this.props.remaining)
-    }
   },
   _resetButtons: function(){
     this.setState({disabled25: true, disabled15: true, disabled5: true })

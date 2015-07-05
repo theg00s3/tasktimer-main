@@ -1,3 +1,6 @@
+var store = require('store')
+  , moment = require('moment')
+
 var TimerService = require('../modules/TimerService')
   , Timer = require('../modules/Timer')
   , Buzz = require('../modules/Buzz')
@@ -21,4 +24,14 @@ module.exports = function(){
     tick: tickingSound,
     ring: ringingSound
   })
+
+  var pomodoroData = store.get('pomodoroData')
+
+  if( pomodoroData ){
+    if( pomodoroData.minutes && pomodoroData.startedAt ){
+      remaining = parseInt((moment(pomodoroData.startedAt).unix() + pomodoroData.minutes*60 - moment().unix()),10)
+      Timer.start(remaining)
+    }
+  }
+
 }
