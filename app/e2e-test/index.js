@@ -7,6 +7,18 @@ module.exports = {
       .url('https://pomodoro.dev')
       .waitForElementVisible('main', 1000)
   },
+  "trolling is ok": function(browser){
+    browser
+      .click('.control-buttons-container button:first-child')
+      .getText('.timer', containsRegExp(/2[45]:\d\d/))
+      .click('.control-buttons-container button:first-child')
+      .click('.control-buttons-container button:nth-child(2)')
+      .getText('.timer', containsRegExp(/0[45]:\d\d/))
+      .click('.control-buttons-container button:nth-child(2)')
+      .click('.control-buttons-container button:nth-child(3)')
+      .getText('.timer', containsRegExp(/1[45]:\d\d/))
+      .click('.control-buttons-container button:nth-child(3)')
+  },
   "refreshing the browser retains state": function(browser){
     browser
       .click('.control-buttons-container button:first-child')
