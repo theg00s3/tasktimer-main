@@ -1,6 +1,5 @@
 var store = require('store')
   , PomodoroRepository = require('./PomodoroRepository')
-  , constants = require('../constants')
   , AnalyticsService = require('./AnalyticsService')
 
 module.exports = function(eventName, minutes, type, time){

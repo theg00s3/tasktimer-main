@@ -14,11 +14,11 @@ var Main = React.createClass({
   render: function() {
     var remaining = Timer.getRemaining()
     var pomodoroData = store.get('pomodoroData')
-    if( remaining <= 0 ){
-      PomodoroEventHandler('end', this.state.pomodoroData.minutes, this.state.pomodoroData.type)
+    if( remaining <= 0 && pomodoroData ){
+      PomodoroEventHandler('end', pomodoroData.minutes, pomodoroData.type)
     }
     return  <div>
-              <PomodoroTimer remaining={remaining} data={pomodoroData} notify={PomodoroEventHandler}/>
+              <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
               <div className="content breath">
                 <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
               </div>

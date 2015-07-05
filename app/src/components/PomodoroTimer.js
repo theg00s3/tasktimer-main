@@ -5,7 +5,7 @@ var React = require('react')
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      time: TimeFormatter.formatSeconds(0),
+      time: TimeFormatter.formatSeconds(Timer.getRemaining()),
       disabled25: false,
       disabled15: false,
       disabled5: false,
@@ -36,15 +36,12 @@ module.exports = React.createClass({
       return
     var remaining = Timer.getRemaining()
     var time = TimeFormatter.formatSeconds(remaining)
-    if( this.props.notify ){
-      this.props.notify('tick', this.minutes, this.type, time)
-    }
     this.setState({
       time: time,
     })
     if( remaining <= 0 ){
       this._stop()
-    if( this.props.notify ){
+      if( this.props.notify ){
         this.props.notify('end', this.minutes, this.type)
       }
     }
@@ -73,15 +70,13 @@ module.exports = React.createClass({
   },
   _stop: function(minutes, type){
     Timer.stop()
-    this.setState({
-      disabled25: false,
-      disabled15: false,
-      disabled5: false,
-      time: TimeFormatter.formatSeconds(0)
-    })
+    this._end()
   },
   _end: function(){
-
+    this._resetButtons()
+    this.setState({
+      time: TimeFormatter.formatSeconds(Timer.getRemaining())
+    })
   },
   render: function(){
     return  <div className="pomodoro">
