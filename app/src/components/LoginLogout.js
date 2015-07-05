@@ -4,7 +4,7 @@ var React = require('react')
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      loggedIn: false
+      loggedIn: undefined
     }
   },
   componentWillMount: function(){
@@ -21,6 +21,9 @@ module.exports = React.createClass({
       }.bind(this))
   },
   render: function(){
+    if( this.state.loggedIn === undefined || !!this.props.onlyLogin) {
+      return null
+    }
     if( !this.state.loggedIn ) {
       return  <div className={this.props.className + " login-logout"}>
                 <span className="text">{this.props.text || "Login with"}</span>
@@ -33,9 +36,6 @@ module.exports = React.createClass({
                   </a>
                 </div>
               </div>
-    }
-    if( !!this.props.onlyLogin ){
-      return null
     }
     return  <div className="login-logout">
               <a href="/auth/logout" className="logout">Logout</a>
