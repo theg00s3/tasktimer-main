@@ -4,18 +4,13 @@ var Loader = require('react-loader')
   ,  _ = require('underscore')
   , moment = require('moment')
   , url = require('url')
-  , PieChart = require('react-chartjs').Pie
   , page = require('page')
 
-var Timeline = require('../components/Timeline')
-  , LoginLogout = require('../components/LoginLogout')
-  , StatisticsDetailsList = require('../components/StatisticsDetailsList')
+var LoginLogout = require('../components/LoginLogout')
   , ArrowNavigation = require('../components/ArrowNavigation')
+  , Timeline = require('../components/Timeline')
 
-var PomodoroUtils = require('../../../shared/PomodoroUtils')
-  , constants = require('../../../shared/constants')
-
-var ChartUtils = require('../modules/ChartUtils')
+var constants = require('../../../shared/constants')
 
 var mainHeader = document.getElementById('main-header')
 
@@ -30,21 +25,11 @@ module.exports = function(context){
   React.render(<Statistics day={day} dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
 }
 
-var chartOptions = {
-  percentageInnerCutout : 35,
-  animationSteps : 50,
-  animationEasing : "easeOutBounce",
-  animateRotate : true,
-  animateScale : false,
-  tooltipTemplate: "<%=label%>: <%= value %>min",
-}
-
 var Statistics = React.createClass({
   getInitialState: function(){
     return {
       data: [],
       loaded: false,
-      chartData: [],
       authorized: true
     }
   },
@@ -61,7 +46,6 @@ var Statistics = React.createClass({
         this.setState({
           data: data,
           loaded: true,
-          chartData: ChartUtils.getPieChartDataFrom(data),
         })
       }.bind(this))
       .catch(function(response){
@@ -118,17 +102,12 @@ var Statistics = React.createClass({
   _getContent: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
     if( this.state.data.length > 0 ){
-      availableContent =  <div>
-                            <div className="col border-right">
-                              <PieChart style={{display:'block', margin:'auto'}} data={this.state.chartData} options={chartOptions}/>
-                              <br/>
-                              <StatisticsDetailsList data={this.state.data}/>
-                            </div>
-                          </div>
+      availableContent =  null
     }
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
     var authorizedContent = <div>
+                              <Timeline height="100px" width="100%" data={this.state.data}/>
                               <div className="row block block-with-padding">
                                 {availableContent}
                               </div>
