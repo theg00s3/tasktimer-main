@@ -9,16 +9,18 @@ module.exports = React.createClass({
   },
   componentWillMount: function(){
     AuthService.authenticate()
-      .then(function(response){
-        this.setState({
-          loggedIn: true
-        })
-      }.bind(this))
-      .catch(function(){
-        this.setState({
-          loggedIn: false
-        })
-      }.bind(this))
+    .then(this._handleAuthenticationSuccess.bind(this))
+    .catch(this._handleAuthenticationFailure.bind(this))
+  },
+  _handleAuthenticationSuccess: function(response){
+    this.setState({
+      loggedIn: true
+    })
+  },
+  _handleAuthenticationFailure: function(){
+    this.setState({
+      loggedIn: false
+    })
   },
   render: function(){
     if( this.state.loggedIn === undefined ) {
