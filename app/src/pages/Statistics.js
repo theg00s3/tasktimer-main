@@ -43,6 +43,7 @@ var Statistics = React.createClass({
     this.props.dataPromise
       .then(function(response){
         var data = response.data
+        console.log(window.data = data)
         this.setState({
           data: data,
           loaded: true,
