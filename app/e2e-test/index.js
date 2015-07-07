@@ -10,18 +10,6 @@ module.exports = {
   after: function(browser){
     browser.end()
   },
-  "trolling is ok": function(browser){
-    browser
-      .click('.control-buttons-container button:first-child')
-      .getText('.timer', containsRegExp(/2[45]:\d\d/))
-      .click('.control-buttons-container button:first-child')
-      .click('.control-buttons-container button:nth-child(2)')
-      .getText('.timer', containsRegExp(/0[45]:\d\d/))
-      .click('.control-buttons-container button:nth-child(2)')
-      .click('.control-buttons-container button:nth-child(3)')
-      .getText('.timer', containsRegExp(/1[45]:\d\d/))
-      .click('.control-buttons-container button:nth-child(3)')
-  },
   "refreshing the browser retains state": function(browser){
     browser
       .click('.control-buttons-container button:first-child')
@@ -64,30 +52,15 @@ module.exports = {
       .getTitle(function(title) {
         this.assert.ok(/Pomodoro\.cc/.test(title))
       })
-      
-      .assert.containsText('.timer', '00:00')
-      .click('.control-buttons-container button:nth-child(2)')
-      .getText('.timer', containsRegExp(/0[45]:\d\d/))
-      .getTitle(function(title) {
-        this.assert.ok(/0[45]:\d\d/.test(title))
-      })
-      .click('.control-buttons-container button:nth-child(2)')
-      .assert.containsText('.timer', '00:00')
-      .getTitle(function(title) {
-        this.assert.ok(/Pomodoro\.cc/.test(title))
-      })
+  },
+  "adds changes color of header when navigated to statistics page": function(browser){
+    browser
+      .url('https://pomodoro.dev/statistics')
+      .assert.attributeContains('main header', 'class', 'prominent-header')
 
-      .assert.containsText('.timer', '00:00')
-      .click('.control-buttons-container button:nth-child(3)')
-      .getText('.timer', containsRegExp(/1[45]:\d\d/))
-      .getTitle(function(title) {
-        this.assert.ok(/1[45]:\d\d/.test(title))
-      })
-      .click('.control-buttons-container button:nth-child(3)')
-      .assert.containsText('.timer', '00:00')
-      .getTitle(function(title) {
-        this.assert.ok(/Pomodoro\.cc/.test(title))
-      })
+
+      .url('https://pomodoro.dev/about')
+      .assert.attributeContains('main header', 'class', 'prominent-header')
   },
   "navigate in statistics page": function(browser){
     var today = getToday()
