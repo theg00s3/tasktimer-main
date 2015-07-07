@@ -8,6 +8,7 @@ var Loader = require('react-loader')
 
 var LoginLogout = require('../components/LoginLogout')
   , ArrowNavigation = require('../components/ArrowNavigation')
+  , Timeline = require('../components/Timeline')
 
 var constants = require('../../../shared/constants')
 
@@ -101,12 +102,13 @@ var Statistics = React.createClass({
   _getContent: function(){
     var availableContent = <h1 className="tac no">No data!</h1>
     if( this.state.data.length > 0 ){
-      availableContent = null
+      availableContent =  null
     }
     var unauthorizedContent = [
                                 <LoginLogout onlyLogin={true} className="big left"/>
                               ]
     var authorizedContent = <div>
+                              <Timeline height="100px" width="100%" data={this.state.data}/>
                               <div className="row block block-with-padding">
                                 {availableContent}
                               </div>
