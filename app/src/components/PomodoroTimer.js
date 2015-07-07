@@ -1,23 +1,11 @@
 var React = require('react')
   , TimeFormatter = require('../modules/TimeFormatter')
   , Timer = require('../modules/Timer')
-  , Buzz = require('../modules/Buzz')
-
-var ringingSound = new Buzz.sound('/assets/audio/ring.mp3', {
-  preload: true,
-  loop: false,
-  webAudioApi: true,
-})
-var tickingSound = new Buzz.sound('/assets/audio/tick.mp3', {
-  preload: true,
-  loop: true,
-  webAudioApi: true,
-})
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      time: TimeFormatter.formatSeconds(0),
+      time: TimeFormatter.formatSeconds(Timer.getRemaining()),
       disabled25: false,
       disabled15: false,
       disabled5: false,
@@ -27,7 +15,6 @@ module.exports = React.createClass({
   componentWillUnmount: function(){
     Timer.off('tick', this._tick)
     Timer.off('end', this._end)
-    tickingSound.stop()
   },
   componentDidMount: function() {
     Timer.on('tick', this._tick)
@@ -40,33 +27,24 @@ module.exports = React.createClass({
       newState['disabled'+this.props.data.minutes] = false
       this.setState(newState)
     }
-
-    if( Timer.isInProgress() ){
-      tickingSound.play()
-    } else {
-      if( this.props.remaining > 0 && canRestoreMinutes ){
-        Timer.start(this.props.remaining)
-        tickingSound.play()
-      }
-    }
   },
-  _resetButtons: function(){
+  _disableButtons: function(){
     this.setState({disabled25: true, disabled15: true, disabled5: true })
+  },
+  _enableButtons: function(){
+    this.setState({disabled25: false, disabled15: false, disabled5: false })
   },
   _tick: function(){
     if( !this.isMounted() )
       return
     var remaining = Timer.getRemaining()
     var time = TimeFormatter.formatSeconds(remaining)
-    if( this.props.notify ){
-      this.props.notify('tick', this.minutes, this.type, time)
-    }
     this.setState({
       time: time,
     })
     if( remaining <= 0 ){
       this._stop()
-    if( this.props.notify ){
+      if( this.props.notify ){
         this.props.notify('end', this.minutes, this.type)
       }
     }
@@ -86,27 +64,22 @@ module.exports = React.createClass({
       return
     }
     Timer.start(minutes*60)
-    tickingSound.play()
     this.minutes = minutes
     this.type = type
-    this._resetButtons()
+    this._disableButtons()
     var disabledMinutes = {}
     disabledMinutes['disabled'+minutes] = false
     this.setState(disabledMinutes)
   },
   _stop: function(minutes, type){
-    tickingSound.stop()
-    ringingSound.play()
     Timer.stop()
-    this.setState({
-      disabled25: false,
-      disabled15: false,
-      disabled5: false,
-      time: TimeFormatter.formatSeconds(0)
-    })
+    this._end()
   },
   _end: function(){
-
+    this._enableButtons()
+    this.setState({
+      time: TimeFormatter.formatSeconds(Timer.getRemaining())
+    })
   },
   render: function(){
     return  <div className="pomodoro">

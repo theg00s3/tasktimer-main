@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , mocha = require('gulp-mocha')
   , gulpif = require('gulp-if')
   , browserSync = require('browser-sync').create()
+  , historyApiFallback = require('connect-history-api-fallback')
   , uglify = require('gulp-uglify')
   , nib = require('nib')
   , browserify = require('browserify')
@@ -131,6 +132,7 @@ gulp.task('browser-sync', function(){
     server: {
       baseDir: 'www'
     },
+    middleware: [ historyApiFallback() ],
     port: 9001,
     ui: false,
     browser: browsers

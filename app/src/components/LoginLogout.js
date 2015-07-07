@@ -4,23 +4,28 @@ var React = require('react')
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      loggedIn: false
+      loggedIn: undefined
     }
   },
   componentWillMount: function(){
     AuthService.authenticate()
-      .then(function(response){
-        this.setState({
-          loggedIn: true
-        })
-      }.bind(this))
-      .catch(function(){
-        this.setState({
-          loggedIn: false
-        })
-      }.bind(this))
+    .then(this._handleAuthenticationSuccess.bind(this))
+    .catch(this._handleAuthenticationFailure.bind(this))
+  },
+  _handleAuthenticationSuccess: function(response){
+    this.setState({
+      loggedIn: true
+    })
+  },
+  _handleAuthenticationFailure: function(){
+    this.setState({
+      loggedIn: false
+    })
   },
   render: function(){
+    if( this.state.loggedIn === undefined ) {
+      return null
+    }
     if( !this.state.loggedIn ) {
       return  <div className={this.props.className + " login-logout"}>
                 <span className="text">{this.props.text || "Login with"}</span>
@@ -34,7 +39,7 @@ module.exports = React.createClass({
                 </div>
               </div>
     }
-    if( !!this.props.onlyLogin ){
+    if( !!this.props.onlyLogin ) {
       return null
     }
     return  <div className="login-logout">

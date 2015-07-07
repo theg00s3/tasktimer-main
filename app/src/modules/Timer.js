@@ -15,6 +15,7 @@ var interval = undefined
 var events = {
   tick: [],
   end: [],
+  start: [],
 }
 
 function start(_seconds){
@@ -23,16 +24,19 @@ function start(_seconds){
 
   startedAt = Date.now()
   seconds = _seconds
-  interval = setInterval(tick, 100)
+  interval = setInterval(tick, 500)
+  tick()
+  events.start.forEach(function(callback){
+    callback(seconds)
+  })
   return seconds
 }
 
 function stop(){
   if( startedAt ){
-    var remaining = getRemaining()
     events.end.forEach(function(cb){
       if( cb instanceof Function )
-        cb(remaining)
+        cb(0)
     })
     startedAt = undefined
     seconds = undefined
@@ -42,6 +46,8 @@ function stop(){
 }
 
 function getRemaining(){
+  if( !startedAt )
+    return 0
   var now = Date.now()
   return intValue(startedAt/1000) - intValue(now/1000) + seconds
 }

@@ -11,9 +11,7 @@ describe('Timer', function () {
     Timer.stop()
   })
   before(function () {
-    clock = sinon.useFakeTimers()
-    // start at a given point in time (instead of at 0)
-    clock.tick(1000*60*60)
+    clock = sinon.useFakeTimers(1000*60*60)
   })
   after(function () {
     clock.restore()
@@ -21,8 +19,12 @@ describe('Timer', function () {
 
   describe('behaviour', function () {
     it('refuses to start a timer with invalid seconds', function () {
+      expect( Timer.start("123.2") ).not.to.be.ok
+      expect( Timer.start("123") ).not.to.be.ok
+      expect( Timer.start([]) ).not.to.be.ok
       expect( Timer.start(123.2) ).not.to.be.ok
       expect( Timer.start(-1) ).not.to.be.ok
+      expect( Timer.start(0) ).not.to.be.ok
     })
 
     it('starts a timer with given seconds', function () {
@@ -49,29 +51,34 @@ describe('Timer', function () {
     it('returns the remaining time', function () {
       expect( Timer.start(25*60) ).to.be.ok
       clock.tick(1000)
-      expect( Timer.getRemaining() ).to.be.ok
       expect( Timer.getRemaining() ).to.eql( 25*60 -1 )
     })
   })
 
   describe('events', function () {
     var callback = sinon.spy()
-    beforeEach(function () {
+    afterEach(function () {
       callback.reset()
+      Timer.off('tick', callback)
+      Timer.off('end', callback)
+      Timer.off('start', callback)
     })
     it('adds a listener for tick event', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       expect( callback.called ).to.be.true
+    })
+
+    it('adds a listener for start event', function () {
+      Timer.on('start', callback)
+      Timer.start(25*60)
+      expect( callback.called ).to.be.true
+      expect( callback.calledWith(25*60) ).to.be.true
     })
 
     it('stops tick callback when timer is stopped', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       callback.reset()
       Timer.stop()
       clock.tick(1000)
@@ -81,8 +88,6 @@ describe('Timer', function () {
     it('removes listener for tick event', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
-      expect( callback.called ).not.to.be.true
-      clock.tick(1000)
       callback.reset()
       Timer.off('tick', callback)
       clock.tick(1000)

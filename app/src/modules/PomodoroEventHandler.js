@@ -1,6 +1,5 @@
 var store = require('store')
   , PomodoroRepository = require('./PomodoroRepository')
-  , constants = require('../constants')
   , AnalyticsService = require('./AnalyticsService')
 
 module.exports = function(eventName, minutes, type, time){
@@ -22,10 +21,7 @@ module.exports = function(eventName, minutes, type, time){
         PomodoroRepository.create(pomodoroData)
       }
       store.remove('pomodoroData')
-      resetTitle()
       break
-    case 'tick':
-      document.title = time + ' - ' + constants.title
   }
 }
 
@@ -36,9 +32,3 @@ function setCancelledAtIfNeeded(pomodoroData){
   }
   return pomodoroData
 }
-
-
-function resetTitle(){
-  document.title = constants.title
-}
-

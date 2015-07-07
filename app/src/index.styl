@@ -1,27 +1,10 @@
-/* COLORS */
-color_dark = #394240
-color_orange = rgb(253, 164, 0)
-color_pomodoro = #DF2E2E
-color_pomodoro_leaf = #24b524
-color_text = #292e31
-color_text_light = #555
-color_text_dark = #292e31
-color_heading = darken(color_text,25%)
-color_link = #008cdd
-color_white = #fff
-color_light = #f8f9fb
-color_light_grey = #f5f7f9
-color_light_grey = #F9F9F9
-color_twitter = #019CD7
-color_github = #333333
-
-
 header_padding = .75rem
 header_height  = header_padding + 0.7rem
-limit = 55em
-limit_small = 30em
+limit = 55rem
+limit_small = 30rem
 
 
+@import 'general/colors'
 @import 'general/*'
 @import 'components/*'
 @import 'pages/*'
@@ -34,23 +17,6 @@ body
 main
   margin-top (header_height*2)
   min-height 500px
-
-.limit
-  max-width limit
-  margin-left auto
-  margin-right @margin-left
-  padding-left 0.5em
-  padding-right @padding-left
-
-  &.extended
-    max-width limit*1.4
-
-.content
-  @extend .limit
-
-.breath
-  margin-top 1em
-  margin-bottom @margin-top
 
 .tac
   text-align center
