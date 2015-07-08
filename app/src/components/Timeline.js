@@ -19,8 +19,8 @@ module.exports = React.createClass({
   },
   render: function(){
     var timelineItems = this.props.data.map(function(item,index,list){
-      var renderingData = TimelineUtils.getRenderingData(item,list)
-      return  <circle cx={renderingData.x} cy="50%" r="25"></circle>
+      var renderingData = TimelineUtils.getTimelineItemRenderingData(item,list)
+      return  <circle cx={renderingData.x} cy="50%" r={renderingData.r}></circle>
     })
     return  <svg height={this.props.height} width={this.props.width}>
               <g>

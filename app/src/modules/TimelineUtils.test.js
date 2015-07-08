@@ -4,15 +4,21 @@ var expect = require('chai').expect
 
 describe('TimelineUtils', function () {
   var data = [{
-    startedAt: 1436024075955
+    startedAt: 1436024075955,
+    minutes: 25
   },{
-    startedAt: 1436026529814
+    startedAt: 1436026529814,
+    minutes: 5
   },{
-    startedAt: 1436026668724
+    startedAt: 1436026668724,
+    cancelledAt: 1436026668724+1000*60*3,
+    minutes: 15
   },{
-    startedAt: 1436026851193
+    startedAt: 1436026851193,
+    minutes: 25
   },{
-    startedAt: 1436032696618
+    startedAt: 1436032696618,
+    minutes: 5
   }]
 
   it('returns undefined for an empty list', function () {
@@ -43,11 +49,22 @@ describe('TimelineUtils', function () {
     expect( TimelineUtils.getEnd(data[0]) ).to.eql( data[0].startedAt )
   })
 
-  it('calculates the position in percent relative to start and end time', function () {
-    expect( TimelineUtils.getRenderingData(data[0], data) ).to.deep.eql( {x:'19.1%'} )
-    expect( TimelineUtils.getRenderingData(data[1], data) ).to.deep.eql( {x:'41.7%'} )
-    expect( TimelineUtils.getRenderingData(data[2], data) ).to.deep.eql( {x:'42.98%'} )
-    expect( TimelineUtils.getRenderingData(data[3], data) ).to.deep.eql( {x:'44.67%'} )
-    expect( TimelineUtils.getRenderingData(data[4], data) ).to.deep.eql( {x:'98.49%'} )
+  describe('timeline rendering data', function () {
+    it('calculates the horizontal position', function () {
+      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).x ).to.eql( '19.1%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).x ).to.eql( '41.7%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).x ).to.eql( '42.98%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).x ).to.eql( '44.67%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).x ).to.eql( '98.49%' )
+    })
+
+    it('calculates the radius', function () {
+      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( 25 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( 5 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( 3 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( 25 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).r ).to.eql( 5 )
+    })
   })
+
 })

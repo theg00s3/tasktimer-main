@@ -3,11 +3,12 @@ module.exports = {
   getStartHour: getStartHour,
   getEnd: getEnd,
   getEndHour: getEndHour,
-  getRenderingData: getRenderingData,
+  getTimelineItemRenderingData: getTimelineItemRenderingData,
 }
 
 var _ = require('underscore')
 var moment = require('moment')
+var PomodoroUtils = require('../../../shared/PomodoroUtils')
 
 var hourFormat = 'HH:mm'
 
@@ -33,30 +34,38 @@ function getEndHour(data){
   return moment(getEnd(data)).utc().endOf('hour').add(1,'minute').format(hourFormat)
 }
 
-function getRenderingData(point, data){
+function getTimelineItemRenderingData(pomodoro, data){
   var args = Array.prototype.slice.call(arguments)
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
-  var startPoint = moment(getStart(point)).utc().unix()*1000
+  var startPoint = moment(getStart(pomodoro)).utc().unix()*1000
   var start = moment(getStart(data)).utc().startOf('hour').unix()*1000
   var end = moment(getEnd(data)).utc().endOf('hour').add(1,'minute').unix()*1000
 
-  var normalizedEnd = end - start
-  var normalizedStartPoint = startPoint - start
+  var x = percentualValue(start,end,startPoint) + '%'
 
-  var percent = (normalizedStartPoint/normalizedEnd) * 100
-  percent = limitDecimalPlaces(percent, 2)
-  var x = percent + '%'
+  var duration = PomodoroUtils.getDuration(pomodoro)
+  var r = percentualValue(0,25*60,duration)/4
 
   return {
-    x: x
+    x: x,
+    r: r
   }
+}
+
+function percentualValue(min,max,value){
+  var normalizedMax = max - min
+  var normalizedValue = value - min
+
+  var percent = (normalizedValue/normalizedMax) * 100
+  percent = limitDecimalPlaces(percent, 2)
+  return percent  
 }
 
 function limitDecimalPlaces(number, decimalPlaces) {
   decimalPlaces = decimalPlaces || 2
   var pow = Math.pow(10, decimalPlaces)
   return parseInt(number * pow) / pow
-
 }
+
