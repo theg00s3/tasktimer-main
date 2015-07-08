@@ -22,12 +22,14 @@ module.exports = React.createClass({
       var renderingData = TimelineUtils.getTimelineItemRenderingData(item,list)
       return  <circle cx={renderingData.x} cy="50%" r={renderingData.r}></circle>
     })
-    return  <svg height={this.props.height} width={this.props.width}>
-              <g>
-                {timelineItems}
-              </g>
-              <text y="100%" x="0%">{this.state.startHour}</text>
-              <text y="100%" x="90%">{this.state.endHour}</text>
-            </svg>
+    return  <div className="timeline-container">
+              <svg height={this.props.height} width={this.props.width}>
+                <g>
+                  {timelineItems}
+                </g>
+                <text y="100%" x="0%">{this.state.startHour}</text>
+                <text y="100%" x="90%">{this.state.endHour}</text>
+              </svg>
+            </div>
   }
 })

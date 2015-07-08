@@ -46,7 +46,7 @@ function getTimelineItemRenderingData(pomodoro, data){
   var x = percentualValue(start,end,startPoint) + '%'
 
   var duration = PomodoroUtils.getDuration(pomodoro)
-  var r = percentualValue(0,25*60,duration)/4
+  var r = limitDecimalPlaces(percentualValue(0,25*60,duration)/6, 2)
 
   return {
     x: x,
