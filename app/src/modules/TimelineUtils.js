@@ -35,7 +35,7 @@ function getEndHour(data){
 
 function getRenderingData(point, data){
   var args = Array.prototype.slice.call(arguments)
-  if( args.length === 3 ){
+  if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
   var startPoint = getStart(point)
@@ -46,10 +46,17 @@ function getRenderingData(point, data){
   var normalizedStartPoint = startPoint - start
 
   var percent = (normalizedStartPoint/normalizedEnd) * 100
-  percent = parseInt(percent * 100)/100
+  percent = limitDecimalPlaces(percent, 2)
   var x = percent + '%'
 
   return {
     x: x
   }
+}
+
+function limitDecimalPlaces(number, decimalPlaces) {
+  decimalPlaces = decimalPlaces || 2
+  var pow = Math.pow(10, decimalPlaces)
+  return parseInt(number * pow) / pow
+
 }
