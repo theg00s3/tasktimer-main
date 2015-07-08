@@ -20,7 +20,7 @@ function getStart(data){
 }
 
 function getStartHour(data){
-  return moment(getStart(data)).utc().startOf('hour').format(hourFormat)
+  return moment(getStart(data)).startOf('hour').format(hourFormat)
 }
 
 function getEnd(data){
@@ -31,7 +31,7 @@ function getEnd(data){
 }
 
 function getEndHour(data){
-  return moment(getEnd(data)).utc().endOf('hour').add(1,'minute').format(hourFormat)
+  return moment(getEnd(data)).endOf('hour').add(1,'minute').format(hourFormat)
 }
 
 function getTimelineItemRenderingData(pomodoro, data){
@@ -39,9 +39,9 @@ function getTimelineItemRenderingData(pomodoro, data){
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
-  var startPoint = moment(getStart(pomodoro)).utc().unix()*1000
-  var start = moment(getStart(data)).utc().startOf('hour').unix()*1000
-  var end = moment(getEnd(data)).utc().endOf('hour').add(1,'minute').unix()*1000
+  var startPoint = moment(getStart(pomodoro)).unix()*1000
+  var start = moment(getStart(data)).startOf('hour').unix()*1000
+  var end = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
 
   var x = percentualValue(start,end,startPoint) + '%'
 
