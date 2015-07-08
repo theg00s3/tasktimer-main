@@ -30,7 +30,7 @@ function getEnd(data){
 }
 
 function getEndHour(data){
-  return moment(getEnd(data)).utc().endOf('hour').format(hourFormat)
+  return moment(getEnd(data)).utc().endOf('hour').add(1,'minute').format(hourFormat)
 }
 
 function getRenderingData(point, data){
