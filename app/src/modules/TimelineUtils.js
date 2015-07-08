@@ -3,7 +3,7 @@ module.exports = {
   getStartHour: getStartHour,
   getEnd: getEnd,
   getEndHour: getEndHour,
-  getPercentPosition: getPercentPosition,
+  getRenderingData: getRenderingData,
 }
 
 var _ = require('underscore')
@@ -33,7 +33,11 @@ function getEndHour(data){
   return moment(getEnd(data)).utc().endOf('hour').format(hourFormat)
 }
 
-function getPercentPosition(point, data){
+function getRenderingData(point, data){
+  var args = Array.prototype.slice.call(arguments)
+  if( args.length === 3 ){
+    data = args[2]
+  }
   var startPoint = getStart(point)
   var start = getStart(data)
   var end = getEnd(data)
@@ -43,6 +47,9 @@ function getPercentPosition(point, data){
 
   var percent = (normalizedStartPoint/normalizedEnd) * 100
   percent = parseInt(percent * 100)/100
+  var x = (percent + '%').replace(/\./, ',') 
 
-  return (percent + '%').replace(/\./, ',')
+  return {
+    x: x
+  }
 }
