@@ -38,9 +38,9 @@ function getRenderingData(point, data){
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
-  var startPoint = getStart(point)
-  var start = getStart(data)
-  var end = getEnd(data)
+  var startPoint = moment(getStart(point)).utc().unix()*1000
+  var start = moment(getStart(data)).utc().startOf('hour').unix()*1000
+  var end = moment(getEnd(data)).utc().endOf('hour').add(1,'minute').unix()*1000
 
   var normalizedEnd = end - start
   var normalizedStartPoint = startPoint - start
