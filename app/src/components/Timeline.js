@@ -18,6 +18,8 @@ module.exports = React.createClass({
     })
   },
   render: function(){
+    if( this.props.data.length === 0 )
+      return null
     var timelineItems = this.props.data.map(function(item,index,list){
       var renderingData = TimelineUtils.getTimelineItemRenderingData(item,list)
       return  <circle cx={renderingData.x} cy="50%" r={renderingData.r}></circle>
