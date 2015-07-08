@@ -47,7 +47,7 @@ function getRenderingData(point, data){
 
   var percent = (normalizedStartPoint/normalizedEnd) * 100
   percent = parseInt(percent * 100)/100
-  var x = (percent + '%').replace(/\./, ',') 
+  var x = percent + '%'
 
   return {
     x: x
