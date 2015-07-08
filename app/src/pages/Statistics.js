@@ -109,9 +109,6 @@ var Statistics = React.createClass({
 
     var authorizedContent = <div>
                               <Timeline height="100px" width="100%" data={this.state.data}/>
-                              <div className="row block block-with-padding">
-                                {availableContent}
-                              </div>
                             </div>
     return !this.state.authorized ? unauthorizedContent : authorizedContent
   },
