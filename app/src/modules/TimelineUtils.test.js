@@ -45,5 +45,9 @@ describe('TimelineUtils', function () {
 
   it('calculates the position in percent relative to start and end time', function () {
     expect( TimelineUtils.getRenderingData(data[0], data) ).to.deep.eql( {x:'19.1%'} )
+    expect( TimelineUtils.getRenderingData(data[1], data) ).to.deep.eql( {x:'41.7%'} )
+    expect( TimelineUtils.getRenderingData(data[2], data) ).to.deep.eql( {x:'42.98%'} )
+    expect( TimelineUtils.getRenderingData(data[3], data) ).to.deep.eql( {x:'44.67%'} )
+    expect( TimelineUtils.getRenderingData(data[4], data) ).to.deep.eql( {x:'98.49%'} )
   })
 })
