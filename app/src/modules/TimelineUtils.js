@@ -48,6 +48,10 @@ function getTimelineItemRenderingData(pomodoro, data){
   var duration = PomodoroUtils.getDuration(pomodoro)
   var r = limitDecimalPlaces(percentualValue(0,25*60,duration)/6, 2)
 
+  var maxRadius = 50
+
+  r = limitDecimalPlaces(Math.sqrt( (50 * duration) / (25*Math.PI) ), 2)
+
   return {
     x: x,
     r: r

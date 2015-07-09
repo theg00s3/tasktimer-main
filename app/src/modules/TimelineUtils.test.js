@@ -59,11 +59,11 @@ describe('TimelineUtils', function () {
     })
 
     it('calculates the radius', function () {
-      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( 16.66 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( 3.33 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( 2 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( 16.66 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).r ).to.eql( 3.33 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( 30.9 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( 13.81 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( 10.7 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( 30.9 )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).r ).to.eql( 13.81 )
     })
   })
 
