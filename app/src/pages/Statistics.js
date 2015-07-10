@@ -38,12 +38,11 @@ var Statistics = React.createClass({
     mainHeader.classList.remove('white')
   },
   componentDidMount: function(){
-    document.body.addEventListener('keydown', this._handleKeyboardNavigation.bind(this))
+    document.body.addEventListener('keydown', this._handleKeyboardNavigation)
     mainHeader.classList.add('white')
     this.props.dataPromise
       .then(function(response){
         var data = response.data
-        console.log(window.data = data)
         this.setState({
           data: data,
           loaded: true,

@@ -10,8 +10,8 @@ module.exports = React.createClass({
   },
   componentDidMount: function(){
     AuthService.authenticate()
-    .then(this._handleAuthenticationSuccess.bind(this))
-    .catch(this._handleAuthenticationFailure.bind(this))
+    .then(this._handleAuthenticationSuccess)
+    .catch(this._handleAuthenticationFailure)
   },
   _handleAuthenticationSuccess: function(response){
     if( this.isMounted() && response.status === 200 ){

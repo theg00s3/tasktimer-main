@@ -9,8 +9,8 @@ module.exports = React.createClass({
   },
   componentWillMount: function(){
     AuthService.authenticate()
-    .then(this._handleAuthenticationSuccess.bind(this))
-    .catch(this._handleAuthenticationFailure.bind(this))
+    .then(this._handleAuthenticationSuccess)
+    .catch(this._handleAuthenticationFailure)
   },
   _handleAuthenticationSuccess: function(response){
     this.setState({
