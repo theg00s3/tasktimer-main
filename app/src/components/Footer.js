@@ -6,18 +6,18 @@ module.exports = React.createClass({
     return  <footer role="footer">
               <div className="limit">
                 <div className="limit tac">
-                  <Alert>
-                    <i className="icon ion-information-circled"></i> &nbsp;
-                    <strong>As seen on <a href="http://www.producthunt.com/e/productivity-hacks" target="_blank">ProductHunt</a></strong>
-                  </Alert>
+                  <p>
+                    <strong>by</strong> <a href="http://christian.fei.ninja" target="_blank">Christian Fei</a>
+                  </p>
+                  <p>
+                    <strong>hosted on</strong> <a href="https://www.digitalocean.com/?refcode=880e8f681b50">digitalocean</a>
+                  </p>
                 </div>
                 <div className="limit tac">
-                  <p>
-                    by <a href="http://christian.fei.ninja" target="_blank">Christian Fei</a>
-                  </p>
-                  <p>
-                    hosted on <a href="https://www.digitalocean.com/?refcode=880e8f681b50">digitalocean</a>
-                  </p>
+                  <strong>As seen on&nbsp;</strong>
+                  <a href="http://www.producthunt.com/e/productivity-hacks" target="_blank">
+                    <img width="120px" className="producthunt-logo" src="/assets/img/ph_logo.png" alt="As seen on ProductHunt"></img>
+                  </a>
                 </div>
                 <div className="limit tac">
                   <p className="small light">
