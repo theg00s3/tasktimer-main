@@ -17,12 +17,12 @@ var About = React.createClass({
   render: function(){
     return  <div>
               <header className="prominent-header">
-                <div className="content">
+                <div className="limit">
                   <h1>Boost your productivity</h1>
                   <h5>Manage your time more effectively</h5>
                 </div>
               </header>
-              <div className="content breath">
+              <div className="limit breath">
                 <p className="breath">
                   Pomodoro.cc is a time tracking tool that will help you to keep track of your work and review your achieved goals for the day.
                   <br/>

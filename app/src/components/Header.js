@@ -11,7 +11,7 @@ module.exports = React.createClass({
       <li key="2"><a href="/about">About</a></li>,
     ]
     return  <header role="header">
-              <div className="content">
+              <div className="limit">
                 <a href="/" tabIndex="1" className="brand">p<span className="rest">omodoro</span><span className="tld">.cc</span></a>
                 <Dropdown text="Menu" items={items} tabIndex="2"/>
                 <LoginLogout/>

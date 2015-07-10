@@ -4,7 +4,7 @@ var React = require('react')
 module.exports = React.createClass({
   render: function(){
     return  <footer role="footer">
-              <div className="content">
+              <div className="limit">
                 <div className="limit tac">
                   <Alert>
                     <i className="icon ion-information-circled"></i> &nbsp;

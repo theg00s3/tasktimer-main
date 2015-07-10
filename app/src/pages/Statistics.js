@@ -58,14 +58,14 @@ var Statistics = React.createClass({
   render: function(){
     return  <div className="statistics-content">
               <header className="prominent-header">
-                <div className="content">
+                <div className="limit">
                   <h1 className="statistics-heading">Statistics</h1>
                   <h5 className="statistics-day">{this.props.day}</h5>
                   <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
                   <div className="statistics-graph-image"></div>
                 </div>
               </header>
-              <div className="content breath">
+              <div className="limit extended breath">
                 <Loader loaded={this.state.loaded}>
                   {this._getContent()}
                 </Loader>
