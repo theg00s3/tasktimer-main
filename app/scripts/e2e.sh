@@ -10,7 +10,9 @@ else
   wget http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar -O $SELENIUM_JAR
 fi
 
-if [ -n "$CROSS_BROWSER" ]; then
+if [ -n "$CHROME" ]; then
+  ./node_modules/nightwatch/bin/nightwatch -e chrome
+elif [ -n "$CROSS_BROWSER" ]; then
   ./node_modules/nightwatch/bin/nightwatch -e chrome,firefox,safari
 else
   ./node_modules/nightwatch/bin/nightwatch -e firefox
