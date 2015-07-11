@@ -1,9 +1,4 @@
 module.exports = {
-  beforeEach: function(browser){
-    browser
-      .url('https://pomodoro.dev')
-      .waitForElementVisible('main', 1000)
-  },
   after: function(browser){
     browser.end()
   },
@@ -34,6 +29,11 @@ module.exports = {
     browser
       .url('https://pomodoro.dev/about')
       .assert.containsText('main', 'Manage your time more effectively')
+  },
+  "navigates to blog": function(browser){
+    browser
+      .url('https://pomodoro.dev/blog')
+      .assert.containsText('body', 'Pomodoro.cc Tech Blog')
   }
 }
 
