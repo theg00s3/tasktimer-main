@@ -4,20 +4,20 @@ var expect = require('chai').expect
 
 describe('TimelineUtils', function () {
   var data = [{
-    startedAt: 1436024075955,
+    startedAt: "Sat Jul 04 2015 17:34:35 GMT+0200 (CEST)",
     minutes: 25
   },{
-    startedAt: 1436026529814,
+    startedAt: "Sat Jul 04 2015 18:15:29 GMT+0200 (CEST)",
     minutes: 5
   },{
-    startedAt: 1436026668724,
-    cancelledAt: 1436026668724+1000*60*3,
+    startedAt: "Sat Jul 04 2015 18:17:48 GMT+0200 (CEST)",
+    cancelledAt: "Sat Jul 04 2015 18:20:48 GMT+0200 (CEST)",
     minutes: 15
   },{
-    startedAt: 1436026851193,
+    startedAt: "Sat Jul 04 2015 18:20:51 GMT+0200 (CEST)",
     minutes: 25
   },{
-    startedAt: 1436032696618,
+    startedAt: "Sat Jul 04 2015 19:58:16 GMT+0200 (CEST)",
     minutes: 5
   }]
 

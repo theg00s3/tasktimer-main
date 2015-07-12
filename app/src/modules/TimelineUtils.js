@@ -15,7 +15,7 @@ var hourFormat = 'HH:mm'
 function getStart(data){
   data = _.isArray(data) ? data : [data]
   return _.min(data, function(value, key, list){
-    return value.startedAt
+    return new Date(value.startedAt)
   }).startedAt
 }
 
@@ -26,7 +26,7 @@ function getStartHour(data){
 function getEnd(data){
   data = _.isArray(data) ? data : [data]
   return _.max(data, function(value, key, list){
-    return value.startedAt
+    return new Date(value.startedAt)
   }).startedAt
 }
 
@@ -46,11 +46,7 @@ function getTimelineItemRenderingData(pomodoro, data){
   var x = percentualValue(start,end,startPoint) + '%'
 
   var duration = PomodoroUtils.getDuration(pomodoro)
-  var r = limitDecimalPlaces(percentualValue(0,25*60,duration)/6, 2)
-
-  var maxRadius = 50
-
-  r = limitDecimalPlaces(Math.sqrt( (50 * duration) / (25*Math.PI) ), 2)
+  var r = limitDecimalPlaces(Math.sqrt( (50 * duration) / (25*Math.PI) ), 2)
 
   return {
     x: x,
