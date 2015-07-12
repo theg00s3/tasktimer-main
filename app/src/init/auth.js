@@ -7,7 +7,8 @@ module.exports = function(){
       var user = response.data
       AnalyticsService.track('login-debug', user)
       AnalyticsService.identify(user.id, {
-        username: user.username
+        name: user.username,
+        username: user.username,
       })
     })
     .catch(function(){
