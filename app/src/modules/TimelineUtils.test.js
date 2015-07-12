@@ -4,21 +4,15 @@ var expect = require('chai').expect
 
 describe('TimelineUtils', function () {
   var data = [{
-    startedAt: "Sat Jul 04 2015 17:34:35 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 17:34:00 GMT+0200 (CEST)",
     minutes: 25
   },{
-    startedAt: "Sat Jul 04 2015 18:15:29 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 18:15:00 GMT+0200 (CEST)",
     minutes: 5
   },{
-    startedAt: "Sat Jul 04 2015 18:17:48 GMT+0200 (CEST)",
-    cancelledAt: "Sat Jul 04 2015 18:20:48 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 18:17:00 GMT+0200 (CEST)",
+    cancelledAt: "Sat Jul 04 2015 18:20:00 GMT+0200 (CEST)",
     minutes: 15
-  },{
-    startedAt: "Sat Jul 04 2015 18:20:51 GMT+0200 (CEST)",
-    minutes: 25
-  },{
-    startedAt: "Sat Jul 04 2015 19:58:16 GMT+0200 (CEST)",
-    minutes: 5
   }]
 
   it('returns undefined for an empty list', function () {
@@ -38,7 +32,7 @@ describe('TimelineUtils', function () {
   })
 
   it('calculates the end time in hour format', function () {
-    expect( TimelineUtils.getEndHour(data) ).to.match( /(20\:00|18\:00)/ )
+    expect( TimelineUtils.getEndHour(data) ).to.match( /(19\:00|17\:00)/ )
   })
 
   it('can be used to get the start time from a single item', function () {
@@ -51,19 +45,15 @@ describe('TimelineUtils', function () {
 
   describe('timeline rendering data', function () {
     it('calculates the horizontal position', function () {
-      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).x ).to.eql( '19.1%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).x ).to.eql( '41.7%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).x ).to.eql( '42.98%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).x ).to.eql( '44.67%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).x ).to.eql( '98.49%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).x ).to.eql( '28.1%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).x ).to.eql( '61.99%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).x ).to.eql( '63.64%' )
     })
 
     it('calculates the radius', function () {
       expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( 30.9 )
       expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( 13.81 )
       expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( 10.7 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( 30.9 )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[4], data).r ).to.eql( 13.81 )
     })
   })
 
