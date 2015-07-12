@@ -15,7 +15,13 @@ module.exports = React.createClass({
   },
   _handleAuthenticationSuccess: function(response){
     if( this.isMounted() && response.status === 200 ){
-      this.setState(response.data)
+      var user = response.data
+      var username = user.username
+      var avatar = user.avatar
+      this.setState({
+        username: username,
+        avatar: avatar,
+      })
     }
   },
   _handleAuthenticationFailure: function(){},
