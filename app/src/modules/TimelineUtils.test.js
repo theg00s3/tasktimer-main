@@ -13,6 +13,9 @@ describe('TimelineUtils', function () {
     startedAt: "Sat Jul 04 2015 18:20:00 GMT+0200 (CEST)",
     cancelledAt: "Sat Jul 04 2015 18:34:30 GMT+0200 (CEST)",
     minutes: 15
+  },{
+    startedAt: "Sat Jul 04 2015 18:35:00 GMT+0200 (CEST)",
+    minutes: 25
   }]
 
   it('returns undefined for an empty list', function () {
@@ -48,12 +51,14 @@ describe('TimelineUtils', function () {
       expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).x ).to.eql( '10.41%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).x ).to.eql( '64.07%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).x ).to.eql( '71.95%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).x ).to.eql( '88.93%' )
     })
 
     it('calculates the radius', function () {
       expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( '10.41%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( '2.08%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( '5.83%' )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( '10.41%' )
     })
   })
 

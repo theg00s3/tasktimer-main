@@ -65,8 +65,6 @@ function percentualValue(min,max,value){
   var normalizedMax = max - min
   var normalizedValue = value - min
 
-  console.log( normalizedMax, normalizedValue )
-
   var percent = (normalizedValue/normalizedMax) * 100
   percent = limitDecimalPlaces(percent, 2)
   return percent  

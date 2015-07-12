@@ -30,7 +30,7 @@ module.exports = React.createClass({
                   {timelineItems}
                 </g>
                 <text y="100%" x="0%">{this.state.startHour}</text>
-                <text y="100%" x="90%">{this.state.endHour}</text>
+                <text y="100%" x="95%">{this.state.endHour}</text>
               </svg>
             </div>
   }
