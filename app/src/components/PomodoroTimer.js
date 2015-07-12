@@ -20,6 +20,10 @@ module.exports = React.createClass({
     Timer.on('tick', this._tick)
     Timer.on('end', this._end)
 
+    if( !Timer.isInProgress() ) {
+      return
+    }
+
     var canRestoreMinutes = this.props.data && /(5|15|25)/.test(this.props.data.minutes)
 
     if( canRestoreMinutes ){
