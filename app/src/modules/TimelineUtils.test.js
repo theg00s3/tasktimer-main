@@ -5,17 +5,21 @@ var expect = require('chai').expect
 describe('TimelineUtils', function () {
   var data = [{
     startedAt: "Sat Jul 04 2015 17:00:00 GMT+0200 (CEST)",
-    minutes: 25
+    minutes: 25,
+    type: "pomodoro"
   },{
     startedAt: "Sat Jul 04 2015 18:15:00 GMT+0200 (CEST)",
-    minutes: 5
+    minutes: 5,
+    type: "break"
   },{
     startedAt: "Sat Jul 04 2015 18:20:00 GMT+0200 (CEST)",
     cancelledAt: "Sat Jul 04 2015 18:34:30 GMT+0200 (CEST)",
-    minutes: 15
+    minutes: 15,
+    type: "break"
   },{
     startedAt: "Sat Jul 04 2015 18:35:00 GMT+0200 (CEST)",
-    minutes: 25
+    minutes: 25,
+    type: "pomodoro"
   }]
 
   it('returns undefined for an empty list', function () {
@@ -59,6 +63,13 @@ describe('TimelineUtils', function () {
       expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( '2.08%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( '5.83%' )
       expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( '10.41%' )
+    })
+
+    it('calculates the className', function () {
+      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).className ).to.eql( data[0].type )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).className ).to.eql( data[1].type )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).className ).to.eql( data[2].type )
+      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).className ).to.eql( data[3].type )
     })
   })
 

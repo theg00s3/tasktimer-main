@@ -48,12 +48,14 @@ function getTimelineItemRenderingData(pomodoro, data){
   var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timespanInMinutes)
   var r = limitDecimalPlaces(percentualDuration / 2)
   var x = limitDecimalPlaces(percentualValue(start,end,startPoint) + r)
+  var className = pomodoro.type
   r = r + '%'
   x = x + '%'
 
   return {
     x: x,
     r: r,
+    className: className
   }
 }
 
