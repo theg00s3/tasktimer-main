@@ -42,21 +42,30 @@ function getTimelineItemRenderingData(pomodoro, data){
   var startPoint = moment(getStart(pomodoro)).unix()*1000
   var start = moment(getStart(data)).startOf('hour').unix()*1000
   var end = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
+  var timespanInMinutes = getTimespanInMinutes(start, end)
 
-  var x = percentualValue(start,end,startPoint) + '%'
-
-  var duration = PomodoroUtils.getDuration(pomodoro)
-  var r = limitDecimalPlaces(Math.sqrt( (50 * duration) / (25*Math.PI) ), 2)
+  var durationInMinutes = PomodoroUtils.getDurationInMinutes(pomodoro)
+  var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timespanInMinutes)
+  var r = limitDecimalPlaces(percentualDuration / 2)
+  var x = limitDecimalPlaces(percentualValue(start,end,startPoint) + r)
+  r = r + '%'
+  x = x + '%'
 
   return {
     x: x,
-    r: r
+    r: r,
   }
+}
+
+function getTimespanInMinutes(start,end){
+  return parseInt((end - start) / 60 / 1000 , 10)
 }
 
 function percentualValue(min,max,value){
   var normalizedMax = max - min
   var normalizedValue = value - min
+
+  console.log( normalizedMax, normalizedValue )
 
   var percent = (normalizedValue/normalizedMax) * 100
   percent = limitDecimalPlaces(percent, 2)
