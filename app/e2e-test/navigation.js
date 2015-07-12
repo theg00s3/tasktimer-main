@@ -42,7 +42,7 @@ function getToday(){
   var day = pad(date.getDate())
   var month = pad((date.getMonth()+1))
   var year = date.getFullYear()
-  return day + '/' + month + '/' + year
+  return month + '/' + day + '/' + year
 }
 
 function getYesterday(){
@@ -51,7 +51,7 @@ function getYesterday(){
   var day = pad(date.getDate())
   var month = pad((date.getMonth()+1))
   var year = date.getFullYear()
-  return day + '/' + month + '/' + year
+  return month + '/' + day + '/' + year
 }
 
 function getTomorrow(){
@@ -60,7 +60,7 @@ function getTomorrow(){
   var day = pad(date.getDate())
   var month = pad((date.getMonth()+1))
   var year = date.getFullYear()
-  return day + '/' + month + '/' + year
+  return month + '/' + day + '/' + year
 }
 
 function pad(number){
