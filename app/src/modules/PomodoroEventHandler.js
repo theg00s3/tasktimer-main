@@ -8,7 +8,7 @@ module.exports = function(eventName, minutes, type, time){
       var pomodoroData = {
         minutes: minutes,
         type: type,
-        startedAt: Date.now()
+        startedAt: new Date()
       }
       AnalyticsService.track('timer-start', pomodoroData)
       store.set('pomodoroData', pomodoroData)
