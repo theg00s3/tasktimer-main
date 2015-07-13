@@ -39,15 +39,15 @@ function calculateTimelineItem(pomodoro, data){
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
-  var startPoint = moment(getStart(pomodoro)).unix()*1000
-  var start = moment(getStart(data)).startOf('hour').unix()*1000
-  var end = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
-  var timespanInMinutes = getTimespanInMinutes(start, end)
+  var pomodoroStart = moment(getStart(pomodoro)).unix()*1000
+  var timelineStart = moment(getStart(data)).startOf('hour').unix()*1000
+  var timelineEnd = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
+  var timelineInMinutes = calculateTimelineInMinutes(timelineStart, timelineEnd)
 
   var durationInMinutes = PomodoroUtils.getDurationInMinutes(pomodoro)
-  var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timespanInMinutes)
+  var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timelineInMinutes)
   var r = limitDecimalPlaces(percentualDuration / 2)
-  var x = limitDecimalPlaces(percentualValue(start,end,startPoint) + r)
+  var x = limitDecimalPlaces(percentualValue(timelineStart,timelineEnd,pomodoroStart) + r)
   var className = pomodoro.type
   r = r + '%'
   x = x + '%'
@@ -59,7 +59,7 @@ function calculateTimelineItem(pomodoro, data){
   }
 }
 
-function getTimespanInMinutes(start,end){
+function calculateTimelineInMinutes(start,end){
   return parseInt((end - start) / 60 / 1000 , 10)
 }
 
