@@ -36,10 +36,6 @@ function calculateEndHour(data){
 }
 
 function calculateTimelineItem(pomodoro, data){
-  var args = Array.prototype.slice.call(arguments)
-  if( args.length === 3 ){ // for practical use with Array.prototype.map
-    data = args[2]
-  }
   var pomodoroStart = moment(calculateStart(pomodoro)).unix()
   var timelineStart = moment(calculateStart(data)).startOf('hour').unix()
   var timelineEnd = moment(calculateEnd(data)).endOf('hour').add(1,'minute').unix()

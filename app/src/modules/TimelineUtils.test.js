@@ -8,16 +8,15 @@ describe('TimelineUtils', function () {
     minutes: 25,
     type: "pomodoro"
   },{
-    startedAt: "Sat Jul 04 2015 18:15:00 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 17:25:00 GMT+0200 (CEST)",
     minutes: 5,
     type: "break"
   },{
-    startedAt: "Sat Jul 04 2015 18:20:00 GMT+0200 (CEST)",
-    cancelledAt: "Sat Jul 04 2015 18:34:30 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 17:30:00 GMT+0200 (CEST)",
     minutes: 15,
     type: "break"
   },{
-    startedAt: "Sat Jul 04 2015 18:35:00 GMT+0200 (CEST)",
+    startedAt: "Sat Jul 04 2015 17:35:00 GMT+0200 (CEST)",
     minutes: 25,
     type: "pomodoro"
   }]
@@ -39,7 +38,7 @@ describe('TimelineUtils', function () {
   })
 
   it('calculates the end time in hour format', function () {
-    expect( TimelineUtils.calculateEndHour(data) ).to.match( /(19\:00|17\:00)/ )
+    expect( TimelineUtils.calculateEndHour(data) ).to.match( /(18\:00|16\:00)/ )
   })
 
   it('can be used to get the start time from a single item', function () {
@@ -52,17 +51,17 @@ describe('TimelineUtils', function () {
 
   describe('timeline rendering data', function () {
     it('calculates the horizontal position', function () {
-      expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( '10.41%' )
-      expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( '64.07%' )
-      expect( TimelineUtils.calculateTimelineItem(data[2], data).x ).to.eql( '71.95%' )
-      expect( TimelineUtils.calculateTimelineItem(data[3], data).x ).to.eql( '88.93%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( '20.83%' )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( '45.15%' )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).x ).to.eql( '61.69%' )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).x ).to.eql( '78.22%' )
     })
 
     it('calculates the radius', function () {
-      expect( TimelineUtils.calculateTimelineItem(data[0], data).r ).to.eql( '10.41%' )
-      expect( TimelineUtils.calculateTimelineItem(data[1], data).r ).to.eql( '2.08%' )
-      expect( TimelineUtils.calculateTimelineItem(data[2], data).r ).to.eql( '5.83%' )
-      expect( TimelineUtils.calculateTimelineItem(data[3], data).r ).to.eql( '10.41%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).r ).to.eql( '20.83%' )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).r ).to.eql( '4.16%' )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).r ).to.eql( '12.5%' )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).r ).to.eql( '20.83%' )
     })
 
     it('calculates the className', function () {
