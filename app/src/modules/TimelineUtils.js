@@ -39,9 +39,9 @@ function calculateTimelineItem(pomodoro, data){
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
   }
-  var pomodoroStart = moment(getStart(pomodoro)).unix()*1000
-  var timelineStart = moment(getStart(data)).startOf('hour').unix()*1000
-  var timelineEnd = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
+  var pomodoroStart = moment(getStart(pomodoro)).unix()
+  var timelineStart = moment(getStart(data)).startOf('hour').unix()
+  var timelineEnd = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()
   var timelineInMinutes = calculateTimelineInMinutes(timelineStart, timelineEnd)
 
   var durationInMinutes = PomodoroUtils.calculateDurationInMinutes(pomodoro)
@@ -60,7 +60,7 @@ function calculateTimelineItem(pomodoro, data){
 }
 
 function calculateTimelineInMinutes(start,end){
-  return parseInt((end - start) / 60 / 1000 , 10)
+  return parseInt((end - start) / 60 , 10)
 }
 
 function percentualValue(min,max,value){
