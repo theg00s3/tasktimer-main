@@ -9,6 +9,7 @@ module.exports = {
 var _ = require('underscore')
 var moment = require('moment')
 var PomodoroUtils = require('../../../shared/PomodoroUtils')
+var NumberUtils = require('../../../shared/NumberUtils')
 
 var hourFormat = 'HH:mm'
 
@@ -45,9 +46,9 @@ function calculateTimelineItem(pomodoro, data){
   var timelineInMinutes = calculateTimelineInMinutes(timelineStart, timelineEnd)
 
   var pomodoroDurationInMinutes = PomodoroUtils.calculateDurationInMinutes(pomodoro)
-  var pomodoroDurationInPercent = limitDecimalPlaces(pomodoroDurationInMinutes * 100 / timelineInMinutes)
-  var r = limitDecimalPlaces(pomodoroDurationInPercent / 2)
-  var x = limitDecimalPlaces(percentualValue(timelineStart, timelineEnd, pomodoroStart) + r)
+  var pomodoroDurationInPercent = NumberUtils.limitDecimals(pomodoroDurationInMinutes * 100 / timelineInMinutes)
+  var r = NumberUtils.limitDecimals(pomodoroDurationInPercent / 2)
+  var x = NumberUtils.limitDecimals(percentualValue(timelineStart, timelineEnd, pomodoroStart) + r)
   var className = pomodoro.type
   r = r + '%'
   x = x + '%'
@@ -72,13 +73,6 @@ function percentualValue(min,max,value){
   var normalizedValue = value - min
 
   var percent = (normalizedValue/normalizedMax) * 100
-  percent = limitDecimalPlaces(percent, 2)
+  percent = NumberUtils.limitDecimals(percent, 2)
   return percent  
 }
-
-function limitDecimalPlaces(number, decimalPlaces) {
-  decimalPlaces = decimalPlaces || 2
-  var pow = Math.pow(10, decimalPlaces)
-  return parseInt(number * pow) / pow
-}
-
