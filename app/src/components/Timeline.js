@@ -13,8 +13,8 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.setState({
-      startHour: TimelineUtils.getStartHour(this.props.data),
-      endHour: TimelineUtils.getEndHour(this.props.data),
+      startHour: TimelineUtils.calculateStartHour(this.props.data),
+      endHour: TimelineUtils.calculateEndHour(this.props.data),
     })
   },
   render: function(){

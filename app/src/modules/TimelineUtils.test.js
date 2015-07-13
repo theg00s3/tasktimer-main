@@ -23,31 +23,31 @@ describe('TimelineUtils', function () {
   }]
 
   it('returns undefined for an empty list', function () {
-    expect( TimelineUtils.getStart([]) ).to.eql( undefined )
+    expect( TimelineUtils.calculateStart([]) ).to.eql( undefined )
   })
 
   it('calculates the start time', function () {
-    expect( TimelineUtils.getStart(data) ).to.eql( data[0].startedAt )
+    expect( TimelineUtils.calculateStart(data) ).to.eql( data[0].startedAt )
   })
 
   it('calculates the start time in hour format', function () {
-    expect( TimelineUtils.getStartHour(data) ).to.match( /(17\:00|15\:00)/ )
+    expect( TimelineUtils.calculateStartHour(data) ).to.match( /(17\:00|15\:00)/ )
   })
   
   it('calculates the end time', function () {
-    expect( TimelineUtils.getEnd(data) ).to.eql( data[data.length-1].startedAt )
+    expect( TimelineUtils.calculateEnd(data) ).to.eql( data[data.length-1].startedAt )
   })
 
   it('calculates the end time in hour format', function () {
-    expect( TimelineUtils.getEndHour(data) ).to.match( /(19\:00|17\:00)/ )
+    expect( TimelineUtils.calculateEndHour(data) ).to.match( /(19\:00|17\:00)/ )
   })
 
   it('can be used to get the start time from a single item', function () {
-    expect( TimelineUtils.getStart(data[0]) ).to.eql( data[0].startedAt )
+    expect( TimelineUtils.calculateStart(data[0]) ).to.eql( data[0].startedAt )
   })
 
   it('can be used to get the end time from a single item', function () {
-    expect( TimelineUtils.getEnd(data[0]) ).to.eql( data[0].startedAt )
+    expect( TimelineUtils.calculateEnd(data[0]) ).to.eql( data[0].startedAt )
   })
 
   describe('timeline rendering data', function () {
