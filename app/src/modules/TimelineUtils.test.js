@@ -52,24 +52,24 @@ describe('TimelineUtils', function () {
 
   describe('timeline rendering data', function () {
     it('calculates the horizontal position', function () {
-      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).x ).to.eql( '10.41%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).x ).to.eql( '64.07%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).x ).to.eql( '71.95%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).x ).to.eql( '88.93%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( '10.41%' )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( '64.07%' )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).x ).to.eql( '71.95%' )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).x ).to.eql( '88.93%' )
     })
 
     it('calculates the radius', function () {
-      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).r ).to.eql( '10.41%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).r ).to.eql( '2.08%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).r ).to.eql( '5.83%' )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).r ).to.eql( '10.41%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).r ).to.eql( '10.41%' )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).r ).to.eql( '2.08%' )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).r ).to.eql( '5.83%' )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).r ).to.eql( '10.41%' )
     })
 
     it('calculates the className', function () {
-      expect( TimelineUtils.getTimelineItemRenderingData(data[0], data).className ).to.eql( data[0].type )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[1], data).className ).to.eql( data[1].type )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[2], data).className ).to.eql( data[2].type )
-      expect( TimelineUtils.getTimelineItemRenderingData(data[3], data).className ).to.eql( data[3].type )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).className ).to.eql( data[0].type )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).className ).to.eql( data[1].type )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).className ).to.eql( data[2].type )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).className ).to.eql( data[3].type )
     })
   })
 

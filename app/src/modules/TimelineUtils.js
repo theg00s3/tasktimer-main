@@ -3,7 +3,7 @@ module.exports = {
   getStartHour: getStartHour,
   getEnd: getEnd,
   getEndHour: getEndHour,
-  getTimelineItemRenderingData: getTimelineItemRenderingData,
+  calculateTimelineItem: calculateTimelineItem,
 }
 
 var _ = require('underscore')
@@ -34,7 +34,7 @@ function getEndHour(data){
   return moment(getEnd(data)).endOf('hour').add(1,'minute').format(hourFormat)
 }
 
-function getTimelineItemRenderingData(pomodoro, data){
+function calculateTimelineItem(pomodoro, data){
   var args = Array.prototype.slice.call(arguments)
   if( args.length === 3 ){ // for practical use with Array.prototype.map
     data = args[2]
