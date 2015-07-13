@@ -1,4 +1,5 @@
 var store = require('store')
+  , moment = require('moment')
   , PomodoroRepository = require('./PomodoroRepository')
   , AnalyticsService = require('./AnalyticsService')
 
@@ -27,7 +28,8 @@ module.exports = function(eventName, minutes, type, time){
 
 function setCancelledAtIfNeeded(pomodoroData){
   var now = Date.now()
-  if( (now - pomodoroData.startedAt)/60/1000 < pomodoroData.minutes ){
+  var startedAt = moment(pomodoroData.startedAt).unix()*1000
+  if( (now - startedAt)/60/1000 < pomodoroData.minutes ){
     pomodoroData.cancelledAt = now
   }
   return pomodoroData
