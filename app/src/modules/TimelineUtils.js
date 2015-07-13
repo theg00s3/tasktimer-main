@@ -44,7 +44,7 @@ function calculateTimelineItem(pomodoro, data){
   var timelineEnd = moment(getEnd(data)).endOf('hour').add(1,'minute').unix()*1000
   var timelineInMinutes = calculateTimelineInMinutes(timelineStart, timelineEnd)
 
-  var durationInMinutes = PomodoroUtils.getDurationInMinutes(pomodoro)
+  var durationInMinutes = PomodoroUtils.calculateDurationInMinutes(pomodoro)
   var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timelineInMinutes)
   var r = limitDecimalPlaces(percentualDuration / 2)
   var x = limitDecimalPlaces(percentualValue(timelineStart,timelineEnd,pomodoroStart) + r)
