@@ -51,17 +51,17 @@ describe('TimelineUtils', function () {
 
   describe('timeline rendering data', function () {
     it('calculates the horizontal position', function () {
-      expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( '20.83%' )
-      expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( '45.15%' )
-      expect( TimelineUtils.calculateTimelineItem(data[2], data).x ).to.eql( '61.69%' )
-      expect( TimelineUtils.calculateTimelineItem(data[3], data).x ).to.eql( '78.22%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( 208.3 )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( 451.5 )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).x ).to.eql( 616.9 )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).x ).to.eql( 782.2 )
     })
 
     it('calculates the radius', function () {
-      expect( TimelineUtils.calculateTimelineItem(data[0], data).r ).to.eql( '20.83%' )
-      expect( TimelineUtils.calculateTimelineItem(data[1], data).r ).to.eql( '4.16%' )
-      expect( TimelineUtils.calculateTimelineItem(data[2], data).r ).to.eql( '12.5%' )
-      expect( TimelineUtils.calculateTimelineItem(data[3], data).r ).to.eql( '20.83%' )
+      expect( TimelineUtils.calculateTimelineItem(data[0], data).r ).to.eql( 208.3 )
+      expect( TimelineUtils.calculateTimelineItem(data[1], data).r ).to.eql( 41.6 )
+      expect( TimelineUtils.calculateTimelineItem(data[2], data).r ).to.eql( 125 )
+      expect( TimelineUtils.calculateTimelineItem(data[3], data).r ).to.eql( 208.3 )
     })
 
     it('calculates the className', function () {

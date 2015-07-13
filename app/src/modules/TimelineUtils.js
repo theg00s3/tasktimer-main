@@ -35,7 +35,8 @@ function calculateEndHour(data){
   return moment(calculateEnd(data)).endOf('hour').add(1,'minute').format(hourFormat)
 }
 
-function calculateTimelineItem(pomodoro, data){
+function calculateTimelineItem(pomodoro, data, canvasWidth){
+  canvasWidth = canvasWidth || 1000
   var pomodoroStart = moment(calculateStart(pomodoro)).unix()
   var timelineStart = moment(calculateStart(data)).startOf('hour').unix()
   var timelineEnd = moment(calculateEnd(data)).endOf('hour').add(1,'minute').unix()
@@ -46,8 +47,8 @@ function calculateTimelineItem(pomodoro, data){
   var r = NumberUtils.limitDecimals(pomodoroDurationInPercent / 2)
   var x = NumberUtils.limitDecimals(percentualValue(timelineStart, timelineEnd, pomodoroStart) + r)
   var className = pomodoro.type
-  r = r + '%'
-  x = x + '%'
+  r = NumberUtils.limitDecimals(r / 100 * canvasWidth, 2)
+  x = NumberUtils.limitDecimals(x / 100 * canvasWidth, 2)
 
   return {
     x: x,
