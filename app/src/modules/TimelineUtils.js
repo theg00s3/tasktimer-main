@@ -44,10 +44,10 @@ function calculateTimelineItem(pomodoro, data){
   var timelineEnd = moment(calculateEnd(data)).endOf('hour').add(1,'minute').unix()
   var timelineInMinutes = calculateTimelineInMinutes(timelineStart, timelineEnd)
 
-  var durationInMinutes = PomodoroUtils.calculateDurationInMinutes(pomodoro)
-  var percentualDuration = limitDecimalPlaces(durationInMinutes * 100 / timelineInMinutes)
-  var r = limitDecimalPlaces(percentualDuration / 2)
-  var x = limitDecimalPlaces(percentualValue(timelineStart,timelineEnd,pomodoroStart) + r)
+  var pomodoroDurationInMinutes = PomodoroUtils.calculateDurationInMinutes(pomodoro)
+  var pomodoroDurationInPercent = limitDecimalPlaces(pomodoroDurationInMinutes * 100 / timelineInMinutes)
+  var r = limitDecimalPlaces(pomodoroDurationInPercent / 2)
+  var x = limitDecimalPlaces(percentualValue(timelineStart, timelineEnd, pomodoroStart) + r)
   var className = pomodoro.type
   r = r + '%'
   x = x + '%'
