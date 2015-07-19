@@ -1,6 +1,7 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , LoginLogout = require('../components/LoginLogout')
+  , SoundSettings = require('../components/SoundSettings')
   , Settings = require('../components/Settings')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , SettingsEventHandler = require('../modules/SettingsEventHandler')
@@ -21,6 +22,7 @@ var Main = React.createClass({
     }
     return  <div>
               <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
+              <SoundSettings/>
               <div className="limit breath">
                 <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
               </div>

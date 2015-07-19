@@ -1,7 +1,11 @@
 module.exports = {
+  isMutedTickingSound: isMutedTickingSound,
+  isMutedRingingSound: isMutedRingingSound,
   startTickingSound: startTickingSound,
   stopTickingSound: stopTickingSound,
   startRingingSound: startRingingSound,
+  toggleMuteTickingSound: toggleMuteTickingSound,
+  toggleMuteRingingSound: toggleMuteRingingSound,
 }
 
 var Buzz = require('./Buzz')
@@ -17,6 +21,13 @@ var tickingSound = new Buzz.sound('/assets/audio/tick.mp3', {
   webAudioApi: true,
 })
 
+function isMutedTickingSound(){
+  return tickingSound.isMuted()
+}
+
+function isMutedRingingSound(){
+  return ringingSound.isMuted()
+}
 
 function startTickingSound(){
   tickingSound.play()
@@ -28,4 +39,12 @@ function stopTickingSound(){
 
 function startRingingSound(){
   ringingSound.play()
+}
+
+function toggleMuteTickingSound(){
+  tickingSound.toggleMute()
+}
+
+function toggleMuteRingingSound(){
+  ringingSound.toggleMute()
 }
