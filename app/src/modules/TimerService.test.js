@@ -10,20 +10,12 @@ var TimerService
   , EndTimer = require('../../fixtures/EndTimer')
   , DocumentTitleUpdateCommand = require('./DocumentTitleUpdateCommand')
   , MockDocumentTitleUpdateCommand = sinon.mock(DocumentTitleUpdateCommand)
-  , tickSound = {play:function(){},stop:function(){}}
-  , ringSound = {play:function(){},stop:function(){}}
-  , Sounds = {
-    tick: sinon.mock(tickSound),
-    ring: sinon.mock(ringSound),
-  }
 
 
 describe('TimerService', function () {
   beforeEach(function () {
     TimerService = require('./TimerService')
     MockTimer.restore()
-    Sounds.tick.restore()
-    Sounds.ring.restore()
     MockDocumentTitleUpdateCommand.restore()
   })
 
@@ -35,36 +27,6 @@ describe('TimerService', function () {
     TimerService.start(Timer)
 
     MockTimer.verify()
-  })
-
-  it('starts ticking sound when timer starts', function () {
-    Sounds.tick.expects('play').once()
-
-    TimerService.start(StartTimer, {}, {
-      tick: tickSound
-    })
-    
-    Sounds.tick.verify()
-  })
-
-  it('stops ticking sound when timer ends', function () {
-    Sounds.tick.expects('stop').once()
-
-    TimerService.start(EndTimer, {}, {
-      tick: tickSound
-    })
-    
-    Sounds.tick.verify()
-  })
-
-  it('starts ringing sound when timer ends', function () {
-    Sounds.ring.expects('play').once()
-
-    TimerService.start(EndTimer, {}, {
-      ring: ringSound
-    })
-    
-    Sounds.ring.verify()
   })
 
   it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
