@@ -4,9 +4,10 @@ var store = require('store')
 var TimerService = require('../modules/TimerService')
   , Timer = require('../modules/Timer')
   , DocumentTitleUpdateCommand = require('../modules/DocumentTitleUpdateCommand')
+  , SoundService = require('../modules/SoundService')
 
 module.exports = function(){
-  TimerService.start(Timer, DocumentTitleUpdateCommand)
+  TimerService.start(Timer, DocumentTitleUpdateCommand, SoundService)
 
   var pomodoroData = store.get('pomodoroData')
 
