@@ -2,22 +2,20 @@ var React = require('react')
 
 var SoundService = require('../modules/SoundService')
 
-var enabledSoundClass = 'icon ion-ios-volume-high'
-var disabledSoundClass = 'icon ion-ios-volume-low'
-
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      tickingButtonClass: disabledSoundClass,
-      ringingButtonClass: disabledSoundClass,
+      tickingButtonClass: '',
+      ringingButtonClass: '',
     }
   },
   componentWillMount: function(){
     this._updateState()
   },
   _updateState: function(){
-    var tickingButtonClass = SoundService.isMutedTickingSound() ? disabledSoundClass : enabledSoundClass
-    var ringingButtonClass = SoundService.isMutedRingingSound() ? disabledSoundClass : enabledSoundClass
+    var tickingButtonClass = ringingButtonClass = 'icon '
+    tickingButtonClass += SoundService.isMutedTickingSound() ? 'ion-ios-volume-low' : 'ion-ios-volume-high'
+    ringingButtonClass += SoundService.isMutedRingingSound() ? 'ion-ios-bell-outline' : 'ion-ios-bell'
     this.setState({
       tickingButtonClass: tickingButtonClass,
       ringingButtonClass: ringingButtonClass,
@@ -33,13 +31,11 @@ module.exports = React.createClass({
   },
   render: function(){
     return  <div className="sound-settings-buttons-container">
-              <button onClick={this._toggleTicking}>
+              <button onClick={this._toggleTicking} className="ticking-sound-toggle">
                 <i className={this.state.tickingButtonClass}></i>
-                <span>ticking</span>
               </button>
-              <button onClick={this._toggleRinging}>
+              <button onClick={this._toggleRinging} className="ringing-sound-toggle">
                 <i className={this.state.ringingButtonClass}></i>
-                <span>ringing</span>
               </button>
             </div>
   },
