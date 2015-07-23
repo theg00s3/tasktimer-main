@@ -49,7 +49,7 @@ var bundler = browserify({
     })
 bundler.transform(reactify)
 
-gulp.task('default', ['js','stylus','test','jade','assets'])
+gulp.task('default', ['js','stylus','jade','assets'])
 
 gulp.task('watch', ['browser-sync', 'default'], function(){
   bundler = watchify(bundler)
