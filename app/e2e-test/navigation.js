@@ -34,6 +34,20 @@ module.exports = {
     browser
       .url('https://pomodoro.dev/blog')
       .assert.containsText('body', 'Pomodoro.cc Tech Blog')
+  },
+  "clicks to buttons and navigates to page": function(browser){
+    browser
+      .url('https://pomodoro.dev/')
+      .click('#main-header .menu li:nth-child(1)')
+      .assert.containsText('main', 'Statistics')
+    browser
+      .url('https://pomodoro.dev/')
+      .click('#main-header .menu li:nth-child(2)')
+      .assert.containsText('body', 'Pomodoro.cc Tech Blog')
+    browser
+      .url('https://pomodoro.dev/')
+      .click('#main-header .menu li:nth-child(3)')
+      .assert.containsText('main', 'Manage your time more effectively')
   }
 }
 
