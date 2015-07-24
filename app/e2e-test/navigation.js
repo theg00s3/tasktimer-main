@@ -38,15 +38,15 @@ module.exports = {
   "clicks to buttons and navigates to page": function(browser){
     browser
       .url('https://pomodoro.dev/')
-      .click('#main-header .menu li:nth-child(1)')
+      .click('#statistics-link')
       .assert.containsText('main', 'Statistics')
     browser
       .url('https://pomodoro.dev/')
-      .click('#main-header .menu li:nth-child(2)')
+      .click('#blog-link')
       .assert.containsText('body', 'Pomodoro.cc Tech Blog')
     browser
       .url('https://pomodoro.dev/')
-      .click('#main-header .menu li:nth-child(3)')
+      .click('#about-link')
       .assert.containsText('main', 'Manage your time more effectively')
   }
 }

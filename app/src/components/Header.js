@@ -9,13 +9,13 @@ module.exports = React.createClass({
                 <a href="/" tabIndex="1" className="brand">p<span className="rest">omodoro</span><span className="tld">.cc</span></a>
                 <ul className="menu">
                   <li>
-                    <a href="/statistics" tabIndex="2">Stats</a>
+                    <a href="/statistics" id="statistics-link" tabIndex="2">Stats</a>
                   </li>
                   <li>
-                    <a href="/blog" tabIndex="3">Blog</a>
+                    <a href="/blog" id="blog-link" tabIndex="3">Blog</a>
                   </li>
                   <li>
-                    <a href="/about" tabIndex="4">About</a>
+                    <a href="/about" id="about-link" tabIndex="4">About</a>
                   </li>
                 </ul>
                 <LoginLogout/>
