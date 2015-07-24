@@ -3,23 +3,7 @@ var TimelineUtils = require('./TimelineUtils')
 var expect = require('chai').expect
 
 describe('TimelineUtils', function () {
-  var data = [{
-    startedAt: "Sat Jul 04 2015 17:00:00 GMT+0200 (CEST)",
-    minutes: 25,
-    type: "pomodoro"
-  },{
-    startedAt: "Sat Jul 04 2015 17:25:00 GMT+0200 (CEST)",
-    minutes: 5,
-    type: "break"
-  },{
-    startedAt: "Sat Jul 04 2015 17:30:00 GMT+0200 (CEST)",
-    minutes: 15,
-    type: "break"
-  },{
-    startedAt: "Sat Jul 04 2015 17:35:00 GMT+0200 (CEST)",
-    minutes: 25,
-    type: "pomodoro"
-  }]
+  var data = require('../../fixtures/timelineData.json')
 
   it('returns undefined for an empty list', function () {
     expect( TimelineUtils.calculateStart([]) ).to.eql( undefined )
@@ -32,7 +16,7 @@ describe('TimelineUtils', function () {
   it('calculates the start time in hour format', function () {
     expect( TimelineUtils.calculateStartHour(data) ).to.match( /(17\:00|15\:00)/ )
   })
-  
+
   it('calculates the end time', function () {
     expect( TimelineUtils.calculateEnd(data) ).to.eql( data[data.length-1].startedAt )
   })
