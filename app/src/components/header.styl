@@ -20,13 +20,17 @@ header[role=header]
       display inline-block
       a
         padding 0.8rem 0.6rem
+        min-width 2.5rem
+        text-align center
         color black
         &:hover, &:focus
           text-decoration none
-          background-color darken(color_white, 4%)
+          // background-color darken(color_white, 4%)
+          border-bottom 3px solid color_pomodoro
           #main-header.white &
             background-color transparent
             text-decoration underline
+            border-bottom-color transparent
 
 #main-header
   &.white, &.white *
