@@ -4,6 +4,7 @@ module.exports = {
   calculateEnd: calculateEnd,
   calculateEndHour: calculateEndHour,
   calculateTimelineItem: calculateTimelineItem,
+  calculateTimelineXAxis: calculateTimelineXAxis,
 }
 
 var _ = require('underscore')
@@ -57,6 +58,10 @@ function calculateTimelineItem(pomodoro, data, canvasWidth){
   }
 }
 
+function calculateTimelineXAxis(data, canvasWidth){
+  return []
+}
+
 
 
 
@@ -71,5 +76,5 @@ function percentualValue(min,max,value){
 
   var percent = (normalizedValue/normalizedMax) * 100
   percent = NumberUtils.limitDecimals(percent, 2)
-  return percent  
+  return percent
 }

@@ -34,6 +34,11 @@ describe('TimelineUtils', function () {
 
 
   describe('calculates timeline rendering data', function () {
+    it('hours and positions timeline', function () {
+      expect( TimelineUtils.calculateTimelineXAxis(data) ).to.deep.eql( [
+
+      ] )
+    })
     it('horizontal position', function () {
       expect( TimelineUtils.calculateTimelineItem(data[0], data).x ).to.eql( 208.3 )
       expect( TimelineUtils.calculateTimelineItem(data[1], data).x ).to.eql( 451.5 )
