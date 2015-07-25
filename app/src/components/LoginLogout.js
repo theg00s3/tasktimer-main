@@ -30,10 +30,10 @@ module.exports = React.createClass({
       return  <div className={this.props.className + " login-logout"}>
                 <span className="text">{this.props.text || "Login with"}</span>
                 <div className="login-buttons">
-                  <a href="/auth/twitter" target="_self" className="login-button twitter">
+                  <a href="/auth/twitter" target="_self" className="twitter">
                     <i className="icon ion-social-twitter"></i>
                   </a>
-                  <a href="/auth/github" target="_self" className="login-button github">
+                  <a href="/auth/github" target="_self" className="github">
                     <i className="icon ion-social-github"></i>
                   </a>
                 </div>
