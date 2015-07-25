@@ -107,7 +107,7 @@ var Statistics = React.createClass({
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
     var authorizedContent = <div>
-                              <Timeline height="200" width="1300" data={this.state.data}/>
+                              <Timeline height="200" width="1200" data={this.state.data}/>
                             </div>
     return !this.state.authorized ? unauthorizedContent : authorizedContent
   },
