@@ -23,9 +23,6 @@ module.exports = React.createClass({
                   <p className="small light">
                     This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
                   </p>
-                  <p className="small light">
-                    The Pomodoro Technique® and Pomodoro™ are registered trademarks by Francesco Cirillo.
-                  </p>
                 </div>
                 <div className="limit tac">
                   <a href="https://mixpanel.com/f/partner">

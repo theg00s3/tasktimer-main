@@ -141,6 +141,10 @@ gulp.task('browser-sync', function(){
 
 
 gulp.task('assets', function(){
+  gulp.src('src/app.manifest')
+    .pipe(plumber())
+    .pipe(replace('{BUILD}', BUILD))
+    .pipe(gulp.dest('www/'))
   gulp.src('src/favicon.ico')
     .pipe(gulp.dest('www/'))
   gulp.src(paths.assets)
