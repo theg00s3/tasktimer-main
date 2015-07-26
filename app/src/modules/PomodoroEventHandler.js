@@ -3,7 +3,9 @@ var store = require('store')
   , PomodoroRepository = require('./PomodoroRepository')
   , AnalyticsService = require('./AnalyticsService')
   , PersistentQueue = require('./PersistentQueue')
-  , failedPomodoriQueue = new PersistentQueue('failedPomodori')
+
+var failedPomodoriKey = require('../constants').failedPomodoriKey
+  , failedPomodoriQueue = new PersistentQueue(failedPomodoriKey)
 
 module.exports = function(eventName, minutes, type, time){
   switch( eventName ){
