@@ -108,8 +108,10 @@ var Statistics = React.createClass({
     }
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
-    var authorizedContent = <div className="limit">
-                              <StatisticsNumbers data={this.state.data}/>
+    var authorizedContent = <div>
+                              <div className="limit">
+                                <StatisticsNumbers data={this.state.data}/>
+                              </div>
                               <Timeline height="200" width="1200" data={this.state.data}/>
                             </div>
     return !this.state.authorized ? unauthorizedContent : authorizedContent
