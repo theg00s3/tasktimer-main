@@ -67,7 +67,7 @@ var Statistics = React.createClass({
                   <div className="statistics-graph-image"></div>
                 </div>
               </header>
-              <div className="limit extended breath">
+              <div className="content limit extended breath">
                 <Loader loaded={this.state.loaded}>
                   {this._getContent()}
                 </Loader>
