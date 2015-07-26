@@ -1,6 +1,7 @@
 module.exports = {
   getFullPomodoroCount: getFullPomodoroCount,
   getFullPomodoroHours: getFullPomodoroHours,
+  getPartialPomodoroCount: getPartialPomodoroCount,
 }
 
 var _ = require('underscore')
@@ -18,11 +19,22 @@ function getFullPomodoroHours(data){
   return _.reduce(data, function(acc, pomodoro){
     var fullPomodoro = isFullPomodoro(pomodoro)
     var hours = PomodoroUtils.calculateDurationInHours(pomodoro)
-    acc =  acc + (fullPomodoro ? PomodoroUtils.calculateDurationInHours(pomodoro) : 0)
+    acc = acc + (fullPomodoro ? PomodoroUtils.calculateDurationInHours(pomodoro) : 0)
+    return NumberUtils.limitDecimals(acc, 1)
+  }, 0)
+}
+
+function getPartialPomodoroCount(data){
+  return _.reduce(data, function(acc, pomodoro){
+    if( !PomodoroUtils.isPomodoro(pomodoro) ){
+      return acc
+    }
+    var duration = PomodoroUtils.calculateDurationInMinutes(pomodoro)
+    acc = acc + (duration / 25)
     return NumberUtils.limitDecimals(acc, 1)
   }, 0)
 }
 
 function isFullPomodoro(pomodoro){
-  return 'pomodoro' === pomodoro.type && pomodoro.cancelledAt === undefined
+  return PomodoroUtils.isPomodoro(pomodoro) && pomodoro.cancelledAt === undefined
 }
