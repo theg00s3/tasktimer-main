@@ -2,6 +2,8 @@ var store = require('store')
   , moment = require('moment')
   , PomodoroRepository = require('./PomodoroRepository')
   , AnalyticsService = require('./AnalyticsService')
+  , PersistentQueue = require('./PersistentQueue')
+  , failedPomodoriQueue = new PersistentQueue('failedPomodori')
 
 module.exports = function(eventName, minutes, type, time){
   switch( eventName ){
@@ -20,6 +22,9 @@ module.exports = function(eventName, minutes, type, time){
         pomodoroData = setCancelledAtIfNeeded(pomodoroData)
         AnalyticsService.track('timer-end', pomodoroData)
         PomodoroRepository.create(pomodoroData)
+        .catch(function(){
+          failedPomodoriQueue.push(pomodoroData)
+        })
       }
       store.remove('pomodoroData')
       break
