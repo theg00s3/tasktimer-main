@@ -9,6 +9,8 @@ var Loader = require('react-loader')
 var LoginLogout = require('../components/LoginLogout')
   , ArrowNavigation = require('../components/ArrowNavigation')
   , Timeline = require('../components/Timeline')
+  , StatisticsNumbers = require('../components/StatisticsNumbers')
+  , StatisticsUtils = require('../modules/StatisticsUtils')
 
 var constants = require('../../../shared/constants')
 
@@ -107,6 +109,7 @@ var Statistics = React.createClass({
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
     var authorizedContent = <div>
+                              <StatisticsNumbers data={this.state.data}/>
                               <Timeline height="200" width="1200" data={this.state.data}/>
                             </div>
     return !this.state.authorized ? unauthorizedContent : authorizedContent

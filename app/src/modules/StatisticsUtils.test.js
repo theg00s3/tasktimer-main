@@ -23,4 +23,18 @@ describe('StatisticsUtils', function () {
     pomodoroCount = StatisticsUtils.getFullPomodoroCount(data)
     expect( pomodoroCount ).to.eql( 2 )
   })
+
+  it('calculates full pomodoro hours', function () {
+    var hours = StatisticsUtils.getFullPomodoroHours(data)
+    expect( hours ).to.eql( 0.8 )
+
+    data.push({
+      "startedAt": "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)",
+      "cancelledAt": "Sat Jul 04 2015 18:05:00 GMT+0200 (CEST)",
+      "minutes": 25,
+      "type": "pomodoro"
+    })
+    hours = StatisticsUtils.getFullPomodoroHours(data)
+    expect( hours ).to.eql( 0.8 )
+  })
 })

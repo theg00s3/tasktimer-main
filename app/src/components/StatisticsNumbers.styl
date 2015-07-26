@@ -1,0 +1,19 @@
+.statistics-numbers-container
+  display flex
+  > div
+    text-align center
+    flex 1
+    min-height 5em
+    padding 1em
+    border-right 1px solid color_light_grey
+    &:last-child
+      border-right none
+
+    > *
+      vertical-align middle
+    .number
+      font-size 4.5em
+      margin-left 0.75rem
+      margin-right @margin-left
+    .text
+      font-size 1em
