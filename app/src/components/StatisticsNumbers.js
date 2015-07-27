@@ -5,17 +5,17 @@ var StatisticsUtils = require('../modules/StatisticsUtils')
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      fullPomodoroCount: 0,
+      allPomodoroCount: 0,
       partialPomodoroCount: 0,
       fullPomodoroHours: 0,
     }
   },
   componentDidMount: function(){
-    var fullPomodoroCount = StatisticsUtils.getFullPomodoroCount(this.props.data)
-    var partialPomodoroCount = StatisticsUtils.getPartialPomodoroCount(this.props.data) - fullPomodoroCount
+    var allPomodoroCount = StatisticsUtils.getAllPomodoroCount(this.props.data)
+    var partialPomodoroCount = allPomodoroCount - StatisticsUtils.getFullPomodoroCount(this.props.data)
     var fullPomodoroHours = StatisticsUtils.getFullPomodoroHours(this.props.data)
     this.setState({
-      fullPomodoroCount: fullPomodoroCount,
+      allPomodoroCount: allPomodoroCount,
       partialPomodoroCount: partialPomodoroCount,
       fullPomodoroHours: fullPomodoroHours,
     })
@@ -27,7 +27,7 @@ module.exports = React.createClass({
     return  <div className="statistics-numbers-container">
               <div>
                 <div>
-                  <span className="number">{this.state.fullPomodoroCount}</span>
+                  <span className="number">{this.state.allPomodoroCount}</span>
                   <span className="text">pomodori</span>
                   <br/>
                   <span className="small">

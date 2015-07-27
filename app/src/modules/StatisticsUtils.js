@@ -1,7 +1,7 @@
 module.exports = {
   getFullPomodoroCount: getFullPomodoroCount,
   getFullPomodoroHours: getFullPomodoroHours,
-  getPartialPomodoroCount: getPartialPomodoroCount,
+  getAllPomodoroCount: getAllPomodoroCount,
 }
 
 var _ = require('underscore')
@@ -24,7 +24,7 @@ function getFullPomodoroHours(data){
   }, 0)
 }
 
-function getPartialPomodoroCount(data){
+function getAllPomodoroCount(data){
   return _.reduce(data, function(acc, pomodoro){
     if( !PomodoroUtils.isPomodoro(pomodoro) ){
       return acc

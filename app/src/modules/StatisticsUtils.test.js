@@ -45,7 +45,7 @@ describe('StatisticsUtils', function () {
       "minutes": 25,
       "type": "pomodoro"
     })
-    var pomodoroCount = StatisticsUtils.getPartialPomodoroCount(data)
+    var pomodoroCount = StatisticsUtils.getAllPomodoroCount(data)
     expect( pomodoroCount ).to.eql( 2.2 )
   })
 })
