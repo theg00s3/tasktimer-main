@@ -16,10 +16,17 @@ function trySaveFailedPomodori(){
   var savingFailed = false
   while( !savingFailed && failedPomodoriQueue.hasItems() ){
     var pomodoro = failedPomodoriQueue.pop()
-    PomodoroRepository.create(pomodoro)
+    trySavedFailedPomodoro(pomodoro)
     .catch(function(){
-      failedPomodoriQueue.push(pomodoro)
       savingFailed = true
     })
   }
+}
+
+function trySavedFailedPomodoro(pomodoro, failedCallback){
+  return PomodoroRepository.create(pomodoro)
+  .catch(function(){
+    failedPomodoriQueue.push(pomodoro)
+    failedCallback()
+  })
 }
