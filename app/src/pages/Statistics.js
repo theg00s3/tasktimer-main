@@ -102,24 +102,25 @@ var Statistics = React.createClass({
     }
   },
   _getContent: function(){
-    var noContent =  <div className="tac">
-                        <h1 className="no">Your statistics</h1>
-                        <p>When you have tracked some worked,</p>
-                        <p>you will see your data displayed here</p>
-                      </div>
-    if( this.state.data.length > 0 ){
-      noContent =  null
+    if( !this.state.authorized ){
+      return <LoginLogout onlyLogin={true} className="big left"/>
     }
-    var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
-    var authorizedContent = <div>
-                              <div className="limit">
-                                {noContent}
-                                <StatisticsNumbers data={this.state.data}/>
-                              </div>
-                              <Timeline height="200" width="1200" data={this.state.data}/>
-                            </div>
-    return !this.state.authorized ? unauthorizedContent : authorizedContent
+    if( this.state.data.length === 0 ){
+      return  <div className="tac light">
+                <h1 className="no">Your statistics</h1>
+                <p>When you have tracked some worked,</p>
+                <p>you will see your data displayed here</p>
+                <a href="/" className="button">Start your first pomodoro</a>
+              </div>
+    }
+
+    return  <div>
+              <div className="limit">
+                <StatisticsNumbers data={this.state.data}/>
+              </div>
+              <Timeline height="200" width="1200" data={this.state.data}/>
+            </div>
   },
 })
 
