@@ -109,8 +109,8 @@ var Statistics = React.createClass({
     if( this.state.data.length === 0 ){
       return  <div className="tac light">
                 <h1 className="no">Your statistics</h1>
-                <p>When you have tracked some worked,</p>
-                <p>you will see your data displayed here</p>
+                <p>When you have tracked some work,</p>
+                <p>you will see your data displayed here.</p>
                 <a href="/" className="button">Start your first pomodoro</a>
               </div>
     }
