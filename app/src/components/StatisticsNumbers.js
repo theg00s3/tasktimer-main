@@ -28,7 +28,7 @@ module.exports = React.createClass({
   },
   render: function(){
     if( !this.props.data || this.props.data.length === 0 ) {
-      return <h3>No data</h3>
+      return null
     }
     return  <div className="statistics-numbers-container">
               <div>

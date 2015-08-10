@@ -102,14 +102,19 @@ var Statistics = React.createClass({
     }
   },
   _getContent: function(){
-    var availableContent = <h1 className="tac no">No data!</h1>
+    var noContent =  <div className="tac">
+                        <h1 className="no">Your statistics</h1>
+                        <p>When you have tracked some worked,</p>
+                        <p>you will see your data displayed here</p>
+                      </div>
     if( this.state.data.length > 0 ){
-      availableContent =  null
+      noContent =  null
     }
     var unauthorizedContent = <LoginLogout onlyLogin={true} className="big left"/>
 
     var authorizedContent = <div>
                               <div className="limit">
+                                {noContent}
                                 <StatisticsNumbers data={this.state.data}/>
                               </div>
                               <Timeline height="200" width="1200" data={this.state.data}/>
