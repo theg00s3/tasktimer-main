@@ -11,6 +11,7 @@ var LoginLogout = require('../components/LoginLogout')
   , Timeline = require('../components/Timeline')
   , StatisticsNumbers = require('../components/StatisticsNumbers')
   , StatisticsUtils = require('../modules/StatisticsUtils')
+  , PomodoroRepository = require('../modules/PomodoroRepository')
 
 var constants = require('../../../shared/constants')
 
@@ -19,11 +20,7 @@ var mainHeader = document.getElementById('main-header')
 
 module.exports = function(context){
   var day = extractDay(context.path)
-  var dataPromise = axios.get('/api/pomodoro',{
-    params: {
-      day: day
-    }
-  })
+  var dataPromise = PomodoroRepository.getForDay(day)
   React.render(<Statistics day={day} dataPromise={dataPromise}></Statistics>, document.querySelector('main'))
 }
 

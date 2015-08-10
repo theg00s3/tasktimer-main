@@ -1,5 +1,6 @@
 module.exports = {
-  create: create
+  create: create,
+  getForDay: getForDay
 }
 
 var axios = require('axios')
@@ -11,4 +12,12 @@ var POMODORO_RESOURCE_URL = '/pomodoro'
 
 function create(pomodoro){
   return axios.post(API_BASE_URL + POMODORO_RESOURCE_URL, pomodoro)
+}
+
+function getForDay(day){
+  return axios.get(API_BASE_URL + POMODORO_RESOURCE_URL, {
+    params: {
+      day: day
+    }
+  })
 }
