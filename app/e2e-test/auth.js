@@ -16,9 +16,4 @@ module.exports = {
       .url('https://pomodoro.dev/statistics')
       .assert.elementNotPresent('.login-logout.big')
   },
-  'shows statistcs for the selected day': function(browser){
-    browser
-      .url('https://pomodoro.dev/statistics?day=07/12/2015')
-      .assert.elementPresent('.timeline-container')
-  },
 }
