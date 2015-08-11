@@ -1,6 +1,5 @@
 var React = require('react')
 
-var mainHeader = document.getElementById('main-header')
 
 module.exports = function(context){
   React.render(<About/>, document.querySelector('main'))
@@ -8,12 +7,6 @@ module.exports = function(context){
 
 
 var About = React.createClass({
-  componentWillUnmount: function(){
-    mainHeader.classList.remove('white')
-  },
-  componentDidMount: function(){
-    mainHeader.classList.add('white')
-  },
   render: function(){
     return  <div>
               <header className="prominent-header">

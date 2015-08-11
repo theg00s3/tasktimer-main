@@ -1,7 +1,7 @@
 module.exports = function(context, next){
   next()
 
-  var page = context.path.substring(1).replace(/\?.*/, '')
+  var page = context.pathname.substring(1)
 
   var items = Array.prototype.slice.call(document.querySelectorAll('[role="header"] .menu a'))
   items.forEach(function(item){
