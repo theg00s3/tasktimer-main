@@ -25,6 +25,12 @@ module.exports = {
       .click('.ion-ios-arrow-forward')
       .assert.containsText('main', nextDay)
   },
+  "navigate in statistics page and sets active header element": function(browser){
+    browser
+      .url('https://pomodoro.dev/statistics')
+      .assert.containsText('main', 'Statistics')
+      .assert.attributeContains('#statistics-link', 'class', 'active')
+  },
   "navigates to about page": function(browser){
     browser
       .url('https://pomodoro.dev/about')
