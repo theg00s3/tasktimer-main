@@ -114,7 +114,7 @@ var Statistics = React.createClass({
               <div className="limit">
                 <StatisticsNumbers data={this.state.data}/>
               </div>
-              <Timeline height="200" width="1200" data={this.state.data}/>
+              <Timeline height="200" width="1100" data={this.state.data}/>
             </div>
   },
 })

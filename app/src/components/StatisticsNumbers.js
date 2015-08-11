@@ -62,7 +62,7 @@ module.exports = React.createClass({
     return  <div>
                 <br/>
                 <span className="small">
-                  + <strong>{this.state.allPomodoroHours}</strong>
+                  + <strong>{this.state.allPomodoroHours}</strong> hours
                 </span>
             </div>
 
