@@ -100,7 +100,9 @@ var Statistics = React.createClass({
   },
   _getContent: function(){
     if( !this.state.authorized ){
-      return <LoginLogout onlyLogin={true} className="big left"/>
+      return  <div className="limit">
+                <LoginLogout onlyLogin={true} className="big left"/>
+              </div>
     }
 
     if( this.state.data.length === 0 ){
