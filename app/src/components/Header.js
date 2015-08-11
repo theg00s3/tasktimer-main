@@ -9,7 +9,7 @@ module.exports = React.createClass({
                 <a href="/" tabIndex="1" className="brand">p<span className="rest">omodoro</span><span className="tld">.cc</span></a>
                 <ul className="menu">
                   <li>
-                    <a href="/statistics" id="statistics-link" tabIndex="2">Stats</a>
+                    <a href="/statistics" id="statistics-link" className="activate-on" data-active="/statistics" tabIndex="2">Stats</a>
                   </li>
                 </ul>
                 <LoginLogout/>

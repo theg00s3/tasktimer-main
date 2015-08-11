@@ -3,11 +3,10 @@ module.exports = function(context, next){
 
   var page = context.pathname.substring(1)
 
-  var items = Array.prototype.slice.call(document.querySelectorAll('[role="header"] .menu a'))
+  var items = Array.prototype.slice.call(document.querySelectorAll('.activate-on'))
   items.forEach(function(item){
     item.classList.remove('active')
-    var link = item.getAttribute('id').replace('-link', '')
-    if( page !== '' && new RegExp(page).test(item.getAttribute('id')) ){
+    if( page !== '' && new RegExp(page).test(item.dataset.active) ){
       item.classList.add('active')
     }
   })
