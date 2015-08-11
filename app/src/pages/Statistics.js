@@ -15,9 +15,6 @@ var LoginLogout = require('../components/LoginLogout')
 
 var constants = require('../../../shared/constants')
 
-var mainHeader = document.getElementById('main-header')
-
-
 module.exports = function(context){
   var day = extractDay(context.path)
   var dataPromise = PomodoroRepository.getForDay(day)
@@ -34,11 +31,11 @@ var Statistics = React.createClass({
   },
   componentWillUnmount: function(){
     document.body.removeEventListener('keydown', this._handleKeyboardNavigation)
-    mainHeader.classList.remove('white')
+    document.getElementById('main-header').classList.remove('white')
   },
   componentDidMount: function(){
     document.body.addEventListener('keydown', this._handleKeyboardNavigation)
-    mainHeader.classList.add('white')
+    document.getElementById('main-header').classList.add('white')
     this.props.dataPromise
       .then(function(response){
         var data = response.data

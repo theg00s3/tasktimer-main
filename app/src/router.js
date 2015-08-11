@@ -4,6 +4,7 @@ var logger = require('./modules/Logger')
 page('*', require('./modules/page.logger')
         , require('./modules/page.tracker')
         , require('./modules/page.scrollToTop')(['statistics'], window.scrollTo)
+        , require('./modules/page.setActiveMenuItem')
     )
 
 page('/', require('./pages/Main'))
