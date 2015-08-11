@@ -11,12 +11,6 @@ module.exports = React.createClass({
                   <li>
                     <a href="/statistics" id="statistics-link" tabIndex="2">Stats</a>
                   </li>
-                  <li>
-                    <a href="/blog" id="blog-link" tabIndex="3">Blog</a>
-                  </li>
-                  <li>
-                    <a href="/about" id="about-link" tabIndex="4">About</a>
-                  </li>
                 </ul>
                 <LoginLogout/>
                 <UserProfile/>

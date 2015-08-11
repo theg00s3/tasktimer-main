@@ -61,7 +61,6 @@ var Statistics = React.createClass({
                   <h1 className="statistics-heading">Statistics</h1>
                   <h5 className="statistics-day">{this.props.day}</h5>
                   <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
-                  <div className="statistics-graph-image"></div>
                 </div>
               </header>
               <div className="content limit extended breath">
