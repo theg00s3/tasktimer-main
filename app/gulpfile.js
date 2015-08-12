@@ -103,6 +103,7 @@ gulp.task('jade', function(){
       }
     }))
     .pipe(replace('{SEGMENT_WRITE_KEY}', PRODUCTION ? 'DI4YQLtpCkiyMnlITlg8o3pO6UDrnmbx' : 'u8FtwJOHxRRYAfIhZOv78SGzcQta1Yty'))
+    .pipe(replace('{BUILD}', BUILD))
     .pipe(gulp.dest('www/'))
     .pipe(browserSync.stream())
 })
