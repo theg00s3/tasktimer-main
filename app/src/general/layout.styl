@@ -2,13 +2,21 @@ html, body
   min-height 50em
 
 main
+  transition all .3s ease-in-out
   .prominent-header, .content
     position relative
     min-height 15em
+    transition all .3s ease-in-out
+    animation-duration .5s
+
+  .prominent-header
+    animation-name slide-down
   .content
     display flex
     flex-direction row
     align-items center
+
+    animation-name slide-up
 
     background-color #fff
     box-shadow 0 1px 3px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)
