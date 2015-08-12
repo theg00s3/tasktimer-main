@@ -1,5 +1,4 @@
 var React = require('react')
-  , Alert = require('../components/Alert')
 
 module.exports = React.createClass({
   render: function(){

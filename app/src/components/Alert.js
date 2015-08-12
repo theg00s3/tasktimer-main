@@ -5,6 +5,5 @@ module.exports = React.createClass({
     return  <div className="alert alert-success limit small tac breath">
               {this.props.children}
             </div>
-
   }
 })
