@@ -8,7 +8,7 @@ module.exports = function(context){
 
 var About = React.createClass({
   render: function(){
-    return  <div>
+    return  <div className="about-content">
               <header className="prominent-header">
                 <div className="limit tac">
                   <h1>Boost your productivity</h1>

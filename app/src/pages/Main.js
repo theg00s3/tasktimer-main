@@ -20,10 +20,16 @@ var Main = React.createClass({
       PomodoroEventHandler('end', pomodoroData.minutes, pomodoroData.type)
     }
     return  <div>
-              <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
-              <SoundSettings/>
-              <div className="limit breath">
-                <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
+              <header className="prominent-header">
+              </header>
+              <div className="content limit extended small breath">
+                <div className="limit">
+                  <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
+                  <SoundSettings/>
+                  <div className="limit breath">
+                    <LoginLogout onlyLogin={true} text="Keep track of your work, login with" className="big center"/>
+                  </div>
+                </div>
               </div>
             </div>
   }

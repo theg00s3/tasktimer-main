@@ -3,8 +3,6 @@ header[role=header]
   position relative
   z-index 9000
   background color_white
-  padding-left 0.5em
-  padding-right @padding-left
   border-bottom 1px solid color_light_grey
 
   .content
@@ -22,16 +20,17 @@ header[role=header]
     padding 0.9rem 0.6rem
     min-width 2.5rem
     text-align center
-    color black
     &:hover, &:focus, &.active
       text-decoration none
       border-bottom 3px solid color_pomodoro
-      #main-header.white &
-        border-bottom 3px solid white
-        background-color transparent
+      border-bottom 3px solid white
+      background-color transparent
+
+  .brand
+    margin-left -0.5rem
 
 #main-header
-  &.white, &.white *
+  *
     color white
     border-color white
 
