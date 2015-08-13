@@ -1,5 +1,4 @@
 header[role=header]
-  height 3em
   position relative
   z-index 9000
   background color_white
@@ -17,12 +16,12 @@ header[role=header]
     li
       display inline-block
   a
-    padding 0.9rem 0.6rem
+    padding 1rem 0.5rem
     min-width 2.5rem
     text-align center
+    border-bottom 3px solid transparent
     &:hover, &:focus, &.active
       text-decoration none
-      border-bottom 3px solid color_pomodoro
       border-bottom 3px solid white
       background-color transparent
 
@@ -32,7 +31,6 @@ header[role=header]
 #main-header
   *
     color white
-    border-color white
 
   header[role=header]
     background none
