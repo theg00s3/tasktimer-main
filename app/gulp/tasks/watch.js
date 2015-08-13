@@ -3,10 +3,7 @@ var gulp = require('gulp')
   , watchify = require('watchify')
   , gutil = require('gulp-util')
 
-var browserifyTask = require('./browserify')
-
-gulp.task('watch', ['browser-sync'], function() {
-  browserifyTask(true)
+gulp.task('watch', ['watchify','browser-sync'], function() {
   gulp.watch(config.paths.test, ['test'])
   gulp.watch(config.paths.stylus, ['stylus'])
   gulp.watch(config.paths.jade, ['jade'])

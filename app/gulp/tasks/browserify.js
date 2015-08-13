@@ -10,12 +10,12 @@ var gulp = require('gulp')
   , uglify = require('gulp-uglify')
   , browserSync = require('browser-sync')
 
-var PRODUCTION = !process.env.PRODUCTION
+var PRODUCTION = !!process.env.PRODUCTION
 var dev = false
 var browserifyStream = browserify({
       entries: config.entryFiles.browserify,
       insertGlobals: false,
-      debug: false,
+      debug: !PRODUCTION,
       // watchify requires these options
       cache: {}, packageCache: {}, fullPaths: true
     })
