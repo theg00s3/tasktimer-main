@@ -28,12 +28,14 @@ module.exports = React.createClass({
   },
   _handleAuthenticationFailure: function(){},
   render: function(){
-    if( this.state.avatar )
-      var className = 'user-profile activate-on ' + this.props.className
-      return  <a href="/profile" id="profile-link" data-active="/profile" className={className}>
-                <img src={this.state.avatar}/>
-                <p className="username">{this.state.username}</p>
-              </a>
-    return null
+    if( !this.state.avatar ){
+      return null
+    }
+
+    var className = 'user-profile activate-on ' + this.props.className
+    return  <a href="/profile" id="profile-link" data-active="/profile" className={className}>
+              <img src={this.state.avatar}/>
+              <p className="username">{this.state.username}</p>
+            </a>
   }
 })
