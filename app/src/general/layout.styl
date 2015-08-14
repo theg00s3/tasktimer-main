@@ -38,12 +38,18 @@ main
   margin-right @margin-left
   padding-left 0.5em
   padding-right @padding-left
+  @media all and (max-width limit)
+    width 93% !important
 
   &.small
     max-width limit_small
+    @media all and (max-width limit_small)
+      width 93% !important
 
   &.extended
     max-width limit_extended
+    @media all and (max-width limit_extended)
+      width 93% !important
 
 .breath
   margin-top 1em
