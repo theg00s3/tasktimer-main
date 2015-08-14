@@ -1,12 +1,33 @@
 .user-profile
-  height 32px
-  width 32px
-  -webkit-border-radius 50%
-  border-radius 50%
-  vertical-align middle
-  cursor pointer
-  margin-right 0.5em
-  margin-left 0.5em
-  margin-top .4em
-  float right
-  border 2px solid white
+  display inline !important
+  padding 0 !important
+  float right !important
+  img
+    height 32px
+    width 32px
+    -webkit-border-radius 50%
+    border-radius 50%
+    vertical-align middle
+    cursor pointer
+    margin 0.6rem
+    border 2px solid white
+
+  .username
+    display none
+    color color_text
+
+  &.show-username
+    .username
+      display block
+
+  &.center
+    float none !important
+    display block !important
+    text-align center
+    margin-left auto
+    margin-right @margin-left
+
+  &.big
+    img
+      height 75px
+      width @height

@@ -11,5 +11,6 @@ page('*', require('./modules/page.logger')
 page('/', require('./pages/Main'))
 page('/about', require('./pages/About'))
 page('/statistics', require('./pages/Statistics'))
+page('/profile', require('./pages/Profile'))
 
 module.exports.start = page.start
