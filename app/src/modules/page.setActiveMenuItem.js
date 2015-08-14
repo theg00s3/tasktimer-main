@@ -1,7 +1,6 @@
 module.exports = function(context, next){
-  next()
 
-  var page = context.pathname.substring(1)
+  var page = context.pathname ? context.pathname.substring(1) : context
 
   var items = Array.prototype.slice.call(document.querySelectorAll('.activate-on'))
   items.forEach(function(item){
@@ -10,4 +9,8 @@ module.exports = function(context, next){
       item.classList.add('active')
     }
   })
+
+  if( typeof next === 'function' ){
+    next()
+  }
 }

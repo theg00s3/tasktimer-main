@@ -12,8 +12,8 @@ module.exports = React.createClass({
                     <a href="/statistics" id="statistics-link" className="activate-on" data-active="/statistics" tabIndex="2">Stats</a>
                   </li>
                 </ul>
-                <LoginLogout/>
-                <UserProfile/>
+                <LoginLogout tabIndex="4"/>
+                <UserProfile tabIndex="3"/>
               </div>
             </header>
   }
