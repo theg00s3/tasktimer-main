@@ -28,7 +28,7 @@ module.exports = React.createClass({
     }
     if( !this.state.loggedIn ) {
       return  <div className={this.props.className + " login-logout"}>
-                <span className="text">{this.props.text || "Login with"}</span>
+                <span className="text">{this.props.text || "Signup or login with"}</span>
                 <div className="login-buttons">
                   <a href="/auth/twitter" target="_self" className="twitter">
                     <i className="icon ion-social-twitter"></i>
