@@ -64,8 +64,8 @@ var Profile = React.createClass({
     var yourDataLink = 'https://'+window.location.host+'/api/pomodoro?apikey=' + this.state.apikey
     return  <div>
               <div className="ovh">
-                <UserProfile className="big center show-username"/>
-                <a href={yourDataLink} className="right" target="_blank">Download your data</a>
+                <UserProfile className="big left show-username"/>
+                <a href={yourDataLink} className="left" target="_blank">Download your data</a>
               </div>
               <hr/>
               <div>
@@ -74,7 +74,7 @@ var Profile = React.createClass({
                 <strong>{this.state.apikey}</strong>
                 <br/>
                 <p>
-                  Documentation is on the way, stay up to date by following us on
+                  Documentation is on the way, stay up to date by following us on &nbsp;
                   <a href="https://twitter.com/pomodoro_cc" target="_blank">Twitter</a>
                 </p>
               {/* Check out the <a href="/developers">documentation</a> for more info */}
