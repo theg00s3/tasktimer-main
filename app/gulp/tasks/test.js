@@ -1,10 +1,20 @@
 var config = require('../config')
 var gulp = require('gulp')
-var mocha = require('gulp-mocha')
+var karma = require('gulp-karma')
 
-function test(){
-  return gulp.src(config.paths.test, {read: false})
-    .pipe(mocha({reporter: 'dot', bail:true}))
+function test(done){
+  return gulp.src(config.paths.test)
+    .pipe(karma({
+      configFile: process.cwd() + '/karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      this.emit('end')
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    })
 }
 
 gulp.task('test', test)
+
+module.exports = test
