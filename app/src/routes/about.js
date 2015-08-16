@@ -2,11 +2,11 @@ var React = require('react')
 
 
 module.exports = function(context){
-  React.render(<About/>, document.querySelector('main'))
+  React.render(<about/>, document.querySelector('main'))
 }
 
 
-var About = React.createClass({
+var about = React.createClass({
   render: function(){
     return  <div className="about-content">
               <header className="prominent-header">
