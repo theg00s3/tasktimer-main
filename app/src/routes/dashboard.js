@@ -8,11 +8,11 @@ var React = require('react')
   , store = require('store')
 
 module.exports = function(context){
-  React.render(<dashboard/>, document.querySelector('main'))
+  React.render(<Dashboard/>, document.querySelector('main'))
 }
 
 
-var dashboard = React.createClass({
+var Dashboard = React.createClass({
   render: function() {
     var remaining = Timer.getRemaining()
     var pomodoroData = store.get('pomodoroData')

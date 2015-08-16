@@ -6,11 +6,11 @@ var LoginLogout = require('../components/LoginLogout')
   , UserProfile = require('../components/UserProfile')
 
 module.exports = function(context){
-  React.render(<profile/>, document.querySelector('main'))
+  React.render(<Profile/>, document.querySelector('main'))
 }
 
 
-var profile = React.createClass({
+var Profile = React.createClass({
   getInitialState: function(){
     return {
       apikey: undefined,

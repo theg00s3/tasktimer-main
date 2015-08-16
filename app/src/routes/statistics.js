@@ -18,10 +18,10 @@ var constants = require('../../../shared/constants')
 module.exports = function(context){
   var day = extractDay(context.path)
   var dataPromise = PomodoroRepository.getForDay(day)
-  React.render(<statistics day={day} dataPromise={dataPromise}/>, document.querySelector('main'))
+  React.render(<Statistics day={day} dataPromise={dataPromise}/>, document.querySelector('main'))
 }
 
-var statistics = React.createClass({
+var Statistics = React.createClass({
   getInitialState: function(){
     return {
       data: [],
