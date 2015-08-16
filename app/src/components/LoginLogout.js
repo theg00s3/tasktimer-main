@@ -43,7 +43,7 @@ module.exports = React.createClass({
       return null
     }
     return  <div className="login-logout">
-              <a href="/auth/logout" className="logout">Logout</a>
+              <a href="/auth/logout" className="logout" id="logout-link">Logout</a>
             </div>
   }
 })

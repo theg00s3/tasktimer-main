@@ -16,4 +16,10 @@ module.exports = {
       .url('https://pomodoro.dev/statistics')
       .assert.elementNotPresent('.login-logout.big')
   },
+  'user can log out': function(browser){
+    browser
+      .url('https://pomodoro.dev/')
+      .click('#logout-link')
+      .assert.containsText('.login-logout .text', 'Signup or login with')
+  },
 }
