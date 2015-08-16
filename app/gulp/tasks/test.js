@@ -2,6 +2,8 @@ var config = require('../config')
 var gulp = require('gulp')
 var karma = require('gulp-karma')
 
+var PRODUCTION = !!process.env.PRODUCTION
+
 function test(done){
   return gulp.src(config.paths.test)
     .pipe(karma({
@@ -10,8 +12,10 @@ function test(done){
     }))
     .on('error', function(err) {
       this.emit('end')
-      // Make sure failed tests cause gulp to exit non-zero
-      throw err;
+      if( PRODUCTION ){
+        // Make sure failed tests cause gulp to exit non-zero
+        throw err
+      }
     })
 }
 
