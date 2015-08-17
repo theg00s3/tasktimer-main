@@ -2,15 +2,6 @@ module.exports = {
   after: function(browser){
     browser.end()
   },
-  "adds changes color of header when navigated to statistics page": function(browser){
-    browser
-      .url('https://pomodoro.dev/statistics')
-      .assert.attributeContains('main header', 'class', 'prominent-header')
-
-
-      .url('https://pomodoro.dev/about')
-      .assert.attributeContains('main header', 'class', 'prominent-header')
-  },
   "navigate in statistics page": function(browser){
     var today = getToday()
     var previousDay = getYesterday()

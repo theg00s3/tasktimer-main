@@ -16,16 +16,12 @@ module.exports = {
       .getText('.timer', containsRegExp(/24:\d\d/))
       .click('.control-buttons-container button:first-child')
   },
-  "start a pomodoro": function(browser){
+  "start different timers": function(browser){
     browser
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:first-child')
       .getText('.timer', containsRegExp(/2[45]:\d\d/))
       .click('.control-buttons-container button:first-child')
-      .assert.containsText('.timer', '00:00')
-  },
-  "start a break": function(browser){
-    browser
       .assert.containsText('.timer', '00:00')
       .click('.control-buttons-container button:nth-child(2)')
       .getText('.timer', containsRegExp(/0[45]:\d\d/))
