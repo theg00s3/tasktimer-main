@@ -10,15 +10,17 @@ module.exports = {
 
 var Buzz = require('./Buzz')
 
-var ringingSound = new Buzz.sound('/assets/audio/ring.mp3', {
+var ringingSound = new Buzz.sound('/assets/audio/ring', {
   preload: true,
   loop: false,
   webAudioApi: true,
+  formats: ['ogg','mp3']
 })
-var tickingSound = new Buzz.sound('/assets/audio/tick.mp3', {
+var tickingSound = new Buzz.sound('/assets/audio/tick', {
   preload: true,
   loop: true,
   webAudioApi: true,
+  formats: ['ogg','mp3']
 })
 
 function isMutedTickingSound(){
