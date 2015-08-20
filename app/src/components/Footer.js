@@ -41,6 +41,9 @@ module.exports = React.createClass({
                     <img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics"/>
                   </a>
                 </div>
+                <div className="tac">
+                  <iframe data-aa='81210' src='https://ad.a-ads.com/81210?size=120x60' scrolling='no' style={{width: '120px', height: '60px', border: '0px', padding: 0, overflow: 'hidden'}} allowtransparency='true' frameborder='0'></iframe>
+                </div>
               </div>
             </footer>
   }
