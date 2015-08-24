@@ -19,6 +19,7 @@ var browserifyStream = browserify({
       // watchify requires these options
       cache: {}, packageCache: {}, fullPaths: true
     })
+browserifyStream.external('react')
 browserifyStream.transform(reactify)
 
 
