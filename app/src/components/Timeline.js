@@ -1,6 +1,5 @@
 var React = require('react')
   , moment = require('moment')
-  , PomodoroUtils = require('../../../shared/PomodoroUtils')
   , TimelineUtils = require('../modules/TimelineUtils')
 
 
