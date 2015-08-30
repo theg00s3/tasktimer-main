@@ -20,6 +20,6 @@ module.exports = {
     browser
       .url('https://pomodoro.dev/')
       .click('#logout-link')
-      .assert.containsText('.login-logout .text', 'Signup or login with')
+      .assert.containsText('.login-logout .logout', 'Signup or login with')
   },
 }
