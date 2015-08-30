@@ -5,7 +5,7 @@ module.exports = function(context, next){
   var items = Array.prototype.slice.call(document.querySelectorAll('.activate-on'))
   items.forEach(function(item){
     item.classList.remove('active')
-    if( page !== '' && new RegExp(page).test(item.dataset.active) ){
+    if( page !== '' && new RegExp('^/?'+ page + '$').test(item.dataset.active) ){
       item.classList.add('active')
     }
   })
