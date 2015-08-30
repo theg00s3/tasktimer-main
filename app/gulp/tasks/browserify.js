@@ -42,6 +42,7 @@ function bundle(){
       gutil.log('Browserify Error')
       gutil.log(err.message)
       this.emit('end')
+      if( PRODUCTION ){throw err}
     })
     .pipe(source('index.js'))
     .pipe(buffer())

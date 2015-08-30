@@ -12,10 +12,7 @@ function test(done){
     }))
     .on('error', function(err) {
       this.emit('end')
-      if( PRODUCTION ){
-        // Make sure failed tests cause gulp to exit non-zero
-        throw err
-      }
+      if( PRODUCTION ){throw err}
     })
 }
 
