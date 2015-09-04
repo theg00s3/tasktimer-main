@@ -1,10 +1,9 @@
 .prominent-header
   position relative
-  padding-top 3rem
-  padding-bottom main_overflow * 1.5
-  // background linear-gradient(to right bottom, rgb(223,46,46) 0, rgb(243,70,3) 95%)
+  padding-top main_overflow * 1.4
+  padding-bottom @padding-top
   background-color color_pomodoro
-  margin-top -5rem
+  margin-top -4.5rem
 
   &, *
     transition all .3s ease-in-out
@@ -12,3 +11,7 @@
   *
     color white
     border-color white
+
+  h1, h2, h3, h4, h5, h6
+    margin-top 0.5em
+    margin-bottom @margin-top
