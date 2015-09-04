@@ -32,12 +32,12 @@ module.exports = React.createClass({
     }
     return  <div className="statistics-numbers-container">
               <div>
-                <span className="number">{this.state.fullPomodoroCount}</span>
+                <span className="number greenish">{this.state.fullPomodoroCount}</span>
                 <span className="text">pomodori</span>
                 {this._getAllPomodoroCountPiece()}
               </div>
               <div>
-                <span className="number">{this.state.fullPomodoroHours}</span>
+                <span className="number greenish">{this.state.fullPomodoroHours}</span>
                 <span className="text">hours</span>
                 {this._getAllPomodoroHoursPiece()}
               </div>
@@ -50,7 +50,7 @@ module.exports = React.createClass({
     return  <div>
               <br/>
               <span className="small">
-                + <strong>{this.state.allPomodoroCount}</strong> cancelled pomodori
+                <strong className="greenish">+ {this.state.allPomodoroCount}</strong> cancelled pomodori
               </span>
             </div>
 
@@ -62,7 +62,7 @@ module.exports = React.createClass({
     return  <div>
                 <br/>
                 <span className="small">
-                  + <strong>{this.state.allPomodoroHours}</strong> hours
+                  <strong className="greenish">+ {this.state.allPomodoroHours}</strong> hours
                 </span>
             </div>
 
