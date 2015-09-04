@@ -11,9 +11,15 @@ module.exports = React.createClass({
                   <li>
                     <a href="/statistics" id="statistics-link" className="activate-on" data-active="/statistics" tabIndex="2">Stats</a>
                   </li>
+                  <li>
+                    <a href="/about" id="about-link" className="activate-on" data-active="/about" tabIndex="3">About</a>
+                  </li>
+                  <li>
+                    <a href="/blog" id="blog-link" className="activate-on" data-active="/blog" tabIndex="4">Blog</a>
+                  </li>
                 </ul>
-                <LoginLogout tabIndex="4"/>
-                <UserProfile tabIndex="3"/>
+                <LoginLogout tabIndex="5"/>
+                <UserProfile tabIndex="4"/>
               </div>
             </header>
   }

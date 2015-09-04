@@ -7,10 +7,13 @@ module.exports = React.createClass({
                 <div className="tac">
                   <ul className="menu">
                     <li>
-                      <a href="/about" id="about-link">About</a>
+                      <a href="/statistics">Statistics</a>
                     </li>
                     <li>
-                      <a href="/blog" id="blog-link">Blog</a>
+                      <a href="/about">About</a>
+                    </li>
+                    <li>
+                      <a href="/blog">Blog</a>
                     </li>
                   </ul>
                 </div>
