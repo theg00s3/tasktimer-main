@@ -8,14 +8,14 @@ module.exports = function(){
 
   socket.onopen = function(){
     socket.send(JSON.stringify({
-      topic:'dummy:lobby',
+      topic:'global:pomodoro_event',
       event: 'phx_join',
       payload: {},
       ref: 0
     }))
 
     socket.send(JSON.stringify({
-      topic:'dummy:lobby',
+      topic:'global:pomodoro_event',
       event: 'shout',
       payload: {data:'whaaaa'},
       ref: 0
