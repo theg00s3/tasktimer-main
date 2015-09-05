@@ -8,19 +8,12 @@ module.exports = {
     var nextDay = getTomorrow()
     browser
       .url('https://pomodoro.dev/statistics')
-      .assert.containsText('main', 'Statistics')
       .click('.ion-ios-arrow-back')
       .assert.containsText('main', previousDay)
       .click('.ion-ios-arrow-forward')
       .assert.containsText('main', today)
       .click('.ion-ios-arrow-forward')
       .assert.containsText('main', nextDay)
-  },
-  "navigate in statistics page and sets active header element": function(browser){
-    browser
-      .url('https://pomodoro.dev/statistics')
-      .assert.containsText('main', 'Statistics')
-      .assert.attributeContains('#statistics-link', 'class', 'active')
   },
   "navigates to about page": function(browser){
     browser
@@ -36,7 +29,7 @@ module.exports = {
     browser
       .url('https://pomodoro.dev/')
       .click('#statistics-link')
-      .assert.containsText('main', 'Statistics')
+      .assert.containsText('main', 'to see your statistics')
     browser
       .url('https://pomodoro.dev/')
       .click('#blog-link')
