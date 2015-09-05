@@ -13,6 +13,11 @@ require('./init/auth')()
 require('./init/FailedPomodoriQueue')()
 require('./init/appCache')()
 
+var websocketInit = require('./init/websocket')
+if( window.WebSocket ) {
+  websocketInit()
+}
+
 router.start()
 
 logger.enable( !/pomodoro\.cc/.test(window.location.host) )
