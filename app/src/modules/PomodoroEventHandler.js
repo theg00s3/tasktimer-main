@@ -8,36 +8,29 @@ var failedPomodoriKey = require('../constants').failedPomodoriKey
   , failedPomodoriQueue = new PersistentQueue(failedPomodoriKey)
 
 module.exports = function(eventName, minutes, type, time){
-  if( 'start' === eventName ) {
-    handleStart()
+  switch( eventName ){
+    case 'start':
+      var pomodoroData = {
+        minutes: minutes,
+        type: type,
+        startedAt: new Date()
+      }
+      AnalyticsService.track('timer-start', pomodoroData)
+      store.set('pomodoroData', pomodoroData)
+      break
+    case 'end':
+      var pomodoroData = store.get('pomodoroData')
+      if( pomodoroData && pomodoroData.minutes && pomodoroData.startedAt ){
+        pomodoroData = setCancelledAtIfNeeded(pomodoroData)
+        AnalyticsService.track('timer-end', pomodoroData)
+        PomodoroRepository.create(pomodoroData)
+        .catch(function(){
+          failedPomodoriQueue.push(pomodoroData)
+        })
+      }
+      store.remove('pomodoroData')
+      break
   }
-  if( 'end' === eventName ) {
-    handleEnd()
-  }
-}
-
-function handleStart(minutes, type){
-  var pomodoroData = {
-    minutes: minutes,
-    type: type,
-    startedAt: new Date()
-  }
-  AnalyticsService.track('timer-start', pomodoroData)
-  store.set('pomodoroData', pomodoroData)
-}
-
-function handleEnd(){
-  var pomodoroData = store.get('pomodoroData')
-  if( pomodoroData && pomodoroData.minutes && pomodoroData.startedAt ){
-    pomodoroData = setCancelledAtIfNeeded(pomodoroData)
-    AnalyticsService.track('timer-end', pomodoroData)
-    PomodoroRepository.create(pomodoroData)
-    .catch(function(){
-      failedPomodoriQueue.push(pomodoroData)
-    })
-  }
-  store.remove('pomodoroData')
-
 }
 
 function setCancelledAtIfNeeded(pomodoroData){
