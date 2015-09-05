@@ -33,7 +33,7 @@ module.exports = React.createClass({
     }
 
     var className = 'user-profile activate-on ' + this.props.className
-    return  <a href="/profile" id="profile-link" data-active="/profile" className={className}>
+    return  <a href="/profile" id="profile-link" data-active="/profile" className={className} tabIndex={this.props.tabIndex}>
               <img src={this.state.avatar}/>
               <p className="username">{this.state.username}</p>
             </a>
