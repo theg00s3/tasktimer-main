@@ -24,7 +24,10 @@ module.exports = function(eventName, minutes, type, time){
         pomodoroData = setCancelledAtIfNeeded(pomodoroData)
         AnalyticsService.track('timer-end', pomodoroData)
         PomodoroRepository.create(pomodoroData)
-        .catch(function(){
+        .catch(function(response){
+          if( response.status === PomodoroRepository.POMODORO_ERROR_INVALID || response.status === PomodoroRepository.POMODORO_ERROR_OVERLAPPING ){
+            return
+          }
           failedPomodoriQueue.push(pomodoroData)
         })
       }

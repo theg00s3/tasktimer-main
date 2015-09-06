@@ -1,6 +1,8 @@
 module.exports = {
   create: create,
-  getForDay: getForDay
+  getForDay: getForDay,
+  POMODORO_ERROR_OVERLAPPING: 403,
+  POMODORO_ERROR_INVALID: 422
 }
 
 var axios = require('axios')
