@@ -110,15 +110,27 @@ var Statistics = React.createClass({
               </div>
     }
 
+    var tweetLink = getTweetLinkFor(this.props.day, this.state.data)
+
     return  <div>
               <div className="limit">
                 <StatisticsNumbers data={this.state.data}/>
               </div>
-              <Timeline height="200" width="1100" data={this.state.data}/>
+              <Timeline height="200" width="1000" data={this.state.data}/>
+              <div className="limit tac">
+                <a href={tweetLink} className="twitter-share-link" target="_blank">
+                  Tweet your progress! &nbsp;
+                  <i className="icon ion-social-twitter"></i>
+                </a>
+              </div>
             </div>
   },
 })
 
+function getTweetLinkFor(day, data){
+    var text = encodeURIComponent('On ' + day + ' I worked ' + StatisticsUtils.getAllPomodoroCount(data) + ' pomodori for a total of ' + StatisticsUtils.getAllPomodoroHours(data) + ' hours on https://pomodoro.cc !')
+    return 'https://twitter.com/intent/tweet?text='+ text +'&via=pomodoro_cc'
+}
 
 function extractDay(string){
   var query = url.parse(string, true).query
