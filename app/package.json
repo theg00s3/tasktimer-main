@@ -1,10 +1,14 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
+  "description": "pomodoro.cc ============",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christian-fei/pomodoro.cc.git"
+  },
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=node_modules ./node_modules/gulp/bin/gulp.js watch",
+    "start": "./node_modules/gulp/bin/gulp.js watch",
     "test": "./node_modules/gulp/bin/gulp.js test",
     "e2e": "sh scripts/e2e.sh",
     "e2e-cross-browser": "sh scripts/e2e.sh CROSS_BROWSER"
@@ -24,7 +28,7 @@
   "devDependencies": {
     "browser-sync": "^2.7.6",
     "browserify": "^10.2.3",
-    "chai": "^2.3.0",
+    "chai": "^3.2.0",
     "connect-history-api-fallback": "^1.1.0",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
@@ -41,13 +45,15 @@
     "gulp-util": "^3.0.5",
     "karma": "^0.13.9",
     "karma-browserify": "^4.3.0",
+    "karma-chai": "^0.1.0",
     "karma-coffee-preprocessor": "^0.3.0",
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.1.1",
     "karma-nyan-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs-shim": "^1.1.1",
     "karma-sinon-chai": "^1.0.0",
-    "mocha": "^2.2.5",
+    "mocha": "^2.3.0",
     "nib": "^1.1.0",
     "nightwatch": "^0.6.13",
     "phantomjs": "^1.9.18",
