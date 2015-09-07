@@ -53,7 +53,6 @@ var Statistics = React.createClass({
     return  <div className="statistics-content">
               <header className="prominent-header">
                 <div className="limit tac">
-                  {/*<h1 className="statistics-heading">Statistics</h1>*/}
                   <h5 className="statistics-day">{this.props.day}</h5>
                   <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
                 </div>
