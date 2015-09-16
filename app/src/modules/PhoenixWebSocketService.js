@@ -1,6 +1,4 @@
-var socket
-
-var WebSocketService = {
+var PhoenixWebSocketService = {
   initialize: initialize,
   destroy: destroy,
   join: join,
@@ -11,11 +9,10 @@ function initialize(host, endpoint, WebSocketConstructor){
   host = host || location.host
   endpoint = endpoint || '/ws/socket/websocket'
   WebSocketConstructor = WebSocketConstructor || WebSocket
-  socket = new WebSocketConstructor('wss://'+host+endpoint)
-  return socket
+  return new WebSocketConstructor('wss://'+host+endpoint)
 }
 
-function destroy(){
+function destroy(socket){
   if( socket && socket.close ){
     socket.close()
     socket = undefined
@@ -23,7 +20,7 @@ function destroy(){
   return socket
 }
 
-function join(channel, topic){
+function join(socket, channel, topic){
   socket.send(JSON.stringify({
     topic: channel+':'+topic,
     event: 'phx_join',
@@ -32,8 +29,8 @@ function join(channel, topic){
   }))
   return socket
 }
-function send(message){
+function send(socket, message){
   socket.send(JSON.stringify({data:message}))
 }
 
-module.exports = WebSocketService
+module.exports = PhoenixWebSocketService
