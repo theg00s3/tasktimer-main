@@ -21,7 +21,9 @@ function destroy(socket){
 }
 
 function join(socket, channel, topic){
-  socket.send(JSON.stringify({
+  socket._channel = channel
+  socket._topic = topic
+  socketSend(socket, JSON.stringify({
     topic: channel+':'+topic,
     event: 'phx_join',
     payload: {},
@@ -29,8 +31,29 @@ function join(socket, channel, topic){
   }))
   return socket
 }
-function send(socket, message){
-  socket.send(JSON.stringify({data:message}))
+
+function send(socket, event, payload){
+  socketSend(socket, JSON.stringify({
+    topic: socket._channel+':'+socket._topic,
+    event: event,
+    payload: payload,
+    ref: 0
+  }))
+  return socket
 }
 
 module.exports = PhoenixWebSocketService
+
+function socketSend(socket, data){
+  // debugger
+  console.log( '-- socket.OPEN', socket.OPEN )
+  console.log( '-- socket.CONNECTING', socket.CONNECTING )
+  console.log( '-- socket.readyState', socket.readyState )
+  if( socket.readyState === 1 ){
+    socket.send(data)
+    return
+  }
+  setTimeout(function(){
+    socketSend(socket, data)
+  }, 100)
+}

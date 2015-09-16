@@ -37,10 +37,15 @@ describe('PhoenixWebSocketService', function () {
     var spy = sinon.stub(socket, 'send', function(){})
     expect( spy.called ).to.be.false
 
-    PhoenixWebSocketService.send(socket, 'hello')
+    PhoenixWebSocketService.join(socket, 'global', 'pomodoro_event')
+    PhoenixWebSocketService.send(socket, 'new_msg', {text: 'msg text'})
     expect( spy.called ).to.be.true
+    console.log( '-- ', spy.called )
     expect( spy.calledWith(JSON.stringify({
-      data:'hello'
+      topic:'global:pomodoro_event',
+      event: 'new_msg',
+      payload: {text: 'msg text'},
+      ref: 0
     })) ).to.be.true
   })
 })
