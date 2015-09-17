@@ -8,7 +8,10 @@ var PhoenixWebSocketService = {
 function initialize(host, endpoint, WebSocketConstructor){
   host = host || location.host
   endpoint = endpoint || '/ws/socket/websocket'
-  WebSocketConstructor = WebSocketConstructor || WebSocket
+  WebSocketConstructor = WebSocketConstructor || window.WebSocket
+  if( typeof WebSocketConstructor === undefined ) {
+    return {}
+  }
   return new WebSocketConstructor('wss://'+host+endpoint)
 }
 
@@ -45,6 +48,9 @@ function send(socket, event, payload){
 module.exports = PhoenixWebSocketService
 
 function socketSend(socket, data){
+  if( !socket || !socket.send ) {
+    return
+  }
   // debugger
   console.log( '-- socket.OPEN', socket.OPEN )
   console.log( '-- socket.CONNECTING', socket.CONNECTING )

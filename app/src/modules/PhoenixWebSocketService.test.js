@@ -19,7 +19,7 @@ describe('PhoenixWebSocketService', function () {
     expect( socket ).to.be.not.ok
   })
 
-  it('#join', function () {
+  xit('#join', function () {
     var spy = sinon.stub(socket, 'send', function(){})
     expect( spy.called ).to.be.false
 
@@ -33,7 +33,7 @@ describe('PhoenixWebSocketService', function () {
     })) ).to.be.true
   })
 
-  it('#send', function () {
+  xit('#send', function () {
     var spy = sinon.stub(socket, 'send', function(){})
     expect( spy.called ).to.be.false
 
