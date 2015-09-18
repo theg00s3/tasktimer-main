@@ -2,16 +2,20 @@ var PhoenixWebSocketService = {
   initialize: initialize,
   destroy: destroy,
   join: join,
-  send: send
+  send: send,
+  NullWebSocket:NullWebSocket
+}
+
+function NullWebSocket(){
+  this.readyState = 0
+  this.send = function(){}
+  this.close = function(){}
 }
 
 function initialize(host, endpoint, WebSocketConstructor){
   host = host || location.host
   endpoint = endpoint || '/ws/socket/websocket'
-  WebSocketConstructor = WebSocketConstructor || window.WebSocket
-  if( typeof WebSocketConstructor === undefined ) {
-    return {}
-  }
+  WebSocketConstructor = WebSocketConstructor || window.WebSocket || NullWebSocket
   return new WebSocketConstructor('wss://'+host+endpoint)
 }
 
@@ -51,10 +55,6 @@ function socketSend(socket, data){
   if( !socket || !socket.send ) {
     return
   }
-  // debugger
-  console.log( '-- socket.OPEN', socket.OPEN )
-  console.log( '-- socket.CONNECTING', socket.CONNECTING )
-  console.log( '-- socket.readyState', socket.readyState )
   if( socket.readyState === 1 ){
     socket.send(data)
     return

@@ -1,13 +1,16 @@
 var expect = require('chai').expect
 var sinon = require('sinon')
 
+var openedReadyState = 1
+
 describe('PhoenixWebSocketService', function () {
   var PhoenixWebSocketService
     , socket
 
   beforeEach(function () {
     PhoenixWebSocketService = require('./PhoenixWebSocketService')
-    socket = PhoenixWebSocketService.initialize()
+    socket = PhoenixWebSocketService.initialize('myhost.com', '/my/endpoint/ws', PhoenixWebSocketService.NullWebSocket)
+    socket.readyState = openedReadyState
   })
 
   afterEach(function () {
@@ -19,7 +22,7 @@ describe('PhoenixWebSocketService', function () {
     expect( socket ).to.be.not.ok
   })
 
-  xit('#join', function () {
+  it('#join', function () {
     var spy = sinon.stub(socket, 'send', function(){})
     expect( spy.called ).to.be.false
 
@@ -33,7 +36,7 @@ describe('PhoenixWebSocketService', function () {
     })) ).to.be.true
   })
 
-  xit('#send', function () {
+  it('#send', function () {
     var spy = sinon.stub(socket, 'send', function(){})
     expect( spy.called ).to.be.false
 
