@@ -4,12 +4,11 @@ var store = require('store')
   , AnalyticsService = require('./AnalyticsService')
   , PersistentQueue = require('./PersistentQueue')
   , PhoenixWebSocketService = require('./PhoenixWebSocketService')
+  , GlobalPomodoroWebSocketSingleton = require('./GlobalPomodoroWebSocketSingleton')
 
+var socket = GlobalPomodoroWebSocketSingleton.getSocket()
 var failedPomodoriKey = require('../constants').failedPomodoriKey
   , failedPomodoriQueue = new PersistentQueue(failedPomodoriKey)
-
-var socket = PhoenixWebSocketService.create()
-PhoenixWebSocketService.join(socket, 'global', 'pomodoro_event')
 
 module.exports = function(eventName, minutes, type, time){
   switch( eventName ){
