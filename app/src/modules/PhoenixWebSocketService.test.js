@@ -9,7 +9,7 @@ describe('PhoenixWebSocketService', function () {
 
   beforeEach(function () {
     PhoenixWebSocketService = require('./PhoenixWebSocketService')
-    socket = PhoenixWebSocketService.initialize('myhost.com', '/my/endpoint/ws', PhoenixWebSocketService.NullWebSocket)
+    socket = PhoenixWebSocketService.create('myhost.com', '/my/endpoint/ws', PhoenixWebSocketService.NullWebSocket)
     socket.readyState = openedReadyState
   })
 

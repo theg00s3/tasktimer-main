@@ -8,7 +8,7 @@ var store = require('store')
 var failedPomodoriKey = require('../constants').failedPomodoriKey
   , failedPomodoriQueue = new PersistentQueue(failedPomodoriKey)
 
-var socket = PhoenixWebSocketService.initialize()
+var socket = PhoenixWebSocketService.create()
 PhoenixWebSocketService.join(socket, 'global', 'pomodoro_event')
 
 module.exports = function(eventName, minutes, type, time){

@@ -1,5 +1,5 @@
 var PhoenixWebSocketService = {
-  initialize: initialize,
+  create: create,
   destroy: destroy,
   join: join,
   send: send,
@@ -12,7 +12,7 @@ function NullWebSocket(){
   this.close = function(){}
 }
 
-function initialize(host, endpoint, WebSocketConstructor){
+function create(host, endpoint, WebSocketConstructor){
   host = host || location.host
   endpoint = endpoint || '/ws/socket/websocket'
   WebSocketConstructor = WebSocketConstructor || window.WebSocket || NullWebSocket
