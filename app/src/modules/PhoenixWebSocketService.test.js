@@ -14,7 +14,7 @@ describe('PhoenixWebSocketService', function () {
   })
 
   afterEach(function () {
-    PhoenixWebSocketService.destroy()
+    PhoenixWebSocketService.destroy(socket)
   })
 
   it('#destroy', function () {
