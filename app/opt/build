@@ -6,7 +6,9 @@ if [ "$PROJECT_DIR" = "/" ]; then
   PROJECT_DIR="/pomodoro.cc"
 fi
 
-$PROJECT_DIR/app/node_modules/gulp/bin/gulp.js
+cd $PROJECT_DIR/app
+
+./node_modules/gulp/bin/gulp.js
 
 LAST_EXIT_CODE=$?
 
