@@ -3,10 +3,7 @@ var store = require('store')
   , PomodoroRepository = require('./PomodoroRepository')
   , AnalyticsService = require('./AnalyticsService')
   , PersistentQueue = require('./PersistentQueue')
-  , PhoenixWebSocketService = require('./PhoenixWebSocketService')
-  , GlobalPomodoroWebSocketSingleton = require('./GlobalPomodoroWebSocketSingleton')
 
-var socket = GlobalPomodoroWebSocketSingleton.getSocket()
 var failedPomodoriKey = require('../constants').failedPomodoriKey
   , failedPomodoriQueue = new PersistentQueue(failedPomodoriKey)
 
@@ -20,7 +17,6 @@ module.exports = function(eventName, minutes, type, time){
       }
       AnalyticsService.track('timer-start', pomodoroData)
       store.set('pomodoroData', pomodoroData)
-      PhoenixWebSocketService.send(socket, 'pomodoro_start', pomodoroData)
       break
     case 'end':
       var pomodoroData = store.get('pomodoroData')
