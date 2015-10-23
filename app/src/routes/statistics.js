@@ -57,7 +57,7 @@ var Statistics = React.createClass({
                   <ArrowNavigation onBack={this._navigateBack} onForward={this._navigateForward}/>
                 </div>
               </header>
-              <div className="content limit extended breath">
+              <div className="content limit breath">
                 <Loader loaded={this.state.loaded}>
                   {this._getContent()}
                 </Loader>

@@ -22,7 +22,7 @@ var Dashboard = React.createClass({
     return  <div>
               <header className="prominent-header">
               </header>
-              <div className="content limit extended small breath">
+              <div className="content limit breath">
                 <div className="limit">
                   <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
                   <SoundSettings/>

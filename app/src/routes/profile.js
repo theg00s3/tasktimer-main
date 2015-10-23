@@ -44,7 +44,7 @@ var Profile = React.createClass({
                   <h1>Profile</h1>
                 </div>
               </header>
-              <div className="content limit extended small breath">
+              <div className="content limit breath">
                 <div className="limit">
                   <Loader loaded={this.state.loaded}>
                     {this._getContent()}

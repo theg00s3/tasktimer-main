@@ -15,8 +15,8 @@ var About = React.createClass({
                   <h5>Manage your time more effectively</h5>
                 </div>
               </header>
-              <div className="content limit extended small breath">
-                <div className="limit">
+              <div className="content limit breath">
+                <div className="limit small">
                   <p className="breath">
                     Pomodoro.cc is a time tracking tool that will help you to keep track of your work and review your achieved goals for the day.
                     <br/>
