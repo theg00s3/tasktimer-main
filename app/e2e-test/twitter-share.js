@@ -10,7 +10,7 @@ module.exports = {
   "shares tweet": function(browser){
     browser
       .click('.twitter-share')
-      .pause(1500)
+      .pause(5000)
       .getText('body', containsRegExp(/#productivity/))
   },
 }
