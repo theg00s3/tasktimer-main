@@ -1,6 +1,7 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
   , LoginLogout = require('../components/LoginLogout')
+  , TwitterShare = require('../components/TwitterShare')
   , SoundSettings = require('../components/SoundSettings')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
   , SettingsEventHandler = require('../modules/SettingsEventHandler')
@@ -24,6 +25,7 @@ var Dashboard = React.createClass({
               </header>
               <div className="content limit breath">
                 <div className="limit">
+                  <TwitterShare/>
                   <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
                   <SoundSettings/>
                   <div className="limit breath">
