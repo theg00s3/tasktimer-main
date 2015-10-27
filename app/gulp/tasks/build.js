@@ -1,6 +1,6 @@
 var gulp = require('gulp')
 
-gulp.task('default', [
+gulp.task('build', [
   'browserify',
   'stylus',
   'jade',
