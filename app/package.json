@@ -8,8 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/gulp/bin/gulp.js watch",
-    "test": "./node_modules/gulp/bin/gulp.js test",
+    "start": "gulp watch",
+    "test": "gulp test",
+    "build": "gulp build",
     "e2e": "sh scripts/e2e.sh",
     "e2e-cross-browser": "sh scripts/e2e.sh CROSS_BROWSER"
   },

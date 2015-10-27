@@ -8,7 +8,7 @@ fi
 
 cd $PROJECT_DIR/app
 
-./node_modules/gulp/bin/gulp.js
+npm run build
 
 LAST_EXIT_CODE=$?
 
