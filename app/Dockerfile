@@ -1,4 +1,4 @@
-FROM shepmaster/nginx-template-image
+FROM shepmaster/nginx-template-image:latest
 RUN ["mkdir", "-p", "/var/www/pomodoro.cc/"]
 ADD www/ /var/www/pomodoro.cc/
 ADD etc/nginx /etc/nginx/sites-templates
