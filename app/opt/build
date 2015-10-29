@@ -7,8 +7,10 @@ if [ "$PROJECT_DIR" = "/" ]; then
 fi
 
 echo $PWD
+echo $PROJECT_DIR
 pwd
 cd $PROJECT_DIR/app
+pwd
 
 npm run build
 
