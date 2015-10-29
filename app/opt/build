@@ -6,6 +6,8 @@ if [ "$PROJECT_DIR" = "/" ]; then
   PROJECT_DIR="/pomodoro.cc"
 fi
 
+echo $PWD
+pwd
 cd $PROJECT_DIR/app
 
 npm run build
