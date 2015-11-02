@@ -21,7 +21,7 @@ var About = React.createClass({
                     Pomodoro.cc is a time tracking tool that will help you to keep track of your work and review your achieved goals for the day.
                     <br/>
                     By following the guidelines of the
-                    <a className="simple" href="http://pomodorotechnique.com/" target="_blank">Pomodoro technique &reg;</a>
+                    <a href="http://pomodorotechnique.com/" target="_blank">&nbsp;Pomodoro technique &reg;&nbsp;&nbsp;</a>
                     you ll be able to boost your productivity, work in more concentrated bursts and have frequent, mind refreshing breaks.
                   </p>
                   <p>
