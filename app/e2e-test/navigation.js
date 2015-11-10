@@ -20,11 +20,11 @@ module.exports = {
       .url('https://pomodoro.dev/about')
       .assert.containsText('main', 'Manage your time more effectively')
   },
-  "navigates to blog": function(browser){
-    browser
-      .url('https://pomodoro.dev/blog')
-      .assert.containsText('body', 'Pomodoro.cc Tech Blog')
-  },
+  // "navigates to blog": function(browser){
+  //   browser
+  //     .url('https://pomodoro.dev/blog/')
+  //     .assert.containsText('body', 'Pomodoro.cc Tech Blog')
+  // },
   "clicks to buttons and navigates to page": function(browser){
     browser
       .url('https://pomodoro.dev/')

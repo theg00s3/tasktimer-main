@@ -17,9 +17,6 @@ module.exports = {
     browser
       .url('https://pomodoro.dev/statistics?day=07/13/2020')
       .assert.elementNotPresent('.timeline-container')
-      .assert.containsText('.statistics-content', 'Your statistics')
-      .assert.containsText('.statistics-content', 'When you have tracked some work,')
-      .assert.containsText('.statistics-content', 'you will see your data displayed here.')
-      .assert.containsText('.statistics-content', 'Start your first pomodoro')
+      .assert.containsText('.statistics-content .content', 'Your statistics')
   },
 }
