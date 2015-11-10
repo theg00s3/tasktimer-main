@@ -30,11 +30,12 @@ module.exports = {
       .url('https://pomodoro.dev/')
       .click('#statistics-link')
       .assert.containsText('main', 'to see your statistics')
-    browser
+      .pause(1000)
       .url('https://pomodoro.dev/')
+      .waitForElementVisible('body', 5000)
       .click('#blog-link')
       .assert.containsText('body', 'Pomodoro.cc Tech Blog')
-    browser
+      .pause(1000)
       .url('https://pomodoro.dev/')
       .click('#about-link')
       .assert.containsText('main', 'Manage your time more effectively')
