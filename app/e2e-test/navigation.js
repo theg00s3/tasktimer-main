@@ -20,22 +20,20 @@ module.exports = {
       .url('https://pomodoro.dev/about')
       .assert.containsText('main', 'Manage your time more effectively')
   },
-  // "navigates to blog": function(browser){
-  //   browser
-  //     .url('https://pomodoro.dev/blog/')
-  //     .assert.containsText('body', 'Pomodoro.cc Tech Blog')
-  // },
+  "navigates to blog": function(browser){
+    browser
+      .url('https://pomodoro.dev/blog/')
+      .assert.containsText('body', 'Pomodoro.cc Tech Blog')
+  },
   "clicks to buttons and navigates to page": function(browser){
     browser
       .url('https://pomodoro.dev/')
       .click('#statistics-link')
       .assert.containsText('main', 'to see your statistics')
-      .pause(1000)
       .url('https://pomodoro.dev/')
-      .waitForElementVisible('body', 5000)
       .click('#blog-link')
+      .pause(5000)
       .assert.containsText('body', 'Pomodoro.cc Tech Blog')
-      .pause(1000)
       .url('https://pomodoro.dev/')
       .click('#about-link')
       .assert.containsText('main', 'Manage your time more effectively')
