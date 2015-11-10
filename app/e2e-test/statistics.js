@@ -5,6 +5,7 @@ module.exports = {
   before: function (browser) {
     browser
       .url('https://pomodoro.dev/auth/fake')
+      .pause(5000)
   },
   'shows statistcs for the selected day': function(browser){
     /*
