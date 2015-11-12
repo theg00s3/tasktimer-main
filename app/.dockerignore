@@ -2,3 +2,9 @@ node_modules
 src
 opt
 test
+scripts
+gulpfile.js
+fixtures
+e2e-test
+bind
+selenium.jar
