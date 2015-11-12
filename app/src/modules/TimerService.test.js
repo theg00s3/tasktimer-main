@@ -23,7 +23,7 @@ describe('TimerService', function () {
     MockTimer.restore()
   })
 
-  it('calls the collaborator DocumentTitleUpdateCommand.execute with remaining time', function () {
+  it('updates title with remaining time', function () {
     var MockDocumentTitleUpdateCommand = sinon.mock(DocumentTitleUpdateCommand)
     MockDocumentTitleUpdateCommand.expects('execute').once().withArgs(25*60)
 

@@ -18,7 +18,9 @@ describe('Timer', function () {
   })
 
   describe('behaviour', function () {
-    it('refuses to start a timer with invalid seconds', function () {
+    it('#start', function () {
+      expect( Timer.start(25*60) ).to.be.ok
+
       expect( Timer.start("123.2") ).not.to.be.ok
       expect( Timer.start("123") ).not.to.be.ok
       expect( Timer.start([]) ).not.to.be.ok
@@ -27,28 +29,24 @@ describe('Timer', function () {
       expect( Timer.start(0) ).not.to.be.ok
     })
 
-    it('starts a timer with given seconds', function () {
-      expect( Timer.start(25*60) ).to.be.ok
-    })
-
-    it('tells if Timer is in progress', function () {
+    it('#isInProgress', function () {
       expect( Timer.start(25*60) ).to.be.ok
       expect( Timer.isInProgress() ).to.be.true
       expect( Timer.stop() ).to.be.ok
       expect( Timer.isInProgress() ).to.be.false
     })
 
-    it('refuses to start another timer when one is in progress', function () {
+    it('#start when in progress is not allowed', function () {
       Timer.start(25*60)
       expect( Timer.start(25*60) ).not.to.be.ok
     })
 
-    it('stops a timer', function () {
+    it('#stop', function () {
       Timer.start(25*60)
       expect( Timer.stop() ).to.be.ok
     })
 
-    it('returns the remaining time', function () {
+    it('#getRemaining', function () {
       expect( Timer.start(25*60) ).to.be.ok
       clock.tick(1000)
       expect( Timer.getRemaining() ).to.eql( 25*60 -1 )
@@ -63,20 +61,20 @@ describe('Timer', function () {
       Timer.off('end', callback)
       Timer.off('start', callback)
     })
-    it('adds a listener for tick event', function () {
+    it('#on "tick"', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
       expect( callback.called ).to.be.true
     })
 
-    it('adds a listener for start event', function () {
+    it('#on "start"', function () {
       Timer.on('start', callback)
       Timer.start(25*60)
       expect( callback.called ).to.be.true
       expect( callback.calledWith(25*60) ).to.be.true
     })
 
-    it('stops tick callback when timer is stopped', function () {
+    it('#on "tick" stops when timer is stopped', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
       callback.reset()
@@ -85,7 +83,7 @@ describe('Timer', function () {
       expect( callback.called ).not.to.be.true
     })
 
-    it('removes listener for tick event', function () {
+    it('#off "tick"', function () {
       Timer.on('tick', callback)
       Timer.start(25*60)
       callback.reset()
@@ -94,7 +92,7 @@ describe('Timer', function () {
       expect( callback.called ).not.to.be.true
     })
 
-    it('adds a listener for end event', function () {
+    it('#on "end"', function () {
       Timer.on('end', callback)
       Timer.start(1)
       expect( callback.called ).not.to.be.true
