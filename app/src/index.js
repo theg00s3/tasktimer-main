@@ -11,7 +11,6 @@ React.render(<Footer/>, document.getElementById('main-footer'))
 require('./init/Timer')()
 require('./init/auth')()
 require('./init/FailedPomodoriQueue')()
-require('./init/appCache')()
 
 router.start()
 
