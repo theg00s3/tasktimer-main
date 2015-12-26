@@ -7,7 +7,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 
 export default class TopBar extends Component {
-  render () {
+  render() {
     const {user, actions} = this.props
     return  <div className="top-bar-container">
               <div className="top-bar">

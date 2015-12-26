@@ -2,7 +2,7 @@ require('./SoundSettings.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class SoundSettings extends Component {
-  render () {
+  render() {
     const {actions, settings} = this.props
     const {tickSoundEnabled, ringSoundEnabled} = settings
     return  <div className="sound-settings">

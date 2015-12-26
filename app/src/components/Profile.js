@@ -3,7 +3,7 @@ require('./Profile.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class Profile extends Component {
-  render () {
+  render() {
     const {user} = this.props
     const {avatar} = user
     if( !avatar ) {

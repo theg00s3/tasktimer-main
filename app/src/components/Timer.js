@@ -2,7 +2,7 @@ require('./Timer.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class Timer extends Component {
-  render () {
+  render() {
     const {timer} = this.props
     return  <div className="timer">
               {timer}

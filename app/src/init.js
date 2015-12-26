@@ -17,13 +17,13 @@ export default function init() {
     reduxStore.dispatch(tickTimer(remaining))
   })
 
-  Timer.on('forceEnd', timerEndSound)
+  Timer.on('forceEnd', playTimerEndSound)
   Timer.on('end', () => {
     reduxStore.dispatch(endTimer())
-    timerEndSound()
+    playTimerEndSound()
   })
 
-  function timerEndSound() {
+  function playTimerEndSound() {
     const state = reduxStore.getState()
     Sounds.stopTickingSound()
     if( state.settings.ringSoundEnabled ){

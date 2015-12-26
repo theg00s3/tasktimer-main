@@ -37,7 +37,7 @@ class Layout extends Component {
       actions.grantNotificationPermission(false)
     })
   }
-  render () {
+  render() {
     const {user, settings, actions} = this.props
     return  <div className="layout">
               <TopBar user={user} actions={actions}/>

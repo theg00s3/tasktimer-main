@@ -5,7 +5,7 @@ const defaultTweet = 'I\'m using @pomodoro_cc to get things done with the #pomod
 const defaultText = ''
 
 export default class TwitterShare extends Component {
-  render () {
+  render() {
     const {tweet, text} = this.props
     const resulTweet = encodeURIComponent(tweet || defaultTweet)
     const resulText = text || defaultText

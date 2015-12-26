@@ -2,7 +2,7 @@ require('./MainFooter.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class MainFooter extends Component {
-  render () {
+  render() {
     return  <footer className="main-footer-wrapper">
               <div>
                 <p>

@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {VictoryScatter} from 'victory'
 import PomodoroService from '../modules/PomodoroService'
 import NotificationCenter from '../modules/NotificationCenter'
-import DailyPulseUtils from '../modules/DailyPulseUtils'
+import PomodoroStatisticsUtils from '../modules/PomodoroStatisticsUtils'
 const DOMAIN = {x:[0,100],y:[0,25]}
 
 export default class DailyPulse extends Component {
@@ -25,7 +25,7 @@ export default class DailyPulse extends Component {
   _fetch() {
     PomodoroService.today()
     .then((response) => {
-      const data = DailyPulseUtils.calculateFrom(response.data)
+      const data = PomodoroStatisticsUtils.calculateDailyPulseFrom(response.data)
       this.setState({data})
     })
   }
@@ -34,7 +34,7 @@ export default class DailyPulse extends Component {
     setTimeout(this._fetch.bind(this), 500)
   }
 
-  render () {
+  render() {
     const {data} = this.state
     if( data === undefined ){
       return  null

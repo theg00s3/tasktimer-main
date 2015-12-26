@@ -3,7 +3,7 @@ require('./WelcomeBar.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class WelcomeBar extends Component {
-  render () {
+  render() {
     const {user, settings, actions} = this.props
     if( settings.acknlowedgedWelcome || user.username ) {
       return  null
@@ -23,4 +23,5 @@ export default class WelcomeBar extends Component {
 WelcomeBar.propTypes = {
   user: PropTypes.object.isRequired,
   settings: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
 }

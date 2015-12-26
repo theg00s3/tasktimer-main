@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class Login extends Component {
-  render () {
+  render() {
     const {timer, todos, settings, user, pomodoro, actions} = this.props
     return  <div className="content">
               <div className="tac">
@@ -34,14 +34,14 @@ Login.propTypes = {
 }
 
 export default connect(
-  (state) => {
-    return {
-      todos: state.todos,
-      settings: state.settings,
-      pomodoro: state.pomodoro,
-      timer: state.timer,
-      user: state.user,
-    }
-  },
-  (dispatch) => {return {actions:bindActionCreators(actions,dispatch)}}
+  (state) => ({
+    todos: state.todos,
+    settings: state.settings,
+    pomodoro: state.pomodoro,
+    timer: state.timer,
+    user: state.user,
+  }),
+  (dispatch) => ({
+    actions: bindActionCreators(actions,dispatch)
+  })
 )(Login)

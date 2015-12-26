@@ -15,11 +15,4 @@ describe('pomodoro reducer', () => {
       pomodoro(currentState, action)
     ).to.deep.eql(currentState)
   })
-
-  it.skip('when timer is forceEnded or ends resets store', () => {
-    let action = forceEndTimer()
-    expect(
-      pomodoro({}, action)
-    ).to.deep.eql(defaultState)
-  })
 })

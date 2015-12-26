@@ -43,7 +43,7 @@ export default class Todo extends Component {
     }
   }
 
-  render () {
+  render() {
     const {todo, actions} = this.props
     let className = 'todo ' + (todo.completed?'completed ':'')
     className += (this.state.editing ? 'editing ': '')

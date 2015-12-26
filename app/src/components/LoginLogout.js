@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 
 export default class LoginLogout extends Component {
-  render () {
+  render() {
     const {user} = this.props
     const {avatar} = user
     if( avatar ) {

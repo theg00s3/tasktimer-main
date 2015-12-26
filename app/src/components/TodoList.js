@@ -18,7 +18,7 @@ export default class TodoList extends Component {
     })
   }
 
-  render () {
+  render() {
     const {todos, actions} = this.props
     return  <div className="todo-list-container">
               <TextField
