@@ -24,7 +24,10 @@ export default function init() {
   })
 
   function timerEndSound() {
+    const state = reduxStore.getState()
     Sounds.stopTickingSound()
-    Sounds.startRingingSound()
+    if( state.settings.ringSoundEnabled ){
+      Sounds.startRingingSound()
+    }
   }
 }
