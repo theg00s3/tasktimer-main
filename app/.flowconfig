@@ -1,0 +1,21 @@
+[ignore]
+.*/node_modules/fbjs/.*
+.*/node_modules/npmconf/.*
+.*/node_modules/babel.*
+.*/node_modules/webpack.*
+.*/node_modules/imagemin.*
+.*/node_modules/html.*
+.*/node_modules/glob.*
+.*/node_modules/fill.*
+.*/node_modules/postcss.*
+.*/node_modules/is-.*
+.*/node_modules/lodash.*
+.*/node_modules/strip.*
+
+[include]
+[libs]
+flow
+
+[options]
+module.system=node
+module.name_mapper='\(redux\)' -> '\1/src/index'

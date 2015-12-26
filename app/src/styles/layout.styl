@@ -1,0 +1,27 @@
+@import 'vars'
+
+html
+  height 100%
+
+body
+  position relative
+  margin 0
+  padding 0
+  min-height 100%
+
+.container
+  max-width container_width
+  margin-right auto
+  margin-left @margin-right
+
+#main .content
+  @extend .container
+  min-height 100vh
+  padding 2rem .5rem
+
+.tac
+  text-align center
+
+.login-invite
+  @extend .tac
+  margin-top 4rem
