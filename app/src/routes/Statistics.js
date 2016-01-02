@@ -1,28 +1,28 @@
 require('./Statistics.styl')
 import * as actions from '../actions'
-import d3Scale from 'd3-scale'
 import LoginLogout from '../components/LoginLogout'
+import GenericChart from '../components/GenericChart'
 import PomodoroService from '../modules/PomodoroService'
-import PomodoroStatisticsUtils from '../modules/PomodoroStatisticsUtils'
+import StatisticsUtils from '../modules/StatisticsUtils'
 import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {VictoryChart, VictoryAxis, VictoryLine} from 'victory'
 
 class Statistics extends Component {
   constructor() {
     super()
     this.state = {
-      data: undefined
+      pomodori: undefined,
+      pomodoriCount: 0.0
     }
   }
 
   componentDidMount() {
     PomodoroService.today()
     .then((response) => {
-      const data = PomodoroStatisticsUtils.calculatGenericGraphFrom(response.data)
-      console.log( '-- data', data )
-      this.setState({data})
+      const pomodori = response.data
+      const pomodoriCount = StatisticsUtils.pomodoriCount(pomodori)
+      this.setState({pomodori, pomodoriCount})
     })
   }
 
@@ -34,25 +34,18 @@ class Statistics extends Component {
   }
 
   renderContent() {
-    const {data} = this.state
+    let {pomodori, pomodoriCount} = this.state
+    pomodori = pomodori || []
     return  <div className="tac">
               <h1>Work in progress</h1>
               <p>
                 Stay up to date with the latest development
                 on <a href="https://twitter.com/pomodoro_cc" target="_blank">Twitter</a>
               </p>
-              <VictoryChart height={300} width={768}>
-                <VictoryAxis/>
-                <VictoryLine data={data} interpolation="step"/>
-              </VictoryChart>
-              <VictoryChart height={300} width={768}>
-                <VictoryAxis/>
-                <VictoryLine data={data} interpolation="monotone"/>
-              </VictoryChart>
-              <VictoryChart height={300} width={768}>
-                <VictoryAxis/>
-                <VictoryLine data={data} interpolation="natural"/>
-              </VictoryChart>
+              <pre>{pomodoriCount}</pre>
+              <div className="ovs">
+                <GenericChart data={pomodori}/>
+              </div>
             </div>
   }
 

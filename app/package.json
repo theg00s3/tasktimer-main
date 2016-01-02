@@ -32,6 +32,7 @@
     "normalize.css": "^3.0.3",
     "notifyjs": "^1.2.8",
     "nprogress": "^0.2.0",
+    "ramda": "^0.19.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-hot-loader": "^1.2.7",

@@ -18,7 +18,9 @@ class Index extends Component {
         </p>
       : null
     return  <div className="content">
-              <DailyPulse/>
+              <div className="ovs">
+                <DailyPulse/>
+              </div>
               <TwitterShare/>
               <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions}/>
               <SoundSettings settings={settings} actions={actions}/>

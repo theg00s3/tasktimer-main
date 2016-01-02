@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {VictoryScatter} from 'victory'
 import PomodoroService from '../modules/PomodoroService'
 import NotificationCenter from '../modules/NotificationCenter'
-import PomodoroStatisticsUtils from '../modules/PomodoroStatisticsUtils'
+import StatisticsUtils from '../modules/StatisticsUtils'
 const DOMAIN = {x:[0,100],y:[0,25]}
 
 export default class DailyPulse extends Component {
@@ -25,7 +25,7 @@ export default class DailyPulse extends Component {
   _fetch() {
     PomodoroService.today()
     .then((response) => {
-      const data = PomodoroStatisticsUtils.calculateDailyPulseFrom(response.data)
+      const data = StatisticsUtils.calculateDailyPulseFrom(response.data)
       this.setState({data})
     })
   }
@@ -44,7 +44,7 @@ export default class DailyPulse extends Component {
                 style={{data:{fill:'#AFACAC'}}}
                 domain={DOMAIN}
                 height={70}
-                width={768}
+                width={700}
                 size={2}
                 animate={{velocity: 0.5}}
                 data={data}/>

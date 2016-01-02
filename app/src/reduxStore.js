@@ -10,8 +10,7 @@ import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
 const store = (function() {
-  const logger = createLogger()
-  const storeWithMiddleware = applyMiddleware(thunk, logger)(createStore)
+  const storeWithMiddleware = applyMiddleware(thunk)(createStore)
   const storeWithPersistence = compose(
     persistState(['pomodoro','settings','todos'])
   )(storeWithMiddleware)
