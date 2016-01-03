@@ -1,51 +1,34 @@
-describe('PomodoroUtils', function () {
-  var PomodoroUtils = require('./PomodoroUtils')
+import PomodoroUtils from './PomodoroUtils'
+const MINUTES = 1000 * 60
+const sample = [{
+  type: 'pomodoro',
+  minutes: 25,
+  started_at: '2016-01-03T21:30:00.000Z'
+}, {
+  type: 'pomodoro',
+  minutes: 25,
+  started_at: '2016-01-03T21:55:00.000Z',
+  cancelled_at: '2016-01-03T22:05:00.000Z',
+}]
 
-  it('calculates the duration of a pomodoro', function () {
-    var pomodoro = {
-      minutes: 25,
-      started_at: "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)"
-    }
-    expect( PomodoroUtils.calculateDuration(pomodoro) ).to.equal(25*60)
+describe('PomodoroUtils', () => {
+  describe('#pomodoriCount', () => {
+    it('for empty data returns 0.0', () => {
+      expect( PomodoroUtils.pomodoriCount([]) ).to.eql('0.0')
+    })
+
+    it('calculates pomodori count', () => {
+      expect( PomodoroUtils.pomodoriCount(sample) ).to.eql('1.4')
+    })
   })
-  it('calculates the duration of a cancelled pomodoro', function () {
-    var pomodoro = {
-      minutes: 25,
-      started_at: "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)",
-      cancelled_at: "Sat Jul 04 2015 18:05:00 GMT+0200 (CEST)"
-    }
-    expect( PomodoroUtils.calculateDuration(pomodoro) ).to.equal(5*60)
-  })
-  it('calculates the duration in minutes', function () {
-    var pomodoro = {
-      minutes: 25,
-      started_at: "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)"
-    }
-    expect( PomodoroUtils.calculateDurationInMinutes(pomodoro) ).to.equal(25)
-  })
-  it('calculates the duration in hours', function () {
-    var pomodoro = {
-      minutes: 25,
-      started_at: "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)"
-    }
-    expect( PomodoroUtils.calculateDurationInHours(pomodoro) ).to.equal( 0.41 )
-  })
-  it('calculates the duration in hours for a cancelled pomodoro', function () {
-    var pomodoro = {
-      minutes: 25,
-      started_at: "Sat Jul 04 2015 18:00:00 GMT+0200 (CEST)",
-      cancelled_at: "Sat Jul 04 2015 18:05:00 GMT+0200 (CEST)"
-    }
-    expect( PomodoroUtils.calculateDurationInHours(pomodoro) ).to.equal( 0.08 )
-  })
-  it('converts minutes to format in hours', function () {
-    var minutes = 25
-    var expectedDuration = '00:25'
-    expect( PomodoroUtils.minutesToDuration(minutes) ).to.deep.equal( expectedDuration )
-  })
-  it('refuses to convert invalid minutes', function () {
-    var minutes = -1
-    var expectedHours = '00:00'
-    expect( PomodoroUtils.minutesToDuration(minutes) ).to.deep.equal( expectedHours )
+
+  describe('#pomodoriHours', () => {
+    it('for empty data returns 0.0', () => {
+      expect( PomodoroUtils.pomodoriHours([]) ).to.eql('0.0')
+    })
+
+    it('calculates pomodori count', () => {
+      expect( PomodoroUtils.pomodoriHours(sample) ).to.eql('0.6')
+    })
   })
 })

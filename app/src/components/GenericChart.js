@@ -2,33 +2,29 @@ require('./GenericChart.styl')
 import React, {Component, PropTypes} from 'react'
 import {VictoryChart, VictoryAxis, VictoryLine} from 'victory'
 import {length} from 'ramda'
-import StatisticsUtils from '../modules/StatisticsUtils'
+import GraphUtils from '../modules/GraphUtils'
 
 export default class GenericChart extends Component {
   render() {
     let {data} = this.props
+    console.log( '-- data', data )
     data = data || {}
-    const graphData = StatisticsUtils.calculatGenericChartFrom(data || {})
-    if( length(graphData.graph) < 2 ){
-      return  <div className="tac alert alert-black">
-                <p>Not enough data</p>
-              </div>
-    }
+    const graphData = GraphUtils.calculatGenericChartFrom(data || {})
     return  <VictoryChart
               height={300}
-              width={700}
+              width={1200}
               domain={{
                 y:[0,25]
               }}>
-              <VictoryAxis tickValues={graphData.xAxis} tickFormat={StatisticsUtils.formatTimestampToHour}/>
+              <VictoryAxis tickValues={graphData.xAxis} tickFormat={GraphUtils.formatTimestampToHour}/>
               <VictoryLine
                 data={graphData.graph}
-                interpolation="step"
+                interpolation="step-after"
                 style={{data: {stroke: "grey"}}}/>
               <VictoryLine
                 data={graphData.graph}
                 interpolation="bundle"
-                style={{data: {stroke: "red"}}}/>
+                style={{data: {stroke: "#DF2E2E"}}}/>
             </VictoryChart>
   }
 }

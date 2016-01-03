@@ -43,7 +43,7 @@ class Layout extends Component {
               <TopBar user={user} actions={actions}/>
               <WelcomeBar user={user} settings={settings} actions={actions}/>
 
-              {this.props.children}
+              <div className="main-content">{this.props.children}</div>
               <MainFooter/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
