@@ -1,5 +1,6 @@
 import timer from './reducers/timer'
 import todos from './reducers/todos'
+import todaysPomodori from './reducers/todaysPomodori'
 import pomodoro from './reducers/pomodoro'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
@@ -10,7 +11,8 @@ import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
 const store = (function() {
-  const storeWithMiddleware = applyMiddleware(thunk)(createStore)
+  const logger = createLogger()
+  const storeWithMiddleware = applyMiddleware(thunk, logger)(createStore)
   const storeWithPersistence = compose(
     persistState(['pomodoro','settings','todos'])
   )(storeWithMiddleware)
@@ -18,6 +20,7 @@ const store = (function() {
   const reducer = combineReducers({
     timer,
     todos,
+    todaysPomodori,
     pomodoro,
     settings,
     loading,

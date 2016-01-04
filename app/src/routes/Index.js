@@ -19,7 +19,7 @@ class Index extends Component {
       : null
     return  <div className="content">
               <div className="ovs">
-                <DailyPulse/>
+                <DailyPulse data={/*put data here*/[]} width={700}/>
               </div>
               <TwitterShare/>
               <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions}/>

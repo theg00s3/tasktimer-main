@@ -4,6 +4,11 @@ import Pomodoro from '../models/Pomodoro'
 const MINUTES = 60 * 1000
 const POMODORO_DURATION = 25
 
+const toInteger = (number) => {
+  number = new Number(number)
+  return number.toFixed(0)
+}
+
 const reducePomodoriByFactor = (factor) => {
   const reducer = reduce((acc, value) => {
     const pomodoro = new Pomodoro(value)
@@ -31,6 +36,7 @@ const fullPomodoriHours = compose(
 const partialPomodoriHours = reducePomodoriByFactor(60)
 const partialPomodoriCount = reducePomodoriByFactor(POMODORO_DURATION)
 const fullPomodoriCount = compose(
+  toInteger,
   reducePomodoriByFactor(POMODORO_DURATION),
   filterCancelled
 )

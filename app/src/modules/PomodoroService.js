@@ -18,7 +18,7 @@ function daily(day){
 
 function today(){
   const todayDate = new Date
-  const day = todayDate.getFullYear() + '/' + pad(todayDate.getMonth()+1) + '/' + pad(todayDate.getDate())
+  const day = todayDate.getFullYear() + '/' + pad(todayDate.getMonth()+1) + '/' + pad(todayDate.getDate()-1)
   return daily(day)
 }
 

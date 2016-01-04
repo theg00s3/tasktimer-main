@@ -1,0 +1,36 @@
+@import '../styles/vars'
+item_margin = 1px solid color_semi_light
+.statistics-strip
+  display flex
+  flex-direction row
+  margin 3em auto
+  justify-content center
+  max-width container_width
+  @media all and (max-width container_width)
+    display block
+
+.stat
+  display flex-item
+  flex 1
+  padding 3rem 0
+  background color_light
+  background white
+  border-top item_margin
+  border-bottom item_margin
+  border-right item_margin
+  &.first
+    border-left item_margin
+  &.big
+    flex 1.5
+    font-size 1.5em
+    margin-top -0.75rem
+    margin-bottom @margin-top
+
+  .description
+    font-size 0.9rem
+    text-transform uppercase
+    font-weight bold
+  .upper
+    font-size 2em
+  .lower
+    font-size 1.4em

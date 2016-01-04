@@ -14,7 +14,7 @@ const sample = [{
 describe('PomodoroUtils', () => {
   describe('#fullPomodoriCount', () => {
     it('calculates pomodori count', () => {
-      expect( PomodoroUtils.fullPomodoriCount(sample) ).to.eql('1.0')
+      expect( PomodoroUtils.fullPomodoriCount(sample) ).to.eql('1')
     })
   })
 
