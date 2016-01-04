@@ -12,23 +12,27 @@ const sample = [{
 }]
 
 describe('PomodoroUtils', () => {
-  describe('#pomodoriCount', () => {
-    it('for empty data returns 0.0', () => {
-      expect( PomodoroUtils.pomodoriCount([]) ).to.eql('0.0')
-    })
-
+  describe('#fullPomodoriCount', () => {
     it('calculates pomodori count', () => {
-      expect( PomodoroUtils.pomodoriCount(sample) ).to.eql('1.4')
+      expect( PomodoroUtils.fullPomodoriCount(sample) ).to.eql('1.0')
     })
   })
 
-  describe('#pomodoriHours', () => {
-    it('for empty data returns 0.0', () => {
-      expect( PomodoroUtils.pomodoriHours([]) ).to.eql('0.0')
-    })
-
+  describe('#partialPomodoriCount', () => {
     it('calculates pomodori count', () => {
-      expect( PomodoroUtils.pomodoriHours(sample) ).to.eql('0.6')
+      expect( PomodoroUtils.partialPomodoriCount(sample) ).to.eql('1.4')
+    })
+  })
+
+  describe('#fullPomodoriHours', () => {
+    it('calculates pomodori count', () => {
+      expect( PomodoroUtils.fullPomodoriHours(sample) ).to.eql('0.4')
+    })
+  })
+
+  describe('#partialPomodoriHours', () => {
+    it('calculates pomodori count', () => {
+      expect( PomodoroUtils.partialPomodoriHours(sample) ).to.eql('0.6')
     })
   })
 })

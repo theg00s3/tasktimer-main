@@ -1,4 +1,4 @@
-import { reduce } from 'ramda'
+import { compose, filter, reduce } from 'ramda'
 import Pomodoro from '../models/Pomodoro'
 
 const MINUTES = 60 * 1000
@@ -19,9 +19,25 @@ const reducePomodoriByFactor = (factor) => {
   }
 }
 
-const pomodoriHours = reducePomodoriByFactor(60)
-const pomodoriCount = reducePomodoriByFactor(POMODORO_DURATION)
+const filterCancelled = filter(pomodoro => {
+  pomodoro = new Pomodoro(pomodoro)
+  return !pomodoro.isCancelled()
+})
+
+const fullPomodoriHours = compose(
+  reducePomodoriByFactor(60),
+  filterCancelled
+)
+const partialPomodoriHours = reducePomodoriByFactor(60)
+const partialPomodoriCount = reducePomodoriByFactor(POMODORO_DURATION)
+const fullPomodoriCount = compose(
+  reducePomodoriByFactor(POMODORO_DURATION),
+  filterCancelled
+)
+
 export default {
-  pomodoriCount,
-  pomodoriHours,
+  fullPomodoriCount,
+  partialPomodoriCount,
+  fullPomodoriHours,
+  partialPomodoriHours,
 }

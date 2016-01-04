@@ -7,7 +7,6 @@ import GraphUtils from '../modules/GraphUtils'
 export default class GenericChart extends Component {
   render() {
     let {data} = this.props
-    console.log( '-- data', data )
     data = data || {}
     const graphData = GraphUtils.calculatGenericChartFrom(data || {})
     return  <VictoryChart
