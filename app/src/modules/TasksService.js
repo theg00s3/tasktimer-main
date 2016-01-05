@@ -1,23 +1,28 @@
 import axios from 'axios'
+import DateUtils from './DateUtils'
+const RESOURCE_URL = '/api/tasks'
 
-const TasksService = {
-  create: create,
-  all: all,
-  get: get,
-  update: update,
+export default {
+  create,
+  all,
+  get,
+  update,
+  today,
 }
-
-export default TasksService
 
 function create(task){
-  return axios.post('/api/tasks', task)
+  return axios.post(RESOURCE_URL, task)
 }
 function all(){
-  return axios.get('/api/tasks')
+  return axios.get(RESOURCE_URL)
 }
 function get(taskId){
-  return axios.get(`/api/tasks/${taskId}`)
+  return axios.get(`${RESOURCE_URL}/${taskId}`)
 }
 function update(taskId, task){
-  return axios.put(`/api/tasks/${taskId}`, task)
+  return axios.put(`${RESOURCE_URL}/${taskId}`, task)
+}
+function today(){
+  const todayDate = DateUtils.today()
+  return axios.get(`${RESOURCE_URL}?day=${todayDate}&completed=true`)
 }

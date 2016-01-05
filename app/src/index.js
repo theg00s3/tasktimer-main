@@ -1,5 +1,6 @@
 require('normalize.css')
 require('./index.styl')
+require('./assets/images/pomodoro.cc.png')
 
 import Main        from './Main'
 import React         from 'react'

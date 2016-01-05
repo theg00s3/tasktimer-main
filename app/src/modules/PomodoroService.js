@@ -1,4 +1,5 @@
 import axios from 'axios'
+import DateUtils from './DateUtils'
 const RESOURCE_URL = '/api/pomodoros'
 
 export default {
@@ -17,14 +18,6 @@ function daily(day){
 }
 
 function today(){
-  const todayDate = new Date
-  const day = todayDate.getFullYear() + '/' + pad(todayDate.getMonth()+1) + '/' + pad(todayDate.getDate())
-  return daily(day)
-}
-
-function pad(number) {
-  if( number < 10 ) {
-    return `0${number}`
-  }
-  return number
+  const todayDate = DateUtils.today()
+  return daily(todayDate)
 }

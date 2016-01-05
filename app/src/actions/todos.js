@@ -2,6 +2,7 @@
 import AnalyticsService from '../modules/AnalyticsService'
 import TasksService from '../modules/TasksService'
 import {isLoggedIn} from '../modules/Utils'
+import {getTodaysCompletedTasks} from './'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -88,6 +89,7 @@ export function updateTodo(todo:Todo):Action {
     TasksService.update(todo.id, todo)
     .then(() => {
       dispatch({type:UPDATE_TODO_SUCCESS,payload:todo})
+      dispatch(getTodaysCompletedTasks())
     })
     .catch(() => {
       dispatch({type:UPDATE_TODO_ERROR,payload:{}})

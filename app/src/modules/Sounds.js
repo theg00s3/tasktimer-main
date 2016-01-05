@@ -19,13 +19,11 @@ export default {
 const ringSound = new Buzz.sound('ring', {
   preload: true,
   loop: false,
-  webAudioApi: true,
   formats: ['ogg','mp3']
 })
 const tickSound = new Buzz.sound('tick', {
   preload: true,
   loop: true,
-  webAudioApi: true,
   formats: ['ogg','mp3']
 })
 

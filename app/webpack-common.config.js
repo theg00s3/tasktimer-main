@@ -9,7 +9,7 @@ module.exports = function(production){
     {
       test: /\.(jpe?g|png|gif|svg|ico)$/i,
       loaders: [
-      'file?hash=sha512&digest=hex&name=[hash].[ext]',
+      'file?name=[name].[ext]',
       'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
       ]
     },

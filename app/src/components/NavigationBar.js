@@ -6,7 +6,7 @@ export default class NavigationBar extends Component {
   render() {
     return  <div className="navigation-bar">
               <Link to="/">
-                <span className="brand">Pomodoro<span className="tld">.cc</span></span>
+                <span className="brand"></span>
               </Link>
               <Link to="/statistics">
                 Statistics

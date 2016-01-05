@@ -1,9 +1,10 @@
 require('./Support.styl')
+const logo = require('../assets/images/pomodoro.cc.png')
 import React, {Component} from 'react'
 export default class Support extends Component {
   render() {
     return  <div className="content support">
-              <img className="support-image" src="https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ.png"/>
+              <img className="support-image" src={logo}/>
               <h1>Pomodoro.cc needs your support!</h1>
               <h3 className="light">
                 Every <a href="https://gratipay.com/pomodoro-cc/" target="_blank">donation</a> is very much appreciated.

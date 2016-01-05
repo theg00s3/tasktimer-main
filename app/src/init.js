@@ -2,13 +2,21 @@ require('nprogress/nprogress.css')
 import Timer       from './modules/Timer'
 import Sounds      from './modules/Sounds'
 import {getState, dispatch}  from './reduxStore'
-import {tickTimer, resumeTimer, endTimer, authenticateUser, getTodaysPomodori} from './actions'
+import {
+  tickTimer,
+  resumeTimer,
+  endTimer,
+  authenticateUser,
+  getTodaysPomodori,
+  getTodaysCompletedTasks
+} from './actions'
 
 export default function init() {
   const pomodoro = getState().pomodoro
   dispatch(resumeTimer(pomodoro))
   dispatch(authenticateUser())
   dispatch(getTodaysPomodori())
+  dispatch(getTodaysCompletedTasks())
 
   Timer.on('tick', (remaining, total) => {
     const state = getState()
@@ -21,8 +29,9 @@ export default function init() {
   Timer.on('forceEnd', playTimerEndSound)
   Timer.on('end', () => {
     dispatch(endTimer())
-    dispatch(getTodaysPomodori())
     playTimerEndSound()
+    dispatch(getTodaysPomodori())
+    dispatch(getTodaysCompletedTasks())
   })
 
   function playTimerEndSound() {

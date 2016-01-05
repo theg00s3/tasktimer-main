@@ -7,14 +7,16 @@
 .top-bar
   @extends .container
   overflow hidden
+  padding 0.5rem
 
   .login-logout, .profile
     float right
 
   a, .item
+    vertical-align middle
     text-align center
     display inline-block
-    padding 0.9em 0.5em
+    padding-left 0.5em
+    padding-right @padding-left
     font-size 0.9em
-    // font-weight 700
 

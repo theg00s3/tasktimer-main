@@ -13,10 +13,12 @@ export default class TopBar extends Component {
               <div className="top-bar">
                 <NavigationBar/>
                 <Profile user={user}/>
-                {user.username ?
-                  <LoginLogout user={user} style={{"float":"right"}}/> :
-                  <Link to="/login" style={{"float":"right"}}>Login</Link>
-                }
+                <div style={{"float":"right"}}>
+                  {user.username ?
+                    <LoginLogout user={user} style={{"float":"right"}}/> :
+                    <Link to="/login">Login</Link>
+                  }
+                </div>
               </div>
             </div>
   }
