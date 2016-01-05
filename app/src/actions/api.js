@@ -10,7 +10,7 @@ export function getTodaysPomodori():Action {
     PomodoroService.today()
     .then((response) => {
       const pomodori = response.data
-      dispatch({type:GET_TODAYS_POMODORI_SUCCESS, payload:{pomodori}})
+      dispatch({type:GET_TODAYS_POMODORI_SUCCESS, payload:pomodori})
     })
     .catch((error) => {
       dispatch({type:GET_TODAYS_POMODORI_ERROR, payload:{error}})

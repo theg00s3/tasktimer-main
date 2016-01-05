@@ -1,39 +1,14 @@
 require('./Statistics.styl')
-import * as actions from '../actions'
 import LoginLogout from '../components/LoginLogout'
 import GenericChart from '../components/GenericChart'
 import StatisticsStrip from '../components/StatisticsStrip'
-import PomodoroService from '../modules/PomodoroService'
 import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class Statistics extends Component {
-  constructor() {
-    super()
-    this.state = {
-      pomodori: undefined,
-    }
-  }
-
-  componentDidMount() {
-    PomodoroService.today()
-    .then(this._handlePomodoriResponse.bind(this))
-
-    if( window.development ){
-      this._handlePomodoriResponse({
-        data: [{"updated_at":"2016-01-03T17:37:05Z","type":"pomodoro","started_at":"2016-01-03T17:12:04.582000Z","minutes":25,"inserted_at":"2016-01-03T17:37:05Z","id":3,"cancelled_at":null},{"updated_at":"2016-01-03T17:42:27Z","type":"pomodoro","started_at":"2016-01-03T17:42:24.030000Z","minutes":25,"inserted_at":"2016-01-03T17:42:27Z","id":4,"cancelled_at":"2016-01-03T17:42:27.295000Z"},{"updated_at":"2016-01-03T17:47:33Z","type":"break","started_at":"2016-01-03T17:42:32.654000Z","minutes":5,"inserted_at":"2016-01-03T17:47:33Z","id":6,"cancelled_at":null},{"updated_at":"2016-01-03T18:09:47Z","type":"pomodoro","started_at":"2016-01-03T17:49:46.318000Z","minutes":25,"inserted_at":"2016-01-03T18:09:47Z","id":7,"cancelled_at":null},{"updated_at":"2016-01-03T18:20:47Z","type":"break","started_at":"2016-01-03T18:15:46.905000Z","minutes":5,"inserted_at":"2016-01-03T18:15:46Z","id":8,"cancelled_at":null},{"updated_at":"2016-01-03T18:54:42Z","type":"pomodoro","started_at":"2016-01-03T18:43:41.126000Z","minutes":25,"inserted_at":"2016-01-03T18:54:42Z","id":9,"cancelled_at":"2016-01-03T18:54:42.305000Z"},{"updated_at":"2016-01-03T19:20:13Z","type":"pomodoro","started_at":"2016-01-03T18:55:13.879000Z","minutes":25,"inserted_at":"2016-01-03T19:20:13Z","id":10,"cancelled_at":null},{"updated_at":"2016-01-03T19:33:54Z","type":"break","started_at":"2016-01-03T19:31:41.868000Z","minutes":5,"inserted_at":"2016-01-03T19:33:54Z","id":11,"cancelled_at":null},{"updated_at":"2016-01-03T19:46:22Z","type":"break","started_at":"2016-01-03T19:44:08.054000Z","minutes":5,"inserted_at":"2016-01-03T19:46:22Z","id":12,"cancelled_at":null},{"updated_at":"2016-01-03T20:13:38Z","type":"pomodoro","started_at":"2016-01-03T19:51:24.518000Z","minutes":25,"inserted_at":"2016-01-03T20:13:38Z","id":13,"cancelled_at":null},{"updated_at":"2016-01-03T20:19:48Z","type":"break","started_at":"2016-01-03T20:17:34.513000Z","minutes":5,"inserted_at":"2016-01-03T20:19:48Z","id":14,"cancelled_at":null},{"updated_at":"2016-01-03T20:45:07Z","type":"pomodoro","started_at":"2016-01-03T20:22:52.602000Z","minutes":25,"inserted_at":"2016-01-03T20:45:07Z","id":15,"cancelled_at":null},{"updated_at":"2016-01-03T21:14:53Z","type":"pomodoro","started_at":"2016-01-03T20:52:36.308000Z","minutes":25,"inserted_at":"2016-01-03T21:14:53Z","id":16,"cancelled_at":null},{"updated_at":"2016-01-03T21:20:05Z","type":"break","started_at":"2016-01-03T21:17:48.486000Z","minutes":5,"inserted_at":"2016-01-03T21:20:05Z","id":17,"cancelled_at":null},{"updated_at":"2016-01-03T22:07:45Z","type":"pomodoro","started_at":"2016-01-03T21:45:27.163000Z","minutes":25,"inserted_at":"2016-01-03T22:07:45Z","id":18,"cancelled_at":null},{"updated_at":"2016-01-03T22:22:02Z","type":"break","started_at":"2016-01-03T22:21:57.776000Z","minutes":5,"inserted_at":"2016-01-03T22:22:02Z","id":19,"cancelled_at":"2016-01-03T22:22:02.162000Z"},{"updated_at":"2016-01-03T22:27:02Z","type":"break","started_at":"2016-01-03T22:22:02.814000Z","minutes":5,"inserted_at":"2016-01-03T22:27:02Z","id":20,"cancelled_at":null}]
-      })
-    }
-  }
-
-  _handlePomodoriResponse(response) {
-    const pomodori = response.data
-    this.setState({pomodori})
-  }
-
   render() {
-    const {timer, todos, settings, user, pomodoro, actions} = this.props
+    const {user} = this.props
     if( window.development ){
       return this.renderAuthorizedContent()
     }
@@ -42,17 +17,16 @@ class Statistics extends Component {
   }
 
   renderAuthorizedContent() {
-    let {pomodori} = this.state
-    pomodori = pomodori || []
+    const {api} = this.props
     let content = <p className="content alert">
                     Not enough data.. :(
                   </p>
 
-    if( pomodori.length > 0 ) {
+    if( api.todaysPomodori.length > 0 ) {
       content = <div>
-                  <StatisticsStrip data={pomodori}/>
+                  <StatisticsStrip data={api.todaysPomodori}/>
                   <div className="ovs">
-                    <GenericChart data={pomodori}/>
+                    <GenericChart data={api.todaysPomodori}/>
                   </div>
                 </div>
 
@@ -83,23 +57,15 @@ class Statistics extends Component {
 }
 
 Statistics.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
-  pomodoro: PropTypes.object.isRequired,
-  timer: PropTypes.string.isRequired,
+  api: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 }
 
 export default connect(
   (state) => ({
-    todos: state.todos,
-    settings: state.settings,
-    pomodoro: state.pomodoro,
-    timer: state.timer,
+    api: state.api,
     user: state.user,
   }),
   (dispatch) => ({
-    actions: bindActionCreators(actions,dispatch)
   })
 )(Statistics)

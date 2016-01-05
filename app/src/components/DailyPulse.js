@@ -2,7 +2,6 @@ require('./DailyPulse.styl')
 import React, {Component, PropTypes} from 'react'
 import {VictoryScatter} from 'victory'
 import PomodoroService from '../modules/PomodoroService'
-import NotificationCenter from '../modules/NotificationCenter'
 import GraphUtils from '../modules/GraphUtils'
 const DOMAIN = {x:[0,100],y:[0,25]}
 

@@ -1,6 +1,6 @@
 import timer from './reducers/timer'
 import todos from './reducers/todos'
-import todaysPomodori from './reducers/todaysPomodori'
+import api from './reducers/api'
 import pomodoro from './reducers/pomodoro'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
@@ -20,7 +20,7 @@ const store = (function() {
   const reducer = combineReducers({
     timer,
     todos,
-    todaysPomodori,
+    api,
     pomodoro,
     settings,
     loading,
