@@ -52,6 +52,7 @@ export default class Todo extends Component {
               <div className="normal-view">
                 <input id={`todo-${todo.id}`} type="checkbox"
                   defaultChecked={todo.completed}
+                  checked={todo.completed}
                   onClick={()=>actions.toggleCompleteTodo(todo)}/>
                 <label htmlFor={`todo-${todo.id}`} className="toggle"/>
                 <label className="text" onClick={this.startEditing.bind(this)}>{todo.text}</label>
