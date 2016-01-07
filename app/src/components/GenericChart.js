@@ -23,7 +23,7 @@ export default class GenericChart extends Component {
               <VictoryLine
                 data={graphData.graph}
                 interpolation="bundle"
-                style={{data: {stroke: "#DF2E2E"}}}/>
+                style={{data: {stroke: "#3BB500"}}}/>
             </VictoryChart>
   }
 }

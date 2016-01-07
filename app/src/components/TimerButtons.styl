@@ -18,17 +18,20 @@
     float left
     padding 1em
     border-radius 0
-    background #df2e2e
+    background color_pomodoro
+    background white
     color white
+    color color_pomodoro
+    color black
     font-size 1rem
     border none
-    border-left 1px solid darken(color_pomodoro, 10%)
-    border-right @border-left
+    border 1px solid darken(color_pomodoro, 10%)
+    border-right none
     &:first-child
       border-top-left-radius 0.5rem
       border-bottom-left-radius @border-top-left-radius
-      border-left none
+      // border-left none
     &:last-child
       border-top-right-radius 0.5rem
       border-bottom-right-radius @border-top-right-radius
-      border-right none
+      border-right @border

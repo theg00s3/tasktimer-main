@@ -1,3 +1,4 @@
+require('./LoginLogout.styl')
 import React, {Component, PropTypes} from 'react'
 
 export default class LoginLogout extends Component {
@@ -6,7 +7,7 @@ export default class LoginLogout extends Component {
     const {avatar} = user
     if( avatar ) {
       return  <div className="login-logout">
-                <a href="/auth/logout">Logout</a>
+                <a href="/auth/logout" className="logout">Logout</a>
               </div>
     }
     return  <div className="login-logout">
