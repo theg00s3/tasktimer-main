@@ -6,6 +6,8 @@ import TasksStrip from '../components/TasksStrip'
 import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
+const logo = require('../assets/images/pomodoro.cc.png')
 
 class Statistics extends Component {
   render() {
@@ -20,7 +22,13 @@ class Statistics extends Component {
   renderAuthorizedContent() {
     const {api} = this.props
     if( api.todaysPomodori.length === 0 ) {
-      return  <h1 className="giant tac">Not enough data.. :(</h1>
+      return  <div className="tac">
+                <h1 className="giant light">Not enough data...</h1>
+                <Link to="/">
+                  <h2 className="light">Get productive! :)</h2>
+                  <img src={logo} alt="pomodoro.cc" width="100"></img>
+                </Link>
+              </div>
     }
 
     return  <div className="tac">
