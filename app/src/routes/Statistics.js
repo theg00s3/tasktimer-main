@@ -25,15 +25,14 @@ class Statistics extends Component {
       return  <div className="tac">
                 <h2 className="light">Not enough data...</h2>
                 <br/>
-                <Link to="/">
-                  <img src={logo} alt="pomodoro.cc" width="100"></img>
-                  <br/>
-                  <br/>
-                  <h1>
-                    <span className="action">Get productive!</span>
-                    <span>&nbsp;:)</span>
-                  </h1>
-                </Link>
+                <h1>
+                  <div className="action1">Stay productive and</div>
+                  <Link to="/" className="action">start your first pomodoro!</Link>
+                  <span>&nbsp;:)</span>
+                </h1>
+                <br/>
+                <br/>
+                <img src={logo} alt="pomodoro.cc" width="100"></img>
               </div>
     }
 
