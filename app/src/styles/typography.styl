@@ -24,6 +24,13 @@ h4 {font-size: 1.1em;}
 a, a:visited
   color color_pomodoro
   text-decoration none
+  transition color .3s ease
+  &:hover
+    color darken(color_pomodoro, 10%) !important
+
+.action
+  text-decoration underline
+
 
 .light
   color lighten(color_text_light, 20%)

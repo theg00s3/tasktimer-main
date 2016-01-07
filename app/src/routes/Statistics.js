@@ -23,10 +23,16 @@ class Statistics extends Component {
     const {api} = this.props
     if( api.todaysPomodori.length === 0 ) {
       return  <div className="tac">
-                <h1 className="giant light">Not enough data...</h1>
+                <h2 className="light">Not enough data...</h2>
+                <br/>
                 <Link to="/">
-                  <h2 className="light">Get productive! :)</h2>
                   <img src={logo} alt="pomodoro.cc" width="100"></img>
+                  <br/>
+                  <br/>
+                  <h1>
+                    <span className="action">Get productive!</span>
+                    <span>&nbsp;:)</span>
+                  </h1>
                 </Link>
               </div>
     }
