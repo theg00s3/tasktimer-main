@@ -7,6 +7,7 @@ import {
 } from '../actions/todos'
 
 import _ from 'underscore'
+import {compose, concat, curry, filter, not, propEq} from 'ramda'
 
 export default function todos(state:TodoState=[], action:Action):TodoState {
   switch(action.type){
@@ -25,18 +26,23 @@ export default function todos(state:TodoState=[], action:Action):TodoState {
   }
   case DELETE_TODO_SUCCESS: {
     return sortCompleted(state.filter((todo) => {
-      return todo.text !== action.payload.text
+      const updatedTodo = action.payload.todo
+      return todo.id !== updatedTodo.id
     }))
   }
   case UPDATE_TODO_SUCCESS: {
-    return sortCompleted(state.map((todo) => {
-      return (todo.id !== action.payload.id)
-              ? todo
-              : action.payload
-    }))
+    const updatedTodo = action.payload.todo
+    state = state.map((todo) => {
+      return (todo.id === updatedTodo.id)
+              ? updatedTodo
+              : todo
+    })
+
+    state =  upsert(updatedTodo)(state)
+    return sortCompleted(state)
   }
   }
-  return state
+  return sortCompleted(state)
 }
 
 const max = (acc, curr) => (acc > curr.id ? acc : curr.id+1)
@@ -54,3 +60,11 @@ const sortCompleted = (todos) => {
   })
 }
 
+const upsert = curry((todo, todos) => {
+  const listWithoutTodo = filter(compose(
+    not,
+    propEq('id', todo.id)
+  ))(todos)
+
+  return concat(listWithoutTodo, [todo])
+})

@@ -7,6 +7,7 @@ import {
   resumeTimer,
   endTimer,
   authenticateUser,
+  getTodo,
   getTodaysPomodori,
   getTodaysCompletedTasks
 } from './actions'
@@ -15,6 +16,7 @@ export default function init() {
   const pomodoro = getState().pomodoro
   dispatch(resumeTimer(pomodoro))
   dispatch(authenticateUser())
+  dispatch(getTodo())
   dispatch(getTodaysPomodori())
   dispatch(getTodaysCompletedTasks())
 

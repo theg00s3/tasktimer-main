@@ -1,5 +1,7 @@
 /*@flow*/
+import {filter, propEq} from 'ramda'
 import AnalyticsService from '../modules/AnalyticsService'
+import NotificationCenter from '../modules/NotificationCenter'
 import TasksService from '../modules/TasksService'
 import {isLoggedIn} from '../modules/Utils'
 import {getTodaysCompletedTasks} from './'
@@ -40,10 +42,7 @@ export function addTodo(todo:Todo):Action{
     }
     dispatch({type:ADD_TODO_REQUEST,payload:{}})
     TasksService.create(todo)
-    .then((response) => {
-      const todo = response.data
-      dispatch({type:ADD_TODO_SUCCESS,payload:todo})
-    })
+    .then(() => dispatch(getTodo()))
     .catch(() => {
       dispatch({type:ADD_TODO_ERROR,payload:{}})
     })
@@ -52,23 +51,10 @@ export function addTodo(todo:Todo):Action{
 
 export function deleteTodo(todo:Todo):Action {
   AnalyticsService.track('delete-todo', todo)
-  return (dispatch, getState) => {
-    const {user} = getState()
-    if( !isLoggedIn(user) ){
-      return dispatch({type:DELETE_TODO_SUCCESS,payload:todo})
-    }
-    dispatch({type:DELETE_TODO_REQUEST,payload:{}})
-    TasksService.update(todo.id, {
-      ...todo,
-      deleted: true,
-    })
-    .then(() => {
-      dispatch({type:DELETE_TODO_SUCCESS,payload:todo})
-    })
-    .catch(() => {
-      dispatch({type:DELETE_TODO_ERROR,payload:{}})
-    })
-  }
+  return updateTodo({
+    ...todo,
+    deleted: true
+  },'DELETE')
 }
 
 export function toggleCompleteTodo(todo:Todo):Action {
@@ -78,21 +64,29 @@ export function toggleCompleteTodo(todo:Todo):Action {
   })
 }
 
-export function updateTodo(todo:Todo):Action {
+export function updateTodo(todo:Todo, type='UPDATE':string):Action {
   AnalyticsService.track('update-todo', todo)
   return (dispatch, getState) => {
-    const {user} = getState()
+    NotificationCenter.emit('updateTodo')
+    const {user, todos} = getState()
+    const [oldTodo] = filterTodo(todo)(todos)
     if( !isLoggedIn(user) ){
-      return dispatch({type:UPDATE_TODO_SUCCESS,payload:todo})
+      return dispatch({type:`${type}_TODO_SUCCESS`,payload:{todo, oldTodo}})
     }
-    dispatch({type:UPDATE_TODO_REQUEST,payload:{}})
+
+    dispatch({type:`${type}_TODO_REQUEST`,payload:{}})
     TasksService.update(todo.id, todo)
     .then(() => {
-      dispatch({type:UPDATE_TODO_SUCCESS,payload:todo})
+      dispatch({type:`${type}_TODO_SUCCESS`,payload:{todo, oldTodo}})
+      dispatch(getTodo())
       dispatch(getTodaysCompletedTasks())
     })
     .catch(() => {
-      dispatch({type:UPDATE_TODO_ERROR,payload:{}})
+      dispatch({type:`${type}_TODO_ERROR`,payload:{}})
     })
   }
+}
+
+function filterTodo(todo){
+  return filter(propEq('id', todo.id))
 }

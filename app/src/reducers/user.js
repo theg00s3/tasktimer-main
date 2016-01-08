@@ -8,7 +8,7 @@ import {
 
 let initialState = {}
 
-if(/^localhost/.test(window.location.host) ){
+if(false&&/^localhost/.test(window.location.host) ){
   initialState = {
     __v: 0,
     _id: "56311e508a0a76010090366f",
@@ -28,7 +28,7 @@ export default function user(state:UserState=initialState, action:Action):UserSt
     return action.payload.user
   }
   case AUTHENTICATE_USER_FAILURE: {
-    return initialState
+    return state
   }
   }
   return state

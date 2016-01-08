@@ -17,7 +17,6 @@ export function authenticateUser():any {
         name: user.username,
         username: user.username,
       })
-      dispatch(getTodo())
     })
     .catch((error) => {
       dispatch(authenticateUserFailure(error))
