@@ -13,5 +13,3 @@ export function undoTodoAction() {
     }
   }
 }
-
-window.undoTodoAction = undoTodoAction

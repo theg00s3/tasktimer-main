@@ -30,5 +30,3 @@ const reducer = combineReducers({
 
 const store = storeWithPersistence(reducer)
 export default store
-
-window.store = store

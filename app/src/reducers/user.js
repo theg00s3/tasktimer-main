@@ -8,7 +8,7 @@ import {
 
 let initialState = {}
 
-if(false&&/^localhost/.test(window.location.host) ){
+if(false&&window.development) ){
   initialState = {
     __v: 0,
     _id: "56311e508a0a76010090366f",
