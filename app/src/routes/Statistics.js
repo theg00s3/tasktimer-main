@@ -12,7 +12,7 @@ const logo = require('../assets/images/pomodoro.cc.png')
 class Statistics extends Component {
   render() {
     const {user} = this.props
-    if( /localhost/.test(window.location.host) ){
+    if( window.development ){
       return this.renderAuthorizedContent()
     }
 

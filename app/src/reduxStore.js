@@ -5,30 +5,28 @@ import pomodoro from './reducers/pomodoro'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
 import user from './reducers/user'
+import undo from './reducers/undo'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
-const store = (function() {
-  const logger = createLogger()
-  const storeWithMiddleware = applyMiddleware(thunk, logger)(createStore)
-  const storeWithPersistence = compose(
-    persistState(['pomodoro','settings','todos'])
-  )(storeWithMiddleware)
+const logger = createLogger()
+const storeWithMiddleware = applyMiddleware(thunk, logger)(createStore)
+const storeWithPersistence = compose(
+  persistState(['pomodoro','settings','todos'])
+)(storeWithMiddleware)
 
-  const reducer = combineReducers({
-    timer,
-    todos,
-    api,
-    pomodoro,
-    settings,
-    loading,
-    user,
-  })
+const reducer = combineReducers({
+  timer,
+  todos,
+  api,
+  pomodoro,
+  settings,
+  loading,
+  user,
+  undo,
+})
 
-  return storeWithPersistence(reducer)
-})()
-
-
+const store = storeWithPersistence(reducer)
 export default store

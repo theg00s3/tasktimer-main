@@ -13,6 +13,7 @@ import {connect} from 'react-redux'
 class Layout extends Component {
   componentDidMount() {
     NotificationCenter.on('pomodoroEnded', this._showPomodoroEndedNotification.bind(this))
+    NotificationCenter.on('updateTodo', this._updateTodoNotification.bind(this))
     if( this.shouldShowNotificationGrant() ) {
       this.refs.requestNotificationPermissionSnackbar.show()
     }
@@ -37,14 +38,30 @@ class Layout extends Component {
       actions.grantNotificationPermission(false)
     })
   }
+  _updateTodoNotification() {
+    this.refs.undoTodoActionSnackbar.show()
+  }
+  _undoTodoAction() {
+    const {actions} = this.props
+    actions.undoTodoAction()
+    this.refs.undoTodoActionSnackbar.dismiss()
+  }
   render() {
     const {user, settings, actions} = this.props
     return  <div className="layout">
               <TopBar user={user} actions={actions}/>
               <WelcomeBar user={user} settings={settings} actions={actions}/>
 
-              <div className="main-content">{this.props.children}</div>
+              <div className="main-content">
+                {this.props.children}
+              </div>
               <MainFooter/>
+              <Snackbar
+                ref="undoTodoActionSnackbar"
+                message="You can undo this"
+                action="Undo"
+                autoHideDuration={4000}
+                onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
                 message="Pomodoro ended!"
