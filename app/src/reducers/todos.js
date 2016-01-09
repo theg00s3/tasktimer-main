@@ -64,7 +64,7 @@ const upsert = curry((todo, todos) => {
   const listWithoutTodo = filter(compose(
     not,
     propEq('id', todo.id)
-  ))(todos)
+  ), todos)
 
   return concat(listWithoutTodo, [todo])
 })
