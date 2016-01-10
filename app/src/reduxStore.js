@@ -11,8 +11,11 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
-const logger = createLogger()
-const storeWithMiddleware = applyMiddleware(thunk, logger)(createStore)
+const middleware = [thunk]
+if( window.development ){
+  middleware.push(createLogger())
+}
+const storeWithMiddleware = applyMiddleware(...middleware)(createStore)
 const storeWithPersistence = compose(
   persistState(['pomodoro','settings','todos'])
 )(storeWithMiddleware)
