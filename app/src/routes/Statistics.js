@@ -37,7 +37,7 @@ class Statistics extends Component {
     }
 
     return  <div className="tac">
-              <div className="ovs">
+              <div className="ovs-extended">
                 <GenericChart data={api.todaysPomodori}/>
               </div>
               <StatisticsStrip data={api.todaysPomodori}/>
