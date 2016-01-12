@@ -6,7 +6,6 @@ import {
   UPDATE_TODO_SUCCESS
 } from '../actions/todos'
 
-import _ from 'underscore'
 import {compose, concat, curry, filter, not, propEq} from 'ramda'
 
 export default function todos(state:TodoState=[], action:Action):TodoState {
