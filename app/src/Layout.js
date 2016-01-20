@@ -62,7 +62,6 @@ class Layout extends Component {
                 action="Undo"
                 autoHideDuration={4000}
                 onRequestClose={() => {}}
-                open={() => {}}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
@@ -70,7 +69,6 @@ class Layout extends Component {
                 action="Got it"
                 autoHideDuration={2000}
                 onRequestClose={() => {}}
-                open={() => {}}
                 onActionTouchTap={() => {this.refs.pomodoroEndedSnackbar.dismiss()}}/>
               <Snackbar
                 ref="requestNotificationPermissionSnackbar"
@@ -78,7 +76,6 @@ class Layout extends Component {
                 action="Grant"
                 autoHideDuration={0}
                 onRequestClose={() => {}}
-                open={() => {}}
                 onActionTouchTap={this._requestNotificationPermission.bind(this)}/>
             </div>
   }
