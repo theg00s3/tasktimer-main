@@ -10,6 +10,7 @@ export const START_TIMER = 'START_TIMER'
 export const RESUME_TIMER = 'RESUME_TIMER'
 export const END_TIMER = 'END_TIMER'
 export const STOP_TIMER = 'STOP_TIMER'
+export const RESET_TIMER = 'RESET_TIMER'
 export const TICK_TIMER = 'TICK_TIMER'
 
 const title = 'Pomodoro.cc - Time tracking with the Pomodoro technique'
@@ -39,6 +40,9 @@ export function resumeTimer(pomodoro:Object):Action {
     remaining = pomodoro.minutes*60 - elapsed
   }
   remaining = remaining << 0
+  if( remaining <= 0 ) {
+    return {type:RESET_TIMER, payload:{}}
+  }
   Timer.start(remaining)
   return {type:RESUME_TIMER, payload:{remaining}}
 }
