@@ -1,5 +1,5 @@
 /*@flow*/
-import {START_TIMER, STOP_TIMER, END_TIMER} from '../actions/timer'
+import {START_TIMER, RESET_TIMER, STOP_TIMER, END_TIMER} from '../actions/timer'
 
 export const defaultState = {}
 
@@ -11,7 +11,8 @@ export default function pomodoro(state:PomodoroState=defaultState, action:Action
     }
     return action.payload
   }
-  case STOP_TIMER: {}
+  case STOP_TIMER:
+  case RESET_TIMER:
   case END_TIMER: {
     return defaultState
   }
