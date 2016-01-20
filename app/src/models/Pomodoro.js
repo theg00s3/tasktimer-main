@@ -8,6 +8,7 @@ const toTimestamp = (date) => {
   return (new Date(date)).getTime()
 }
 
+
 export default class Pomodoro {
   constructor(pomodoro={}){
     const {type,minutes,started_at,cancelled_at} = pomodoro
