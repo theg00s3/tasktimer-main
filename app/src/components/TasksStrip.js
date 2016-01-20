@@ -16,7 +16,7 @@ export default class TasksStrip extends Component {
               <div className="todo-list-container">
                 <ul className="todo-list">
                   {data.map((task) => {
-                    return  <li className="todo">
+                    return  <li className="todo" key={task.id}>
                               <div className="ovh">
                                 <span style={{"float":"left"}}>{task.text}</span>
                                 <span style={{"float":"right", "font-size":"0.8rem"}}>@{task.completed_at}</span>

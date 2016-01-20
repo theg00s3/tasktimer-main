@@ -18,12 +18,8 @@ export default class GenericChart extends Component {
               <VictoryAxis tickValues={graphData.xAxis} tickFormat={GraphUtils.formatTimestampToHour}/>
               <VictoryLine
                 data={graphData.graph}
-                interpolation="step-after"
+                interpolation="stepAfter"
                 style={{data: {stroke: "grey"}}}/>
-              <VictoryLine
-                data={graphData.graph}
-                interpolation="bundle"
-                style={{data: {stroke: "#3BB500"}}}/>
             </VictoryChart>
   }
 }

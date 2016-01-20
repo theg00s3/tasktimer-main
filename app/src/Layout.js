@@ -61,18 +61,24 @@ class Layout extends Component {
                 message="You can undo this"
                 action="Undo"
                 autoHideDuration={4000}
+                onRequestClose={() => {}}
+                open={() => {}}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
                 message="Pomodoro ended!"
                 action="Got it"
                 autoHideDuration={2000}
+                onRequestClose={() => {}}
+                open={() => {}}
                 onActionTouchTap={() => {this.refs.pomodoroEndedSnackbar.dismiss()}}/>
               <Snackbar
                 ref="requestNotificationPermissionSnackbar"
                 message="Pomodoro.cc would like to send you notifications!"
                 action="Grant"
                 autoHideDuration={0}
+                onRequestClose={() => {}}
+                open={() => {}}
                 onActionTouchTap={this._requestNotificationPermission.bind(this)}/>
             </div>
   }
