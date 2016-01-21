@@ -30,16 +30,6 @@ module.exports = function(production){
       test: /\.(styl|css)$/,
       loader: "style!css!autoprefixer-loader?browsers=last 2 version!stylus-loader",
     },
-    // and font files - embed them if possible
-    {
-      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/font-woff"
-    }, {
-      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/font-woff2"
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/octet-stream"
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"
-    }
     ],
     // https://www.npmjs.com/package/html-webpack-plugin - generate our html file from a template - makes it easier to include custom stuff
     indexPagePlugin: new HtmlWebpackPlugin({

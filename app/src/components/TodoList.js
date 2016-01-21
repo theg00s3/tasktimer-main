@@ -3,8 +3,10 @@ const TODO_INPUT = 'TODO_INPUT'
 import React, {Component, PropTypes} from 'react'
 import {TextField} from 'material-ui'
 import Todo from './Todo'
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-export default class TodoList extends Component {
+class TodoList extends Component {
   addTodo () {
     const {actions} = this.props
     const text = this.refs[TODO_INPUT].getValue()
@@ -32,7 +34,7 @@ export default class TodoList extends Component {
 
               <ul className="todo-list">
                 {todos.map((todo) => {
-                  return <Todo key={todo.text} todo={todo} actions={actions}/>
+                  return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions}/>
                 })}
               </ul>
             </div>
@@ -42,3 +44,5 @@ TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 }
+
+export default DragDropContext(HTML5Backend)(TodoList)

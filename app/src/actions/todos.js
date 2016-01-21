@@ -1,5 +1,6 @@
 /*@flow*/
 import {filter, propEq} from 'ramda'
+import {parallel} from 'async'
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
 import TasksService from '../modules/TasksService'
@@ -18,6 +19,10 @@ export const GET_TODO_ERROR = 'GET_TODO_ERROR'
 export const UPDATE_TODO_REQUEST = 'UPDATE_TODO_REQUEST'
 export const UPDATE_TODO_SUCCESS = 'UPDATE_TODO_SUCCESS'
 export const UPDATE_TODO_ERROR = 'UPDATE_TODO_ERROR'
+export const SWAP_TODO_REQUEST = 'SWAP_TODO_REQUEST'
+export const SWAP_TODO_SUCCESS = 'SWAP_TODO_SUCCESS'
+export const SWAP_TODO_ERROR = 'SWAP_TODO_ERROR'
+export const SWAP_TODO_LOCAL = 'SWAP_TODO_LOCAL'
 
 export function getTodo() {
   return (dispatch, getState) => {
@@ -33,6 +38,34 @@ export function getTodo() {
   }
 }
 
+export function swapTodo(todo1, todo2) {
+  const tmpTodo1Order = todo1.order
+  todo1.order = todo2.order
+  todo2.order = tmpTodo1Order
+  return (dispatch, getState) => {
+    const {user} = getState()
+    if( !isLoggedIn(user) ){
+      return dispatch({type:SWAP_TODO_LOCAL, payload:{todo1,todo2}})
+    }
+
+    dispatch({type:SWAP_TODO_REQUEST, payload:{}})
+    parallel([
+      (cb) => {
+        TasksService.update(todo1.id, todo1)
+        .then((r) => cb(null, r))
+        .catch((r) => cb(r))
+      },
+      (cb) => {
+        TasksService.update(todo2.id, todo2)
+        .then((r) => cb(null, r))
+        .catch((r) => cb(r))
+      },
+    ], (err, responses) => {
+      dispatch(getTodo())
+    })
+  }
+}
+
 export function addTodo(todo:Todo):Action{
   AnalyticsService.track('add-todo', todo)
   return (dispatch, getState) => {
@@ -40,6 +73,7 @@ export function addTodo(todo:Todo):Action{
     if( !isLoggedIn(user) ){
       return dispatch({type:ADD_TODO_SUCCESS,payload:todo})
     }
+
     dispatch({type:ADD_TODO_REQUEST,payload:{}})
     TasksService.create(todo)
     .then(() => dispatch(getTodo()))
