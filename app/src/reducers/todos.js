@@ -3,67 +3,100 @@ import {
   ADD_TODO_SUCCESS,
   DELETE_TODO_SUCCESS,
   GET_TODO_SUCCESS,
-  UPDATE_TODO_SUCCESS
+  UPDATE_TODO_SUCCESS,
+  SWAP_TODO_LOCAL
 } from '../actions/todos'
 
-import {compose, concat, curry, filter, not, propEq} from 'ramda'
+import {compose, concat, curry, filter, map, not, propEq} from 'ramda'
 
 export default function todos(state:TodoState=[], action:Action):TodoState {
   switch(action.type){
   case GET_TODO_SUCCESS: {
-    return action.payload.todos
+    state = action.payload.todos
+    break
   }
   case ADD_TODO_SUCCESS: {
-    let newTodo = action.payload
-    if( !newTodo.id ){
-      newTodo.id = state.reduce(max, 0)
-    }
-    return sortCompleted([
-      ...state,
-      newTodo
-    ])
+    state = addTodo(action.payload)(state)
+    break
   }
   case DELETE_TODO_SUCCESS: {
-    return sortCompleted(state.filter((todo) => {
-      const updatedTodo = action.payload.todo
-      return todo.id !== updatedTodo.id
-    }))
+    state = filterTodo(action.payload.todo)(state)
+    break
   }
   case UPDATE_TODO_SUCCESS: {
-    const updatedTodo = action.payload.todo
-    state = state.map((todo) => {
-      return (todo.id === updatedTodo.id)
-              ? updatedTodo
-              : todo
-    })
-
-    state =  upsert(updatedTodo)(state)
-    return sortCompleted(state)
+    state = updateTodo(action.payload.todo)(state)
+    break
+  }
+  case SWAP_TODO_LOCAL: {
+    const {todo1, todo2} = action.payload
+    state = swapTodos(todo1, todo2)(state)
+    break
   }
   }
-  return sortCompleted(state)
+  if( /TODO/.test(action.type) ){
+    return orderAndSanitize(state)
+  }
+  return state
 }
 
-const max = (acc, curr) => (acc > curr.id ? acc : curr.id+1)
+const addTodo = (todo) => {
+  return (todos) => [...todos, todo]
+}
 
-const sortCompleted = (todos) => {
-  return todos
-  .sort((t1, t2) => {
-    return t1.completed >= t2.completed
-  })
-  .sort((t1,t2) => {
-    if( t1.completed !== t2.completed ) {
-      return 0
-    }
-    return t1.id > t2.id
+const swapTodos = (todo1, todo2) => {
+  return map((todo) => {
+    if( !todo1 || !todo2 ){return todo}
+    if( todo.id === todo1.id ){return todo2}
+    if( todo.id === todo2.id ){return todo1}
+    return todo
   })
 }
 
-const upsert = curry((todo, todos) => {
-  const listWithoutTodo = filter(compose(
+const filterTodo = (todo) => {
+  return filter(compose(
     not,
     propEq('id', todo.id)
-  ), todos)
+  ))
+}
 
-  return concat(listWithoutTodo, [todo])
-})
+
+const updateTodo = (updatedTodo) => {
+  return map((todo) => {
+    return (todo.id === updatedTodo.id)
+            ? updatedTodo
+            : todo
+  })
+}
+
+const maxOfProp = (prop) => {
+  return (acc, curr) => {
+    if( notDefined(curr[prop]) ) {
+      return acc
+    }
+    return (acc > curr[prop]) ? acc : curr[prop]+1
+  }
+}
+const maxId = maxOfProp('id')
+const maxOrder = maxOfProp('order')
+
+const orderAndSanitize = (todos) => {
+  return todos
+    .map(sanitize)
+    .sort(sortByOrder)
+}
+
+const sanitize = (todo, index, todos) => {
+  if( notDefined(todo.order) ) {
+    todo.order = todos.reduce(maxOrder, 0)
+  }
+  if( notDefined(todo.id) ){
+    todo.id = todos.reduce(maxId, 0)
+  }
+  return todo
+}
+
+const sortByOrder = (todo1, todo2) => {
+  return todo1.order >= todo2.order
+}
+
+const notDefined = (x) => (x===undefined || x===null)

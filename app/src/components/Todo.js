@@ -1,11 +1,43 @@
 require('./Todo.styl')
+import {head, filter, propEq} from 'ramda'
 import React, {Component, PropTypes} from 'react'
+import {findDOMNode} from 'react-dom'
+import { DragSource, DropTarget } from 'react-dnd'
+import flow from 'lodash.flow'
 
 const ESCAPE_KEY = 27
 const ENTER_KEY = 13
 
+const todoDragSource = {
+  beginDrag(props) {
+    return {
+      index: props.index,
+    }
+  }
+}
 
-export default class Todo extends Component {
+const todoDropTarget = {
+  drop(props, monitor, component) {
+    const dragIndex = monitor.getItem().index
+    const dropIndex = props.index
+
+    if (dragIndex === dropIndex) {
+      return
+    }
+    const {actions, todos} = props
+    const todo1 = head(filterTodo(dragIndex)(todos))
+    const todo2 = head(filterTodo(dropIndex)(todos))
+    console.log( todo1, todo2 )
+    actions.swapTodo(todo1, todo2)
+  }
+}
+
+function filterTodo(id){
+  return filter(propEq('id', id))
+}
+
+
+class Todo extends Component {
   constructor() {
     super()
     this.state = {
@@ -16,7 +48,7 @@ export default class Todo extends Component {
   startEditing() {
     const {todo} = this.props
     this.setState({editing: true, editText: todo.text})
-    this.findDOMNode(this.refs.editField).focus()
+    findDOMNode(this.refs.editField).focus()
   }
 
   onBlur() {
@@ -45,15 +77,17 @@ export default class Todo extends Component {
 
   render() {
     const {todo, actions} = this.props
+    const {isDragging, connectDragSource, connectDropTarget} = this.props
+
     let className = 'todo ' + (todo.completed?'completed ':'')
     className += (this.state.editing ? 'editing ': '')
 
-    return  <li className={className}>
+    return  connectDragSource(connectDropTarget(<li className={className}>
               <div className="normal-view">
                 <input id={`todo-${todo.id}`} type="checkbox"
                   defaultChecked={todo.completed}
                   checked={todo.completed}
-                  onClick={()=>actions.toggleCompleteTodo(todo)}/>
+                  onChange={()=>actions.toggleCompleteTodo(todo)}/>
                 <label htmlFor={`todo-${todo.id}`} className="toggle"/>
                 <label className="text" onClick={this.startEditing.bind(this)}>{todo.text}</label>
                 <button
@@ -68,10 +102,26 @@ export default class Todo extends Component {
                   onChange={this.onChange.bind(this)}
                   onKeyDown={this.onKeyDown.bind(this)}/>
               </div>
-            </li>
+            </li>))
   }
 }
 Todo.propTypes = {
   actions: PropTypes.object.isRequired,
   todo: PropTypes.object.isRequired,
+  todos: PropTypes.array.isRequired,
+  connectDragSource: PropTypes.func.isRequired,
+  connectDropTarget: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isDragging: PropTypes.bool.isRequired,
 }
+
+
+export default flow(
+  DropTarget('todo', todoDropTarget, connect => ({
+    connectDropTarget: connect.dropTarget()
+  })),
+  DragSource('todo', todoDragSource, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  })),
+)(Todo)
