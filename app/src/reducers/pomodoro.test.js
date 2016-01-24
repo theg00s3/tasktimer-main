@@ -1,7 +1,7 @@
 import pomodoro, {defaultState} from './pomodoro'
 import {startTimer, forceEndTimer} from '../actions'
 
-describe('pomodoro reducer', () => {
+describe.skip('pomodoro reducer', () => {
   it('sets state only if not set', () => {
     let action = startTimer(25,'pomodoro')
     const expectedState = action.payload
