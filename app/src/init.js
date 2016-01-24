@@ -4,21 +4,20 @@ import Sounds      from './modules/Sounds'
 import {getState, dispatch}  from './reduxStore'
 import {
   tickTimer,
-  resumeTimer,
   endTimer,
   authenticateUser,
   getTodo,
   getTodaysPomodori,
-  getTodaysCompletedTasks
+  getTodaysCompletedTasks,
+  getUnfinishedPomodoro,
 } from './actions'
 
 export default function init() {
-  const pomodoro = getState().pomodoro
-  dispatch(resumeTimer(pomodoro))
   dispatch(authenticateUser())
   dispatch(getTodo())
   dispatch(getTodaysPomodori())
   dispatch(getTodaysCompletedTasks())
+  dispatch(getUnfinishedPomodoro())
 
   Timer.on('tick', (remaining, total) => {
     const state = getState()

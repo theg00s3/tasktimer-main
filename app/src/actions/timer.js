@@ -20,14 +20,20 @@ function noop():Action {
 }
 
 export function startTimer(minutes:number, type:PomodoroType):Action {
-  if( Timer.isInProgress() ){ return noop() }
-  Timer.start(minutes*60)
-  const started_at = new Date
-  const pomodoro = {minutes, type, started_at}
-  AnalyticsService.track('timer-start', pomodoro)
-  return {
-    type:START_TIMER,
-    payload:pomodoro
+  return (dispatch, getState) => {
+    if( Timer.isInProgress() ){ return noop() }
+    Timer.start(minutes*60)
+    const started_at = new Date
+    const pomodoro = {minutes, type, started_at}
+    AnalyticsService.track('timer-start', pomodoro)
+    PomodoroService.create(pomodoro)
+    .then((response) => {
+      const pomodoro = response.data
+      dispatch({type:START_TIMER, payload:pomodoro})
+    })
+    .catch(() => {
+      dispatch({type:START_TIMER, payload:pomodoro})
+    })
   }
 }
 
@@ -55,6 +61,7 @@ export function endTimer():Action {
 }
 
 export function forceEndTimer():Action {
+  debugger
   if( !Timer.isInProgress() ) {
     return noop()
   }
@@ -72,15 +79,17 @@ export function tickTimer(remaining:number):Action {
 
 function saveAndDispatch(action) {
   return (dispatch, getState) => {
-    let pomodoro = getState().pomodoro
+    debugger
+    const pomodoro = getState().pomodoro
     dispatch({type:action, payload:{}})
 
     if( action === STOP_TIMER ){
-      pomodoro.cancelled_at= new Date
+      pomodoro.cancelled_at = new Date
     }
+    pomodoro.finished = true
 
     AnalyticsService.track('timer-stop', pomodoro)
-    PomodoroService.create(pomodoro)
+    PomodoroService.update(pomodoro)
     .then(() => {
       dispatch(getTodaysPomodori())
     })
