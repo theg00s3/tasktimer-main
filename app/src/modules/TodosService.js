@@ -1,6 +1,6 @@
 import axios from 'axios'
 import DateUtils from './DateUtils'
-const RESOURCE_URL = '/api/tasks'
+const RESOURCE_URL = '/api/todos'
 
 export default {
   create,
@@ -10,17 +10,17 @@ export default {
   today,
 }
 
-function create(task){
-  return axios.post(RESOURCE_URL, task)
+function create(todo){
+  return axios.post(RESOURCE_URL, todo)
 }
 function all(){
   return axios.get(RESOURCE_URL)
 }
-function get(taskId){
-  return axios.get(`${RESOURCE_URL}/${taskId}`)
+function get(todoId){
+  return axios.get(`${RESOURCE_URL}/${todoId}`)
 }
-function update(taskId, task){
-  return axios.put(`${RESOURCE_URL}/${taskId}`, task)
+function update(todoId, todo){
+  return axios.put(`${RESOURCE_URL}/${todoId}`, todo)
 }
 function today(){
   const todayDate = DateUtils.today()

@@ -3,9 +3,9 @@ import {filter, propEq} from 'ramda'
 import {parallel} from 'async'
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
-import TasksService from '../modules/TasksService'
+import TodosService from '../modules/TodosService'
 import {isLoggedIn} from '../modules/Utils'
-import {getTodaysCompletedTasks} from './'
+import {getTodaysCompletedTodos} from './'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -27,7 +27,7 @@ export const SWAP_TODO_LOCAL = 'SWAP_TODO_LOCAL'
 export function getTodo() {
   return (dispatch, getState) => {
     dispatch({type:GET_TODO_REQUEST, payload:{}})
-    TasksService.all()
+    TodosService.all()
     .then((response) => {
       const todos = response.data
       dispatch({type:GET_TODO_SUCCESS, payload:{todos}})
@@ -51,12 +51,12 @@ export function swapTodo(todo1, todo2) {
     dispatch({type:SWAP_TODO_REQUEST, payload:{}})
     parallel([
       (cb) => {
-        TasksService.update(todo1.id, todo1)
+        TodosService.update(todo1.id, todo1)
         .then((r) => cb(null, r))
         .catch((r) => cb(r))
       },
       (cb) => {
-        TasksService.update(todo2.id, todo2)
+        TodosService.update(todo2.id, todo2)
         .then((r) => cb(null, r))
         .catch((r) => cb(r))
       },
@@ -75,7 +75,7 @@ export function addTodo(todo:Todo):Action{
     }
 
     dispatch({type:ADD_TODO_REQUEST,payload:{}})
-    TasksService.create(todo)
+    TodosService.create(todo)
     .then(() => dispatch(getTodo()))
     .catch(() => {
       dispatch({type:ADD_TODO_ERROR,payload:{}})
@@ -109,11 +109,11 @@ export function updateTodo(todo:Todo, type='UPDATE':string):Action {
     }
 
     dispatch({type:`${type}_TODO_REQUEST`,payload:{}})
-    TasksService.update(todo.id, todo)
+    TodosService.update(todo.id, todo)
     .then(() => {
       dispatch({type:`${type}_TODO_SUCCESS`,payload:{todo, oldTodo}})
       dispatch(getTodo())
-      dispatch(getTodaysCompletedTasks())
+      dispatch(getTodaysCompletedTodos())
     })
     .catch(() => {
       dispatch({type:`${type}_TODO_ERROR`,payload:{}})
