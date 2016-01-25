@@ -8,7 +8,7 @@ import {
   authenticateUser,
   getTodo,
   getTodaysPomodori,
-  getTodaysCompletedTasks,
+  getTodaysCompletedTodos,
   getUnfinishedPomodoro,
 } from './actions'
 
@@ -16,7 +16,7 @@ export default function init() {
   dispatch(authenticateUser())
   dispatch(getTodo())
   dispatch(getTodaysPomodori())
-  dispatch(getTodaysCompletedTasks())
+  dispatch(getTodaysCompletedTodos())
   dispatch(getUnfinishedPomodoro())
 
   Timer.on('tick', (remaining, total) => {
@@ -32,7 +32,7 @@ export default function init() {
     dispatch(endTimer())
     playTimerEndSound()
     dispatch(getTodaysPomodori())
-    dispatch(getTodaysCompletedTasks())
+    dispatch(getTodaysCompletedTodos())
   })
 
   function playTimerEndSound() {

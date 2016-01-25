@@ -1,6 +1,6 @@
 /*@flow*/
 import PomodoroService from '../modules/PomodoroService'
-import TasksService from '../modules/TasksService'
+import TodosService from '../modules/TodosService'
 import {resumeTimer} from './'
 export const GET_TODAYS_POMODORI_REQUEST = 'GET_TODAYS_POMODORI_REQUEST'
 export const GET_TODAYS_POMODORI_SUCCESS = 'GET_TODAYS_POMODORI_SUCCESS'
@@ -41,13 +41,13 @@ export function getTodaysPomodori():Action {
   }
 }
 
-export function getTodaysCompletedTasks():Action {
+export function getTodaysCompletedTodos():Action {
   return (dispatch, getState) => {
     dispatch({type:GET_TODAYS_COMPLETED_TASKS_REQUEST, payload:{}})
-    TasksService.today()
+    TodosService.today()
     .then((response) => {
-      const tasks = response.data
-      dispatch({type:GET_TODAYS_COMPLETED_TASKS_SUCCESS, payload:tasks})
+      const todos = response.data
+      dispatch({type:GET_TODAYS_COMPLETED_TASKS_SUCCESS, payload:todos})
     })
     .catch((error) => {
       dispatch({type:GET_TODAYS_COMPLETED_TASKS_ERROR, payload:{error}})

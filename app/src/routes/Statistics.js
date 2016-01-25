@@ -2,7 +2,7 @@ require('./Statistics.styl')
 import LoginLogout from '../components/LoginLogout'
 import GenericChart from '../components/GenericChart'
 import StatisticsStrip from '../components/StatisticsStrip'
-import TasksStrip from '../components/TasksStrip'
+import TodosStrip from '../components/TodosStrip'
 import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
@@ -41,7 +41,7 @@ class Statistics extends Component {
                 <GenericChart data={api.todaysPomodori}/>
               </div>
               <StatisticsStrip data={api.todaysPomodori}/>
-              <TasksStrip data={api.todaysCompletedTasks}/>
+              <TodosStrip data={api.todaysCompletedTodos}/>
             </div>
   }
 
