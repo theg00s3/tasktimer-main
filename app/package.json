@@ -7,7 +7,7 @@
     "build": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors",
     "build-watch": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors --watch",
     "test": "karma start",
-    "tdd": "karma start --single-run=false"
+    "test-watch": "karma start --single-run=false"
   },
   "repository": "git@github.com:cgreening/webpack-starter.git",
   "author": "Chris Greening",
