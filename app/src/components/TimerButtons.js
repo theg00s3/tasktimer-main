@@ -14,9 +14,9 @@ export default class TimerButtons extends Component {
 
   render() {
     return  <div className="timer-buttons-container">
-              <button onClick={() => this.startStopTimer(25,'pomodoro')}>25min</button>
-              <button onClick={() => this.startStopTimer(5,'break')}>5min</button>
-              <button onClick={() => this.startStopTimer(15,'break')}>15min</button>
+              <button id="minutes-25" onClick={() => this.startStopTimer(25,'pomodoro')}>25min</button>
+              <button id="minutes-5" onClick={() => this.startStopTimer(5,'break')}>5min</button>
+              <button id="minutes-15" onClick={() => this.startStopTimer(15,'break')}>15min</button>
             </div>
   }
 }
