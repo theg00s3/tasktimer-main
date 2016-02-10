@@ -1,8 +1,5 @@
 import AnalyticsService from '../modules/AnalyticsService'
 import {updateTodo} from './'
-export const AUTHENTICATE_USER_REQUEST = 'AUTHENTICATE_USER_REQUEST'
-export const AUTHENTICATE_USER_SUCCESS = 'AUTHENTICATE_USER_SUCCESS'
-export const AUTHENTICATE_USER_FAILURE = 'AUTHENTICATE_USER_FAILURE'
 
 export function undoTodoAction() {
   return (dispatch, getState) => {

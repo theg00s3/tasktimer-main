@@ -1,24 +1,26 @@
 const {clone} = require('ramda')
-describe('Pomodoro', function () {
-  var Pomodoro = require('./Pomodoro')
-  const pomodoroJSON = {
-    type: 'pomodoro',
-    minutes: 25,
-    started_at: '2016-01-03T21:00:00.000Z'
-  }
-  const cancelledPomodoroJSON = {
-    type: 'pomodoro',
-    minutes: 25,
-    started_at: '2016-01-03T21:00:00.000Z',
-    cancelled_at: '2016-01-03T21:05:00.000Z',
-  }
-  const breakJSON = {
-    type: 'break',
-    minutes: 5,
-    started_at: '2016-01-03T21:00:00.000Z'
-  }
+import Pomodoro from './Pomodoro'
 
-  const MINUTES = 60 * 1000
+const pomodoroJSON = {
+  type: 'pomodoro',
+  minutes: 25,
+  started_at: '2016-01-03T21:00:00.000Z'
+}
+const cancelledPomodoroJSON = {
+  type: 'pomodoro',
+  minutes: 25,
+  started_at: '2016-01-03T21:00:00.000Z',
+  cancelled_at: '2016-01-03T21:05:00.000Z',
+}
+const breakJSON = {
+  type: 'break',
+  minutes: 5,
+  started_at: '2016-01-03T21:00:00.000Z'
+}
+
+const MINUTES = 60 * 1000
+
+describe('Pomodoro', function () {
 
   it('#toJSON', () => {
     const pomodoro = new Pomodoro(pomodoroJSON)

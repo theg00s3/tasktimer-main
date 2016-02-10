@@ -9,7 +9,7 @@ const toTimestamp = (date) => {
 }
 
 
-export default class Pomodoro {
+class Pomodoro {
   constructor(pomodoro={}){
     const {type,minutes,started_at,cancelled_at} = pomodoro
     this.type = type
@@ -75,3 +75,5 @@ Pomodoro.create = ({type,minutes}) => {
     started_at: nowToISOString()
   })
 }
+
+export default Pomodoro

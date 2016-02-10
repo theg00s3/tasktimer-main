@@ -1,5 +1,4 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var StringReplacePlugin = require("string-replace-webpack-plugin");
 
 module.exports = function(production){
   var segment_write_key = production ? 'DI4YQLtpCkiyMnlITlg8o3pO6UDrnmbx' : 'u8FtwJOHxRRYAfIhZOv78SGzcQta1Yty'
@@ -28,12 +27,11 @@ module.exports = function(production){
     // styles
     {
       test: /\.(styl|css)$/,
-      loader: "style!css!autoprefixer-loader?browsers=last 2 version!stylus-loader",
+      loader: "style!css!postcss-loader?browsers=last 2 version!stylus-loader",
     },
     ],
     // https://www.npmjs.com/package/html-webpack-plugin - generate our html file from a template - makes it easier to include custom stuff
     indexPagePlugin: new HtmlWebpackPlugin({
-                            inject: true,
                             segment_write_key: segment_write_key,
                             development: !production,
                             title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',

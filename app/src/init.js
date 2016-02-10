@@ -1,7 +1,7 @@
 require('nprogress/nprogress.css')
 import Timer       from './modules/Timer'
 import Sounds      from './modules/Sounds'
-import {getState, dispatch}  from './reduxStore'
+import reduxStore from './reduxStore'
 import {
   tickTimer,
   endTimer,
@@ -11,6 +11,9 @@ import {
   getTodaysCompletedTodos,
   getUnfinishedPomodoro,
 } from './actions'
+
+const {getState, dispatch} = reduxStore
+
 
 export default function init() {
   dispatch(authenticateUser())

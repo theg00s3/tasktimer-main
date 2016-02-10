@@ -18,7 +18,7 @@ export default class TodosStrip extends Component {
                   {data.map((todo) => <li className="todo" key={todo.id}>
                                         <div className="ovh">
                                           <span style={{"float":"left"}}>{todo.text}</span>
-                                          <span style={{"float":"right", "font-size":"0.8rem"}}>@{todo.completed_at}</span>
+                                          <span style={{"float":"right", "fontSize":"0.8rem"}}>@{todo.completed_at}</span>
                                         </div>
                                       </li>
                   )}
