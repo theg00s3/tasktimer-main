@@ -4,8 +4,8 @@
   "description": "stop",
   "scripts": {
     "start": "webpack-dev-server --port 9000 --config ./webpack-dev.config.js --hot --progress --colors --history-api-fallback --content-base build",
-    "build": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors",
-    "build-watch": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors --watch",
+    "build": "rm build/*; NODE_ENV=production webpack --config ./webpack-prod.config.js --progress --colors",
+    "build-watch": "rm build/*; NODE_ENV=production webpack --config ./webpack-prod.config.js --progress --colors --watch",
     "test": "karma start",
     "test-watch": "karma start --single-run=false"
   },
