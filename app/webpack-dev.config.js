@@ -26,7 +26,5 @@ module.exports = {
   module: {
     loaders: commonConfig.loaders.concat(devLoaders)
   },
-  plugins: [
-    commonConfig.indexPagePlugin
-  ],
+  plugins: commonConfig.plugins
 };
