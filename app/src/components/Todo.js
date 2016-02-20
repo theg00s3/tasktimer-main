@@ -48,7 +48,9 @@ class Todo extends Component {
   startEditing() {
     const {todo} = this.props
     this.setState({editing: true, editText: todo.text})
-    findDOMNode(this.refs.editField).focus()
+    setTimeout(function() {
+      findDOMNode(this.refs.editField).focus()
+    }.bind(this), 100)
   }
 
   onBlur() {
@@ -89,7 +91,7 @@ class Todo extends Component {
                   checked={todo.completed}
                   onChange={()=>actions.toggleCompleteTodo(todo)}/>
                 <label htmlFor={`todo-${todo.id}`} className="toggle"/>
-                <label className="text" onClick={this.startEditing.bind(this)}>{todo.text}</label>
+                <label className="text" onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
                 <button
                   className="destroy"
                   onClick={()=>actions.deleteTodo(todo)}></button>
