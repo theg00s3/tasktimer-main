@@ -14,24 +14,17 @@ module.exports = function(production){
     {
       test: /\.(jpe?g|png|gif|svg|ico)$/i,
       loaders: [
-      'file?name=[name].[ext]',
-      'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        'file?name=[name].[ext]',
+        'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
       ]
-    },
-    {
-      test: /\.(mp3|ogg)$/i,
-      loaders: [
-        'file?name=[name].[ext]&context=./src',
-      ]
-    },
-    {
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loaders: [ 'babel-loader' ],
     },
     {
       test: /\.(styl|css)$/,
       loader: "style!css!postcss-loader?browsers=last 2 version!stylus-loader",
+    },
+    {
+      test: /\.(mp3|ogg)$/i,
+      loader: 'file?name=[name].[ext]&context=./src',
     },
     ],
     indexPagePlugin: new HtmlWebpackPlugin({

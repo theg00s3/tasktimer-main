@@ -16,7 +16,6 @@ class Index extends Component {
               <div className="ovs">
                 <DailyPulse data={api.todaysPomodori} width={700}/>
               </div>
-              <TwitterShare/>
               <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions}/>
               <SoundSettings settings={settings} actions={actions}/>
               <TodoList todos={todos} actions={actions}/>

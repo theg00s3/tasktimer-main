@@ -14,18 +14,20 @@ var plugins = [
   })
 ]
 
-var loaders = []
-if( process.env.NODE_ENV === 'development' ) {
-  loaders.push({
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    loaders: ['react-hot', 'babel-loader'],
-  })
-}
+var development = process.env.NODE_ENV === 'development'
 
-module.exports = {
+var loaders = [{
+  test: /\.jsx?$/,
+  exclude: /node_modules/,
+  loaders: development ?
+            ['react-hot', 'babel-loader'] :
+            ['babel-loader'],
+}]
+
+var entryFile = './index.js'
+var webpackConfig = {
   context: __dirname + '/src',
-  entry: './index.js',
+  entry: entryFile,
   output: {
     path: './build',
     filename: 'bundle.[hash].js'
@@ -35,3 +37,15 @@ module.exports = {
   },
   plugins: commonConfig.plugins.concat(plugins),
 }
+
+if(development) {
+  webpackConfig.entry = [
+    'webpack-dev-server/client?http://127.0.0.1:9000',
+    'webpack/hot/dev-server',
+    // 'webpack/hot/only-dev-server',
+    entryFile
+  ]
+
+}
+
+module.exports = webpackConfig

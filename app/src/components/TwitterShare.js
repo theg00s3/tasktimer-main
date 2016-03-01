@@ -13,7 +13,6 @@ export default class TwitterShare extends Component {
     return  <div className="twitter-share">
               <a href={twitterShareUrl} target="_blank">
                 <span>{resulText}&nbsp;</span>
-                <i className="icon ion-social-twitter"></i>
               </a>
             </div>  }
 }
