@@ -48,7 +48,9 @@ class Todo extends Component {
   startEditing() {
     const {todo} = this.props
     this.setState({editing: true, editText: todo.text})
-    findDOMNode(this.refs.editField).focus()
+    setTimeout(function() {
+      findDOMNode(this.refs.editField).focus()
+    }.bind(this), 100)
   }
 
   onBlur() {
@@ -84,12 +86,18 @@ class Todo extends Component {
 
     return  connectDragSource(connectDropTarget(<li className={className}>
               <div className="normal-view">
-                <input id={`todo-${todo.id}`} type="checkbox"
-                  defaultChecked={todo.completed}
-                  checked={todo.completed}
-                  onChange={()=>actions.toggleCompleteTodo(todo)}/>
-                <label htmlFor={`todo-${todo.id}`} className="toggle"/>
-                <label className="text" onClick={this.startEditing.bind(this)}>{todo.text}</label>
+                <span>
+                  <input id={`todo-check-${todo.id}`} class="todo-check-checkbox" type="checkbox"
+                    defaultChecked={todo.completed}
+                    checked={todo.completed}
+                    onChange={()=>actions.toggleCompleteTodo(todo)}/>
+                  <label htmlFor={`todo-check-${todo.id}`} className="todo-check-toggle"/>
+                </span>
+                <span>
+                  <input id={`todo-assoc-${todo.id}`} class="todo-assoc-checkbox" type="checkbox"/>
+                  <label htmlFor={`todo-assoc-${todo.id}`} className="todo-assoc-toggle"/>
+                </span>
+                <label className="text" onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
                 <button
                   className="destroy"
                   onClick={()=>actions.deleteTodo(todo)}></button>

@@ -6,11 +6,11 @@ module.exports = function(production){
   return {
     plugins: [
       new webpack.DefinePlugin({
-          'process.env.NODE_ENV': production ? '"production"' : '"development"'
+          'process.env.NODE_ENV': '"production"',
+          'NODE_ENV': '"production"',
       })
     ],
     loaders: [
-    // image loader - https://www.npmjs.com/package/image-webpack-loader
     {
       test: /\.(jpe?g|png|gif|svg|ico)$/i,
       loaders: [
@@ -24,19 +24,16 @@ module.exports = function(production){
         'file?name=[name].[ext]&context=./src',
       ]
     },
-    // javascript/jsx loader - https://www.npmjs.com/package/babel-loader
     {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loaders: [ 'babel-loader' ],
     },
-    // styles
     {
       test: /\.(styl|css)$/,
       loader: "style!css!postcss-loader?browsers=last 2 version!stylus-loader",
     },
     ],
-    // https://www.npmjs.com/package/html-webpack-plugin - generate our html file from a template - makes it easier to include custom stuff
     indexPagePlugin: new HtmlWebpackPlugin({
                             title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
                             filename: 'index.html',
