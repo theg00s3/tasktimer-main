@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "stop",
   "scripts": {
-    "x": "webpack",
-    "y": "webpack-dev-server --hot --inline --progress --colors --history-api-fallback --content-base build",
-    "start": "webpack-dev-server --port 9000 --config ./webpack-dev.config.js --progress --colors --history-api-fallback --content-base build",
-    "build": "rm build/*; NODE_ENV=production webpack --config ./webpack-prod.config.js --progress --colors",
-    "build-watch": "rm build/*; NODE_ENV=production webpack --config ./webpack-prod.config.js --progress --colors --watch",
+    "start": "webpack-dev-server --hot --inline --progress --colors --history-api-fallback --content-base build --port 9000",
+    "build": "rm build/*; NODE_ENV=production webpack --progress --colors",
+    "build-watch": "rm build/*; NODE_ENV=production webpack --progress --colors --watch",
     "test": "karma start",
     "test-watch": "karma start --single-run=false"
   },
