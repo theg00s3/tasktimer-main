@@ -45,7 +45,7 @@ if(development) {
     // 'webpack/hot/only-dev-server',
     entryFile
   ]
-
+  webpackConfig.devtool = 'eval'
 }
 
 module.exports = webpackConfig
