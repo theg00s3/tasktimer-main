@@ -1,14 +1,14 @@
 var commonConfig = require('./webpack-common.config.js')(false);
 
+
 var devLoaders = [
-  // javascript/jsx loader - https://www.npmjs.com/package/babel-loader - with the react-hot loader
+  // javascript/jsx loader - https://www.npmjs.com/package/babel-loader - wit
   {
     test: /\.jsx?$/,
     exclude: /node_modules/,
     loaders: ['react-hot', 'babel-loader'],
   }
 ]
-
 module.exports = {
   entry: [
   // setup the hot mobule loading
@@ -24,7 +24,7 @@ module.exports = {
   },
   devtool: 'eval',
   module: {
-    loaders: commonConfig.loaders.concat(devLoaders)
+    loaders: commonConfig.loaders.concat(devLoaders),
   },
-  plugins: commonConfig.plugins
+  plugins: commonConfig.plugins,
 };
