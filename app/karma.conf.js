@@ -1,4 +1,4 @@
-var commonConfig = require('./webpack-common.config.js')();
+var commonConfig = require('./webpack-common.config.js')(false);
 var webpack = require('webpack');
 
 module.exports = function (config) {
@@ -13,14 +13,19 @@ module.exports = function (config) {
       'test.webpack.js': [ 'webpack' ]
     },
     reporters: [ 'dots' ], //report results in this format
-    webpack: { //kind of a copy of your webpack config
-      devtool: 'inline-source-map', //just do inline source maps instead of the default
+    webpack: {
+      devtool: 'inline-source-map',
       module: {
-        loaders: commonConfig.loaders
+        loaders: commonConfig.loaders.concat([{
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loaders: ['babel-loader'],
+        }]),
+        plugins: commonConfig.plugins,
       }
     },
     webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
+      noInfo: false //please don't spam the console when running in karma!
     },
     logLevel: config.LOG_INFO,
   });
