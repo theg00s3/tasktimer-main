@@ -84,7 +84,7 @@ class Todo extends Component {
     let className = 'todo ' + (todo.completed?'completed ':'')
     className += (this.state.editing ? 'editing ': '')
 
-    return  connectDragSource(connectDropTarget(<li className={className}>
+    return  connectDragSource(connectDropTarget(<li className={className} id={`todo-${todo.id}`}>
               <div className="normal-view">
                 <span>
                   <input id={`todo-check-${todo.id}`} class="todo-check-checkbox" type="checkbox"

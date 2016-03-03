@@ -68,7 +68,7 @@ class Layout extends Component {
                 message="You can undo this"
                 action="Undo"
                 open={this.state.undoTodoActionSnackbarOpen}
-                autoHideDuration={2000}
+                autoHideDuration={5000}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"

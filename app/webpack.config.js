@@ -15,11 +15,12 @@ var plugins = [
 ]
 
 var development = process.env.NODE_ENV === 'development'
+var test = process.env.NODE_ENV === 'test'
 
 var loaders = [{
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  loaders: development ?
+  loaders: (!test || development) ?
             ['react-hot', 'babel-loader'] :
             ['babel-loader'],
 }]

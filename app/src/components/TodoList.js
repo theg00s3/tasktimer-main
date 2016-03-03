@@ -30,6 +30,7 @@ class TodoList extends Component {
                 hintStyle={{left: "60px",fontSize:"1.3em", textAlign:"center"}}
                 fullWidth={true}
                 inputStyle={{fontSize:"1.3em", textAlign:"center"}}
+                className="todo-input"
                 underlineFocusStyle={{borderColor:"grey", textAlign:"center"}}/>
 
               <ul className="todo-list">
