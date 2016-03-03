@@ -11,11 +11,19 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class Layout extends Component {
+  constructor() {
+    super()
+    this.state = {
+      requestNotificationPermissionSnackbarOpen: false,
+      undoTodoActionSnackbarOpen: false,
+      pomodoroEndedSnackbarOpen: false,
+    }
+  }
   componentDidMount() {
     NotificationCenter.on('pomodoroEnded', this._showPomodoroEndedNotification.bind(this))
     NotificationCenter.on('updateTodo', this._updateTodoNotification.bind(this))
     if( this.shouldShowNotificationGrant() ) {
-      this.refs.requestNotificationPermissionSnackbar.show()
+      this.state.requestNotificationPermissionSnackbarOpen = true
     }
   }
   shouldShowNotificationGrant() {
@@ -26,25 +34,24 @@ class Layout extends Component {
     NotificationCenter.off('pomodoroEnded', this._showPomodoroEndedNotification.bind(this))
   }
   _showPomodoroEndedNotification() {
-    this.refs.pomodoroEndedSnackbar.show()
+    this.state.pomodoroEndedSnackbarOpen = true
   }
   _requestNotificationPermission() {
     const {actions} = this.props
-    const {requestNotificationPermissionSnackbar} = this.refs
     NotificationService.requestPermission(() => {
       actions.grantNotificationPermission(true)
-      requestNotificationPermissionSnackbar.dismiss()
+      this.state.requestNotificationPermissionSnackbarOpen = false
     }, () => {
       actions.grantNotificationPermission(false)
     })
   }
   _updateTodoNotification() {
-    this.refs.undoTodoActionSnackbar.show()
+    this.state.undoTodoActionSnackbarOpen = true
   }
   _undoTodoAction() {
     const {actions} = this.props
     actions.undoTodoAction()
-    this.refs.undoTodoActionSnackbar.dismiss()
+    this.state.undoTodoActionSnackbarOpen = false
   }
   render() {
     const {user, settings, actions} = this.props
@@ -60,23 +67,23 @@ class Layout extends Component {
                 ref="undoTodoActionSnackbar"
                 message="You can undo this"
                 action="Undo"
-                autoHideDuration={4000}
-                onRequestClose={() => {}}
+                open={this.state.undoTodoActionSnackbarOpen}
+                autoHideDuration={2000}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
                 message="Pomodoro ended!"
                 action="Got it"
+                open={this.state.pomodoroEndedSnackbarOpen}
                 autoHideDuration={2000}
-                onRequestClose={() => {}}
-                onActionTouchTap={() => {this.refs.pomodoroEndedSnackbar.dismiss()}}/>
+                onActionTouchTap={() => {this.state.pomodoroEndedSnackbarOpen = false}}/>
               <Snackbar
                 ref="requestNotificationPermissionSnackbar"
                 message="Pomodoro.cc would like to send you notifications!"
                 action="Grant"
+                open={this.state.requestNotificationPermissionSnackbarOpen}
                 autoHideDuration={0}
-                onRequestClose={() => {}}
-                onActionTouchTap={this._requestNotificationPermission.bind(this)}/>
+                onActionTouchTap={() => {this.state.requestNotificationPermissionSnackbarOpen = false}}/>
             </div>
   }
 }

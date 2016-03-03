@@ -61,7 +61,6 @@ export function endTimer():Action {
 }
 
 export function forceEndTimer():Action {
-  debugger
   if( !Timer.isInProgress() ) {
     return noop()
   }
@@ -79,7 +78,6 @@ export function tickTimer(remaining:number):Action {
 
 function saveAndDispatch(action) {
   return (dispatch, getState) => {
-    debugger
     const pomodoro = getState().pomodoro
     dispatch({type:action, payload:{}})
 
