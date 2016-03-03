@@ -11,12 +11,8 @@ export default class LoginLogout extends Component {
               </div>
     }
     return  <div className="login-logout">
-              <a href="/auth/twitter" target="_self">
-                <i className="icon ion-social-twitter"></i>
-              </a>
-              <a href="/auth/github" target="_self">
-                <i className="icon ion-social-github"></i>
-              </a>
+              <a href="/auth/twitter" target="_self">Twitter</a>
+              <a href="/auth/github" target="_self">GitHub</a>
             </div>
   }
 }
