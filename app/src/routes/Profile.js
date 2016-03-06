@@ -16,6 +16,8 @@ class Profile extends Component {
                 <label>Your api key: &nbsp;</label>
                 <i>{user.apikey}</i>
               </div>
+              <br/>
+              <div>Pssst! Check out the <a href="/docs">docs</a> ;)</div>
             </div>
   }
 }
