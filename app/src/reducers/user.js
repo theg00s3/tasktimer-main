@@ -8,11 +8,11 @@ import {
 
 let initialState = {}
 
-if(false && window.development ){
+if(true && window.development ){
   initialState = {
     __v: 0,
     _id: "56311e508a0a76010090366f",
-    apikey: "something secret, you fool",
+    apikey: "4p1k3y",
     avatar: "https://avatars.githubusercontent.com/u/2662706?v=3",
     id: 2662706,
     username: "christian-fei",

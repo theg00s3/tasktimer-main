@@ -1,6 +1,7 @@
 require('./Profile.styl')
 
 import React, {Component, PropTypes} from 'react'
+import {Link} from 'react-router'
 
 export default class Profile extends Component {
   render() {
@@ -10,7 +11,9 @@ export default class Profile extends Component {
       return  null
     }
     return  <div className="profile">
-              <img className="item" src={avatar}/>
+              <Link to="profile">
+                <img className="item" src={avatar}/>
+              </Link>
             </div>
   }
 }

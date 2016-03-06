@@ -5,6 +5,7 @@ import Layout from './Layout'
 import Index from './routes/Index'
 import Login from './routes/Login'
 import Support from './routes/Support'
+import Profile from './routes/Profile'
 import Statistics from './routes/Statistics'
 
 export default class Root extends Component {
@@ -14,6 +15,7 @@ export default class Root extends Component {
                 <IndexRoute component={Index}/>
                 <Route path='login' component={Login} />
                 <Route path='support' component={Support} />
+                <Route path='profile' component={Profile} />
                 <Route path='statistics' component={Statistics} />
               </Route>
             </Router>
