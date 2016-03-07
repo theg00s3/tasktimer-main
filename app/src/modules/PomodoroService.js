@@ -18,8 +18,15 @@ function update(pomodoro){
   return axios.put(`${RESOURCE_URL}/${pomodoro.id}`, pomodoro)
 }
 
-function daily(day){
-  return axios.get(`${RESOURCE_URL}?day=${day}`)
+function daily(day, page = 1, acc = []){
+  return axios.get(`${RESOURCE_URL}?day=${day}&page=${page}`)
+  .then((response) => {
+    if( page < response.headers['x-pages'] ) {
+      return daily(day, page + 1, acc.concat(response.body))
+    }
+    response.data = acc.concat(response.body)
+    return response
+  })
 }
 
 function unfinished(){
