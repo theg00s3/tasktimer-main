@@ -10,6 +10,10 @@ export default class DailyPulse extends Component {
     const {data, width} = this.props
     const graphData = GraphUtils.calculateDailyPulseFrom(data)
 
+    if( graphData.length <= 1 ) {
+      return null
+    }
+
     return  <div className="daily-pulse">
               <VictoryScatter
                 style={{data:{fill:'#AFACAC'}}}
