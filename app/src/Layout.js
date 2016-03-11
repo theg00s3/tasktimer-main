@@ -33,26 +33,6 @@ class Layout extends Component {
   componentWillUnmount() {
     NotificationCenter.off('pomodoroEnded', this._showPomodoroEndedNotification.bind(this))
   }
-  _showPomodoroEndedNotification() {
-    this.state.pomodoroEndedSnackbarOpen = true
-  }
-  _requestNotificationPermission() {
-    const {actions} = this.props
-    NotificationService.requestPermission(() => {
-      actions.grantNotificationPermission(true)
-      this.state.requestNotificationPermissionSnackbarOpen = false
-    }, () => {
-      actions.grantNotificationPermission(false)
-    })
-  }
-  _updateTodoNotification() {
-    this.state.undoTodoActionSnackbarOpen = true
-  }
-  _undoTodoAction() {
-    const {actions} = this.props
-    actions.undoTodoAction()
-    this.state.undoTodoActionSnackbarOpen = false
-  }
   render() {
     const {user, settings, actions} = this.props
     return  <div className="layout">
@@ -69,6 +49,7 @@ class Layout extends Component {
                 action="Undo"
                 open={this.state.undoTodoActionSnackbarOpen}
                 autoHideDuration={5000}
+                onRequestClose={this._undoTodoAction.bind(this)}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
@@ -76,15 +57,44 @@ class Layout extends Component {
                 action="Got it"
                 open={this.state.pomodoroEndedSnackbarOpen}
                 autoHideDuration={2000}
-                onActionTouchTap={() => {this.state.pomodoroEndedSnackbarOpen = false}}/>
+                onRequestClose={this._hidePomodoroEndedNotification.bind(this)}
+                onActionTouchTap={this._hidePomodoroEndedNotification.bind(this)}/>
               <Snackbar
                 ref="requestNotificationPermissionSnackbar"
                 message="Pomodoro.cc would like to send you notifications!"
                 action="Grant"
                 open={this.state.requestNotificationPermissionSnackbarOpen}
                 autoHideDuration={0}
-                onActionTouchTap={() => {this.state.requestNotificationPermissionSnackbarOpen = false}}/>
+                onRequestClose={this._hideRequestNotificationPermissionSnackbar.bind(this)}
+                onActionTouchTap={this._hideRequestNotificationPermissionSnackbar.bind(this)}/>
             </div>
+  }
+
+  _showPomodoroEndedNotification() {
+    this.setState({pomodoroEndedSnackbarOpen:true})
+  }
+  _hidePomodoroEndedNotification() {
+    this.setState({pomodoroEndedSnackbarOpen:false})
+  }
+  _hideRequestNotificationPermissionSnackbar() {
+    this.setState({requestNotificationPermissionSnackbarOpen: false})
+  }
+  _requestNotificationPermission() {
+    const {actions} = this.props
+    NotificationService.requestPermission(() => {
+      actions.grantNotificationPermission(true)
+      this.setState({requestNotificationPermissionSnackbarOpen:false})
+    }, () => {
+      actions.grantNotificationPermission(false)
+    })
+  }
+  _updateTodoNotification() {
+    this.setState({undoTodoActionSnackbarOpen:true})
+  }
+  _undoTodoAction() {
+    const {actions} = this.props
+    actions.undoTodoAction()
+    this.setState({undoTodoActionSnackbarOpen:false})
   }
 }
 
