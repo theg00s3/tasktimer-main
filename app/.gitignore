@@ -10,6 +10,7 @@ db
 
 www
 build
+build-dev
 src/lib
 test/lib
 bin
