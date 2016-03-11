@@ -17,7 +17,7 @@ if( window.development ){
 }
 const storeWithMiddleware = applyMiddleware(...middleware)(createStore)
 const storeWithPersistence = compose(
-  persistState(['pomodoro','settings','todos'])
+  persistState(['settings','todos'])
 )(storeWithMiddleware)
 
 const reducer = combineReducers({
