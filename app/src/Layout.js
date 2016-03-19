@@ -49,7 +49,7 @@ class Layout extends Component {
                 action="Undo"
                 open={this.state.undoTodoActionSnackbarOpen}
                 autoHideDuration={5000}
-                onRequestClose={this._undoTodoAction.bind(this)}
+                onRequestClose={this._hideUndoTodoNotification.bind(this)}
                 onActionTouchTap={this._undoTodoAction.bind(this)}/>
               <Snackbar
                 ref="pomodoroEndedSnackbar"
@@ -66,12 +66,15 @@ class Layout extends Component {
                 open={this.state.requestNotificationPermissionSnackbarOpen}
                 autoHideDuration={0}
                 onRequestClose={this._hideRequestNotificationPermissionSnackbar.bind(this)}
-                onActionTouchTap={this._hideRequestNotificationPermissionSnackbar.bind(this)}/>
+                onActionTouchTap={this._requestNotificationPermission.bind(this)}/>
             </div>
   }
 
   _showPomodoroEndedNotification() {
     this.setState({pomodoroEndedSnackbarOpen:true})
+  }
+  _hideUndoTodoNotification() {
+    this.setState({undoTodoActionSnackbarOpen:false})
   }
   _hidePomodoroEndedNotification() {
     this.setState({pomodoroEndedSnackbarOpen:false})
