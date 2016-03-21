@@ -7,17 +7,11 @@ export default class SoundSettings extends Component {
     const {tickSoundEnabled, ringSoundEnabled} = settings
     return  <div className="sound-settings">
               <button onClick={()=>actions.toggleTickSound()} className="ticking-sound-toggle">
-                <i className={'icon ' + (tickSoundEnabled ? 'ion-ios-volume-high': 'ion-ios-volume-low')}/>
+                <i className={'icon volume ' + (tickSoundEnabled ? '': 'disabled')}/>
               </button>
               <button onClick={()=>actions.toggleRingSound()} className="ringing-sound-toggle">
-                <i className={'icon ' + (ringSoundEnabled ? 'ion-ios-bell':'ion-ios-bell-outline')}/>
+                <i className={'icon alarm ' + (ringSoundEnabled ? '': 'disabled')}/>
               </button>
-              {/*
-              <div>tick enabled: {settings.tickSoundEnabled ? 'true' : 'false'}</div>
-              <div>ring enabled: {settings.ringSoundEnabled ? 'true' : 'false'}</div>
-              <button onClick={()=>actions.toggleTickSound()}>tick</button>
-              <button onClick={()=>actions.toggleRingSound()}>ring</button>
-              */}
             </div>
   }
 }
