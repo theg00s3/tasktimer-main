@@ -21,10 +21,11 @@ function update(pomodoro){
 function daily(day, page = 1, acc = []){
   return axios.get(`${RESOURCE_URL}?day=${day}&page=${page}`)
   .then((response) => {
+    const data = response.data || []
     if( page < response.headers['x-pages'] ) {
-      return daily(day, page + 1, acc.concat(response.body))
+      return daily(day, page + 1, acc.concat(data))
     }
-    response.data = acc.concat(response.body)
+    response.data = acc.concat(data)
     return response
   })
 }
