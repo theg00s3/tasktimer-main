@@ -4,7 +4,6 @@ import GenericChart from '../components/GenericChart'
 import StatisticsStrip from '../components/StatisticsStrip'
 import TodosStrip from '../components/TodosStrip'
 import React, {Component, PropTypes} from 'react'
-import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 const logo = require('../assets/images/pomodoro.cc.png')
@@ -16,23 +15,25 @@ class Statistics extends Component {
       return this.renderAuthorizedContent()
     }
 
-    return user.username ? this.renderAuthorizedContent() : this.renderUnauthorizedContent()
+    return user ? this.renderAuthorizedContent() : this.renderUnauthorizedContent()
   }
 
   renderAuthorizedContent() {
     const {api} = this.props
     if( api.todaysPomodori.length === 0 ) {
       return  <div className="tac">
-                <h2 className="light">Not enough data...</h2>
-                <br/>
-                <h1>
-                  <div className="action1">Stay productive and</div>
-                  <Link to="/" className="action">start your first pomodoro!</Link>
-                  <span>&nbsp;:)</span>
-                </h1>
+                <h1 className="light">Not enough data...</h1>
                 <br/>
                 <br/>
                 <img src={logo} alt="pomodoro.cc" width="100"></img>
+                <br/>
+                <br/>
+                <br/>
+                <Link to="/" className="action">
+                  <h1>
+                    Start your first pomodoro!
+                  </h1>
+                </Link>
               </div>
     }
 
