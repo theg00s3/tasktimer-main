@@ -98,7 +98,7 @@ export function toggleCompleteTodo(todo:Todo):Action {
   })
 }
 
-export function updateTodo(todo:Todo, type='UPDATE':string):Action {
+export function updateTodo(todo:Todo, type:string='UPDATE'):Action {
   AnalyticsService.track('update-todo', todo)
   return (dispatch, getState) => {
     NotificationCenter.emit('updateTodo')
