@@ -15,12 +15,9 @@ const middleware = [thunk]
 if( window.development ){
   middleware.push(createLogger())
 }
-const storeWithMiddleware = applyMiddleware(...middleware)(createStore)
-const storeWithPersistence = compose(
-  persistState(['settings','todos'])
-)(storeWithMiddleware)
 
-const reducer = combineReducers({
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(combineReducers({
   timer,
   todos,
   api,
@@ -29,7 +26,9 @@ const reducer = combineReducers({
   loading,
   user,
   undo,
-})
+}), composeEnhancers(
+  applyMiddleware(...middleware),
+  persistState(['settings','todos']),
+));
 
-const store = storeWithPersistence(reducer)
 export default store
