@@ -14,7 +14,6 @@
     "axios": "0.11.1",
     "history": "2.1.2",
     "lodash.flow": "3.3.0",
-    "material-ui": "0.14.4",
     "moment": "2.13.0",
     "node-libs-browser": "1.0.0",
     "normalize.css": "4.1.1",
