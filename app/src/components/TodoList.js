@@ -1,44 +1,36 @@
 require('./TodoList.styl')
-const TODO_INPUT = 'TODO_INPUT'
-import React, {Component, PropTypes} from 'react'
-import {TextField} from 'material-ui'
+import React, { Component, PropTypes } from 'react'
 import Todo from './Todo'
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 class TodoList extends Component {
-  addTodo () {
-    const {actions} = this.props
-    const text = this.refs[TODO_INPUT].getValue()
-    if( !text ) {
-      return
-    }
-    this.refs[TODO_INPUT].clearValue()
+  addTodo(event) {
+    if (event.keyCode !== 13) return
+    const { actions } = this.props
+    const text = (event.target && event.target.value || '').trim()
+    if (!text) return
     actions.addTodo({
-      completed:false,
+      completed: false,
       text
     })
   }
 
   render() {
-    const {todos, actions} = this.props
-    return  <div className="todo-list-container">
-              <TextField
-                ref={TODO_INPUT}
-                onEnterKeyDown={this.addTodo.bind(this)}
-                hintText="What do you need to do?"
-                hintStyle={{left: "60px",fontSize:"1.3em", textAlign:"center"}}
-                fullWidth={true}
-                inputStyle={{fontSize:"1.3em", textAlign:"center"}}
-                className="todo-input"
-                underlineFocusStyle={{borderColor:"grey", textAlign:"center"}}/>
+    const { todos, actions } = this.props
+    return <div className="todo-list-container">
+      <input
+        type="text"
+        onKeyDown={this.addTodo.bind(this)}
+        placeholder="What do you need to do?"
+        className="todo-input" />
 
-              <ul className="todo-list">
-                {todos.map((todo) => {
-                  return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions}/>
-                })}
-              </ul>
-            </div>
+      <ul className="todo-list">
+        {todos.map((todo) => {
+          return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
+        })}
+      </ul>
+    </div>
   }
 }
 TodoList.propTypes = {
