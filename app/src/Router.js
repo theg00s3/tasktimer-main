@@ -7,6 +7,7 @@ import Login from './routes/Login'
 import Support from './routes/Support'
 import Profile from './routes/Profile'
 import Statistics from './routes/Statistics'
+import FouroFour from './routes/FouroFour'
 
 export default class Root extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class Root extends Component {
                 <Route path='support' component={Support} />
                 <Route path='profile' component={Profile} />
                 <Route path='statistics' component={Statistics} />
+                <Route path='/**' component={FouroFour} />
               </Route>
             </Router>
   }
