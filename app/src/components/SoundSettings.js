@@ -1,5 +1,5 @@
 require('./SoundSettings.styl')
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 
 export default class SoundSettings extends Component {
   render() {

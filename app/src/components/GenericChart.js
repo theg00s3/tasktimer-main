@@ -1,5 +1,5 @@
 require('./GenericChart.styl')
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {VictoryChart, VictoryAxis, VictoryLine} from 'victory'
 import GraphUtils from '../modules/GraphUtils'
 

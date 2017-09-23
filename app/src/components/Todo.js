@@ -1,8 +1,8 @@
 require('./Todo.styl')
 import {head, filter, propEq} from 'ramda'
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {findDOMNode} from 'react-dom'
-import { DragSource, DropTarget } from 'react-dnd'
+import { DragSource, DropTarget } from 'preact-dnd'
 import flow from 'lodash.flow'
 
 const ESCAPE_KEY = 27

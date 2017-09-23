@@ -1,5 +1,5 @@
 require('./LoginLogout.styl')
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 
 export default class LoginLogout extends Component {
   render() {

@@ -1,6 +1,6 @@
 require('./FouroFour.styl')
 import * as actions from '../actions'
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'

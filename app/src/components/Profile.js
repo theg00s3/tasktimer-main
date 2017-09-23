@@ -1,6 +1,6 @@
 require('./Profile.styl')
 
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {Link} from 'react-router'
 
 export default class Profile extends Component {

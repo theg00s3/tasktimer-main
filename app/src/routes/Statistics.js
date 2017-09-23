@@ -2,7 +2,7 @@ require('./Statistics.styl')
 import LoginLogout from '../components/LoginLogout'
 import StatisticsStrip from '../components/StatisticsStrip'
 import TodosStrip from '../components/TodosStrip'
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 const logo = require('../assets/images/pomodoro.cc.png')

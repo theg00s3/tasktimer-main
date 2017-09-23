@@ -1,5 +1,5 @@
 require('./StatisticsStrip.styl')
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import PomodoroUtils from '../modules/PomodoroUtils'
 
 export default class StatisticsStrip extends Component {

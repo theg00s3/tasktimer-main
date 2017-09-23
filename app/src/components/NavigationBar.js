@@ -1,5 +1,5 @@
 require('./NavigationBar.styl')
-import React, {Component} from 'react'
+import {h, Component} from 'preact'
 import {Link} from 'react-router'
 
 export default class NavigationBar extends Component {
