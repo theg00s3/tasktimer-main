@@ -15,11 +15,11 @@ export default class MainFooter extends Component {
                   For feedback, bug reports or pull requests, please use <a href="https://github.com/christian-fei/pomodoro.cc/" target="_blank">Github</a> or contact us on <a href="https://twitter.com/pomodoro_cc" target="_blank">Twitter</a>
                 </p>
                 <p>
-                  This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
-                </p>
-                <p>
                   by <a href="http://christian.fei.ninja" target="_blank">Christian Fei</a>, hosted on <a href="https://www.digitalocean.com/?refcode=880e8f681b50" target="_blank">digitalocean</a>
                 </p>
+                <small>
+                  This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
+                </small>
               </div>
             </footer>
   }
