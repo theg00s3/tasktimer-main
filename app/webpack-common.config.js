@@ -20,7 +20,7 @@ module.exports = function(production){
     },
     {
       test: /\.(styl|css)$/,
-      loader: "style!css!postcss-loader?browsers=last 2 version!stylus-loader",
+      loader: "style!css?browsers=last 2 version!stylus-loader",
     },
     {
       test: /\.(mp3|ogg)$/i,

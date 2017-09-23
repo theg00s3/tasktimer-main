@@ -1,6 +1,6 @@
 require('./Statistics.styl')
 import LoginLogout from '../components/LoginLogout'
-import GenericChart from '../components/GenericChart'
+// import GenericChart from '../components/GenericChart'
 import StatisticsStrip from '../components/StatisticsStrip'
 import TodosStrip from '../components/TodosStrip'
 import React, {Component, PropTypes} from 'react'
@@ -38,9 +38,11 @@ class Statistics extends Component {
     }
 
     return  <div className="tac">
+              {/*
               <div className="ovs-extended">
                 <GenericChart data={api.todaysPomodori}/>
               </div>
+              */}
               <StatisticsStrip data={api.todaysPomodori}/>
               <TodosStrip data={api.todaysCompletedTodos}/>
             </div>

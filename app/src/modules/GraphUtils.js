@@ -1,13 +1,12 @@
-import { compose, concat, curry, head, filter, last, length, map, prop, reduce, sort, sortBy } from 'ramda'
+import { compose, concat, head, last, length, map, prop, reduce, sort, sortBy } from 'ramda'
 import Pomodoro from '../models/Pomodoro'
 
 const MINUTES = 60 * 1000
-const POMODORO_DURATION = 25
-const minTimespan = 60*MINUTES
+const minTimespan = 60 * MINUTES
 
-const pad = (number) => (number<10) ? `0${number}` : number
-const sortMax = (a,b) => a - b
-const sortMin = (a,b) => b - a
+const pad = (number) => (number < 10) ? `0${number}` : number
+const sortMax = (a, b) => a - b
+const sortMin = (a, b) => b - a
 const sortByStartedAt = sortBy(prop('started_at'))
 
 const toFullTimestamp = (ts) => {
@@ -17,14 +16,10 @@ const toFullTimestamp = (ts) => {
 }
 
 const normalizeXAxis = (ts) => {
-  if( length(ts) < 2 ) {return ts}
-  ts = concat([head(ts) - 60*MINUTES], ts)
-  ts = concat(ts, [last(ts) + 60*MINUTES])
+  if (length(ts) < 2) { return ts }
+  ts = concat([head(ts) - 60 * MINUTES], ts)
+  ts = concat(ts, [last(ts) + 60 * MINUTES])
   return ts
-}
-
-const normalize = (value, min, max) => {
-  return Math.abs((value - min) / (max - min) * 100)
 }
 
 const extractStartedAt = compose(
@@ -33,41 +28,27 @@ const extractStartedAt = compose(
   map((p) => new Pomodoro(p))
 )
 
-const timestampToCoordinates = ({startTimestamp, endTimestamp, timestamps}) => {
-  return map(timestamp => {
-    const x = normalize(timestamp, startTimestamp, endTimestamp)
-    return {y:0,x}
-  }, timestamps)
-}
-
-const calculateTimestamps = (data=[]) => {
+const calculateTimestamps = (data = []) => {
   const timestamps = extractStartedAt(data)
   const startTimestamp = head(sort(sortMax, timestamps))
   let endTimestamp = head(sort(sortMin, timestamps))
-  if( (startTimestamp + minTimespan) > endTimestamp ){
+  if ((startTimestamp + minTimespan) > endTimestamp) {
     endTimestamp = startTimestamp + minTimespan
   }
   return {startTimestamp, endTimestamp, timestamps}
 }
 
-
-
-const calculateDailyPulseFrom = compose(
-  timestampToCoordinates,
-  calculateTimestamps
-)
-
 const extractStartAndEndFor = (pomodoro) => {
   pomodoro = new Pomodoro(pomodoro)
   const {started_at, ended_at} = pomodoro.timestamps()
   const y = pomodoro.duration() / MINUTES
-  return [{x:started_at, y}, {x:ended_at,y:0}]
+  return [{x: started_at, y}, {x: ended_at, y: 0}]
 }
 
 const extractGraph = reduce((acc, value) => {
   const [start, end] = extractStartAndEndFor(value)
   return concat(acc, [start, end])
-}, [])
+}, [])
 
 const extractXAxis = compose(
   normalizeXAxis,
@@ -77,18 +58,17 @@ const extractXAxis = compose(
   calculateTimestamps
 )
 
-const calculatGenericChartFrom = (data=[]) => {
-  const {startTimestamp, endTimestamp, timestamps} = calculateTimestamps(data)
+const calculatGenericChartFrom = (data = []) => {
   let graph = extractGraph(data)
   const firstPomodoro = head(graph)
-  if( firstPomodoro ) {
+  if (firstPomodoro) {
     const x = firstPomodoro.x
-    graph = concat([{x:x, y:0}], graph)
+    graph = concat([{x: x, y: 0}], graph)
   }
   let lastPomodoro = last(sortByStartedAt(data))
-  if( lastPomodoro ){
+  if (lastPomodoro) {
     const {ended_at} = (new Pomodoro(lastPomodoro)).timestamps()
-    graph = concat(graph, [{x:ended_at, y:0}])
+    graph = concat(graph, [{x: ended_at, y: 0}])
   }
 
   const xAxis = extractXAxis(data)
@@ -100,11 +80,7 @@ const formatTimestampToHour = (ts) => {
   return pad(date.getHours()) + ':' + pad(date.getMinutes())
 }
 
-
-
-
 export default {
-  calculateDailyPulseFrom,
   calculatGenericChartFrom,
-  formatTimestampToHour,
+  formatTimestampToHour
 }

@@ -12,18 +12,6 @@ const sample = [{
 }]
 
 describe('GraphUtils', () => {
-  describe('#calculateDailyPulseFrom', () => {
-    it('for empty data returns empty graph data', () => {
-      expect( GraphUtils.calculateDailyPulseFrom([]) ).to.eql([])
-    })
-
-    it('calculates y coordinates', () => {
-      const data = [{minutes:25, started_at:'2015-12-09T21:59:38.172000Z'}]
-      const graphData = [{x:0,y:0}]
-      expect( GraphUtils.calculateDailyPulseFrom(data) ).to.deep.eql( graphData )
-    })
-  })
-
   describe('#calculatGenericChartFrom', () => {
     const graphData = {
       "graph":[{"x":1451856600000,"y":0},{"x":1451856600000,"y":25},{"x":1451858100000,"y":0},{"x":1451858100000,"y":10},{"x":1451858700000,"y":0},{"x":1451858700000,"y":0}],
