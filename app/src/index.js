@@ -7,6 +7,7 @@ require('./index.styl')
 require('./assets/images/pomodoro.cc.png')
 require('./assets/images/pomodoro.cc.favicon.png')
 
-// require('react-tap-event-plugin')()
 init()
+debugger
+
 render(<Main />, document.getElementById('main'))

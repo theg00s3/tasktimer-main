@@ -22,8 +22,8 @@ var loaders = [{
   test: /\.jsx?$/,
   exclude: /node_modules/,
   loaders: (!test || development)
-            ? ['react-hot', 'babel-loader']
-            : ['babel-loader']
+    ? ['react-hot', 'babel-loader'/*, ['transform-react-jsx', { 'pragma': 'h' }] */]
+    : ['babel-loader'/*, ['transform-react-jsx', { 'pragma': 'h' }] */]
 }]
 
 var entryFile = './index.js'
@@ -38,12 +38,12 @@ var webpackConfig = {
     loaders: commonConfig.loaders.concat(loaders)
   },
   plugins: commonConfig.plugins.concat(plugins),
-  resolve: {
-    alias: {
-      'react': 'preact-compat',
-      'react-dom': 'preact-compat'
-    }
-  }
+  // resolve: {
+  //   alias: {
+  //     'react': 'preact-compat',
+  //     'react-dom': 'preact-compat'
+  //   }
+  // }
 }
 
 if (development) {

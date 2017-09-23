@@ -1,7 +1,7 @@
 require('./Profile.styl')
 
 import {h, Component} from 'preact'
-import {connect} from 'react-redux'
+import {connect} from 'preact-redux'
 
 class Profile extends Component {
   render () {
