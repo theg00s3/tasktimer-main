@@ -1,5 +1,5 @@
 require('./LoginLogout.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class LoginLogout extends Component {
   render() {
@@ -15,7 +15,4 @@ export default class LoginLogout extends Component {
               <a href="/auth/github" target="_self">GitHub</a>
             </div>
   }
-}
-LoginLogout.propTypes = {
-  user: PropTypes.object.isRequired
 }

@@ -1,6 +1,6 @@
 require('./Todo.styl')
 import {head, filter, propEq} from 'ramda'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {findDOMNode} from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import flow from 'lodash.flow'
@@ -108,15 +108,6 @@ class Todo extends Component {
               </div>
             </li>))
   }
-}
-Todo.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todo: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  connectDragSource: PropTypes.func.isRequired,
-  connectDropTarget: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-  isDragging: PropTypes.bool.isRequired,
 }
 
 

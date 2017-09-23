@@ -1,34 +1,28 @@
 require('./Profile.styl')
 
-import React, {Component, PropTypes} from 'react'
-import {bindActionCreators} from 'redux'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 class Profile extends Component {
-  render() {
+  render () {
     const {user} = this.props
-    console.log( '-- user', user )
-    return  <div className="content profile">
-              <h2>This is you:</h2>
-              <img src={user.avatar} style={{width: "100px", height: "100px"}} alt=""/>
-              <p>{user.username}</p>
-              <div>
-                <label>Your api key: &nbsp;</label>
-                <i>{user.apikey}</i>
-              </div>
-              <br/>
-              <div>Pssst! Check out the <a href="/docs">docs</a> ;)</div>
-            </div>
+    return <div className='content profile'>
+      <h2>This is you:</h2>
+      <img src={user.avatar} style={{width: '100px', height: '100px'}} alt='' />
+      <p>{user.username}</p>
+      <div>
+        <label>Your api key: &nbsp;</label>
+        <i>{user.apikey}</i>
+      </div>
+      <br />
+      <div>Pssst! Check out the <a href='/docs'>docs</a> ;)</div>
+    </div>
   }
-}
-
-Profile.propTypes = {
-  user: PropTypes.object.isRequired,
 }
 
 export default connect(
   (state) => ({
-    user: state.user,
+    user: state.user
   }),
   (dispatch) => ({
   })

@@ -1,5 +1,5 @@
 require('./MainFooter.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class MainFooter extends Component {
   render() {
@@ -23,6 +23,4 @@ export default class MainFooter extends Component {
               </div>
             </footer>
   }
-}
-MainFooter.propTypes = {
 }

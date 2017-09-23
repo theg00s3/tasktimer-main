@@ -1,6 +1,6 @@
 require('./WelcomeBar.styl')
 
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class WelcomeBar extends Component {
   render() {
@@ -18,10 +18,4 @@ export default class WelcomeBar extends Component {
               </div>
             </div>
   }
-}
-
-WelcomeBar.propTypes = {
-  user: PropTypes.object.isRequired,
-  settings: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 }

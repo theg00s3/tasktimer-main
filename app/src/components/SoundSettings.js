@@ -1,5 +1,5 @@
 require('./SoundSettings.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class SoundSettings extends Component {
   render() {
@@ -14,8 +14,4 @@ export default class SoundSettings extends Component {
               </button>
             </div>
   }
-}
-SoundSettings.propTypes = {
-  actions: PropTypes.object.isRequired,
-  settings: PropTypes.object.isRequired,
 }

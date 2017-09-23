@@ -5,7 +5,7 @@ import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
 import * as actions from './actions'
 
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
@@ -55,15 +55,6 @@ class Layout extends Component {
     actions.undoTodoAction()
     this.setState({undoTodoActionSnackbarOpen:false})
   }
-}
-
-Layout.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
-  pomodoro: PropTypes.object.isRequired,
-  timer: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired,
 }
 
 export default connect(

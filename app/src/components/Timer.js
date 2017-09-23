@@ -1,5 +1,5 @@
 require('./Timer.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class Timer extends Component {
   render() {
@@ -8,7 +8,4 @@ export default class Timer extends Component {
               {timer}
             </div>
   }
-}
-Timer.propTypes = {
-  timer: PropTypes.string.isRequired
 }

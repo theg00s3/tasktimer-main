@@ -1,5 +1,5 @@
 require('./StatisticsStrip.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import PomodoroUtils from '../modules/PomodoroUtils'
 
 export default class StatisticsStrip extends Component {
@@ -23,7 +23,4 @@ export default class StatisticsStrip extends Component {
               </div>
             </div>
   }
-}
-StatisticsStrip.propTypes = {
-  data: PropTypes.array.isRequired
 }

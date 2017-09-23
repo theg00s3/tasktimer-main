@@ -1,7 +1,6 @@
 require('./GenericChart.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {VictoryChart, VictoryAxis, VictoryLine} from 'victory'
-import {length} from 'ramda'
 import GraphUtils from '../modules/GraphUtils'
 
 export default class GenericChart extends Component {
@@ -22,7 +21,4 @@ export default class GenericChart extends Component {
                 style={{data: {stroke: "grey"}}}/>
             </VictoryChart>
   }
-}
-GenericChart.propTypes = {
-  data: PropTypes.array.isRequired
 }

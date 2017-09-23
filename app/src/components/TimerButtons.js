@@ -1,5 +1,5 @@
 require('./TimerButtons.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class TimerButtons extends Component {
   startStopTimer (minutes, type) {
@@ -19,8 +19,4 @@ export default class TimerButtons extends Component {
               <button id="minutes-15" onClick={() => this.startStopTimer(15,'break')}>15min</button>
             </div>
   }
-}
-TimerButtons.propTypes = {
-  actions: PropTypes.object.isRequired,
-  pomodoro: PropTypes.object.isRequired,
 }

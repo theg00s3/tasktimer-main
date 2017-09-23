@@ -1,5 +1,5 @@
 require('./TwitterShare.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 const defaultTweet = 'I\'m using @pomodoro_cc to get things done with the #pomodorotechnique, check it out on https://pomodoro.cc ! #productivity #gtd'
 const defaultText = ''
@@ -15,8 +15,4 @@ export default class TwitterShare extends Component {
                 <span>{resulText}&nbsp;</span>
               </a>
             </div>  }
-}
-TwitterShare.propTypes = {
-  tweet: PropTypes.string,
-  text:  PropTypes.string,
 }

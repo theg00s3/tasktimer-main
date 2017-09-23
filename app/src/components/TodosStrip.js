@@ -1,5 +1,5 @@
 require('./TodosStrip.styl')
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 export default class TodosStrip extends Component {
   render() {
@@ -26,7 +26,4 @@ export default class TodosStrip extends Component {
               </div>
             </div>
   }
-}
-TodosStrip.propTypes = {
-  data: PropTypes.array.isRequired
 }

@@ -1,6 +1,6 @@
 require('./Profile.styl')
 
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router'
 
 export default class Profile extends Component {
@@ -16,7 +16,4 @@ export default class Profile extends Component {
               </Link>
             </div>
   }
-}
-Profile.propTypes = {
-  user: PropTypes.object.isRequired
 }

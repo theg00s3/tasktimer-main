@@ -1,6 +1,6 @@
 require('./FouroFour.styl')
 import * as actions from '../actions'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
@@ -19,15 +19,6 @@ class FouroFour extends Component {
       </div>
     </div>
   }
-}
-
-FouroFour.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
-  pomodoro: PropTypes.object.isRequired,
-  timer: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired
 }
 
 export default connect(

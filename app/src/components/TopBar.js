@@ -3,7 +3,7 @@ require('./TopBar.styl')
 import Profile from './Profile'
 import NavigationBar from './NavigationBar'
 import LoginLogout from './LoginLogout'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router'
 
 export default class TopBar extends Component {
@@ -22,9 +22,4 @@ export default class TopBar extends Component {
               </div>
             </div>
   }
-}
-
-TopBar.propTypes = {
-  user: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 }

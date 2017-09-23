@@ -1,5 +1,5 @@
 require('./TodoList.styl')
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import Todo from './Todo'
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -32,10 +32,6 @@ class TodoList extends Component {
       </ul>
     </div>
   }
-}
-TodoList.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
 }
 
 export default DragDropContext(HTML5Backend)(TodoList)
