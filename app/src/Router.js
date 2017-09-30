@@ -1,3 +1,4 @@
+import React from 'react'
 import { Component } from 'preact'
 import { Router, Route, IndexRoute } from 'react-router'
 import { browserHistory } from 'react-router'

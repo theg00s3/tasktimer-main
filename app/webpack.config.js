@@ -38,12 +38,12 @@ var webpackConfig = {
     loaders: commonConfig.loaders.concat(loaders)
   },
   plugins: commonConfig.plugins.concat(plugins),
-  // resolve: {
-  //   alias: {
-  //     'react': 'preact-compat',
-  //     'react-dom': 'preact-compat'
-  //   }
-  // }
+  resolve: {
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
+  }
 }
 
 if (development) {

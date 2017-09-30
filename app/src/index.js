@@ -1,3 +1,4 @@
+import React from 'react'
 import Main from './Main'
 import {render} from 'preact'
 import init from './init'

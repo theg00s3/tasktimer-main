@@ -1,3 +1,4 @@
+import React from 'react'
 import {h, render, Component} from 'preact'
 import Router from './Router'
 import { Provider } from 'preact-redux'
