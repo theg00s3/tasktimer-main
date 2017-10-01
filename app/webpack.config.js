@@ -11,8 +11,7 @@ var plugins = [
     title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
     filename: 'index.html',
     template: './index_template.html'
-  })
-
+  }),
 ]
 
 var development = process.env.NODE_ENV === 'development'
