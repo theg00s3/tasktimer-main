@@ -3,7 +3,7 @@ require('./TopBar.styl')
 import Profile from './Profile'
 import NavigationBar from './NavigationBar'
 import LoginLogout from './LoginLogout'
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 import {Link} from 'react-router'
 
 export default class TopBar extends Component {

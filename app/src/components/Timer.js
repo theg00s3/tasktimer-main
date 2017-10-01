@@ -1,5 +1,5 @@
 require('./Timer.styl')
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 
 export default class Timer extends Component {
   render() {

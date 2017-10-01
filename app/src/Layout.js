@@ -5,7 +5,7 @@ import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
 import * as actions from './actions'
 
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 

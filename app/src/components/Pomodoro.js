@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 import Timer from './Timer'
 import TimerButtons from './TimerButtons'
 

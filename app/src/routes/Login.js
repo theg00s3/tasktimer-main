@@ -1,7 +1,7 @@
 require('./Login.styl')
 import LoginLogout from '../components/LoginLogout'
 import * as actions from '../actions'
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 

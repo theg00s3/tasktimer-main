@@ -1,8 +1,8 @@
 import Pomodoro from '../components/Pomodoro'
-// import TodoList from '../components/TodoList'
+import TodoList from '../components/TodoList'
 import SoundSettings from '../components/SoundSettings'
 import * as actions from '../actions'
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
@@ -13,7 +13,7 @@ class Index extends Component {
     return <div className='content'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
       <SoundSettings settings={settings} actions={actions} />
-      {/* <TodoList todos={todos} actions={actions} /> */}
+      <TodoList todos={todos} actions={actions} />
       {this.renderLoginInvite()}
     </div>
   }

@@ -1,8 +1,8 @@
-console.log('-- process.env.NODE_ENV', process.env.NODE_ENV)
+'console.log( '-- process.env.NODE_ENV', process.env.NODE_ENV )
 var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var commonConfig = require('./webpack-common.config.js')(false)
+var commonConfig = require('./webpack-common.config.js')(false);
 
 var plugins = [
   new webpack.optimize.DedupePlugin(),
@@ -20,9 +20,9 @@ var test = process.env.NODE_ENV === 'test'
 var loaders = [{
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  loaders: (!test || development)
-            ? ['react-hot', 'babel-loader']
-            : ['babel-loader']
+  loaders: (!test || development) ?
+            ['react-hot', 'babel-loader'] :
+            ['babel-loader'],
 }]
 
 var entryFile = './index.js'
@@ -34,18 +34,12 @@ var webpackConfig = {
     filename: 'bundle.[hash].js'
   },
   module: {
-    loaders: commonConfig.loaders.concat(loaders)
+    loaders: commonConfig.loaders.concat(loaders),
   },
   plugins: commonConfig.plugins.concat(plugins),
-  resolve: {
-    alias: {
-      'react': 'preact-compat',
-      'react-dom': 'preact-compat'
-    }
-  }
 }
 
-if (development) {
+if(development) {
   webpackConfig.entry = [
     'webpack-dev-server/client?http://127.0.0.1:9000',
     'webpack/hot/dev-server',

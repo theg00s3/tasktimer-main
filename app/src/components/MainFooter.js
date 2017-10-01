@@ -1,5 +1,5 @@
 require('./MainFooter.styl')
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 
 export default class MainFooter extends Component {
   render() {

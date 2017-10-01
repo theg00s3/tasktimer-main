@@ -1,5 +1,5 @@
 require('./TwitterShare.styl')
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 
 const defaultTweet = 'I\'m using @pomodoro_cc to get things done with the #pomodorotechnique, check it out on https://pomodoro.cc ! #productivity #gtd'
 const defaultText = ''

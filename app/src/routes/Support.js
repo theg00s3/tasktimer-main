@@ -1,6 +1,6 @@
 require('./Support.styl')
 const logo = require('../assets/images/pomodoro.cc.png')
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 export default class Support extends Component {
   render () {
     return <div className='content support'>

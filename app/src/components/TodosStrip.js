@@ -1,5 +1,5 @@
 require('./TodosStrip.styl')
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 
 export default class TodosStrip extends Component {
   render() {

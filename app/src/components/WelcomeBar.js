@@ -1,6 +1,6 @@
 require('./WelcomeBar.styl')
 
-import {h, Component} from 'preact'
+import React, {Component} from 'react'
 
 export default class WelcomeBar extends Component {
   render() {
