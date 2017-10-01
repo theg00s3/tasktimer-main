@@ -4,12 +4,12 @@ import SoundSettings from '../components/SoundSettings'
 import * as actions from '../actions'
 import {h, Component} from 'preact'
 import {bindActionCreators} from 'redux'
-import {connect} from 'preact-redux'
+import {connect} from 'react-redux'
 import {Link} from 'react-router'
 
 class Index extends Component {
   render () {
-    const {timer, settings, pomodoro, actions} = this.props
+    const {timer, todos, settings, pomodoro, actions} = this.props
     return <div className='content'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
       <SoundSettings settings={settings} actions={actions} />

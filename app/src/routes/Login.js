@@ -3,7 +3,7 @@ import LoginLogout from '../components/LoginLogout'
 import * as actions from '../actions'
 import {h, Component} from 'preact'
 import {bindActionCreators} from 'redux'
-import {connect} from 'preact-redux'
+import {connect} from 'react-redux'
 
 class Login extends Component {
   render () {

@@ -21,8 +21,8 @@ var loaders = [{
   test: /\.jsx?$/,
   exclude: /node_modules/,
   loaders: (!test || development)
-    ? ['react-hot', 'babel-loader'/*, ['transform-react-jsx', { 'pragma': 'h' }] */]
-    : ['babel-loader'/*, ['transform-react-jsx', { 'pragma': 'h' }] */]
+            ? ['react-hot', 'babel-loader']
+            : ['babel-loader']
 }]
 
 var entryFile = './index.js'
