@@ -8,7 +8,6 @@ Dockerfile
 karma.conf.js
 package.json
 test.webpack.js
-TODO.md
 webpack-common.config.js
 webpack-prod.config.js
 webpack-dev.config.js
