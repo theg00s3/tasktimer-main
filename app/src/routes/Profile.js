@@ -1,7 +1,6 @@
-require('./Profile.styl')
-
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+require('./Profile.styl')
 
 class Profile extends Component {
   render () {

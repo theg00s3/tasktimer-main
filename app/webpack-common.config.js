@@ -2,7 +2,6 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = function (production) {
-  var segment_write_key = production ? 'DI4YQLtpCkiyMnlITlg8o3pO6UDrnmbx' : 'u8FtwJOHxRRYAfIhZOv78SGzcQta1Yty'
   return {
     plugins: [
       new webpack.DefinePlugin({
