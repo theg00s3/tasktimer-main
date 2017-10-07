@@ -2,6 +2,7 @@
   "name": "pomodoro.cc-app",
   "version": "1.0.0",
   "scripts": {
+    "deploy:beta": "aws s3 sync --acl public-read --region eu-central-1 build/ s3://beta.pomodoro.cc",
     "start": "NODE_ENV=development webpack-dev-server --port 9000 --config ./webpack.config.js --hot --progress --colors --history-api-fallback --content-base build-dev",
     "build": "rm build/*; NODE_ENV=production webpack --progress --colors",
     "build-watch": "NODE_ENV=test webpack --progress --colors --watch",
