@@ -1,4 +1,5 @@
 console.log('-- process.env.NODE_ENV', process.env.NODE_ENV)
+const {join} = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
@@ -29,7 +30,7 @@ var loaders = [{
 
 var entryFile = './index.js'
 var webpackConfig = {
-  context: __dirname + '/src',
+  context: join(__dirname, '/src'),
   entry: entryFile,
   output: {
     path: './build',

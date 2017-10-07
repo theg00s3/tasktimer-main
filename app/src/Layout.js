@@ -10,9 +10,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class Layout extends Component {
-  constructor () {
-    super()
-  }
   componentDidMount () {
     NotificationCenter.on('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
     NotificationCenter.on('updateTodo', console.log.bind(console, 'unhandled: updateTodo'))

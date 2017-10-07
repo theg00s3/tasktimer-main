@@ -7,7 +7,7 @@ import {
   SWAP_TODO_LOCAL
 } from '../actions/todos'
 
-import {compose, concat, curry, filter, map, not, propEq} from 'ramda'
+import {compose, filter, map, not, propEq} from 'ramda'
 
 export default function todos (state = [], action) {
   switch (action.type) {
