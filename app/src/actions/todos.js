@@ -1,11 +1,8 @@
 /*     */
 import {filter, propEq} from 'ramda'
-import {parallel} from 'async'
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
 import TodosService from '../modules/TodosService'
-import {isLoggedIn} from '../modules/Utils'
-import {getTodaysCompletedTodos} from './'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -43,43 +40,14 @@ export function swapTodo (todo1, todo2) {
   todo1.order = todo2.order
   todo2.order = tmpTodo1Order
   return (dispatch, getState) => {
-    const {user} = getState()
-    if (!isLoggedIn(user)) {
-      return dispatch({type: SWAP_TODO_LOCAL, payload: {todo1, todo2}})
-    }
-
-    dispatch({type: SWAP_TODO_REQUEST, payload: {}})
-    parallel([
-      (cb) => {
-        TodosService.update(todo1.id, todo1)
-        .then((r) => cb(null, r))
-        .catch((r) => cb(r))
-      },
-      (cb) => {
-        TodosService.update(todo2.id, todo2)
-        .then((r) => cb(null, r))
-        .catch((r) => cb(r))
-      }
-    ], (_, responses) => {
-      dispatch(getTodo())
-    })
+    return dispatch({type: SWAP_TODO_LOCAL, payload: {todo1, todo2}})
   }
 }
 
 export function addTodo (todo) {
   AnalyticsService.track('add-todo', todo)
   return (dispatch, getState) => {
-    const {user} = getState()
-    if (!isLoggedIn(user)) {
-      return dispatch({type: ADD_TODO_SUCCESS, payload: todo})
-    }
-
-    dispatch({type: ADD_TODO_REQUEST, payload: {}})
-    TodosService.create(todo)
-    .then(() => dispatch(getTodo()))
-    .catch(() => {
-      dispatch({type: ADD_TODO_ERROR, payload: {}})
-    })
+    return dispatch({type: ADD_TODO_SUCCESS, payload: todo})
   }
 }
 
@@ -102,22 +70,9 @@ export function updateTodo (todo, type = 'UPDATE') {
   AnalyticsService.track('update-todo', todo)
   return (dispatch, getState) => {
     NotificationCenter.emit('updateTodo')
-    const {user, todos} = getState()
+    const {todos} = getState()
     const [oldTodo] = filterTodo(todo)(todos)
-    if (!isLoggedIn(user)) {
-      return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
-    }
-
-    dispatch({type: `${type}_TODO_REQUEST`, payload: {}})
-    TodosService.update(todo.id, todo)
-    .then(() => {
-      dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
-      dispatch(getTodo())
-      dispatch(getTodaysCompletedTodos())
-    })
-    .catch(() => {
-      dispatch({type: `${type}_TODO_ERROR`, payload: {}})
-    })
+    return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
   }
 }
 

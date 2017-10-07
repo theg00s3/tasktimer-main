@@ -3,8 +3,8 @@ require('./WelcomeBar.styl')
 
 export default class WelcomeBar extends Component {
   render () {
-    const {user, settings, actions} = this.props
-    if (settings.acknlowedgedWelcome || user.username) {
+    const {settings, actions} = this.props
+    if (settings.acknlowedgedWelcome) {
       return null
     }
     return <div className='welcome-bar-container'>

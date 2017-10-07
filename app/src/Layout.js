@@ -26,10 +26,10 @@ class Layout extends Component {
     NotificationCenter.off('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
   }
   render () {
-    const {user, settings, actions} = this.props
+    const {settings, actions} = this.props
     return <div className='layout'>
-      <TopBar user={user} actions={actions} />
-      <WelcomeBar user={user} settings={settings} actions={actions} />
+      <TopBar actions={actions} />
+      <WelcomeBar settings={settings} actions={actions} />
 
       <div className='main-content'>
         {this.props.children}
@@ -60,8 +60,7 @@ export default connect(
       todos: state.todos,
       settings: state.settings,
       pomodoro: state.pomodoro,
-      timer: state.timer,
-      user: state.user
+      timer: state.timer
     }
   },
   (dispatch) => { return {actions: bindActionCreators(actions, dispatch)} }

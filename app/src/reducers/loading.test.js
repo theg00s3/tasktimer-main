@@ -1,9 +1,6 @@
 /* global expect */
 import loading, {defaultState} from './loading'
 import {
-  AUTHENTICATE_USER_REQUEST,
-  AUTHENTICATE_USER_SUCCESS,
-  AUTHENTICATE_USER_FAILURE,
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
   ADD_TODO_ERROR,
@@ -26,9 +23,6 @@ describe('loading reducer', () => {
 
   it('is true after loading actions', () => {
     expect(
-      loading(undefined, dummyAction(AUTHENTICATE_USER_REQUEST))
-    ).to.deep.eql(true)
-    expect(
       loading(undefined, dummyAction(ADD_TODO_REQUEST))
     ).to.deep.eql(true)
     expect(
@@ -40,12 +34,6 @@ describe('loading reducer', () => {
   })
 
   it('is false after request actions', () => {
-    expect(
-      loading(true, dummyAction(AUTHENTICATE_USER_SUCCESS))
-    ).to.deep.eql(false)
-    expect(
-      loading(true, dummyAction(AUTHENTICATE_USER_FAILURE))
-    ).to.deep.eql(false)
     expect(
       loading(true, dummyAction(ADD_TODO_SUCCESS))
     ).to.deep.eql(false)

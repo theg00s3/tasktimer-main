@@ -1,9 +1,6 @@
 /*     */
 import NProgress from 'nprogress'
 import {
-  AUTHENTICATE_USER_REQUEST,
-  AUTHENTICATE_USER_SUCCESS,
-  AUTHENTICATE_USER_FAILURE,
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
   ADD_TODO_ERROR,
@@ -25,7 +22,6 @@ export const defaultState = false
 
 export default function pomodoro (state = defaultState, action) {
   switch (action.type) {
-    case AUTHENTICATE_USER_REQUEST:
     case ADD_TODO_REQUEST:
     case DELETE_TODO_REQUEST:
     case GET_TODO_REQUEST:
@@ -33,8 +29,6 @@ export default function pomodoro (state = defaultState, action) {
     case GET_TODAYS_POMODORI_REQUEST:
       NProgress.start()
       return true
-    case AUTHENTICATE_USER_SUCCESS:
-    case AUTHENTICATE_USER_FAILURE:
     case ADD_TODO_SUCCESS:
     case ADD_TODO_ERROR:
     case DELETE_TODO_SUCCESS:
