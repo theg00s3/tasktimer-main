@@ -13,10 +13,8 @@
   "dependencies": {
     "async": "2.0.1",
     "axios": "0.11.1",
-    "history": "2.1.2",
+    "karma-webpack": "^2.0.4",
     "lodash.flow": "3.3.0",
-    "moment": "2.13.0",
-    "node-libs-browser": "1.0.0",
     "normalize.css": "4.1.1",
     "notifyjs": "1.3.0",
     "nprogress": "0.2.0",
@@ -32,9 +30,7 @@
     "redux-localstorage": "0.4.1",
     "redux-logger": "2.6.1",
     "redux-thunk": "2.0.1",
-    "store": "1.3.20",
-    "stylus": "^0.54.5",
-    "victory": "0.6.1"
+    "stylus": "^0.54.5"
   },
   "description": "Install the dependencies first with",
   "main": "src/index.js",
@@ -43,7 +39,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-2": "^6.5.0",
     "chai": "^3.5.0",
     "css-loader": "0.23.1",
     "expect": "1.19.0",
@@ -59,7 +54,6 @@
     "karma-phantomjs-shim": "1.4.0",
     "karma-sinon": "1.0.5",
     "karma-sinon-chai": "1.2.4",
-    "karma-webpack": "1.7.0",
     "mocha": "2.4.5",
     "phantomjs-prebuilt": "2.1.14",
     "react-hot-loader": "^1.3.0",
