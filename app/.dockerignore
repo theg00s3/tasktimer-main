@@ -2,8 +2,6 @@ node_modules
 opt
 src
 .babelrc
-.eslintignore
-.eslintrc
 .gitignore
 app.json
 Dockerfile
