@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
-import { browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+
 import Layout from './Layout'
 import Index from './routes/Index'
 import Login from './routes/Login'

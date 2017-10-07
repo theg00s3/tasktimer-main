@@ -1,4 +1,6 @@
-const {clone} = require('ramda')
+/* eslint-disable no-unused-expressions */
+/* global expect */
+
 import Pomodoro from './Pomodoro'
 
 const pomodoroJSON = {
@@ -12,11 +14,11 @@ const cancelledPomodoroJSON = {
   started_at: '2016-01-03T21:00:00.000Z',
   cancelled_at: '2016-01-03T21:05:00.000Z'
 }
-const breakJSON = {
-  type: 'break',
-  minutes: 5,
-  started_at: '2016-01-03T21:00:00.000Z'
-}
+// const breakJSON = {
+//   type: 'break',
+//   minutes: 5,
+//   started_at: '2016-01-03T21:00:00.000Z'
+// }
 
 const MINUTES = 60 * 1000
 

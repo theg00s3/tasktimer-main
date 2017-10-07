@@ -10,7 +10,7 @@ export default {
 
 function off (topic, callback) {
   events.on = events.on.filter((ev) => {
-    return ev.topic == topic && ev.callback === callback
+    return ev.topic === topic && ev.callback === callback
   })
 }
 
@@ -22,6 +22,6 @@ function on (topic, callback) {
 }
 function emit (topic, payload) {
   events.on
-  .filter((ev) => { return ev.topic == topic })
+  .filter((ev) => { return ev.topic === topic })
   .forEach(({callback}) => { callback(payload) })
 }
