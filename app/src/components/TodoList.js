@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Todo from './Todo'
-import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 require('./TodoList.styl')
 
 class TodoList extends Component {
@@ -34,4 +32,4 @@ class TodoList extends Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(TodoList)
+export default TodoList

@@ -28,8 +28,7 @@ export default function todos (state = [], action) {
       break
     }
     case SWAP_TODO_LOCAL: {
-      const {todo1, todo2} = action.payload
-      state = swapTodos(todo1, todo2)(state)
+      state = action.payload.todos
       break
     }
   }
@@ -41,15 +40,6 @@ export default function todos (state = [], action) {
 
 const addTodo = (todo) => {
   return (todos) => [...todos, todo]
-}
-
-const swapTodos = (todo1, todo2) => {
-  return map((todo) => {
-    if (!todo1 || !todo2) { return todo }
-    if (todo.id === todo1.id) { return todo2 }
-    if (todo.id === todo2.id) { return todo1 }
-    return todo
-  })
 }
 
 const filterTodo = (todo) => {
@@ -76,26 +66,16 @@ const maxOfProp = (prop) => {
   }
 }
 const maxId = maxOfProp('id')
-const maxOrder = maxOfProp('order')
 
 const orderAndSanitize = (todos) => {
-  return todos
-    .map(sanitize)
-    .sort(sortByOrder)
+  return todos.map(sanitize)
 }
 
 const sanitize = (todo, index, todos) => {
-  if (notDefined(todo.order)) {
-    todo.order = todos.reduce(maxOrder, 0)
-  }
   if (notDefined(todo.id)) {
     todo.id = todos.reduce(maxId, 0)
   }
   return todo
-}
-
-const sortByOrder = (todo1, todo2) => {
-  return todo1.order >= todo2.order
 }
 
 const notDefined = (x) => (x === undefined || x === null)

@@ -19,15 +19,6 @@ export const SWAP_TODO_SUCCESS = 'SWAP_TODO_SUCCESS'
 export const SWAP_TODO_ERROR = 'SWAP_TODO_ERROR'
 export const SWAP_TODO_LOCAL = 'SWAP_TODO_LOCAL'
 
-export function swapTodo (todo1, todo2) {
-  const tmpTodo1Order = todo1.order
-  todo1.order = todo2.order
-  todo2.order = tmpTodo1Order
-  return (dispatch, getState) => {
-    return dispatch({type: SWAP_TODO_LOCAL, payload: {todo1, todo2}})
-  }
-}
-
 export function addTodo (todo) {
   AnalyticsService.track('add-todo', todo)
   return (dispatch, getState) => {
