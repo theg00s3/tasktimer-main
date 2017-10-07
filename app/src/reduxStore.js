@@ -6,12 +6,12 @@ import loading from './reducers/loading'
 import undo from './reducers/undo'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
-// import createLogger from 'redux-logger'
+import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
 const middleware = [thunk]
 if (window.development) {
-  // middleware.push(createLogger())
+  middleware.push(createLogger())
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
