@@ -26,7 +26,7 @@ export default connect(
     todos: state.todos,
     settings: state.settings,
     pomodoro: state.pomodoro,
-    timer: state.timer,
+    timer: state.timer
   }),
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
