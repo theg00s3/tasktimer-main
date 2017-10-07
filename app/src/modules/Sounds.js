@@ -1,9 +1,9 @@
+import Buzz from './Buzz'
+
 require('../assets/audio/ring.mp3')
 require('../assets/audio/ring.ogg')
 require('../assets/audio/tick.mp3')
 require('../assets/audio/tick.ogg')
-
-import Buzz from './Buzz'
 
 export default {
   tickSoundEnabled: tickSoundEnabled,
@@ -15,12 +15,13 @@ export default {
   toggleRingSound: toggleRingSound
 }
 
-const ringSound = new Buzz.sound('ring', {
+const Sound = Buzz.sound
+const ringSound = new Sound('ring', {
   preload: true,
   loop: false,
   formats: ['ogg', 'mp3']
 })
-const tickSound = new Buzz.sound('tick', {
+const tickSound = new Sound('tick', {
   preload: true,
   loop: true,
   formats: ['ogg', 'mp3']

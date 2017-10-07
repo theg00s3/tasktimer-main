@@ -1,9 +1,7 @@
-/*     */
 import {
   AUTHENTICATE_USER_REQUEST,
   AUTHENTICATE_USER_SUCCESS,
-  AUTHENTICATE_USER_FAILURE,
-  authenticateUser
+  AUTHENTICATE_USER_FAILURE
 } from '../actions'
 
 let initialState = {}

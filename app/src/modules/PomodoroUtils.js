@@ -5,8 +5,7 @@ const MINUTES = 60 * 1000
 const POMODORO_DURATION = 25
 
 const toInteger = (number) => {
-  number = new Number(number)
-  return number.toFixed(0)
+  return parseFloat(number).toFixed(0)
 }
 
 const reducePomodoriByFactor = (factor) => {
@@ -20,7 +19,7 @@ const reducePomodoriByFactor = (factor) => {
 
   return (data) => {
     const reduced = reducer(data)
-    return new Number(reduced).toFixed(1)
+    return parseFloat(reduced).toFixed(1)
   }
 }
 

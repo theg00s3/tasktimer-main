@@ -1,5 +1,6 @@
+/* global expect */
 import PomodoroUtils from './PomodoroUtils'
-const MINUTES = 1000 * 60
+
 const sample = [{
   type: 'pomodoro',
   minutes: 25,

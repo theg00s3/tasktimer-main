@@ -1,5 +1,5 @@
+/* global expect */
 import loading, {defaultState} from './loading'
-import {getTodo} from '../actions'
 import {
   AUTHENTICATE_USER_REQUEST,
   AUTHENTICATE_USER_SUCCESS,
@@ -15,9 +15,8 @@ import {
   GET_TODO_ERROR
 } from '../actions'
 
-const dummyDispatch = () => {}
-const dummyGetState = () => {}
 const dummyAction = (type) => ({type, payload: {}})
+
 describe('loading reducer', () => {
   it('sets default state when not specified', () => {
     expect(

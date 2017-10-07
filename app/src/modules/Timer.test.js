@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* global sinon expect */
+
 import Timer from './Timer'
 let clock
 
@@ -13,7 +16,6 @@ describe('Timer', () => {
   describe('behaviour', () => {
     it('#start', () => {
       expect(Timer.start(25 * 60)).to.be.ok
-
       expect(Timer.start('123.2')).not.to.be.ok
       expect(Timer.start('123')).not.to.be.ok
       expect(Timer.start([])).not.to.be.ok
@@ -21,7 +23,6 @@ describe('Timer', () => {
       expect(Timer.start(-1)).not.to.be.ok
       expect(Timer.start(0)).not.to.be.ok
     })
-
     it('#isInProgress', () => {
       Timer.start(25 * 60)
       expect(Timer.isInProgress()).to.be.true

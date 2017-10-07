@@ -1,5 +1,7 @@
+/* global expect */
+
 import timer from './timer'
-import {startTimer, resumeTimer, endTimer, forceEndTimer, tickTimer} from '../actions'
+import {startTimer, tickTimer} from '../actions'
 
 const dummyAction = {type: 'DUMMY', payload: {}}
 
