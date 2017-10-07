@@ -1,3 +1,4 @@
+/* global expect */
 import settings, {defaultState} from './settings'
 import {toggleTickSound, toggleRingSound, grantNotificationPermission, acknowledgeWelcome} from '../actions'
 

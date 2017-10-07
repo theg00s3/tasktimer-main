@@ -1,3 +1,4 @@
+/* global expect */
 import TimeFormatter from './TimeFormatter'
 
 describe('TimeFormatter', () => {

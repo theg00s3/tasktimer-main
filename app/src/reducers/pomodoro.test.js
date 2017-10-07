@@ -1,5 +1,6 @@
-import pomodoro, {defaultState} from './pomodoro'
-import {startTimer, forceEndTimer} from '../actions'
+/* global expect */
+import pomodoro from './pomodoro'
+import {startTimer} from '../actions'
 
 describe.skip('pomodoro reducer', () => {
   it('sets state only if not set', () => {
