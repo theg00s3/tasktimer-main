@@ -10,50 +10,50 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class Layout extends Component {
-  constructor() {
+  constructor () {
     super()
   }
-  componentDidMount() {
+  componentDidMount () {
     NotificationCenter.on('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
     NotificationCenter.on('updateTodo', console.log.bind(console, 'unhandled: updateTodo'))
-    if( this.shouldShowNotificationGrant() ) {
+    if (this.shouldShowNotificationGrant()) {
       // console.log('unhandled: requires notification permissions')
       this._requestNotificationPermission()
     }
   }
-  shouldShowNotificationGrant() {
+  shouldShowNotificationGrant () {
     const {settings} = this.props
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     NotificationCenter.off('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
   }
-  render() {
+  render () {
     const {user, settings, actions} = this.props
-    return  <div className="layout">
-              <TopBar user={user} actions={actions}/>
-              <WelcomeBar user={user} settings={settings} actions={actions}/>
+    return <div className='layout'>
+      <TopBar user={user} actions={actions} />
+      <WelcomeBar user={user} settings={settings} actions={actions} />
 
-              <div className="main-content">
-                {this.props.children}
-              </div>
-              <MainFooter/>
-            </div>
+      <div className='main-content'>
+        {this.props.children}
+      </div>
+      <MainFooter />
+    </div>
   }
 
-  _requestNotificationPermission() {
+  _requestNotificationPermission () {
     const {actions} = this.props
     NotificationService.requestPermission(() => {
       actions.grantNotificationPermission(true)
-      this.setState({requestNotificationPermissionSnackbarOpen:false})
+      this.setState({requestNotificationPermissionSnackbarOpen: false})
     }, () => {
       actions.grantNotificationPermission(false)
     })
   }
-  _undoTodoAction() {
+  _undoTodoAction () {
     const {actions} = this.props
     actions.undoTodoAction()
-    this.setState({undoTodoActionSnackbarOpen:false})
+    this.setState({undoTodoActionSnackbarOpen: false})
   }
 }
 
@@ -64,8 +64,8 @@ export default connect(
       settings: state.settings,
       pomodoro: state.pomodoro,
       timer: state.timer,
-      user: state.user,
+      user: state.user
     }
   },
-  (dispatch) => {return {actions:bindActionCreators(actions,dispatch)}}
+  (dispatch) => { return {actions: bindActionCreators(actions, dispatch)} }
 )(Layout)

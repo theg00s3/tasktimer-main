@@ -9,8 +9,8 @@ class FouroFour extends Component {
   render () {
     return <div className='content'>
       <div className='tac'>
-        <h1 className="giant">404!</h1>
-        <Link to="/" className="action">
+        <h1 className='giant'>404!</h1>
+        <Link to='/' className='action'>
           <h1>
             Start your first pomodoro!
           </h1>

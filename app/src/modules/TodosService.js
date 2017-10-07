@@ -7,22 +7,22 @@ export default {
   all,
   get,
   update,
-  today,
+  today
 }
 
-function create(todo){
+function create (todo) {
   return axios.post(RESOURCE_URL, todo)
 }
-function all(){
+function all () {
   return axios.get(RESOURCE_URL)
 }
-function get(todoId){
+function get (todoId) {
   return axios.get(`${RESOURCE_URL}/${todoId}`)
 }
-function update(todoId, todo){
+function update (todoId, todo) {
   return axios.put(`${RESOURCE_URL}/${todoId}`, todo)
 }
-function today(){
+function today () {
   const todayDate = DateUtils.today()
   return axios.get(`${RESOURCE_URL}?day=${todayDate}&completed=true`)
 }

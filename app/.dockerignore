@@ -1,11 +1,9 @@
 node_modules
-flow
 opt
 src
 .babelrc
 .eslintignore
 .eslintrc
-.flowconfig
 .gitignore
 app.json
 Dockerfile

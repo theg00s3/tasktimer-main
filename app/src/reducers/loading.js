@@ -1,4 +1,4 @@
-/*@flow*/
+/*     */
 import NProgress from 'nprogress'
 import {
   AUTHENTICATE_USER_REQUEST,
@@ -18,14 +18,13 @@ import {
   UPDATE_TODO_ERROR,
   GET_TODAYS_POMODORI_REQUEST,
   GET_TODAYS_POMODORI_SUCCESS,
-  GET_TODAYS_POMODORI_ERROR,
+  GET_TODAYS_POMODORI_ERROR
 } from '../actions'
-
 
 export const defaultState = false
 
-export default function pomodoro(state:LoadingState=defaultState, action:Action):LoadingState {
-  switch(action.type) {
+export default function pomodoro (state = defaultState, action) {
+  switch (action.type) {
     case AUTHENTICATE_USER_REQUEST:
     case ADD_TODO_REQUEST:
     case DELETE_TODO_REQUEST:

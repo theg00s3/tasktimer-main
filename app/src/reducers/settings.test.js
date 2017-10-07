@@ -1,13 +1,13 @@
 import settings, {defaultState} from './settings'
 import {toggleTickSound, toggleRingSound, grantNotificationPermission, acknowledgeWelcome} from '../actions'
 
-const dummyAction = {type:'',payload:{}}
+const dummyAction = {type: '', payload: {}}
 
 describe('settings reducer', () => {
   it('sets default state when not specified', () => {
     expect(
       settings(undefined, dummyAction)
-    ).to.deep.eql( defaultState )
+    ).to.deep.eql(defaultState)
   })
 
   it('toggles specific settings', () => {
@@ -15,14 +15,14 @@ describe('settings reducer', () => {
       settings(defaultState, toggleTickSound())
     ).to.deep.eql({
       ...defaultState,
-      tickSoundEnabled: false,
+      tickSoundEnabled: false
     })
 
     expect(
       settings(defaultState, toggleRingSound())
     ).to.deep.eql({
       ...defaultState,
-      ringSoundEnabled: false,
+      ringSoundEnabled: false
     })
 
     expect(
@@ -36,7 +36,7 @@ describe('settings reducer', () => {
       settings(defaultState, acknowledgeWelcome())
     ).to.deep.eql({
       ...defaultState,
-      acknlowedgedWelcome: true,
+      acknlowedgedWelcome: true
     })
   })
 })

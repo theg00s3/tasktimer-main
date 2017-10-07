@@ -12,7 +12,7 @@ const toInteger = (number) => {
 const reducePomodoriByFactor = (factor) => {
   const reducer = reduce((acc, value) => {
     const pomodoro = new Pomodoro(value)
-    if( pomodoro.isType('pomodoro') ){
+    if (pomodoro.isType('pomodoro')) {
       acc += pomodoro.duration() / MINUTES / factor
     }
     return acc
@@ -45,5 +45,5 @@ export default {
   fullPomodoriCount,
   partialPomodoriCount,
   fullPomodoriHours,
-  partialPomodoriHours,
+  partialPomodoriHours
 }

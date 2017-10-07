@@ -1,4 +1,4 @@
-/*@flow*/
+/*     */
 import Timer from '../modules/Timer'
 import TimeFormatter from '../modules/TimeFormatter'
 import PomodoroService from '../modules/PomodoroService'
@@ -15,53 +15,53 @@ export const TICK_TIMER = 'TICK_TIMER'
 
 const title = 'Pomodoro.cc - Time tracking with the Pomodoro technique'
 
-function noop():Action {
-  return {type:NOOP,payload:{}}
+function noop () {
+  return {type: NOOP, payload: {}}
 }
 
-export function startTimer(minutes:number, type:PomodoroType):Action {
+export function startTimer (minutes, type) {
   return (dispatch, getState) => {
-    if( Timer.isInProgress() ){ return noop() }
-    Timer.start(minutes*60)
-    const started_at = new Date
+    if (Timer.isInProgress()) { return noop() }
+    Timer.start(minutes * 60)
+    const started_at = new Date()
     const pomodoro = {minutes, type, started_at}
     AnalyticsService.track('timer-start', pomodoro)
     PomodoroService.create(pomodoro)
     .then((response) => {
       const pomodoro = response.data
-      dispatch({type:START_TIMER, payload:pomodoro})
+      dispatch({type: START_TIMER, payload: pomodoro})
     })
     .catch(() => {
-      dispatch({type:START_TIMER, payload:pomodoro})
+      dispatch({type: START_TIMER, payload: pomodoro})
     })
   }
 }
 
-export function resumeTimer(pomodoro:Object):Action {
-  if( Timer.isInProgress() ){ return noop() }
+export function resumeTimer (pomodoro) {
+  if (Timer.isInProgress()) { return noop() }
   let remaining = 0
-  if(pomodoro && pomodoro.minutes && pomodoro.started_at ){
-    let elapsed = (Date.now() -  new Date(pomodoro.started_at).getTime())
-    elapsed = elapsed/1000 << 0
-    remaining = pomodoro.minutes*60 - elapsed
+  if (pomodoro && pomodoro.minutes && pomodoro.started_at) {
+    let elapsed = (Date.now() - new Date(pomodoro.started_at).getTime())
+    elapsed = elapsed / 1000 << 0
+    remaining = pomodoro.minutes * 60 - elapsed
   }
   remaining = remaining << 0
-  if( remaining <= 0 ) {
-    return {type:RESET_TIMER, payload:{}}
+  if (remaining <= 0) {
+    return {type: RESET_TIMER, payload: {}}
   }
   Timer.start(remaining)
-  return {type:RESUME_TIMER, payload:{remaining}}
+  return {type: RESUME_TIMER, payload: {remaining}}
 }
 
-export function endTimer():Action {
+export function endTimer () {
   document.title = title
   NotificationCenter.emit('pomodoroEnded')
-  NotificationService.show('Timer ended', {body:'',icon:'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
+  NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
   return saveAndDispatch(END_TIMER)
 }
 
-export function forceEndTimer():Action {
-  if( !Timer.isInProgress() ) {
+export function forceEndTimer () {
+  if (!Timer.isInProgress()) {
     return noop()
   }
   document.title = title
@@ -70,19 +70,19 @@ export function forceEndTimer():Action {
   return saveAndDispatch(STOP_TIMER)
 }
 
-export function tickTimer(remaining:number):Action {
+export function tickTimer (remaining) {
   const formatted = TimeFormatter.formatSeconds(remaining)
   document.title = `${formatted} - ${title}`
-  return {type:TICK_TIMER, payload:{remaining}}
+  return {type: TICK_TIMER, payload: {remaining}}
 }
 
-function saveAndDispatch(action) {
+function saveAndDispatch (action) {
   return (dispatch, getState) => {
     const pomodoro = getState().pomodoro
-    dispatch({type:action, payload:{}})
+    dispatch({type: action, payload: {}})
 
-    if( action === STOP_TIMER ){
-      pomodoro.cancelled_at = new Date
+    if (action === STOP_TIMER) {
+      pomodoro.cancelled_at = new Date()
     }
     pomodoro.finished = true
 

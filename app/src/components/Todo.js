@@ -9,15 +9,15 @@ const ESCAPE_KEY = 27
 const ENTER_KEY = 13
 
 const todoDragSource = {
-  beginDrag(props) {
+  beginDrag (props) {
     return {
-      index: props.index,
+      index: props.index
     }
   }
 }
 
 const todoDropTarget = {
-  drop(props, monitor, component) {
+  drop (props, monitor, component) {
     const dragIndex = monitor.getItem().index
     const dropIndex = props.index
 
@@ -27,44 +27,43 @@ const todoDropTarget = {
     const {actions, todos} = props
     const todo1 = head(filterTodo(dragIndex)(todos))
     const todo2 = head(filterTodo(dropIndex)(todos))
-    console.log( todo1, todo2 )
+    console.log(todo1, todo2)
     actions.swapTodo(todo1, todo2)
   }
 }
 
-function filterTodo(id){
+function filterTodo (id) {
   return filter(propEq('id', id))
 }
 
-
 class Todo extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       editing: false
     }
   }
 
-  startEditing() {
+  startEditing () {
     const {todo} = this.props
     this.setState({editing: true, editText: todo.text})
-    setTimeout(function() {
+    setTimeout(function () {
       findDOMNode(this.refs.editField).focus()
     }.bind(this), 100)
   }
 
-  onBlur() {
+  onBlur () {
     this.setState({editing: false, editText: ''})
   }
 
-  onChange(event) {
+  onChange (event) {
     const editText = event.target.value
     this.setState({editText})
   }
 
-  onKeyDown(event) {
+  onKeyDown (event) {
     const {todo, actions} = this.props
-    switch(event.keyCode){
+    switch (event.keyCode) {
       case ENTER_KEY: {
         actions.updateTodo({
           ...todo,
@@ -77,39 +76,38 @@ class Todo extends Component {
     }
   }
 
-  render() {
+  render () {
     const {todo, actions} = this.props
     const {isDragging, connectDragSource, connectDropTarget} = this.props
 
-    let className = 'todo ' + (todo.completed?'completed ':'')
-    className += (this.state.editing ? 'editing ': '')
+    let className = 'todo ' + (todo.completed ? 'completed ' : '')
+    className += (this.state.editing ? 'editing ' : '')
 
-    return  connectDragSource(connectDropTarget(<li className={className} id={`todo-${todo.id}`}>
-              <div className="normal-view">
-                <span>
-                  <input id={`todo-check-${todo.id}`} class="todo-check-checkbox" type="checkbox"
-                    defaultChecked={todo.completed}
-                    checked={todo.completed}
-                    onChange={()=>actions.toggleCompleteTodo(todo)}/>
-                  <label htmlFor={`todo-check-${todo.id}`} className="todo-check-toggle"/>
-                </span>
-                <label className="text" onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
-                <button
-                  className="destroy"
-                  onClick={()=>actions.deleteTodo(todo)}></button>
-              </div>
-              <div className="edit-view">
-                <input ref="editField"
-                  className="edit"
-                  value={this.state.editText}
-                  onBlur={this.onBlur.bind(this)}
-                  onChange={this.onChange.bind(this)}
-                  onKeyDown={this.onKeyDown.bind(this)}/>
-              </div>
-            </li>))
+    return connectDragSource(connectDropTarget(<li className={className} id={`todo-${todo.id}`}>
+      <div className='normal-view'>
+        <span>
+          <input id={`todo-check-${todo.id}`} class='todo-check-checkbox' type='checkbox'
+            defaultChecked={todo.completed}
+            checked={todo.completed}
+            onChange={() => actions.toggleCompleteTodo(todo)} />
+          <label htmlFor={`todo-check-${todo.id}`} className='todo-check-toggle' />
+        </span>
+        <label className='text' onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
+        <button
+          className='destroy'
+          onClick={() => actions.deleteTodo(todo)} />
+      </div>
+      <div className='edit-view'>
+        <input ref='editField'
+          className='edit'
+          value={this.state.editText}
+          onBlur={this.onBlur.bind(this)}
+          onChange={this.onChange.bind(this)}
+          onKeyDown={this.onKeyDown.bind(this)} />
+      </div>
+    </li>))
   }
 }
-
 
 export default flow(
   DropTarget('todo', todoDropTarget, connect => ({
@@ -118,5 +116,5 @@ export default flow(
   DragSource('todo', todoDragSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
-  })),
+  }))
 )(Todo)

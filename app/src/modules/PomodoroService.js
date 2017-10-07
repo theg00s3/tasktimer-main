@@ -7,22 +7,21 @@ export default {
   update,
   daily,
   today,
-  unfinished,
+  unfinished
 }
 
-
-function create(pomodoro){
+function create (pomodoro) {
   return axios.post(`${RESOURCE_URL}`, pomodoro)
 }
-function update(pomodoro){
+function update (pomodoro) {
   return axios.put(`${RESOURCE_URL}/${pomodoro.id}`, pomodoro)
 }
 
-function daily(day, page = 1, acc = []){
+function daily (day, page = 1, acc = []) {
   return axios.get(`${RESOURCE_URL}?day=${day}&page=${page}`)
   .then((response) => {
     const data = response.data || []
-    if( page < response.headers['x-pages'] ) {
+    if (page < response.headers['x-pages']) {
       return daily(day, page + 1, acc.concat(data))
     }
     response.data = acc.concat(data)
@@ -30,11 +29,11 @@ function daily(day, page = 1, acc = []){
   })
 }
 
-function unfinished(){
+function unfinished () {
   return axios.get(`${RESOURCE_URL}?unfinished=true`)
 }
 
-function today(){
+function today () {
   const todayDate = DateUtils.today()
   return daily(todayDate)
 }

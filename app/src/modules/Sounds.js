@@ -12,48 +12,47 @@ export default {
   stopTickingSound: stopTickingSound,
   startRingingSound: startRingingSound,
   toggleTickSound: toggleTickSound,
-  toggleRingSound: toggleRingSound,
+  toggleRingSound: toggleRingSound
 }
-
 
 const ringSound = new Buzz.sound('ring', {
   preload: true,
   loop: false,
-  formats: ['ogg','mp3']
+  formats: ['ogg', 'mp3']
 })
 const tickSound = new Buzz.sound('tick', {
   preload: true,
   loop: true,
-  formats: ['ogg','mp3']
+  formats: ['ogg', 'mp3']
 })
 
-function tickSoundEnabled(){
+function tickSoundEnabled () {
   return !tickSound.isMuted()
 }
 
-function ringSoundEnabled(){
+function ringSoundEnabled () {
   return !ringSound.isMuted()
 }
 
-function startTickingSound(){
-  if( tickSound.isPaused() ) {
+function startTickingSound () {
+  if (tickSound.isPaused()) {
     tickSound.unmute()
     tickSound.play()
   }
 }
 
-function stopTickingSound(){
+function stopTickingSound () {
   tickSound.stop()
 }
 
-function startRingingSound(){
+function startRingingSound () {
   ringSound.play()
 }
 
-function toggleTickSound(){
+function toggleTickSound () {
   tickSound.toggleMute()
 }
 
-function toggleRingSound(){
+function toggleRingSound () {
   ringSound.toggleMute()
 }

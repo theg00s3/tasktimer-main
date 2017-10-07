@@ -1,6 +1,6 @@
 require('nprogress/nprogress.css')
-import Timer       from './modules/Timer'
-import Sounds      from './modules/Sounds'
+import Timer from './modules/Timer'
+import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
 import {
   tickTimer,
@@ -9,13 +9,12 @@ import {
   getTodo,
   getTodaysPomodori,
   getTodaysCompletedTodos,
-  getUnfinishedPomodoro,
+  getUnfinishedPomodoro
 } from './actions'
 
 const {getState, dispatch} = reduxStore
 
-
-export default function init() {
+export default function init () {
   dispatch(authenticateUser())
   dispatch(getTodo())
   dispatch(getTodaysPomodori())
@@ -24,7 +23,7 @@ export default function init() {
 
   Timer.on('tick', (remaining, total) => {
     const state = getState()
-    if( state.settings.tickSoundEnabled ){
+    if (state.settings.tickSoundEnabled) {
       Sounds.startTickingSound()
     }
     dispatch(tickTimer(remaining))
@@ -38,10 +37,10 @@ export default function init() {
     dispatch(getTodaysCompletedTodos())
   })
 
-  function playTimerEndSound() {
+  function playTimerEndSound () {
     const state = getState()
     Sounds.stopTickingSound()
-    if( state.settings.ringSoundEnabled ){
+    if (state.settings.ringSoundEnabled) {
       Sounds.startRingingSound()
     }
   }

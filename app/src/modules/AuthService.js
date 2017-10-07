@@ -4,6 +4,6 @@ export default {
   authenticate
 }
 
-function authenticate(){
+function authenticate () {
   return axios.get('/auth/info')
 }

@@ -12,11 +12,11 @@ import createLogger from 'redux-logger'
 import persistState from 'redux-localstorage'
 
 const middleware = [thunk]
-if( window.development ){
+if (window.development) {
   middleware.push(createLogger())
 }
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combineReducers({
   timer,
   todos,
@@ -25,10 +25,10 @@ const store = createStore(combineReducers({
   settings,
   loading,
   user,
-  undo,
+  undo
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings','todos']),
-));
+  persistState(['settings', 'todos'])
+))
 
 export default store

@@ -12,20 +12,20 @@ describe('actions timer', () => {
     const minutes = 25, type = 'pomodoro'
     const expectedStartedAt = new Date()
     const action = startTimer(minutes, type)
-    expect( action.payload )
+    expect(action.payload)
       .to.have.property('started_at')
-      .that.deep.equals( expectedStartedAt )
+      .that.deep.equals(expectedStartedAt)
   })
 
   describe.skip('resumeTimer', () => {
     it('sets "remaining" property to payload', () => {
-      const minutes = 25, started_at = Date.now()-1000
-      const pomodoro = {minutes,started_at}
-      const expectedRemaining = minutes*60 - 1
+      const minutes = 25, started_at = Date.now() - 1000
+      const pomodoro = {minutes, started_at}
+      const expectedRemaining = minutes * 60 - 1
       const action = resumeTimer(pomodoro)
-      expect( action.payload )
+      expect(action.payload)
         .to.have.property('remaining')
-        .that.deep.equals( expectedRemaining )
+        .that.deep.equals(expectedRemaining)
     })
   })
 })

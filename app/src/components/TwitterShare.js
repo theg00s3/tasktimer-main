@@ -5,14 +5,15 @@ const defaultTweet = 'I\'m using @pomodoro_cc to get things done with the #pomod
 const defaultText = ''
 
 export default class TwitterShare extends Component {
-  render() {
+  render () {
     const {tweet, text} = this.props
     const resulTweet = encodeURIComponent(tweet || defaultTweet)
     const resulText = text || defaultText
-    const twitterShareUrl = 'https://twitter.com/intent/tweet?text='+ resulTweet
-    return  <div className="twitter-share">
-              <a href={twitterShareUrl} target="_blank">
-                <span>{resulText}&nbsp;</span>
-              </a>
-            </div>  }
+    const twitterShareUrl = 'https://twitter.com/intent/tweet?text=' + resulTweet
+    return <div className='twitter-share'>
+      <a href={twitterShareUrl} target='_blank'>
+        <span>{resulText}&nbsp;</span>
+      </a>
+    </div>
+  }
 }

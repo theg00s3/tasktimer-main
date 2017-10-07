@@ -1,4 +1,4 @@
-/*@flow*/
+/*     */
 import {
   ADD_TODO_SUCCESS,
   DELETE_TODO_SUCCESS,
@@ -9,31 +9,31 @@ import {
 
 import {compose, concat, curry, filter, map, not, propEq} from 'ramda'
 
-export default function todos(state:TodoState=[], action:Action):TodoState {
-  switch(action.type){
-  case GET_TODO_SUCCESS: {
-    state = action.payload.todos
-    break
+export default function todos (state = [], action) {
+  switch (action.type) {
+    case GET_TODO_SUCCESS: {
+      state = action.payload.todos
+      break
+    }
+    case ADD_TODO_SUCCESS: {
+      state = addTodo(action.payload)(state)
+      break
+    }
+    case DELETE_TODO_SUCCESS: {
+      state = filterTodo(action.payload.todo)(state)
+      break
+    }
+    case UPDATE_TODO_SUCCESS: {
+      state = updateTodo(action.payload.todo)(state)
+      break
+    }
+    case SWAP_TODO_LOCAL: {
+      const {todo1, todo2} = action.payload
+      state = swapTodos(todo1, todo2)(state)
+      break
+    }
   }
-  case ADD_TODO_SUCCESS: {
-    state = addTodo(action.payload)(state)
-    break
-  }
-  case DELETE_TODO_SUCCESS: {
-    state = filterTodo(action.payload.todo)(state)
-    break
-  }
-  case UPDATE_TODO_SUCCESS: {
-    state = updateTodo(action.payload.todo)(state)
-    break
-  }
-  case SWAP_TODO_LOCAL: {
-    const {todo1, todo2} = action.payload
-    state = swapTodos(todo1, todo2)(state)
-    break
-  }
-  }
-  if( /TODO/.test(action.type) ){
+  if (/TODO/.test(action.type)) {
     return orderAndSanitize(state)
   }
   return state
@@ -45,9 +45,9 @@ const addTodo = (todo) => {
 
 const swapTodos = (todo1, todo2) => {
   return map((todo) => {
-    if( !todo1 || !todo2 ){return todo}
-    if( todo.id === todo1.id ){return todo2}
-    if( todo.id === todo2.id ){return todo1}
+    if (!todo1 || !todo2) { return todo }
+    if (todo.id === todo1.id) { return todo2 }
+    if (todo.id === todo2.id) { return todo1 }
     return todo
   })
 }
@@ -59,7 +59,6 @@ const filterTodo = (todo) => {
   ))
 }
 
-
 const updateTodo = (updatedTodo) => {
   return map((todo) => {
     return (todo.id === updatedTodo.id)
@@ -70,10 +69,10 @@ const updateTodo = (updatedTodo) => {
 
 const maxOfProp = (prop) => {
   return (acc, curr) => {
-    if( notDefined(curr[prop]) ) {
+    if (notDefined(curr[prop])) {
       return acc
     }
-    return (acc > curr[prop]) ? acc : curr[prop]+1
+    return (acc > curr[prop]) ? acc : curr[prop] + 1
   }
 }
 const maxId = maxOfProp('id')
@@ -86,10 +85,10 @@ const orderAndSanitize = (todos) => {
 }
 
 const sanitize = (todo, index, todos) => {
-  if( notDefined(todo.order) ) {
+  if (notDefined(todo.order)) {
     todo.order = todos.reduce(maxOrder, 0)
   }
-  if( notDefined(todo.id) ){
+  if (notDefined(todo.id)) {
     todo.id = todos.reduce(maxId, 0)
   }
   return todo
@@ -99,4 +98,4 @@ const sortByOrder = (todo1, todo2) => {
   return todo1.order >= todo2.order
 }
 
-const notDefined = (x) => (x===undefined || x===null)
+const notDefined = (x) => (x === undefined || x === null)

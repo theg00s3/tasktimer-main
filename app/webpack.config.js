@@ -1,9 +1,9 @@
-console.log( '-- process.env.NODE_ENV', process.env.NODE_ENV )
+console.log('-- process.env.NODE_ENV', process.env.NODE_ENV)
 var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
-var commonConfig = require('./webpack-common.config.js')(false);
+var commonConfig = require('./webpack-common.config.js')(false)
 
 var plugins = [
   new DashboardPlugin(),
@@ -13,7 +13,7 @@ var plugins = [
     title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
     filename: 'index.html',
     template: './index_template.html'
-  }),
+  })
 ]
 
 var development = process.env.NODE_ENV === 'development'
@@ -22,9 +22,9 @@ var test = process.env.NODE_ENV === 'test'
 var loaders = [{
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  loaders: (!test || development) ?
-            ['react-hot', 'babel-loader'] :
-            ['babel-loader'],
+  loaders: (!test || development)
+            ? ['react-hot', 'babel-loader']
+            : ['babel-loader']
 }]
 
 var entryFile = './index.js'
@@ -36,12 +36,12 @@ var webpackConfig = {
     filename: 'bundle.[hash].js'
   },
   module: {
-    loaders: commonConfig.loaders.concat(loaders),
+    loaders: commonConfig.loaders.concat(loaders)
   },
-  plugins: commonConfig.plugins.concat(plugins),
+  plugins: commonConfig.plugins.concat(plugins)
 }
 
-if(development) {
+if (development) {
   webpackConfig.entry = [
     'webpack-dev-server/client?http://127.0.0.1:9000',
     'webpack/hot/dev-server',
