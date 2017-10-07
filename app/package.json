@@ -70,6 +70,7 @@
     "style-loader": "0.13.2",
     "stylus-loader": "2.0.1",
     "webpack": "1.13.3",
+    "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "1.14.1"
   },
   "keywords": [],

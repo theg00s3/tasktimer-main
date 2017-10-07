@@ -1,10 +1,12 @@
 console.log( '-- process.env.NODE_ENV', process.env.NODE_ENV )
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 var commonConfig = require('./webpack-common.config.js')(false);
 
 var plugins = [
+  new DashboardPlugin(),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({minimize: true}),
   new HtmlWebpackPlugin({
