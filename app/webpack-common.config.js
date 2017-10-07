@@ -4,6 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = function (production) {
   return {
     plugins: [
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin({minimize: true}),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
         'NODE_ENV': '"production"'
