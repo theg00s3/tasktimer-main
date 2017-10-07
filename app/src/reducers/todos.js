@@ -7,8 +7,6 @@ import {
   SWAP_TODO_LOCAL
 } from '../actions/todos'
 
-import {compose, filter, map, not, propEq} from 'ramda'
-
 export default function todos (state = [], action) {
   switch (action.type) {
     case GET_TODO_SUCCESS: {
@@ -20,11 +18,11 @@ export default function todos (state = [], action) {
       break
     }
     case DELETE_TODO_SUCCESS: {
-      state = filterTodo(action.payload.todo)(state)
+      state = state.filter(({id}) => action.payload.todo.id !== id)
       break
     }
     case UPDATE_TODO_SUCCESS: {
-      state = updateTodo(action.payload.todo)(state)
+      state = state.map(todo => (todo.id === action.payload.todo.id) ? action.payload.todo : todo)
       break
     }
     case SWAP_TODO_LOCAL: {
@@ -40,21 +38,6 @@ export default function todos (state = [], action) {
 
 const addTodo = (todo) => {
   return (todos) => [...todos, todo]
-}
-
-const filterTodo = (todo) => {
-  return filter(compose(
-    not,
-    propEq('id', todo.id)
-  ))
-}
-
-const updateTodo = (updatedTodo) => {
-  return map((todo) => {
-    return (todo.id === updatedTodo.id)
-            ? updatedTodo
-            : todo
-  })
 }
 
 const maxOfProp = (prop) => {

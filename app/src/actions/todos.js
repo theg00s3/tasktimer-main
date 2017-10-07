@@ -1,4 +1,3 @@
-import {filter, propEq} from 'ramda'
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
 
@@ -46,11 +45,7 @@ export function updateTodo (todo, type = 'UPDATE') {
   return (dispatch, getState) => {
     NotificationCenter.emit('updateTodo')
     const {todos} = getState()
-    const [oldTodo] = filterTodo(todo)(todos)
+    const [oldTodo] = todos.filter(({id}) => todo.id === id)
     return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
   }
-}
-
-function filterTodo (todo) {
-  return filter(propEq('id', todo.id))
 }
