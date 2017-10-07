@@ -1,8 +1,7 @@
 import Timer from '../modules/Timer'
 import TimeFormatter from '../modules/TimeFormatter'
-import PomodoroService from '../modules/PomodoroService'
 import AnalyticsService from '../modules/AnalyticsService'
-import {NOOP, getTodaysPomodori} from './'
+import {NOOP} from './'
 import NotificationCenter from '../modules/NotificationCenter'
 import NotificationService from '../modules/NotificationService'
 export const START_TIMER = 'START_TIMER'
@@ -25,14 +24,7 @@ export function startTimer (minutes, type) {
     const startedAt = new Date()
     const pomodoro = {minutes, type, startedAt}
     AnalyticsService.track('timer-start', pomodoro)
-    PomodoroService.create(pomodoro)
-    .then((response) => {
-      const pomodoro = response.data
-      dispatch({type: START_TIMER, payload: pomodoro})
-    })
-    .catch(() => {
-      dispatch({type: START_TIMER, payload: pomodoro})
-    })
+    dispatch({type: START_TIMER, payload: pomodoro})
   }
 }
 
@@ -86,12 +78,5 @@ function saveAndDispatch (action) {
     pomodoro.finished = true
 
     AnalyticsService.track('timer-stop', pomodoro)
-    PomodoroService.update(pomodoro)
-    .then(() => {
-      dispatch(getTodaysPomodori())
-    })
-    .catch(() => {
-      dispatch(getTodaysPomodori())
-    })
   }
 }

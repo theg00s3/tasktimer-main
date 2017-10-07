@@ -1,8 +1,6 @@
-/*     */
 import {filter, propEq} from 'ramda'
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
-import TodosService from '../modules/TodosService'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -20,20 +18,6 @@ export const SWAP_TODO_REQUEST = 'SWAP_TODO_REQUEST'
 export const SWAP_TODO_SUCCESS = 'SWAP_TODO_SUCCESS'
 export const SWAP_TODO_ERROR = 'SWAP_TODO_ERROR'
 export const SWAP_TODO_LOCAL = 'SWAP_TODO_LOCAL'
-
-export function getTodo () {
-  return (dispatch, getState) => {
-    dispatch({type: GET_TODO_REQUEST, payload: {}})
-    TodosService.all()
-    .then((response) => {
-      const todos = response.data
-      dispatch({type: GET_TODO_SUCCESS, payload: {todos}})
-    })
-    .catch((error) => {
-      dispatch({type: GET_TODO_ERROR, payload: {error}})
-    })
-  }
-}
 
 export function swapTodo (todo1, todo2) {
   const tmpTodo1Order = todo1.order

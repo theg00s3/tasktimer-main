@@ -1,6 +1,5 @@
 import timer from './reducers/timer'
 import todos from './reducers/todos'
-import api from './reducers/api'
 import pomodoro from './reducers/pomodoro'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
@@ -19,7 +18,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combineReducers({
   timer,
   todos,
-  api,
   pomodoro,
   settings,
   loading,
