@@ -69,6 +69,16 @@
   "keywords": [],
   "author": "Christian Fei",
   "standard": {
-    "env": [ "mocha" ]
-  }
+    "env": [
+      "mocha"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christian-fei/pomodoro.cc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christian-fei/pomodoro.cc/issues"
+  },
+  "homepage": "https://github.com/christian-fei/pomodoro.cc#readme"
 }
