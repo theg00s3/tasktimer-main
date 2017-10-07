@@ -1,5 +1,5 @@
-require('./SoundSettings.styl')
 import React, {Component} from 'react'
+require('./SoundSettings.styl')
 
 export default class SoundSettings extends Component {
   render () {

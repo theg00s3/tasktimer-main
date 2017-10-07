@@ -1,4 +1,3 @@
-require('nprogress/nprogress.css')
 import Timer from './modules/Timer'
 import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
@@ -12,9 +11,11 @@ import {
   getUnfinishedPomodoro
 } from './actions'
 
+require('nprogress/nprogress.css')
+
 const {getState, dispatch} = reduxStore
 
-export default function init () {
+export default function init () {
   dispatch(authenticateUser())
   dispatch(getTodo())
   dispatch(getTodaysPomodori())

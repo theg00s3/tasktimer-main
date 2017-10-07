@@ -1,14 +1,14 @@
-require('./TodoList.styl')
 import React, { Component } from 'react'
 import Todo from './Todo'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+require('./TodoList.styl')
 
 class TodoList extends Component {
   addTodo (event) {
     if (event.keyCode !== 13) return
     const { actions } = this.props
-    const text = (event.target && event.target.value || '').trim()
+    const text = ((event.target && event.target.value) || '').trim()
     if (!text) return
     actions.addTodo({
       completed: false,

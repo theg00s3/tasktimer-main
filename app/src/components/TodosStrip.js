@@ -1,5 +1,5 @@
-require('./TodosStrip.styl')
 import React, {Component} from 'react'
+require('./TodosStrip.styl')
 
 export default class TodosStrip extends Component {
   render () {

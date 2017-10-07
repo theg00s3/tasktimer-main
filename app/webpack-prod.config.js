@@ -6,7 +6,6 @@ if (process.env.ENV !== undefined) {
 console.log('-- building for ', PRO ? 'PRO' : 'DEV')
 
 var commonConfig = require('./webpack-common.config.js')(PRO)
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 var webpack = require('webpack')
 
 var prodLoaders = [

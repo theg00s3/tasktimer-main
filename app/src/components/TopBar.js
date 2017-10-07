@@ -1,14 +1,13 @@
-require('./TopBar.styl')
-
 import Profile from './Profile'
 import NavigationBar from './NavigationBar'
 import LoginLogout from './LoginLogout'
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+require('./TopBar.styl')
 
 export default class TopBar extends Component {
   render () {
-    const {user, actions} = this.props
+    const {user} = this.props
     return <div className='top-bar-container'>
       <div className='top-bar'>
         <NavigationBar />

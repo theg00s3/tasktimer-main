@@ -1,5 +1,5 @@
-require('./LoginLogout.styl')
 import React, {Component} from 'react'
+require('./LoginLogout.styl')
 
 export default class LoginLogout extends Component {
   render () {

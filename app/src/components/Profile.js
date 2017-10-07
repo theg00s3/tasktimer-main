@@ -1,7 +1,6 @@
-require('./Profile.styl')
-
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+require('./Profile.styl')
 
 export default class Profile extends Component {
   render () {

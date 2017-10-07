@@ -1,6 +1,5 @@
-require('./WelcomeBar.styl')
-
 import React, {Component} from 'react'
+require('./WelcomeBar.styl')
 
 export default class WelcomeBar extends Component {
   render () {

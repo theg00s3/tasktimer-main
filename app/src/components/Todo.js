@@ -1,9 +1,9 @@
-require('./Todo.styl')
 import {head, filter, propEq} from 'ramda'
 import React, {Component} from 'react'
 import {findDOMNode} from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import flow from 'lodash.flow'
+require('./Todo.styl')
 
 const ESCAPE_KEY = 27
 const ENTER_KEY = 13
@@ -69,16 +69,18 @@ class Todo extends Component {
           ...todo,
           text: this.state.editText
         })
+        break
       }
       case ESCAPE_KEY: {
         this.onBlur()
+        break
       }
     }
   }
 
   render () {
     const {todo, actions} = this.props
-    const {isDragging, connectDragSource, connectDropTarget} = this.props
+    const {connectDragSource, connectDropTarget} = this.props
 
     let className = 'todo ' + (todo.completed ? 'completed ' : '')
     className += (this.state.editing ? 'editing ' : '')

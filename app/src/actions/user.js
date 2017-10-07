@@ -1,7 +1,6 @@
 /*     */
 import AuthService from '../modules/AuthService'
 import AnalyticsService from '../modules/AnalyticsService'
-import {getTodo} from './'
 export const AUTHENTICATE_USER_REQUEST = 'AUTHENTICATE_USER_REQUEST'
 export const AUTHENTICATE_USER_SUCCESS = 'AUTHENTICATE_USER_SUCCESS'
 export const AUTHENTICATE_USER_FAILURE = 'AUTHENTICATE_USER_FAILURE'

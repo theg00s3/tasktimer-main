@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 const MINUTES = 60 * 1000
 
 const nowToISOString = () => {
@@ -20,14 +22,13 @@ class Pomodoro {
   }
 
   toJSON () {
-    const {type, minutes, started_at, cancelled_at} = this
     let json = {
       type: this.type,
       minutes: this.minutes,
       started_at: this.started_at
     }
-    if (cancelled_at) {
-      json.cancelled_at = cancelled_at
+    if (this.cancelled_at) {
+      json.cancelled_at = this.cancelled_at
     }
     return json
   }

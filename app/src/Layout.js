@@ -38,7 +38,7 @@ class Layout extends Component {
     </div>
   }
 
-  _requestNotificationPermission () {
+  _requestNotificationPermission () {
     const {actions} = this.props
     NotificationService.requestPermission(() => {
       actions.grantNotificationPermission(true)

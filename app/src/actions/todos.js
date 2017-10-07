@@ -60,7 +60,7 @@ export function swapTodo (todo1, todo2) {
         .then((r) => cb(null, r))
         .catch((r) => cb(r))
       }
-    ], (err, responses) => {
+    ], (_, responses) => {
       dispatch(getTodo())
     })
   }
