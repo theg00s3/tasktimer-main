@@ -8,7 +8,7 @@ import {
 } from '../actions/todos'
 
 const defaultState = [{
-  text: 'start a 25 minutes timer and get focussed!',
+  text: 'start a 25 minutes timer and get focused!',
   _wizard: true
 }, {
   text: 'take a break, start a 5 minute timer!',
