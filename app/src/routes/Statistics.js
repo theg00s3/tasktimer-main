@@ -11,6 +11,7 @@ class Statistics extends Component {
   render () {
     const {todos, pomodoros} = this.props
     const todaysTodos = todos.filter(t => isToday(t.completed_at))
+    const todaysPomodoros = pomodoros.filter(t => isToday(t.started_at))
     const completed = todaysTodos.reduce((acc, todo) => todo.completed ? acc + 1 : acc, 0)
     return <div className='content statistics'>
       <h1>Your statistics!</h1>
@@ -18,8 +19,8 @@ class Statistics extends Component {
       <h2>Completed today: {completed}</h2>
       {renderTodoListWith(todaysTodos, actions, {completable: false, editable: false, deletable: false})}
 
-      <h2>Pomodoros: {pomodoros.length}</h2>
-      {pomodoros.map(p => {
+      <h2>Pomodoros: {todaysPomodoros.length}</h2>
+      {todaysPomodoros.map(p => {
         const pomo = new Pomodoro(p)
         const className = `pomodoro-statistics ${pomo.type} `
         return <div className={className}>
