@@ -38,6 +38,7 @@ class Todo extends Component {
           ...todo,
           text: this.state.editText
         })
+        this.onBlur()
         break
       }
       case ESCAPE_KEY: {
