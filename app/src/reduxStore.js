@@ -1,6 +1,7 @@
 import timer from './reducers/timer'
 import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
+import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
@@ -18,11 +19,12 @@ const store = createStore(combineReducers({
   timer,
   todos,
   pomodoro,
+  pomodoros,
   settings,
   loading
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'todos'])
+  persistState(['settings', 'todos', 'pomodoros'])
 ))
 
 export default store

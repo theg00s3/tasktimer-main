@@ -70,13 +70,13 @@ export function tickTimer (remaining) {
 function saveAndDispatch (action) {
   return (dispatch, getState) => {
     const pomodoro = getState().pomodoro
-    dispatch({type: action, payload: {}})
 
     if (action === STOP_TIMER) {
       pomodoro.cancelled_at = new Date()
     }
     pomodoro.finished = true
 
+    dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)
   }
 }
