@@ -52,6 +52,7 @@ class Todo extends Component {
     const {todo, actions} = this.props
 
     let className = 'todo ' + (todo.completed ? 'completed ' : '')
+    className += todo.deleted ? 'deleted ' : ''
     className += (this.state.editing ? 'editing ' : '')
 
     return <li className={className} id={`todo-${todo.id}`}>

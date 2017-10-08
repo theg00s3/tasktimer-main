@@ -7,7 +7,23 @@ import {
   SWAP_TODO_LOCAL
 } from '../actions/todos'
 
-export default function todos (state = [], action) {
+const defaultState = [{
+  text: 'start a 25 minutes timer and get focussed!',
+  _wizard: true
+}, {
+  text: 'take a break, start a 5 minute timer!',
+  _wizard: true
+}, {
+  text: 'visit beta.pomodoro.cc',
+  completed: true,
+  _wizard: true
+}, {
+  text: 'something distracting',
+  deleted: true,
+  _wizard: true
+}]
+
+export default function todos (state = defaultState, action) {
   switch (action.type) {
     case GET_TODO_SUCCESS:
       state = action.payload.todos

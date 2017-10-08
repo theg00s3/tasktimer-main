@@ -9,10 +9,6 @@
   &:last-child
     border-bottom none
 
-.todo.completed .text
-  color color_text_light
-  text-decoration line-through
-
 .todo [type=checkbox]
   display none
 
@@ -49,7 +45,7 @@
   line-height 1.2
   transition color 0.4s
 
-.todo.completed .text
+.todo.completed .text, .todo.deleted .text
   color #d9d9d9
   text-decoration line-through
 
