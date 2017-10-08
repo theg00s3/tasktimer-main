@@ -8,17 +8,21 @@ import {
 } from '../actions/todos'
 
 const defaultState = [{
+  id: 0,
   text: 'start a 25 minutes timer and get focused!',
   _wizard: true
 }, {
+  id: 1,
   text: 'take a break, start a 5 minute timer!',
   _wizard: true
 }, {
   text: 'visit beta.pomodoro.cc',
+  id: 2,
   completed: true,
   _wizard: true
 }, {
   text: 'something distracting',
+  id: 3,
   deleted: true,
   _wizard: true
 }]

@@ -9,8 +9,9 @@ export default class Root extends Component {
     super()
     this.state = {current: <Index />}
     window.addEventListener('popstate', (event) => {
-      if (event.url === '/') return this.setState({current: <Index />})
-      if (event.url === '/support') return this.setState({current: <Support />})
+      const url = event.url || window.location.pathname
+      if (url === '/') return this.setState({current: <Index />})
+      if (url === '/support') return this.setState({current: <Support />})
       this.setState({current: <FouroFour />})
     })
     const popStateEvent = new window.PopStateEvent('popstate')

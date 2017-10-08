@@ -20,7 +20,7 @@ class TodoList extends Component {
     const newTodos = todos.filter(t => !t.completed).filter(t => !t.deleted)
     const doneTodos = todos.filter(t => t.completed).filter(t => !t.deleted)
     const deletedTodos = todos.filter(t => t.deleted)
-    return <div className='todo-list-container'>
+    return <div className='todo-list-container' id='start'>
       <input
         type='text'
         onKeyDown={this.addTodo.bind(this)}
