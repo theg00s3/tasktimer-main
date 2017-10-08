@@ -27,19 +27,19 @@ class TodoList extends Component {
         className='todo-input' />
 
       <h1>Todo</h1>
-      <ul className='todo-list'>
-        {newTodos.map((todo) => {
-          return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
-        })}
-      </ul>
+      {renderTodoListWith(newTodos, actions)}
       <h1>Done</h1>
-      <ul className='todo-list'>
-        {doneTodos.map((todo) => {
-          return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
-        })}
-      </ul>
+      {renderTodoListWith(doneTodos, actions)}
     </div>
   }
 }
 
 export default TodoList
+
+export function renderTodoListWith (todos, actions) {
+  return <ul className='todo-list'>
+    {todos.map((todo) => {
+      return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
+    })}
+  </ul>
+}
