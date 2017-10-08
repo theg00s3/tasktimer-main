@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import Timer from '../modules/Timer'
 import TimeFormatter from '../modules/TimeFormatter'
 import AnalyticsService from '../modules/AnalyticsService'
@@ -21,8 +22,8 @@ export function startTimer (minutes, type) {
   return (dispatch, getState) => {
     if (Timer.isInProgress()) { return noop() }
     Timer.start(minutes * 60)
-    const startedAt = new Date()
-    const pomodoro = {minutes, type, startedAt}
+    const started_at = new Date()
+    const pomodoro = {minutes, type, started_at}
     AnalyticsService.track('timer-start', pomodoro)
     dispatch({type: START_TIMER, payload: pomodoro})
   }
@@ -31,8 +32,8 @@ export function startTimer (minutes, type) {
 export function resumeTimer (pomodoro) {
   if (Timer.isInProgress()) { return noop() }
   let remaining = 0
-  if (pomodoro && pomodoro.minutes && pomodoro.startedAt) {
-    let elapsed = (Date.now() - new Date(pomodoro.startedAt).getTime())
+  if (pomodoro && pomodoro.minutes && pomodoro.started_at) {
+    let elapsed = (Date.now() - new Date(pomodoro.started_at).getTime())
     elapsed = elapsed / 1000 << 0
     remaining = pomodoro.minutes * 60 - elapsed
   }
