@@ -25,18 +25,16 @@ export function addTodo (todo) {
   }
 }
 
-export function deleteTodo (todo) {
-  AnalyticsService.track('delete-todo', todo)
-  return updateTodo({
-    ...todo,
-    deleted: true
-  }, 'DELETE')
-}
-
 export function toggleCompleteTodo (todo) {
   return updateTodo({
     ...todo,
     completed: !todo.completed
+  })
+}
+export function toggleDeleteTodo (todo) {
+  return updateTodo({
+    ...todo,
+    deleted: !todo.deleted
   })
 }
 

@@ -65,7 +65,7 @@ class Todo extends Component {
         <label className='text' onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
         <button
           className='destroy'
-          onClick={() => actions.deleteTodo(todo)} />
+          onClick={() => actions.toggleDeleteTodo(todo)} />
       </div>
       <div className='edit-view'>
         <input ref='editField'
