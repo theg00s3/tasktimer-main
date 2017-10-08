@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 class Index extends Component {
   render () {
     const {timer, todos, settings, pomodoro, actions} = this.props
-    return <div className='content'>
+    return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
       <SoundSettings settings={settings} actions={actions} />
       <TodoList todos={todos} actions={actions} />
