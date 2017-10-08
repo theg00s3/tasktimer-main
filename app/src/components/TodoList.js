@@ -36,10 +36,10 @@ class TodoList extends Component {
 
 export default TodoList
 
-export function renderTodoListWith (todos, actions) {
+export function renderTodoListWith (todos, actions, {completable, editable, deletable} = {completable: true, editable: true, deletable: true}) {
   return <ul className='todo-list'>
     {todos.map((todo) => {
-      return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
+      return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} completable={completable} editable={editable} deletable={deletable} />
     })}
   </ul>
 }

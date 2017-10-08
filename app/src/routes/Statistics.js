@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
+import {renderTodoListWith} from '../components/TodoList'
 require('./Statistics.styl')
 
 class Statistics extends Component {
@@ -21,7 +22,7 @@ class Statistics extends Component {
 
       <p><strong>Completed today:</strong> {completed}</p>
 
-      <pre>{JSON.stringify(todaysTodos, null, 1)}</pre>
+      {renderTodoListWith(todaysTodos, actions, {completable: false, editable: false, deletable: false})}
     </div>
   }
 }
