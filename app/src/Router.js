@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from './Layout'
 import Index from './routes/Index'
 import Support from './routes/Support'
+import Statistics from './routes/Statistics'
 import FouroFour from './routes/FouroFour'
 
 export default class Root extends Component {
@@ -12,6 +13,7 @@ export default class Root extends Component {
       const url = event.url || window.location.pathname
       if (url === '/') return this.setState({current: <Index />})
       if (url === '/support') return this.setState({current: <Support />})
+      if (url === '/statistics') return this.setState({current: <Statistics />})
       this.setState({current: <FouroFour />})
     })
     const popStateEvent = new window.PopStateEvent('popstate')

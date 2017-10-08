@@ -26,16 +26,19 @@ export function addTodo (todo) {
 }
 
 export function toggleCompleteTodo (todo) {
-  return updateTodo({
-    ...todo,
-    completed: !todo.completed
-  })
+  const completed = !todo.completed
+  const updatedTodo = {...todo, completed}
+  if (completed) updatedTodo.completed_at = new Date()
+  else delete updatedTodo.completed_at
+  return updateTodo(updatedTodo, 'UPDATE')
 }
+
 export function toggleDeleteTodo (todo) {
-  return updateTodo({
-    ...todo,
-    deleted: !todo.deleted
-  })
+  const deleted = !todo.deleted
+  const updatedTodo = {...todo, deleted}
+  if (deleted) updatedTodo.deleted_at = new Date()
+  else delete updatedTodo.deleted_at
+  return updateTodo(updatedTodo, 'DELETE')
 }
 
 export function updateTodo (todo, type = 'UPDATE') {

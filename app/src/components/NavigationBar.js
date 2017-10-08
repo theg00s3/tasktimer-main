@@ -8,6 +8,7 @@ export default class NavigationBar extends Component {
       <Link to='/'><span className='brand' /></Link>
       <a href='https://medium.com/@pomodoro_cc' target='_blank'>Blog</a>
       <Link to='/support'>Support us!</Link>
+      <Link to='/statistics'>Statistics</Link>
     </div>
   }
 }
