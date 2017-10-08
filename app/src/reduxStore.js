@@ -3,7 +3,6 @@ import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
 import settings from './reducers/settings'
 import loading from './reducers/loading'
-import undo from './reducers/undo'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
@@ -20,8 +19,7 @@ const store = createStore(combineReducers({
   todos,
   pomodoro,
   settings,
-  loading,
-  undo
+  loading
 }), composeEnhancers(
   applyMiddleware(...middleware),
   persistState(['settings', 'todos'])

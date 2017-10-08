@@ -1,5 +1,4 @@
 export * from './timer'
 export * from './todos'
 export * from './settings'
-export * from './undo'
 export const NOOP = 'NOOP'

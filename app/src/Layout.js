@@ -14,7 +14,6 @@ class Layout extends Component {
     NotificationCenter.on('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
     NotificationCenter.on('updateTodo', console.log.bind(console, 'unhandled: updateTodo'))
     if (this.shouldShowNotificationGrant()) {
-      // console.log('unhandled: requires notification permissions')
       this._requestNotificationPermission()
     }
   }
@@ -46,11 +45,6 @@ class Layout extends Component {
     }, () => {
       actions.grantNotificationPermission(false)
     })
-  }
-  _undoTodoAction () {
-    const {actions} = this.props
-    actions.undoTodoAction()
-    this.setState({undoTodoActionSnackbarOpen: false})
   }
 }
 
