@@ -25,7 +25,7 @@ class TodoList extends Component {
         className='todo-input' />
 
       <ul className='todo-list'>
-        {todos.map((todo) => {
+        {todos.filter(t => !t.completed).filter(t => !t.deleted).map((todo) => {
           return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
         })}
       </ul>

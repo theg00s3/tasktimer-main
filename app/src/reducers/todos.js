@@ -9,30 +9,21 @@ import {
 
 export default function todos (state = [], action) {
   switch (action.type) {
-    case GET_TODO_SUCCESS: {
+    case GET_TODO_SUCCESS:
       state = action.payload.todos
       break
-    }
-    case ADD_TODO_SUCCESS: {
+    case ADD_TODO_SUCCESS:
       state = addTodo(action.payload)(state)
       break
-    }
-    case DELETE_TODO_SUCCESS: {
-      state = state.filter(({id}) => action.payload.todo.id !== id)
-      break
-    }
-    case UPDATE_TODO_SUCCESS: {
+    case DELETE_TODO_SUCCESS:
+    case UPDATE_TODO_SUCCESS:
       state = state.map(todo => (todo.id === action.payload.todo.id) ? action.payload.todo : todo)
       break
-    }
-    case SWAP_TODO_LOCAL: {
+    case SWAP_TODO_LOCAL:
       state = action.payload.todos
       break
-    }
   }
-  if (/TODO/.test(action.type)) {
-    return orderAndSanitize(state)
-  }
+  if (/TODO/.test(action.type)) return orderAndSanitize(state)
   return state
 }
 
