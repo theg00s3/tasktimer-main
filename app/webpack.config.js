@@ -36,6 +36,7 @@ var webpackConfig = {
     path: './build',
     filename: 'bundle.[hash].js'
   },
+  resolve: Object.assign({}, commonConfig.resolve),
   module: {
     loaders: commonConfig.loaders.concat(loaders)
   },

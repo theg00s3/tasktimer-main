@@ -3,6 +3,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = function (production) {
   return {
+    resolve: {
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat'
+      }
+    },
     plugins: [
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({minimize: true}),

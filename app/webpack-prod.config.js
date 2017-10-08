@@ -27,6 +27,7 @@ module.exports = {
     filename: 'bundle.[hash].js'
   },
   devtool: 'source-map',
+  resolve: Object.assign({}, commonConfig.resolve),
   module: {
     loaders: commonConfig.loaders.concat(prodLoaders)
   },

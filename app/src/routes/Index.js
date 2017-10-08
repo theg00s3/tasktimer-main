@@ -26,5 +26,4 @@ export default connect(
   }),
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
-  })
-)(Index)
+  }))(Index)
