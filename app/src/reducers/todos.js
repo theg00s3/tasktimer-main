@@ -20,11 +20,6 @@ const defaultState = [{
   id: 2,
   completed: true,
   _wizard: true
-}, {
-  text: 'something distracting',
-  id: 3,
-  deleted: true,
-  _wizard: true
 }]
 
 export default function todos (state = defaultState, action) {
