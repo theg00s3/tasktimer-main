@@ -12,6 +12,7 @@ class TodoList extends Component {
       completed: false,
       text
     })
+    event.target.value = ''
   }
 
   render () {
