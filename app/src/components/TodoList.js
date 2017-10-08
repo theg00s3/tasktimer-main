@@ -17,6 +17,9 @@ class TodoList extends Component {
 
   render () {
     const { todos, actions } = this.props
+    const newTodos = todos.filter(t => !t.completed).filter(t => !t.deleted)
+    const doneTodos = todos.filter(t => t.completed).filter(t => !t.deleted)
+    const deletedTodos = todos.filter(t => t.deleted)
     return <div className='todo-list-container'>
       <input
         type='text'
@@ -24,8 +27,21 @@ class TodoList extends Component {
         placeholder='What do you need to do?'
         className='todo-input' />
 
+      <h1>Todo</h1>
       <ul className='todo-list'>
-        {todos.filter(t => !t.completed).filter(t => !t.deleted).map((todo) => {
+        {newTodos.map((todo) => {
+          return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
+        })}
+      </ul>
+      <h1>Done</h1>
+      <ul className='todo-list'>
+        {doneTodos.map((todo) => {
+          return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
+        })}
+      </ul>
+      <h1>Deleted</h1>
+      <ul className='todo-list'>
+        {deletedTodos.map((todo) => {
           return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} />
         })}
       </ul>
