@@ -10,7 +10,7 @@ require('./Statistics.styl')
 class Statistics extends Component {
   render () {
     const {todos, pomodoros} = this.props
-    const todaysTodos = todos.filter(t => isToday(t.completed_at))
+    const todaysTodos = todos.filter(t => isToday(t.completed_at)).filter(t => !t.deleted)
     const todaysPomodoros = pomodoros.filter(t => isToday(t.started_at))
     const completed = todaysTodos.reduce((acc, todo) => todo.completed ? acc + 1 : acc, 0)
     return <div className='content statistics'>
@@ -25,7 +25,7 @@ class Statistics extends Component {
         const className = `pomodoro-statistics ${pomo.type} `
         return <div className={className}>
           {<div>
-            <strong>Duration:</strong> {pomo.duration() / 1000 / 60}
+            <strong>Duration:</strong> {pomo.duration() / 1000 / 60}minutes
           </div>}
           <pre>{JSON.stringify(p, null, 1)}</pre>
         </div>
