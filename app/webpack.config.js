@@ -1,35 +1,15 @@
-console.log('-- process.env.NODE_ENV', process.env.NODE_ENV)
 const {join} = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
-var commonConfig = require('./webpack-common.config.js')(false)
+const commonConfig = require('./webpack-common.config.js')(false)
 
-var plugins = [
-  new DashboardPlugin(),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({minimize: true}),
-  new HtmlWebpackPlugin({
-    title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
-    filename: 'index.html',
-    template: './index_template.html'
-  })
-]
+const development = process.env.NODE_ENV === 'development'
+const test = process.env.NODE_ENV === 'test'
 
-var development = process.env.NODE_ENV === 'development'
-var test = process.env.NODE_ENV === 'test'
-
-var loaders = [{
-  test: /\.jsx?$/,
-  exclude: /node_modules/,
-  loaders: (!test || development)
-            ? ['react-hot', 'babel-loader']
-            : ['babel-loader']
-}]
-
-var entryFile = './index.js'
-var webpackConfig = {
+const entryFile = './index.js'
+const webpackConfig = {
   context: join(__dirname, '/src'),
   entry: entryFile,
   output: {
@@ -38,9 +18,19 @@ var webpackConfig = {
   },
   resolve: Object.assign({}, commonConfig.resolve),
   module: {
-    loaders: commonConfig.loaders.concat(loaders)
+    loaders: commonConfig.loaders.concat([{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loaders: (!test || development)
+                ? ['react-hot', 'babel-loader']
+                : ['babel-loader']
+    }])
   },
-  plugins: commonConfig.plugins.concat(plugins)
+  plugins: commonConfig.plugins.concat([
+    new DashboardPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({minimize: true})
+  ])
 }
 
 if (development) {

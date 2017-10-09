@@ -1,27 +1,8 @@
-var PRO = true
-if (process.env.ENV !== undefined) {
-  PRO = (process.env.ENV === 'PRO')
-}
-
-console.log('-- building for ', PRO ? 'PRO' : 'DEV')
-
-var commonConfig = require('./webpack-common.config.js')(PRO)
-var webpack = require('webpack')
-
-var prodLoaders = [
-  // javascript/jsx loader - https://www.npmjs.com/package/babel-loader - without the react-hot loader
-  {
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    loaders: ['babel-loader']
-  }
-]
+const webpack = require('webpack')
+const commonConfig = require('./webpack-common.config.js')(true)
 
 module.exports = {
-  entry: [
-  // our entry file
-    './src/index.js'
-  ],
+  entry: ['./src/index.js'],
   output: {
     path: './build',
     filename: 'bundle.[hash].js'
@@ -29,11 +10,14 @@ module.exports = {
   devtool: 'source-map',
   resolve: Object.assign({}, commonConfig.resolve),
   module: {
-    loaders: commonConfig.loaders.concat(prodLoaders)
+    loaders: commonConfig.loaders.concat([{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loaders: ['babel-loader']
+    }])
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({minimize: true, compress: {drop_debugger: false}}),
-    commonConfig.indexPagePlugin
+    new webpack.optimize.UglifyJsPlugin({minimize: true, compress: {drop_debugger: false}})
   ].concat(commonConfig.plugins)
 }

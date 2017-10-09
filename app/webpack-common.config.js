@@ -1,8 +1,10 @@
+const {join} = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = function (production) {
   return {
+    context: join(__dirname, '/src'),
     resolve: {
       alias: {
         'react': 'preact-compat',
@@ -13,8 +15,13 @@ module.exports = function (production) {
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({minimize: true}),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"production"',
-        'NODE_ENV': '"production"'
+        'process.env.NODE_ENV': production ? '"production"' : '"development"',
+        'NODE_ENV': production ? '"production"' : '"development"'
+      }),
+      new HtmlWebpackPlugin({
+        title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
+        filename: 'index.html',
+        template: './index_template.html'
       })
     ],
     loaders: [
@@ -33,11 +40,6 @@ module.exports = function (production) {
         test: /\.(mp3|ogg)$/i,
         loader: 'file?name=[name].[ext]&context=./src'
       }
-    ],
-    indexPagePlugin: new HtmlWebpackPlugin({
-      title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
-      filename: 'index.html',
-      template: './src/index_template.html'
-    })
+    ]
   }
 }
