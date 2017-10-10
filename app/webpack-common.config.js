@@ -23,7 +23,8 @@ module.exports = function (production) {
         title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
         filename: 'index.html',
         template: './index_template.html'
-      })
+      }),
+      new ExtractTextPlugin('style.css', { allchunks: true })
     ],
     loaders: [
       {
@@ -35,7 +36,7 @@ module.exports = function (production) {
       },
       {
         test: /\.(styl|css)$/,
-        loader: 'style!css?browsers=last 2 version!stylus-loader'
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader?browsers=last 2 version')
       },
       {
         test: /\.(mp3|ogg)$/i,
