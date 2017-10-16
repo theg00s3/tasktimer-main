@@ -21,6 +21,7 @@
     "nprogress": "0.2.0",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
+    "r2": "git+https://github.com/mikeal/r2.git",
     "react": "^15.0.0",
     "react-dnd": "2.1.4",
     "react-dom": "15.0.3-alpha.2",
