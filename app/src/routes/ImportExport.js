@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as actions from '../actions'
 import './ImportExport.styl'
 
 class ImportExport extends Component {
@@ -9,23 +11,26 @@ class ImportExport extends Component {
     triggerDownload(filename, data)
   }
 
-  importFile () {
+  importFile ({importBackup}) {
     const file = window.event.target.files[0]
-    console.log('file', file)
     var reader = new window.FileReader()
     reader.onload = function (e) {
-      console.log('imported content', e.target.result)
+      const payload = JSON.parse(e.target.result)
+      importBackup(payload)
     }
-    reader.readAsDataURL(file)
+    reader.readAsText(file)
   }
 
   render () {
-    return <div className='import-export'>
-      <h1>Import / Export</h1>
+    return <div className='content import-export'>
+      <h4>
+        Create your backup, and use it to restore your history on other devics.
+      </h4>
+
       <a class='export-action' href='#' onClick={() => this.download()}>Export to pomodoro.cc.json</a>
 
-      <label for='import'>Import pomodoro.cc.json</label>
-      <input ref='editField' onChange={() => this.importFile()} id='import' type='file' placeholder='Import pomodoro.cc.json' />
+      <label for='import'>Import pomodoro.cc.json &nbsp;&nbsp; <input ref='editField' onChange={() => this.importFile(this.props.actions)} id='import' type='file' placeholder='Import pomodoro.cc.json' />
+      </label>
     </div>
   }
 }
@@ -35,7 +40,9 @@ export default connect(
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros
-}), (dispatch) => ({}))(ImportExport)
+}), (dispatch) => ({
+  actions: bindActionCreators(actions, dispatch)
+}))(ImportExport)
 
 function triggerDownload (filename, data) {
   data = JSON.stringify(data, undefined, 4)

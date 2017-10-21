@@ -7,6 +7,7 @@ import {
   SWAP_TODO_LOCAL
 } from '../actions/todos'
 
+import {IMPORT_BACKUP} from '../actions/backup'
 const defaultState = [{
   id: 0,
   text: 'start a 25 minutes timer and get focused!',
@@ -24,6 +25,9 @@ const defaultState = [{
 
 export default function todos (state = defaultState, action) {
   switch (action.type) {
+    case IMPORT_BACKUP:
+      state = action.payload.todos
+      break
     case GET_TODO_SUCCESS:
       state = action.payload.todos
       break

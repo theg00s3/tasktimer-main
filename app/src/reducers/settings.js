@@ -1,5 +1,4 @@
-/*     */
-import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT, ACKNLOWEDGED_WELCOME} from '../actions'
+import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT, ACKNLOWEDGED_WELCOME, IMPORT_BACKUP} from '../actions'
 
 export const defaultState = {
   tickSoundEnabled: true,
@@ -10,6 +9,9 @@ export const defaultState = {
 
 export default function settings (state = defaultState, action) {
   switch (action.type) {
+    case IMPORT_BACKUP:
+      state = action.payload.todos
+      break
     case TOGGLE_TICK_SOUND : {
       return {
         ...state,
