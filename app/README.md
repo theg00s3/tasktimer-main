@@ -48,4 +48,7 @@ with [`up`](https://apex.github.io/up) and aws configured
 
 ```
 npm run deploy
+
+npm run stack:apply
 ```
+
