@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {findDOMNode} from 'react-dom'
-require('./Todo.styl')
+import './Todo.styl'
 
 const ESCAPE_KEY = 27
 const ENTER_KEY = 13

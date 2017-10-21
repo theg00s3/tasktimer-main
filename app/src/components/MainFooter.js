@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-require('./MainFooter.styl')
+import './MainFooter.styl'
 
 export default class MainFooter extends Component {
   render () {

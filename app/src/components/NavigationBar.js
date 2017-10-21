@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Link from './utils/Link'
-require('./NavigationBar.styl')
+import './NavigationBar.styl'
 
 export default class NavigationBar extends Component {
   render () {

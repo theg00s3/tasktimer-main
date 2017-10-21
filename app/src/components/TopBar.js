@@ -1,6 +1,6 @@
 import NavigationBar from './NavigationBar'
 import React, {Component} from 'react'
-require('./TopBar.styl')
+import './TopBar.styl'
 
 export default class TopBar extends Component {
   render () {
