@@ -6,15 +6,10 @@ export const LOAD_USER_ERROR = 'LOAD_USER_ERROR'
 
 export function loadUser () {
   return (dispatch, getState) => {
-    window.fetch('https://auth.pomodoro.cc/info', {credentials: true})
-    .then(r => r.body())
-    .then(body => {
-      console.log('body', body)
-      return dispatch({type: LOAD_USER_SUCCESS, payload: body})
-    })
-    .catch((err) => ({
-      type: LOAD_USER_ERROR,
-      payload: err
-    }))
+    dispatch({type: LOAD_USER_REQUEST})
+    window.fetch('https://auth.pomodoro.cc/info', {credentials: 'include'})
+      .then(r => r.json())
+      .then(json => dispatch({type: LOAD_USER_SUCCESS, payload: json}))
+      .catch((err) => dispatch({type: LOAD_USER_ERROR, payload: err}))
   }
 }

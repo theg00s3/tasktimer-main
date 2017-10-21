@@ -5,7 +5,7 @@
     "dir": "build"
   },
   "hooks": {
-    "build": "npm prune;npm run build",
+    "build": "npm run build",
     "clean": "rm -rf build"
   },
   "regions": ["eu-central-1"],
