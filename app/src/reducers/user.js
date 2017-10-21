@@ -11,7 +11,6 @@ export default function user (state = defaultState, action) {
       return defaultState
     case LOGOUT_USER_ERROR:
       return defaultState
-      // return action.payload
     default: {
       return state
     }
