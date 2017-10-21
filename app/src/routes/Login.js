@@ -7,7 +7,7 @@ class Login extends Component {
     return <div className='content'>
       <div className='tac'>
         <p>
-          <strong>Login</strong> to <strong>import and export</strong> your pomodoro.cc settings, todos and statistics!
+          <strong>Login</strong> to <strong>import and export</strong> your pomodoro.cc settings, pomodoros and todos!
         </p>
         <a href='https://auth.pomodoro.cc/twitter'>twitter!</a>
         <br />

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Layout from './Layout'
 import Index from './routes/Index'
 import Support from './routes/Support'
-import Statistics from './routes/Statistics'
 import FouroFour from './routes/FouroFour'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
@@ -17,7 +16,6 @@ export default class Root extends Component {
       if (url === '/') return this.setState({current: <Index />})
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
-      if (url === '/statistics') return this.setState({current: <Statistics />})
       if (url === '/logout') return this.setState({current: <Logout />})
       if (url === '/import-export') return this.setState({current: <ImportExport />})
       this.setState({current: <FouroFour />})
