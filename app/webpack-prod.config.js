@@ -1,7 +1,7 @@
 const commonConfig = require('./webpack-common.config.js')(true)
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['whatwg-fetch', './src/index.js'],
   output: {
     path: './build',
     filename: 'bundle.[hash].js'
