@@ -4,6 +4,7 @@ import Index from './routes/Index'
 import Support from './routes/Support'
 import Statistics from './routes/Statistics'
 import FouroFour from './routes/FouroFour'
+import ImportExport from './routes/ImportExport'
 
 export default class Root extends Component {
   constructor () {
@@ -14,6 +15,7 @@ export default class Root extends Component {
       if (url === '/') return this.setState({current: <Index />})
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/statistics') return this.setState({current: <Statistics />})
+      if (url === '/import-export') return this.setState({current: <ImportExport />})
       this.setState({current: <FouroFour />})
     })
     const popStateEvent = new window.PopStateEvent('popstate')
