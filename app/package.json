@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "deploy": "up deploy production -v",
-    "deploy:beta": "aws s3 sync --acl public-read --region eu-central-1 build/ s3://beta.pomodoro.cc",
+    "deploy": "npm run deploy:development; npm run deploy:production",
+    "deploy:development": "up deploy development -v",
+    "deploy:production": "up deploy production -v",
+    "stack:apply": "up stack plan -v && up stack apply -v",
     "start": "NODE_ENV=development webpack-dev-server --port 9000 --config ./webpack.config.js --hot --progress --colors --history-api-fallback --content-base build-dev",
     "build": "rm build/*; NODE_ENV=production webpack --progress --colors",
     "build-watch": "NODE_ENV=test webpack --progress --colors --watch",
