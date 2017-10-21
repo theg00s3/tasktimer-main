@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import Link from '../components/utils/Link'
 import * as actions from '../actions'
 import './ImportExport.styl'
 
@@ -22,6 +23,29 @@ class ImportExport extends Component {
   }
 
   render () {
+    const {user} = this.props
+    if (!user) {
+      return <div class='content import-export'>
+        <p>
+          Please <Link href='/login'>login</Link> to <strong>import and export</strong> your pomodoro.cc settings, todos and statistics!
+        </p>
+
+        <h2>Example</h2>
+        <small>not enabled when logged out</small>
+
+        <div class='example'>
+          <h4>
+            Create your backup, and use it to restore your history on other devics.
+          </h4>
+
+          <Link class='export-action' href='/import-export'>Export to pomodoro.cc.json</Link>
+
+          <label for='import'>Import pomodoro.cc.json &nbsp;&nbsp; <input ref='editField' id='import' type='file' placeholder='Import pomodoro.cc.json' />
+          </label>
+        </div>
+      </div>
+    }
+
     return <div className='content import-export'>
       <h4>
         Create your backup, and use it to restore your history on other devics.
@@ -39,7 +63,8 @@ export default connect(
 (state) => ({
   todos: state.todos,
   settings: state.settings,
-  pomodoros: state.pomodoros
+  pomodoros: state.pomodoros,
+  user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
 }))(ImportExport)

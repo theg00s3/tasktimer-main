@@ -10,7 +10,6 @@ class Logout extends Component {
     logoutUser()
   }
   render () {
-    debugger
     return <div className='content'>
       <div className='tac'>
         <p>
