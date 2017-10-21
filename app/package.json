@@ -30,7 +30,8 @@
     "redux-localstorage": "0.4.1",
     "redux-logger": "2.6.1",
     "redux-thunk": "2.0.1",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "whatwg-fetch": "^2.0.3"
   },
   "description": "Install the dependencies first with",
   "main": "src/index.js",

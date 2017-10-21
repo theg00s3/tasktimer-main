@@ -1,7 +1,7 @@
 import Timer from './modules/Timer'
 import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
-import {tickTimer, endTimer} from './actions'
+import {tickTimer, endTimer, loadUser} from './actions'
 
 require('nprogress/nprogress.css')
 
@@ -16,6 +16,7 @@ export default function init () {
     dispatch(tickTimer(remaining))
   })
 
+  dispatch(loadUser())
   Timer.on('forceEnd', playTimerEndSound)
   Timer.on('end', () => {
     dispatch(endTimer())

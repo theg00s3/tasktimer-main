@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {bindActionCreators} from 'redux'
-// import * as actions from '../actions'
-// import Link from '../components/utils/Link'
 import './Login.styl'
 
 class Login extends Component {
@@ -12,9 +9,9 @@ class Login extends Component {
         <p>
           <strong>Login</strong> to <strong>import and export</strong> your pomodoro.cc settings, todos and statistics!
         </p>
-          <a href='https://auth.pomodoro.cc/twitter'>twitter!</a>
-          <br />
-          <a href='https://auth.pomodoro.cc/twitter'>github!</a>
+        <a href='https://auth.pomodoro.cc/twitter'>twitter!</a>
+        <br />
+        <a href='https://auth.pomodoro.cc/twitter'>github!</a>
       </div>
     </div>
   }
@@ -28,6 +25,5 @@ export default connect(
     timer: state.timer
   }),
   (dispatch) => ({
-    // actions: bindActionCreators(actions, dispatch)
   })
 )(Login)

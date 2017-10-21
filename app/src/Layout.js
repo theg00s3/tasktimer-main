@@ -25,9 +25,9 @@ class Layout extends Component {
     NotificationCenter.off('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
   }
   render () {
-    const {settings, actions} = this.props
+    const {settings, actions, user} = this.props
     return <div className='layout'>
-      <TopBar actions={actions} />
+      <TopBar actions={actions} user={user} />
       <WelcomeBar settings={settings} actions={actions} />
 
       <div className='main-content'>
