@@ -9,7 +9,7 @@ require('./Statistics.styl')
 
 class Statistics extends Component {
   render () {
-    global.stripePopup.open({
+    global.stripePopup && global.stripePopup.open({
       name: 'pomodoro.cc name',
       description: 'pomodoro.cc description',
       zipCode: true,
