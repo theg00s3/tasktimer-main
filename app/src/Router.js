@@ -17,7 +17,7 @@ export default class Root extends Component {
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
-      if (url === '/import-export') return this.setState({current: <ImportExport />})
+      if (url === '/export') return this.setState({current: <ImportExport />})
       this.setState({current: <FouroFour />})
     })
     const popStateEvent = new window.PopStateEvent('popstate')

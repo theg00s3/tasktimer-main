@@ -9,7 +9,7 @@ export default class NavigationBar extends Component {
     return <div className='navigation-bar'>
       <Link to='/'><span className='brand' /></Link>
       {!user && <Link to='/login'>Login</Link>}
-      <Link to='/import-export'>Import / Export</Link>
+      <Link to='/export'>Export</Link>
       <Link to='/support'>Support us!</Link>
       <a href='https://medium.com/@pomodoro_cc' target='_blank'>Blog</a>
       <User user={user} />

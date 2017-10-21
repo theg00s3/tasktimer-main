@@ -25,7 +25,7 @@ class ImportExport extends Component {
   render () {
     const {user} = this.props
     if (!user) {
-      return <div class='content import-export'>
+      return <div class='content export'>
         <p>
           Please <Link href='/login'>login</Link> to <strong>import and export</strong> your pomodoro.cc settings, pomodoros and todos!
         </p>
@@ -38,7 +38,7 @@ class ImportExport extends Component {
             Create your backup, and use it to restore your history on other devics.
           </h4>
 
-          <Link class='export-action' href='/import-export'>Export to pomodoro.cc.json</Link>
+          <Link class='export-action' href='/export'>Export to pomodoro.cc.json</Link>
 
           <label for='import'>Import pomodoro.cc.json &nbsp;&nbsp; <input ref='editField' id='import' type='file' placeholder='Import pomodoro.cc.json' />
           </label>
@@ -46,7 +46,7 @@ class ImportExport extends Component {
       </div>
     }
 
-    return <div className='content import-export'>
+    return <div className='content export'>
       <h4>
         Create your backup, and use it to restore your history on other devics.
       </h4>
