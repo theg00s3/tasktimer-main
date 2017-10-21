@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-require('./Timer.styl')
+import './Timer.styl'
 
 export default class Timer extends Component {
   render () {

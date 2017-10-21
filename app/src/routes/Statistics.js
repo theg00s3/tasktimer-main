@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import Pomodoro from '../models/Pomodoro'
 import * as actions from '../actions'
 import {renderTodoListWith} from '../components/TodoList'
-require('./Statistics.styl')
+import './Statistics.styl'
 
 class Statistics extends Component {
   render () {

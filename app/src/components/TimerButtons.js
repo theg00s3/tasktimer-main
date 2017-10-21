@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-require('./TimerButtons.styl')
+import './TimerButtons.styl'
 
 export default class TimerButtons extends Component {
   startStopTimer (minutes, type) {

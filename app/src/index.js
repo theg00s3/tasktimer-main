@@ -5,7 +5,7 @@ import init from './init'
 const r2 = require('r2')
 
 require('normalize.css')
-require('./index.styl')
+import './index.styl'
 require('./assets/images/pomodoro.cc.png')
 require('./assets/images/pomodoro.cc.favicon.png')
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-require('./TwitterShare.styl')
+import './TwitterShare.styl'
 
 const defaultTweet = 'I\'m using @pomodoro_cc to get things done with the #pomodorotechnique, check it out on https://pomodoro.cc ! #productivity #gtd'
 const defaultText = ''

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Todo from './Todo'
-require('./TodoList.styl')
+import './TodoList.styl'
 
 class TodoList extends Component {
   addTodo (event) {
