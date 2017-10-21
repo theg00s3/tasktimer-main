@@ -4,6 +4,12 @@
   "static": {
     "dir": "build"
   },
+  "redirects": {
+    "/*": {
+      "location": "/",
+      "status": 200
+    }
+  },
   "hooks": {
     "build": "npm run build",
     "clean": "rm -rf build"
