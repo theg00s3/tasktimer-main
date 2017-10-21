@@ -20,7 +20,7 @@
       "domain": "beta.pomodoro.cc"
     },
     "development": {
-      "domain": "dev-beta.pomodoro.cc"
+      "domain": "dev.pomodoro.cc"
     }
   }
 }
