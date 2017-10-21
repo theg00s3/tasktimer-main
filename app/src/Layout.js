@@ -54,7 +54,8 @@ export default connect(
       todos: state.todos,
       settings: state.settings,
       pomodoro: state.pomodoro,
-      timer: state.timer
+      timer: state.timer,
+      user: state.user
     }
   },
   (dispatch) => { return {actions: bindActionCreators(actions, dispatch)} }
