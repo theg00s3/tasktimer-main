@@ -9,16 +9,6 @@ import './Statistics.styl'
 
 class Statistics extends Component {
   render () {
-    global.stripePopup && global.stripePopup.open({
-      name: 'pomodoro.cc name',
-      description: 'pomodoro.cc description',
-      zipCode: true,
-      currency: 'eur',
-      closed: () => {
-        console.log('closed stripe popup')
-      }
-    })
-
     const {todos, pomodoros} = this.props
     const todaysTodos = todos.filter(t => isToday(t.completed_at)).filter(t => !t.deleted)
     const todaysPomodoros = pomodoros.filter(t => isToday(t.started_at))
