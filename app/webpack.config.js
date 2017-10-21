@@ -1,6 +1,4 @@
 const {join} = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const commonConfig = require('./webpack-common.config.js')(false)
@@ -27,9 +25,7 @@ const webpackConfig = {
     }])
   },
   plugins: commonConfig.plugins.concat([
-    new DashboardPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
+    new DashboardPlugin()
   ])
 }
 

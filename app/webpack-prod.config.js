@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const commonConfig = require('./webpack-common.config.js')(true)
 
 module.exports = {
@@ -17,7 +16,5 @@ module.exports = {
     }])
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({minimize: true, compress: {drop_debugger: false}})
   ].concat(commonConfig.plugins)
 }

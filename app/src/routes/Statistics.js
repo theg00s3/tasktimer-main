@@ -15,7 +15,7 @@ class Statistics extends Component {
       zipCode: true,
       currency: 'eur',
       closed: () => {
-        debugger
+        console.log('closed stripe popup')
       }
     })
 

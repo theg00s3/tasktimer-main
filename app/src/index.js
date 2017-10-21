@@ -2,12 +2,11 @@ import Main from './Main'
 import React from 'react'
 import {render} from 'react-dom'
 import init from './init'
-const r2 = require('r2')
-
-require('normalize.css')
 import './index.styl'
-require('./assets/images/pomodoro.cc.png')
-require('./assets/images/pomodoro.cc.favicon.png')
+import 'normalize.css'
+import './assets/images/pomodoro.cc.png'
+import './assets/images/pomodoro.cc.favicon.png'
+const r2 = require('r2')
 
 init()
 render(<Main />, document.getElementById('main'))
