@@ -1,0 +1,16 @@
+!build/
+node_modules/
+webpack.config.js
+package-lock.json
+karma.conf.js
+.babelrc
+webpack-prod.config.js
+webpack-common.config.js
+test.webpack.js
+README.md
+src/
+
+build/ring.mp3
+build/ring.ogg
+build/tick.mp3
+build/tick.ogg

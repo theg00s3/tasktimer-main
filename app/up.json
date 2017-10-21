@@ -1,0 +1,20 @@
+{
+  "name": "pomodoro-app",
+  "type": "static",
+  "static": {
+    "dir": "build"
+  },
+  "hooks": {
+    "build": "npm prune;npm run build",
+    "clean": "rm -rf build"
+  },
+  "regions": ["eu-central-1"],
+  "stages": {
+    "production": {
+      "domain": "beta.pomodoro.cc"
+    },
+    "development": {
+      "domain": "dev-beta.pomodoro.cc"
+    }
+  }
+}
