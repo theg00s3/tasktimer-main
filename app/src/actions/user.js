@@ -1,4 +1,4 @@
-// import 'whatwg-fetch'
+import 'whatwg-fetch'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
