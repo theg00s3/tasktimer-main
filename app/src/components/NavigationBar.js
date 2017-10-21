@@ -8,7 +8,7 @@ export default class NavigationBar extends Component {
     const {user} = this.props
     return <div className='navigation-bar'>
       <Link to='/'><span className='brand' /></Link>
-      <Link to='/login'>Login</Link>
+      {!user && <Link to='/login'>Login</Link>}
       <Link to='/import-export'>Import / Export</Link>
       <Link to='/statistics'>Statistics</Link>
       <Link to='/support'>Support us!</Link>
