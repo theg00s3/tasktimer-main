@@ -17,7 +17,7 @@
   "regions": ["eu-central-1"],
   "stages": {
     "production": {
-      "domain": "beta.pomodoro.cc"
+      "domain": "pomodoro.cc"
     },
     "development": {
       "domain": "dev.pomodoro.cc"
