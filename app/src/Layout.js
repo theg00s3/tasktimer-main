@@ -1,6 +1,7 @@
 import TopBar from './components/TopBar'
 import WelcomeBar from './components/WelcomeBar'
 import MainFooter from './components/MainFooter'
+import SubscribeAd from './components/SubscribeAd'
 import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
 import * as actions from './actions'
@@ -33,6 +34,7 @@ class Layout extends Component {
       <div className='main-content'>
         {this.props.children}
       </div>
+      {SubscribeAd()}
       <MainFooter />
     </div>
   }

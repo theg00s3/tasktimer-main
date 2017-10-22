@@ -25,7 +25,7 @@ class Export extends Component {
 
         <div class='example'>
           <h4>
-            Create your backup, and use it to restore your history on other devices.
+            Create your backup to use it later.
           </h4>
 
           <Link class='export-action' href='/export'>Export to pomodoro.cc.json</Link>>
@@ -35,7 +35,7 @@ class Export extends Component {
 
     return <div className='content export'>
       <h4>
-        Create your backup, and use it to restore your history on other devices.
+        Create your backup to use it later.
       </h4>
 
       <a class='export-action' href='#' onClick={() => this.download()}>Export to pomodoro.cc.json</a>
