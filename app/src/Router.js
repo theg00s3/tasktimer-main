@@ -5,7 +5,7 @@ import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
-import ImportExport from './routes/ImportExport'
+import Export from './routes/Export'
 
 export default class Root extends Component {
   constructor () {
@@ -17,7 +17,7 @@ export default class Root extends Component {
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
-      if (url === '/export') return this.setState({current: <ImportExport />})
+      if (url === '/export') return this.setState({current: <Export />})
       this.setState({current: <FouroFour />})
     })
     const popStateEvent = new window.PopStateEvent('popstate')

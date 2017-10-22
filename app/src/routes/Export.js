@@ -3,23 +3,13 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Link from '../components/utils/Link'
 import * as actions from '../actions'
-import './ImportExport.styl'
+import './Export.styl'
 
-class ImportExport extends Component {
+class Export extends Component {
   download () {
     const filename = 'pomooro.cc.json'
     const data = Object.assign({}, this.props)
     triggerDownload(filename, data)
-  }
-
-  importFile ({importBackup}) {
-    const file = window.event.target.files[0]
-    var reader = new window.FileReader()
-    reader.onload = function (e) {
-      const payload = JSON.parse(e.target.result)
-      importBackup(payload)
-    }
-    reader.readAsText(file)
   }
 
   render () {
@@ -38,10 +28,7 @@ class ImportExport extends Component {
             Create your backup, and use it to restore your history on other devices.
           </h4>
 
-          <Link class='export-action' href='/export'>Export to pomodoro.cc.json</Link>
-
-          <label for='import'>Import pomodoro.cc.json &nbsp;&nbsp; <input ref='editField' id='import' type='file' placeholder='Import pomodoro.cc.json' />
-          </label>
+          <Link class='export-action' href='/export'>Export to pomodoro.cc.json</Link>>
         </div>
       </div>
     }
@@ -52,9 +39,6 @@ class ImportExport extends Component {
       </h4>
 
       <a class='export-action' href='#' onClick={() => this.download()}>Export to pomodoro.cc.json</a>
-
-      <label for='import'>Import pomodoro.cc.json &nbsp;&nbsp; <input ref='editField' onChange={() => this.importFile(this.props.actions)} id='import' type='file' placeholder='Import pomodoro.cc.json' />
-      </label>
     </div>
   }
 }
@@ -67,7 +51,7 @@ export default connect(
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
-}))(ImportExport)
+}))(Export)
 
 function triggerDownload (filename, data) {
   data = JSON.stringify(data, undefined, 4)
