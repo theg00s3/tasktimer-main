@@ -2,7 +2,9 @@ import React from 'react'
 
 module.exports = function mainContent () {
   return <div class='subscribe-content'>
-    <h1 class='giant'>Subscribe to get the latest news about the new product!</h1>
+    <h1 class='giant'>New product announcement!</h1>
+    <h1>We are glad to announce: ...</h1>
+    <h2>Subscribe to get the latest news and be the first to get the hands on the new product!</h2>
     <div id='mc_embed_signup'>
       <form action='https://pomodoro.us17.list-manage.com/subscribe/post?u=eb2171be8b0477fcc18bf2686&amp;id=9c83e529bb' method='post' id='mc-embedded-subscribe-form' name='mc-embedded-subscribe-form' class='validate' target='_blank' novalidate>
         <div id='mc_embed_signup_scroll'>
