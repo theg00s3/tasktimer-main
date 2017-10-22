@@ -17,7 +17,7 @@
       "X-Frame-Options": "SAMEORIGIN",
       "X-XSS-Protection": "1; mode=block",
       "X-Content-Type-Options": "nosniff",
-      "Referrer-Policy": "origin"
+      "Referrer-Policy": "strict-origin-when-cross-origin"
     }
   },
   "hooks": {
