@@ -11,8 +11,8 @@ export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS'
 export const LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR'
 
 export function identifyUser (user) {
-  console.log('identifyUser', identifyUser)
-  AnalyticsService.identify(user.email, user)
+  console.log('identifyUser', user)
+  AnalyticsService.identify(user._id, user)
 }
 
 export function loadUser () {
