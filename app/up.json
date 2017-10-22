@@ -13,7 +13,7 @@
   "headers": {
     "/*": {
       "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
-      "Content-Security-Policy": "script-src 'self'",
+      "Content-Security-Policy": "script-src 'self' 'unsafe-inline'",
       "X-Frame-Options": "SAMEORIGIN",
       "X-XSS-Protection": "1; mode=block",
       "X-Content-Type-Options": "nosniff",
