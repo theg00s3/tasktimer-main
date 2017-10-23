@@ -27,9 +27,6 @@
   "stages": {
     "production": {
       "domain": "pomodoro.cc"
-    },
-    "development": {
-      "domain": "dev.pomodoro.cc"
     }
   }
 }
