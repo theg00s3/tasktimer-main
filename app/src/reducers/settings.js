@@ -4,7 +4,8 @@ export const defaultState = {
   tickSoundEnabled: true,
   ringSoundEnabled: true,
   notificationPermissionGranted: false,
-  acknlowedgedWelcome: false
+  acknlowedgedWelcome: false,
+  acknowledgeSignupForm: false
 }
 
 export default function settings (state = defaultState, action) {

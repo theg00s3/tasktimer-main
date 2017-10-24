@@ -13,6 +13,9 @@ export default class NavigationBar extends Component {
       <Link to='/support'>Support us!</Link>
       <a href='https://medium.com/@pomodoro_cc' target='_blank'>Blog</a>
       <User user={user} />
+      <div className='early-access'>
+        Get early access to <a href='https://frittata.cc' target='_blank' className='underline'>frittata.cc</a>
+        </div>
     </div>
   }
 }
