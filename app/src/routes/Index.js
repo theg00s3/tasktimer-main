@@ -1,6 +1,6 @@
 import Pomodoro from '../components/Pomodoro'
 import TodoList from '../components/TodoList'
-import SoundSettings from '../components/SoundSettings'
+// import SoundSettings from '../components/SoundSettings'
 import * as actions from '../actions'
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
@@ -11,7 +11,7 @@ class Index extends Component {
     const {timer, todos, settings, pomodoro, actions} = this.props
     return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
-      <SoundSettings settings={settings} actions={actions} />
+      {/* <SoundSettings settings={settings} actions={actions} /> */}
       <TodoList todos={todos} actions={actions} />
     </div>
   }
