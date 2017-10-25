@@ -22,7 +22,7 @@ module.exports = function (production) {
       new HtmlWebpackPlugin({
         title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
         filename: 'index.html',
-        template: './index_template.html'
+        template: join(__dirname, 'src', 'index_template.html')
       }),
       new ExtractTextPlugin('style.css', { allchunks: true })
     ],

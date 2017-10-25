@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const commonConfig = require('./webpack-common.config.js')(true)
 
 module.exports = {
@@ -16,5 +17,8 @@ module.exports = {
     }])
   },
   plugins: [
+    new webpack.DefinePlugin({
+      NODE_END: '"production"'
+    })
   ].concat(commonConfig.plugins)
 }
