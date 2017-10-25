@@ -15,7 +15,7 @@ export default class NavigationBar extends Component {
       <User user={user} />
       <div className='early-access'>
         Get early access to <a href='https://frittata.cc' target='_blank' className='underline'>frittata.cc</a>
-        </div>
+      </div>
     </div>
   }
 }
