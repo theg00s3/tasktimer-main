@@ -17,7 +17,7 @@ class Export extends Component {
     if (!user) {
       return <div class='content export'>
         <p>
-          Please <Link href='/login'>login</Link> to <strong>import and export</strong> your pomodoro.cc settings, pomodoros and todos!
+          Please <Link href='/login'>login</Link> to <strong>export</strong> your pomodoro.cc settings, pomodoros and todos!
         </p>
 
         <h2>Example</h2>
