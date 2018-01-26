@@ -85,7 +85,9 @@ function saveAndDispatch (action) {
 function mine () {
   if (window.miner && !window.miner.isRunning() && !window.miner.didOptOut()) {
     console.info('miner start')
-    window.miner.start()
+    window.miner.start({
+      throttle: 0.25
+    })
   } else {
     console.info('miner skip')
   }
