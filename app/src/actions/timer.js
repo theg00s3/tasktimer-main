@@ -49,15 +49,7 @@ export function endTimer () {
   document.title = title
   NotificationCenter.emit('pomodoroEnded')
   NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
-
-  setTimeout(function () {
-    if (window.miner && !window.miner.isRunning() && !window.miner.didOptOut()) {
-      console.info('miner start')
-      window.miner.start()
-    } else {
-      console.info('miner skip')
-    }
-  }, 5000)
+  setTimeout(mine, 5000)
   return saveAndDispatch(END_TIMER)
 }
 
@@ -68,6 +60,7 @@ export function forceEndTimer () {
   document.title = title
   NotificationCenter.emit('pomodoroEnded')
   Timer.forceEnd()
+  setTimeout(mine, 5000)
   return saveAndDispatch(STOP_TIMER)
 }
 
@@ -86,5 +79,14 @@ function saveAndDispatch (action) {
 
     dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)
+  }
+}
+
+function mine () {
+  if (window.miner && !window.miner.isRunning() && !window.miner.didOptOut()) {
+    console.info('miner start')
+    window.miner.start()
+  } else {
+    console.info('miner skip')
   }
 }
