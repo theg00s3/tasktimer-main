@@ -4,7 +4,7 @@ import './WelcomeBar.styl'
 export default class WelcomeBar extends Component {
   render () {
     const {settings, actions} = this.props
-    if (settings.acknlowedgedWelcome) {
+    if (settings.subscribedToFrittata) {
       return null
     }
     return <div className='welcome-bar-container'>

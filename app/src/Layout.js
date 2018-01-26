@@ -34,7 +34,7 @@ class Layout extends Component {
       <div className='main-content'>
         {this.props.children}
       </div>
-      {SubscribeAd()}
+      <SubscribeAd settings={settings} actions={actions} />
       <MainFooter />
     </div>
   }

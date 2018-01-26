@@ -1,11 +1,12 @@
-import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT, ACKNLOWEDGED_WELCOME} from '../actions'
+import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT, ACKNLOWEDGED_WELCOME, SUBSCRIBED_TO_FRITTATA} from '../actions'
 
 export const defaultState = {
   tickSoundEnabled: true,
   ringSoundEnabled: true,
   notificationPermissionGranted: false,
   acknlowedgedWelcome: false,
-  acknowledgeSignupForm: false
+  acknowledgeSignupForm: false,
+  subscribedToFrittata: false
 }
 
 export default function settings (state = defaultState, action) {
@@ -32,6 +33,12 @@ export default function settings (state = defaultState, action) {
       return {
         ...state,
         acknlowedgedWelcome: true
+      }
+    }
+    case SUBSCRIBED_TO_FRITTATA : {
+      return {
+        ...state,
+        subscribedToFrittata: true
       }
     }
   }
