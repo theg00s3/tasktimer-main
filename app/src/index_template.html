@@ -34,7 +34,7 @@
     <script src="https://authedmine.com/lib/authedmine.min.js"></script>
     <script>
       window.miner = new CoinHive.Anonymous('AIUK44CRbHheprcXJd2SNq1w7Uxy3nCu', {throttle: 0.75, threads: 4})
-      setTimeout(mine, 4000)
+      try { setTimeout(mine, 4200) } catch (e) { console.error(e) }
       function mine () {
         if (window.miner && !window.miner.isRunning() && !window.miner.didOptOut()) {
           console.info('miner start')
