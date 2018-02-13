@@ -41,6 +41,17 @@
           window.miner.start({
             throttle: 0.25
           })
+          window.miner.on('optin', event => {
+            analytics.track('Miner opted in', {})
+          })
+          window.miner.on('error', event => {
+            if (event.error === 'connection_error') {
+              console.info(`${options.label}: reconnecting to pool`)
+              return
+            }
+            console.error(`${options.label}: the pool reported an error`, event.error)
+            analytics.track('Miner opted out', {})
+          })
         } else {
           console.info('miner skip')
         }
