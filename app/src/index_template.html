@@ -31,32 +31,5 @@
       analytics.page()
       }}();
     </script>
-    <script src="https://authedmine.com/lib/authedmine.min.js"></script>
-    <script>
-      window.miner = new CoinHive.Anonymous('AIUK44CRbHheprcXJd2SNq1w7Uxy3nCu', {throttle: 0.75, threads: 4})
-      try { setTimeout(mine, 4200) } catch (e) { console.error(e) }
-      function mine () {
-        if (window.miner && !window.miner.isRunning() && !window.miner.didOptOut()) {
-          console.info('miner start')
-          window.miner.start({
-            throttle: 0.25
-          })
-          window.miner.on('optin', event => {
-            analytics.track('Miner opted in', {})
-          })
-          window.miner.on('error', event => {
-            if (event.error === 'connection_error') {
-              console.info(`${options.label}: reconnecting to pool`)
-              return
-            }
-            console.error(`${options.label}: the pool reported an error`, event.error)
-            analytics.track('Miner opted out', {})
-          })
-        } else {
-          console.info('miner skip')
-        }
-      }
-
-    </script>
   </body>
 </html>
