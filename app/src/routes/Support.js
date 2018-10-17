@@ -16,7 +16,17 @@ export default class Support extends Component {
       <p>
                 We strongly believe in distractions free work and thus decided <strong>to not show ads</strong>.
               </p>
-      <a className='action medium' href='https://gratipay.com/pomodoro-cc/' target='_blank'>Support pomodoro.cc!</a>
+
+      <p>
+        Also, consider donating a coffee in terms of some crypto:
+
+        <br />
+        <br />
+
+        <a href='litecoin:LbGvb3yyWpo7kqtxzREdcHek9st6tGyqmb' style='padding: 3em'>donate litecoin</a>
+
+        <a href='bitcoin:35Hy1xYjsuGF47frqA9a8HJKhJQ9rcSV4j' style='padding: 3em'>donate bitcoin</a>
+      </p>
     </div>
   }
 }
