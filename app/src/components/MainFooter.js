@@ -12,7 +12,7 @@ export default class MainFooter extends Component {
           For feedback, bug reports or pull requests, please use <a href='https://github.com/christian-fei/pomodoro.cc/' target='_blank'>Github</a> or contact us on <a href='https://twitter.com/pomodoro_cc' target='_blank'>Twitter</a>
         </p>
         <p>
-          by <a href='http://christian.fei.ninja' target='_blank'>Christian Fei</a>, hosted on <a href='https://aws.amazon.com/' target='_blank'>AWS</a>
+          by <a href='https://christianfei.com' target='_blank'>Christian Fei</a>, hosted on <a href='https://aws.amazon.com/' target='_blank'>AWS</a>
         </p>
         <small>
           This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
