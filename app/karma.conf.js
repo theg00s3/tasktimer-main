@@ -1,31 +1,20 @@
-var commonConfig = require('./webpack-common.config.js')(false)
+var commonConfig = require('./webpack-common.config.js')
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJS'], // run in Chrome
-    singleRun: true, // just run once by default
+    browsers: ['PhantomJS'],
+    singleRun: true,
     frameworks: ['mocha', 'sinon', 'sinon-chai', 'chai', 'phantomjs-shim'],
     files: [
-      'test.webpack.js' // just load this file
+      'test.webpack.js'
     ],
     preprocessors: {
       'test.webpack.js': ['webpack']
     },
-    reporters: ['dots'], // report results in this format
-    webpack: {
-      devtool: 'inline-source-map',
-      mode: 'development',
-      module: {
-        // loaders: commonConfig.loaders.concat([{
-        //   test: /\.jsx?$/,
-        //   exclude: /node_modules/,
-        //   loaders: ['babel-loader']
-        // }])
-        // plugins: commonConfig.plugins
-      }
-    },
+    reporters: ['dots'],
+    webpack: commonConfig,
     webpackServer: {
-      noInfo: false // please don't spam the console when running in karma!
+      noInfo: false
     },
     logLevel: config.LOG_INFO
   })
