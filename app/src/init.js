@@ -3,8 +3,6 @@ import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
 import {tickTimer, endTimer, loadUser} from './actions'
 
-require('nprogress/nprogress.css')
-
 const {getState, dispatch} = reduxStore
 
 export default function init () {

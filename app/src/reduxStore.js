@@ -3,7 +3,6 @@ import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
-import loading from './reducers/loading'
 import user from './reducers/user'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
@@ -22,7 +21,6 @@ const store = createStore(combineReducers({
   pomodoro,
   pomodoros,
   settings,
-  loading,
   user
 }), composeEnhancers(
   applyMiddleware(...middleware),

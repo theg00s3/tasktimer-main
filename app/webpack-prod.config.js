@@ -1,8 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const commonConfig = require('./webpack-common.config.js')(true)
 
 module.exports = {
   entry: ['whatwg-fetch', './src/index.js'],
@@ -11,7 +9,37 @@ module.exports = {
     filename: 'bundle.[hash].js'
   },
   devtool: 'source-map',
-  resolve: Object.assign({}, commonConfig.resolve),
+  resolve: {
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
+  },
+
+  optimization: {
+    minimize: true,
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'async',
+      minSize: 1000,
+      minChunks: 2,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 1,
+          priority: -20,
+          reuseExistingChunk: true
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        }
+      }
+    }
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Pomodoro.cc - Time tracking with the Pomodoro technique',
