@@ -14,19 +14,19 @@ const webpackConfig = {
     path: './build',
     filename: 'bundle.[hash].js'
   },
-  resolve: Object.assign({}, commonConfig.resolve),
-  module: {
-    loaders: commonConfig.loaders.concat([{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loaders: (!test || development)
-                ? ['react-hot', 'babel-loader']
-                : ['babel-loader']
-    }])
-  },
-  plugins: commonConfig.plugins.concat([
-    new DashboardPlugin()
-  ])
+  resolve: Object.assign({}, commonConfig.resolve)
+  // module: {
+  //   loaders: commonConfig.loaders.concat([{
+  //     test: /\.jsx?$/,
+  //     exclude: /node_modules/,
+  //     loaders: (!test || development)
+  //               ? ['react-hot', 'babel-loader']
+  //               : ['babel-loader']
+  //   }])
+  // }
+  // plugins: commonConfig.plugins.concat([
+  //   new DashboardPlugin()
+  // ])
 }
 
 if (development) {

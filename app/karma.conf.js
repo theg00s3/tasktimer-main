@@ -14,13 +14,14 @@ module.exports = function (config) {
     reporters: ['dots'], // report results in this format
     webpack: {
       devtool: 'inline-source-map',
+      mode: 'development',
       module: {
-        loaders: commonConfig.loaders.concat([{
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loaders: ['babel-loader']
-        }]),
-        plugins: commonConfig.plugins
+        // loaders: commonConfig.loaders.concat([{
+        //   test: /\.jsx?$/,
+        //   exclude: /node_modules/,
+        //   loaders: ['babel-loader']
+        // }])
+        // plugins: commonConfig.plugins
       }
     },
     webpackServer: {
