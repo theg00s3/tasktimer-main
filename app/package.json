@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "deploy": "npm run deploy:development; npm run deploy:production",
-    "deploy:development": "up deploy development -v",
-    "deploy:production": "up deploy production -v",
+    "deploy": "npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./build/ s3://pomodoro.cc",
     "stack:apply": "up stack plan -v && up stack apply -v",
     "start": "NODE_ENV=development webpack-dev-server --port 9000 --config ./webpack.config.js --hot --progress --colors --history-api-fallback --content-base build-dev",
     "build": "rm build/*; NODE_ENV=production webpack --config webpack-prod.config.js --progress --colors",
