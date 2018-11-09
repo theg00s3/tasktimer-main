@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-/* global sinon expect */
+/* global sinon expect describe beforeEach afterEach it */
 
 import Timer from './Timer'
 let clock
