@@ -50,7 +50,7 @@ describe('Timer', () => {
   describe('events', () => {
     const callback = sinon.spy()
     afterEach(() => {
-      callback.reset()
+      callback.resetHistory()
       Timer.off('tick', callback)
       Timer.off('end', callback)
       Timer.off('start', callback)
@@ -76,7 +76,7 @@ describe('Timer', () => {
       clock.tick(1000)
       expect(callback.called).to.be.true
       Timer.forceEnd()
-      callback.reset()
+      callback.resetHistory()
       clock.tick(1000)
       expect(callback.called).not.to.be.true
     })
@@ -84,7 +84,7 @@ describe('Timer', () => {
     it('#off "tick"', () => {
       Timer.on('tick', callback)
       Timer.start(25 * 60)
-      callback.reset()
+      callback.resetHistory()
       Timer.off('tick', callback)
       clock.tick(1000)
       expect(callback.called).not.to.be.true
