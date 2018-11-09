@@ -7,7 +7,7 @@ import loading from './reducers/loading'
 import user from './reducers/user'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import persistState from 'redux-localstorage'
 
 const middleware = [thunk]
