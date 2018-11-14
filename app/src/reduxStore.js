@@ -26,7 +26,7 @@ const store = createStore(combineReducers({
   user
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'modal', 'todos', 'pomodoros'])
+  persistState(['settings', 'todos', 'pomodoros'])
 ))
 
 export default store

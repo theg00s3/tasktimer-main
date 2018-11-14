@@ -52,7 +52,7 @@ export function endTimer () {
   NotificationCenter.emit('pomodoroEnded')
   NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
 
-  // ModalService.show('poll')
+  ModalService.show('poll')
 
   return saveAndDispatch(END_TIMER)
 }
@@ -65,9 +65,15 @@ export function forceEndTimer () {
 
   Timer.forceEnd()
 
-  // ModalService.show('poll')
-
-  return saveAndDispatch(STOP_TIMER)
+  return saveAndDispatch(STOP_TIMER, (dispatch, getState) => {
+    console.log('cb')
+    const modal = getState().modal.shown.find(s => s.name === 'poll' && +s.createdAt > Date.now() - 1000 * 60 * 30)
+    if (!modal) {
+      ModalService.show('poll')
+    } else {
+      console.log('modal already shown', modal)
+    }
+  })
 }
 
 export function tickTimer (remaining) {
@@ -76,7 +82,7 @@ export function tickTimer (remaining) {
   return {type: TICK_TIMER, payload: {remaining}}
 }
 
-function saveAndDispatch (action) {
+function saveAndDispatch (action, cb = Function.prototype) {
   return (dispatch, getState) => {
     const pomodoro = getState().pomodoro
 
@@ -85,5 +91,6 @@ function saveAndDispatch (action) {
 
     dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)
+    cb(dispatch, getState)
   }
 }
