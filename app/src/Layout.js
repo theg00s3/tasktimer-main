@@ -1,6 +1,7 @@
 import TopBar from './components/TopBar'
 import WelcomeBar from './components/WelcomeBar'
 import MainFooter from './components/MainFooter'
+import Modal from './components/Modal'
 import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
 import * as actions from './actions'
@@ -11,7 +12,6 @@ import {connect} from 'react-redux'
 
 class Layout extends Component {
   componentDidMount () {
-    NotificationCenter.on('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
     NotificationCenter.on('updateTodo', console.log.bind(console, 'unhandled: updateTodo'))
     if (this.shouldShowNotificationGrant()) {
       this._requestNotificationPermission()
@@ -21,11 +21,10 @@ class Layout extends Component {
     const {settings} = this.props
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
-  componentWillUnmount () {
-    NotificationCenter.off('pomodoroEnded', console.log.bind(console, 'unhandled: pomodoroEnded'))
-  }
-  render () {
-    const {settings, actions, user} = this.props
+  render (state, dispatch) {
+    const {settings, actions, user, modal} = this.props
+    console.log('dispatch', dispatch)
+    // debugger
     return <div className='layout'>
       <TopBar actions={actions} user={user} />
       <WelcomeBar settings={settings} actions={actions} />
@@ -33,6 +32,7 @@ class Layout extends Component {
       <div className='main-content'>
         {this.props.children}
       </div>
+      <Modal modal={modal} handleClose={actions.acknowledgeWelcome} />
       <MainFooter />
     </div>
   }
@@ -52,6 +52,7 @@ export default connect(
   (state) => {
     return {
       todos: state.todos,
+      modal: state.modal,
       settings: state.settings,
       pomodoro: state.pomodoro,
       timer: state.timer,

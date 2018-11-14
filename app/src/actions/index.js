@@ -1,4 +1,5 @@
 export * from './timer'
+export * from './modal'
 export * from './todos'
 export * from './settings'
 export * from './user'

@@ -5,6 +5,7 @@ import AnalyticsService from '../modules/AnalyticsService'
 import {NOOP} from './'
 import NotificationCenter from '../modules/NotificationCenter'
 import NotificationService from '../modules/NotificationService'
+import ModalService from '../modules/ModalService'
 export const START_TIMER = 'START_TIMER'
 export const RESUME_TIMER = 'RESUME_TIMER'
 export const END_TIMER = 'END_TIMER'
@@ -20,7 +21,7 @@ function noop () {
 
 export function startTimer (minutes, type) {
   return (dispatch, getState) => {
-    if (Timer.isInProgress()) { return noop() }
+    if (Timer.isInProgress()) return noop()
     Timer.start(minutes * 60)
     const started_at = new Date()
     const pomodoro = {minutes, type, started_at}
@@ -47,18 +48,25 @@ export function resumeTimer (pomodoro) {
 
 export function endTimer () {
   document.title = title
+
   NotificationCenter.emit('pomodoroEnded')
   NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
+
+  // ModalService.show('poll')
+
   return saveAndDispatch(END_TIMER)
 }
 
 export function forceEndTimer () {
-  if (!Timer.isInProgress()) {
-    return noop()
-  }
+  if (!Timer.isInProgress()) return noop()
   document.title = title
+
   NotificationCenter.emit('pomodoroEnded')
+
   Timer.forceEnd()
+
+  // ModalService.show('poll')
+
   return saveAndDispatch(STOP_TIMER)
 }
 
