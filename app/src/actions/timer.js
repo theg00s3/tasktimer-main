@@ -93,6 +93,7 @@ function handleModal (dispatch, getState) {
     return s.name === 'poll' // && +new Date(s.createdAt) > Date.now() - 1000 * 60 * 30
   })
   if (!modal) {
+    AnalyticsService.track('shown-modal', modal.name)
     ModalService.show('poll')
   } else {
     console.log('modal already shown', modal)
