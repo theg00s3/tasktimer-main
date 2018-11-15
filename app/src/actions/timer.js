@@ -54,7 +54,7 @@ export function endTimer () {
 
   ModalService.show('poll')
 
-  return saveAndDispatch(END_TIMER)
+  return saveAndDispatch(END_TIMER, handleModal)
 }
 
 export function forceEndTimer () {
@@ -65,15 +65,7 @@ export function forceEndTimer () {
 
   Timer.forceEnd()
 
-  return saveAndDispatch(STOP_TIMER, (dispatch, getState) => {
-    console.log('cb')
-    const modal = getState().modal.shown.find(s => s.name === 'poll' && +s.createdAt > Date.now() - 1000 * 60 * 30)
-    if (!modal) {
-      ModalService.show('poll')
-    } else {
-      console.log('modal already shown', modal)
-    }
-  })
+  return saveAndDispatch(STOP_TIMER, handleModal)
 }
 
 export function tickTimer (remaining) {
@@ -92,5 +84,17 @@ function saveAndDispatch (action, cb = Function.prototype) {
     dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)
     cb(dispatch, getState)
+  }
+}
+
+function handleModal (dispatch, getState) {
+  const shown = getState().modal.shown || []
+  const modal = shown.find(s => {
+    return s.name === 'poll' // && +new Date(s.createdAt) > Date.now() - 1000 * 60 * 30
+  })
+  if (!modal) {
+    ModalService.show('poll')
+  } else {
+    console.log('modal already shown', modal)
   }
 }

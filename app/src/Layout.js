@@ -32,7 +32,7 @@ class Layout extends Component {
       <div className='main-content'>
         {this.props.children}
       </div>
-      <Modal modal={modal} handleClose={actions.acknowledgeWelcome} />
+      <Modal modal={modal} actions={actions} handleClose={actions.acknowledgeWelcome} />
       <MainFooter />
     </div>
   }

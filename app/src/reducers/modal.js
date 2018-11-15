@@ -8,19 +8,21 @@ const initialState = {
 export default function modal (state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL: {
-      const shown = state.shown
-        // .filter(s => s.name === action.payload)
-        // .concat({name: action.payload, createdAt: new Date()})
+      console.log('state', state)
+      console.log('state.shown', state.shown)
+      const shown = (state.shown || [])
+        .filter(s => s.name !== action.payload)
+        .concat([{name: action.payload, createdAt: new Date()}])
 
-      return {
+      return Object.assign({}, state, {
         show: action.payload,
         shown
-      }
+      })
     }
     case HIDE_MODAL: {
-      return {
+      return Object.assign({}, state, {
         show: false
-      }
+      })
     }
   }
   return state

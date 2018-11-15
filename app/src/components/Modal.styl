@@ -6,31 +6,33 @@
   left 0
   z-index 999
   // opacity 0
-  pointer-events none
+  // pointer-events none
   -webkit-transition all 0.3s
   -moz-transition all 0.3s
   transition all 0.3s
+  min-height 60vh
 
   & > .modal-body
-    width 100%
-    max-width container_width_2
+    width 90%
+    max-width 640px
     position absolute
-    top 30%
+    top 1em
+    bottom 0%
     left 50%
-    transform translate(-50%, -30%)
+    transform translate(-50%, 1em)
     padding 2em
     background #ffffff
     color #333333
     border 2px solid #dedede
-    border-radius 5px
+    border-radius 10px
 
 body
   .is-blurred
-    overflow hidden
+    // overflow hidden
 
-    .main-content
+    .main-content, nav, footer
       filter url("#blur") /* SVG filters for browser support. */
       filter blur(7px) /* works in chrome */
       -webkit-transition  -webkit-filter 500ms linear
       pointer-events none
-      user-select none
+      // user-select none
