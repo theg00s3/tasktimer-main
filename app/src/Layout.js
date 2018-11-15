@@ -23,9 +23,9 @@ class Layout extends Component {
   }
   render (state, dispatch) {
     const {settings, actions, user, modal} = this.props
-    console.log('dispatch', dispatch)
-    // debugger
-    return <div className='layout'>
+    console.log('modal.show', modal.show)
+    const modalBlurredClassName = modal.show ? 'layout is-blurred' : 'layout'
+    return <div className={modalBlurredClassName}>
       <TopBar actions={actions} user={user} />
       <WelcomeBar settings={settings} actions={actions} />
 

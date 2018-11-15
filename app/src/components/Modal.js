@@ -7,8 +7,13 @@ export default class Modal extends Component {
 
     if (!modal.show) return null
 
-    return <div>
-      {JSON.stringify(modal)}
-    </div>
+    if (modal.show === 'poll') {
+      return <div className='modal'>
+        <div className='modal-body'>
+          {JSON.stringify(modal)}
+        </div>
+      </div>
+    }
+    return null
   }
 }

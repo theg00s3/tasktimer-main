@@ -9,8 +9,8 @@ export default function modal (state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL: {
       const shown = state.shown
-        .filter(s => s.name === action.payload)
-        .concat({name: action.payload, createdAt: new Date()})
+        // .filter(s => s.name === action.payload)
+        // .concat({name: action.payload, createdAt: new Date()})
 
       return {
         show: action.payload,
