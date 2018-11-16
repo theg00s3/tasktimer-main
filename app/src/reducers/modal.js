@@ -11,7 +11,7 @@ export default function modal (state = initialState, action) {
       console.log('state', state)
       console.log('state.shown', state.shown)
       const shown = (state.shown || [])
-        .filter(s => s.name !== action.payload)
+        .filter(s => s && s.name !== action.payload)
         .concat([{name: action.payload, createdAt: new Date()}])
 
       return Object.assign({}, state, {

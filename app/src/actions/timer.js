@@ -90,7 +90,7 @@ function saveAndDispatch (action, cb = Function.prototype) {
 function handleModal (dispatch, getState) {
   const shown = getState().modal.shown || []
   const modal = shown.find(s => {
-    return s.name === 'poll' // && +new Date(s.createdAt) > Date.now() - 1000 * 60 * 30
+    return s && s.name === 'poll' // && +new Date(s.createdAt) > Date.now() - 1000 * 60 * 30
   })
   if (!modal) {
     AnalyticsService.track('shown-modal', modal.name)
