@@ -89,11 +89,9 @@ function saveAndDispatch (action, cb = Function.prototype) {
 
 function handleModal (dispatch, getState) {
   const shown = getState().modal.shown || []
-  const modal = shown.find(s => {
-    return s && s.name === 'poll' // && +new Date(s.createdAt) > Date.now() - 1000 * 60 * 30
-  })
+  const modal = shown.find(s => s.name === 'poll')
   if (!modal) {
-    AnalyticsService.track('shown-modal', modal.name)
+    AnalyticsService.track('shown-modal', 'poll')
     ModalService.show('poll')
   } else {
     console.log('modal already shown', modal)
