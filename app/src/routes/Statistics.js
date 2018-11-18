@@ -8,7 +8,7 @@ import {ResponsiveContainer, LineChart, AreaChart, Line, Area, XAxis, YAxis, Car
 
 class Statistics extends Component {
   render () {
-    const {user, todos, pomodoros} = this.props
+    const {user, todos, pomodoros, distractions} = this.props
     console.log('todos, pomodoros', todos, pomodoros)
 
     const date = new Date().toISOString().substring(0, 10)
@@ -33,7 +33,7 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
-              You tracked <b>{completedPomodoros.length}</b> pomodoros today!
+              You tracked <b>{completedPomodoros.length} pomodoros</b> today!
               <br />
               <ResponsiveContainer width='100%' height={100}>
                 <LineChart width={500} height={100} data={chartData}>
@@ -47,11 +47,9 @@ class Statistics extends Component {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            {/*
             <div className='column'>
-              XXX
+              <b>{distractions.length} distractions</b> tracked
             </div>
-            */}
           </div>
 
           {/*
@@ -118,6 +116,7 @@ export default connect(
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros,
+  distractions: state.distractions,
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)

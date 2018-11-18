@@ -5,6 +5,7 @@ import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
 import user from './reducers/user'
+import distractions from './reducers/distractions'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -23,10 +24,11 @@ const store = createStore(combineReducers({
   pomodoro,
   pomodoros,
   settings,
-  user
+  user,
+  distractions
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'modal', 'todos', 'pomodoros'])
+  persistState(['settings', 'modal', 'todos', 'pomodoros', 'distractions'])
 ))
 
 export default store

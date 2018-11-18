@@ -11,6 +11,7 @@ export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS'
 export const LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR'
 
 export const TEST_POMODOROS = 'TEST_POMODOROS'
+export const TEST_DISTRACTIONS = 'TEST_DISTRACTIONS'
 
 export function identifyUser (user) {
   console.log('identifyUser', user)
@@ -33,6 +34,7 @@ export function loadUser () {
         if (window.location.hostname !== 'localhost') dispatch({type: LOAD_USER_ERROR, payload: err})
 
         dispatch({ type: TEST_POMODOROS, payload: null })
+        dispatch({ type: TEST_DISTRACTIONS, payload: null })
         dispatch({
           type: LOAD_USER_SUCCESS,
           payload: {
