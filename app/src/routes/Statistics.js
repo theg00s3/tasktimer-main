@@ -43,6 +43,8 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
+              You tracked <b>{completedPomodoros.length} pomodoros</b> and <b>{distractions.length} distractions</b> today!
+              <br />
               <ResponsiveContainer width='100%' height={100}>
                 <ComposedChart data={composedData}>
                   {/* <XAxis dataKey='key' /> */}
@@ -58,39 +60,6 @@ class Statistics extends Component {
               </ResponsiveContainer>
             </div>
           </div>
-          <div className='columns'>
-            <div className='column'>
-              You tracked <b>{completedPomodoros.length} pomodoros</b> today!
-              <br />
-              <ResponsiveContainer width='100%' height={100}>
-                <LineChart width={500} height={100} data={pomodorosChartData}>
-                  {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
-                  {/*
-                  <YAxis />
-                  <CartesianGrid stroke='#eee' />
-                  <Tooltip />
-                  */}
-                  <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-            <div className='column'>
-              <b>{distractions.length} distractions</b> tracked
-              <br />
-              <ResponsiveContainer width='100%' height={100}>
-                <LineChart width={500} height={100} data={distractionsChartData}>
-                  {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
-                  {/*
-                  <YAxis />
-                  <CartesianGrid stroke='#eee' />
-                  <Tooltip />
-                  */}
-                  <Line type='monotone' dataKey='distractionsCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
           {/*
           <ul>
             {completedPomodoros.map(p => <li>{new Date(p.startedAt).toISOString()}</li>)}
