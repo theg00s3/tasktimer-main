@@ -15,11 +15,11 @@ class Statistics extends Component {
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
-      .filter(p => {
-        console.log('new Date(p.started_at).toISOString().substring(0, 10)', new Date(p.started_at).toISOString().substring(0, 10))
-        return new Date(p.started_at).toISOString().substring(0, 10) === date
-      })
+      .filter(p => new Date(p.started_at).toISOString().substring(0, 10) === date)
       .filter(p => p.completed)
+
+    const x = pomodorosByHour(completedPomodoros)
+    console.log('x', x)
 
     return <div className='content'>
       <h1 class='title'>Statistics</h1>
@@ -37,6 +37,15 @@ class Statistics extends Component {
       </div>}
     </div>
   }
+}
+
+function pomodorosByHour (pomodoros) {
+  return pomodoros.reduce((acc, curr) => {
+    const hour = new Date(curr.started_at).getHours()
+    const formattedHour = `${hour < 10 ? '0' + hour : hour}:00`
+    acc[formattedHour] = (acc[formattedHour] || []).concat([curr])
+    return acc
+  }, {})
 }
 
 export default connect(
