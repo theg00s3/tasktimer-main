@@ -58,7 +58,7 @@ class Statistics extends Component {
 }
 
 function chartDataFor (pomodoros) {
-  const pomodorosByKey = pomodoros.reduce((acc, curr) => {
+  let pomodorosByKey = pomodoros.reduce((acc, curr) => {
     const hour = new Date(curr.started_at).getHours()
     const minute = new Date(curr.started_at).getMinutes()
     const formattedHalfHour = minute < 30 ? '00' : '30'
@@ -69,6 +69,22 @@ function chartDataFor (pomodoros) {
     return acc
   }, {})
 
+  pomodorosByKey = fillGaps(pomodorosByKey, pomodoros)
+
+  return Object.keys(pomodorosByKey)
+  .map(key => {
+    const pomodoros = pomodorosByKey[key]
+    const number = pomodoros.length
+    return {key, number, pomodoros}
+  })
+  .sort((a, b) => a.key < b.key ? -1 : 1)
+}
+
+function range (from, to) {
+  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
+}
+
+function fillGaps (pomodorosByKey, pomodoros) {
   const minHour = pomodoros.reduce((min, {started_at}) => {
     const hour = new Date(started_at).getHours()
     return min > hour ? hour : min
@@ -86,18 +102,7 @@ function chartDataFor (pomodoros) {
     if (!pomodorosByKey[`${paddedHour}:30`]) pomodorosByKey[`${paddedHour}:30`] = []
     // if (!pomodorosByKey[`${paddedHour}:45`]) pomodorosByKey[`${paddedHour}:45`] = []
   }
-
-  return Object.keys(pomodorosByKey)
-  .map(key => {
-    const pomodoros = pomodorosByKey[key]
-    const number = pomodoros.length
-    return {key, number, pomodoros}
-  })
-  .sort((a, b) => a.key < b.key ? -1 : 1)
-}
-
-function range (from, to) {
-  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
+  return pomodorosByKey
 }
 
 export default connect(
