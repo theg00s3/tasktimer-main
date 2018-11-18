@@ -6,18 +6,18 @@ import Pomodoro from './Pomodoro'
 const pomodoroJSON = {
   type: 'pomodoro',
   minutes: 25,
-  started_at: '2016-01-03T21:00:00.000Z'
+  startedAt: '2016-01-03T21:00:00.000Z'
 }
 const cancelledPomodoroJSON = {
   type: 'pomodoro',
   minutes: 25,
-  started_at: '2016-01-03T21:00:00.000Z',
+  startedAt: '2016-01-03T21:00:00.000Z',
   cancelled_at: '2016-01-03T21:05:00.000Z'
 }
 // const breakJSON = {
 //   type: 'break',
 //   minutes: 5,
-//   started_at: '2016-01-03T21:00:00.000Z'
+//   startedAt: '2016-01-03T21:00:00.000Z'
 // }
 
 const MINUTES = 60 * 1000
@@ -50,19 +50,19 @@ describe('Pomodoro', function () {
       const pomodoro = new Pomodoro(pomodoroJSON)
       const timestamps = pomodoro.timestamps()
       expect(timestamps)
-        .to.have.property('started_at')
-        .that.deep.eql((new Date(pomodoro.started_at)).getTime())
+        .to.have.property('startedAt')
+        .that.deep.eql((new Date(pomodoro.startedAt)).getTime())
       expect(timestamps)
         .to.have.property('ended_at')
-        .that.deep.eql((new Date(pomodoro.started_at)).getTime() + pomodoro.minutes * MINUTES)
+        .that.deep.eql((new Date(pomodoro.startedAt)).getTime() + pomodoro.minutes * MINUTES)
     })
 
     it('for cancelled pomodoro', () => {
       const pomodoro = new Pomodoro(cancelledPomodoroJSON)
       const timestamps = pomodoro.timestamps()
       expect(timestamps)
-        .to.have.property('started_at')
-        .that.deep.eql((new Date(pomodoro.started_at)).getTime())
+        .to.have.property('startedAt')
+        .that.deep.eql((new Date(pomodoro.startedAt)).getTime())
       expect(timestamps)
         .to.have.property('ended_at')
         .that.deep.eql((new Date(pomodoro.cancelled_at)).getTime())

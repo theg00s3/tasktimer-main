@@ -17,10 +17,10 @@ class Statistics extends Component {
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
-      .filter(p => new Date(p.started_at).toISOString().substring(0, 10) === date)
+      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
       .filter(p => p.completed)
 
-    const chartData = chartDataFor(completedPomodoros)
+    const chartData = pomodorosChartDataFor(completedPomodoros)
     console.log('chartData', chartData)
 
     return <div className='content'>
@@ -54,7 +54,7 @@ class Statistics extends Component {
 
           {/*
           <ul>
-            {completedPomodoros.map(p => <li>{new Date(p.started_at).toISOString()}</li>)}
+            {completedPomodoros.map(p => <li>{new Date(p.startedAt).toISOString()}</li>)}
           </ul>
           */}
         </div>}
@@ -63,10 +63,10 @@ class Statistics extends Component {
   }
 }
 
-function chartDataFor (pomodoros) {
+function pomodorosChartDataFor (pomodoros) {
   let pomodorosByKey = pomodoros.reduce((acc, curr) => {
-    const hour = new Date(curr.started_at).getHours()
-    const minute = new Date(curr.started_at).getMinutes()
+    const hour = new Date(curr.startedAt).getHours()
+    const minute = new Date(curr.startedAt).getMinutes()
     const formattedHalfHour = minute < 30 ? '00' : '30'
     const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
     // const formattedQuarterHour = minute < 15 ? '00' : (minute < 30 ? '15' : (minute < 45 ? '30' : '45'))
@@ -75,7 +75,7 @@ function chartDataFor (pomodoros) {
     return acc
   }, {})
 
-  pomodorosByKey = fillGaps(pomodorosByKey, pomodoros)
+  pomodorosByKey = fillGaps(pomodorosByKey, pomodoros.map(p => p.startedAt))
 
   return Object.keys(pomodorosByKey)
   .map(key => {
@@ -90,13 +90,13 @@ function range (from, to) {
   return Array.from({ length: to - from + 1 }, (_, i) => i + from)
 }
 
-function fillGaps (pomodorosByKey, pomodoros) {
-  const minHour = pomodoros.reduce((min, {started_at}) => {
-    const hour = new Date(started_at).getHours()
+function fillGaps (pomodorosByKey, pomodorosStartedAt) {
+  const minHour = pomodorosStartedAt.reduce((min, startedAt) => {
+    const hour = new Date(startedAt).getHours()
     return min > hour ? hour : min
-  }, new Date(pomodoros[0].started_at).getHours())
-  const maxHour = pomodoros.reduce((max, {started_at}) => {
-    const hour = new Date(started_at).getHours()
+  }, new Date(pomodorosStartedAt[0]).getHours())
+  const maxHour = pomodorosStartedAt.reduce((max, startedAt) => {
+    const hour = new Date(startedAt).getHours()
     return max < hour ? hour : max
   }, 0)
 
