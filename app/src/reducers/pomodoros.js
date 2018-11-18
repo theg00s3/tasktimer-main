@@ -13,7 +13,11 @@ export default function pomodoros (state = defaultState, action) {
       const MINUTES = 1000 * 60
 
       return [{
-        minutes: 25, type: 'pomodoro', started_at: new Date(now - MINUTES * 135), completed: true
+        minutes: 25, type: 'pomodoro', started_at: new Date(now - MINUTES * 335), completed: true
+      }, {
+        minutes: 25, type: 'pomodoro', started_at: new Date(now - MINUTES * 290), completed: true
+      }, {
+        minutes: 5, type: 'pomodoro', started_at: new Date(now - MINUTES * 150), completed: true
       }, {
         minutes: 25, type: 'pomodoro', started_at: new Date(now - MINUTES * 117), completed: true
       }, {
@@ -28,8 +32,6 @@ export default function pomodoros (state = defaultState, action) {
         minutes: 25, type: 'pomodoro', started_at: new Date(now - MINUTES * 26), completed: true
       }, {
         minutes: 25, type: 'pomodoro', started_at: new Date(now), completed: true
-      // }, {
-      //   minutes: 25, type: 'pomodoro', started_at: new Date(now + MINUTES * 15), completed: true
       }]
     }
   }

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import * as actions from '../actions'
 import './Statistics.styl'
 
-import {LineChart, AreaChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {ResponsiveContainer, LineChart, AreaChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 
 class Statistics extends Component {
   render () {
@@ -32,20 +32,24 @@ class Statistics extends Component {
         </div>}
         {completedPomodoros.length > 0 && <div>
           You completed <b>{completedPomodoros.length}</b> pomodoros today!
-          <ul>
-            {completedPomodoros.map(p => <li>{JSON.stringify(p)}</li>)}
-          </ul>
 
-          <LineChart width={500} height={100} data={chartData}>
-            {/* <XAxis dataKey='hour' /> */}
-            {/* <YAxis /> */}
-            {/* <CartesianGrid stroke='#eee' /> */}
-            <Line type='monotone' dataKey='number' stroke='#DF2E2E' strokeWidth={3} />
-          </LineChart>
+          <br />
+
+          <ResponsiveContainer width='100%' height={100}>
+            <LineChart width={500} height={100} data={chartData}>
+              {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
+              {/*
+              <YAxis />
+              <CartesianGrid stroke='#eee' />
+              <Tooltip />
+              */}
+              <Line type='monotone' dataKey='number' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
           {/*
-          <AreaChart width={500} height={100} data={x}>
-            <Area type='monotone' dataKey='number' fill='#DF2E2E' stroke='#DF2E2E' strokeWidth={2} />
-          </AreaChart>
+          <ul>
+            {completedPomodoros.map(p => <li>{new Date(p.started_at).toISOString()}</li>)}
+          </ul>
           */}
         </div>}
       </div>}
@@ -54,20 +58,46 @@ class Statistics extends Component {
 }
 
 function chartDataFor (pomodoros) {
-  const pomodorosByHour = pomodoros.reduce((acc, curr) => {
+  const pomodorosByKey = pomodoros.reduce((acc, curr) => {
     const hour = new Date(curr.started_at).getHours()
     const minute = new Date(curr.started_at).getMinutes()
     const formattedHalfHour = minute < 30 ? '00' : '30'
-    const formattedHour = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
-    acc[formattedHour] = (acc[formattedHour] || []).concat([curr])
+    const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
+    // const formattedQuarterHour = minute < 15 ? '00' : (minute < 30 ? '15' : (minute < 45 ? '30' : '45'))
+    // const key = `${hour < 10 ? '0' + hour : hour}:${formattedQuarterHour}`
+    acc[key] = (acc[key] || []).concat([curr])
     return acc
   }, {})
 
-  return Object.keys(pomodorosByHour).map(hour => {
-    const pomodoros = pomodorosByHour[hour]
+  const minHour = pomodoros.reduce((min, {started_at}) => {
+    const hour = new Date(started_at).getHours()
+    return min > hour ? hour : min
+  }, new Date(pomodoros[0].started_at).getHours())
+  const maxHour = pomodoros.reduce((max, {started_at}) => {
+    const hour = new Date(started_at).getHours()
+    return max < hour ? hour : max
+  }, 0)
+
+  for (const hour of range(minHour, maxHour)) {
+    const paddedHour = hour < 10 ? '0' + hour : hour
+
+    if (!pomodorosByKey[`${paddedHour}:00`]) pomodorosByKey[`${paddedHour}:00`] = []
+    // if (!pomodorosByKey[`${paddedHour}:15`]) pomodorosByKey[`${paddedHour}:15`] = []
+    if (!pomodorosByKey[`${paddedHour}:30`]) pomodorosByKey[`${paddedHour}:30`] = []
+    // if (!pomodorosByKey[`${paddedHour}:45`]) pomodorosByKey[`${paddedHour}:45`] = []
+  }
+
+  return Object.keys(pomodorosByKey)
+  .map(key => {
+    const pomodoros = pomodorosByKey[key]
     const number = pomodoros.length
-    return {hour, number, pomodoros}
+    return {key, number, pomodoros}
   })
+  .sort((a, b) => a.key < b.key ? -1 : 1)
+}
+
+function range (from, to) {
+  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
 }
 
 export default connect(
