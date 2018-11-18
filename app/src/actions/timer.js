@@ -86,8 +86,11 @@ function saveAndDispatch (action, cb = Function.prototype) {
   return (dispatch, getState) => {
     const pomodoro = getState().pomodoro
 
-    pomodoro.finished = true
-    if (action === STOP_TIMER) pomodoro.cancelled_at = new Date()
+    if (action === STOP_TIMER) {
+      pomodoro.cancelled_at = new Date()
+    } else {
+      pomodoro.completed = true
+    }
 
     dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)

@@ -10,6 +10,8 @@ export const LOGOUT_USER_REQUEST = 'LOGOUT_USER_REQUEST'
 export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS'
 export const LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR'
 
+export const TEST_POMODOROS = 'TEST_POMODOROS'
+
 export function identifyUser (user) {
   console.log('identifyUser', user)
   if (user) {
@@ -29,6 +31,8 @@ export function loadUser () {
       .catch((err) => {
         console.log('window.location.hostname', window.location.hostname)
         if (window.location.hostname !== 'localhost') dispatch({type: LOAD_USER_ERROR, payload: err})
+
+        dispatch({ type: TEST_POMODOROS, payload: null })
         dispatch({
           type: LOAD_USER_SUCCESS,
           payload: {
