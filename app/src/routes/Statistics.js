@@ -31,21 +31,29 @@ class Statistics extends Component {
           You haven't completed any pomodoros.
         </div>}
         {completedPomodoros.length > 0 && <div>
-          You completed <b>{completedPomodoros.length}</b> pomodoros today!
+          <div className='columns'>
+            <div className='column'>
+              You tracked <b>{completedPomodoros.length}</b> pomodoros today!
+              <br />
+              <ResponsiveContainer width='100%' height={100}>
+                <LineChart width={500} height={100} data={chartData}>
+                  {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
+                  {/*
+                  <YAxis />
+                  <CartesianGrid stroke='#eee' />
+                  <Tooltip />
+                  */}
+                  <Line type='monotone' dataKey='number' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            {/*
+            <div className='column'>
+              XXX
+            </div>
+            */}
+          </div>
 
-          <br />
-
-          <ResponsiveContainer width='100%' height={100}>
-            <LineChart width={500} height={100} data={chartData}>
-              {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
-              {/*
-              <YAxis />
-              <CartesianGrid stroke='#eee' />
-              <Tooltip />
-              */}
-              <Line type='monotone' dataKey='number' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-            </LineChart>
-          </ResponsiveContainer>
           {/*
           <ul>
             {completedPomodoros.map(p => <li>{new Date(p.started_at).toISOString()}</li>)}
