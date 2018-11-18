@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import * as actions from '../actions'
 import './Statistics.styl'
 
-import {ResponsiveContainer, LineChart, AreaChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {ResponsiveContainer, ComposedChart, LineChart, AreaChart, Bar, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 
 class Statistics extends Component {
   render () {
@@ -20,8 +20,18 @@ class Statistics extends Component {
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
       .filter(p => p.completed)
 
-    const chartData = pomodorosChartDataFor(completedPomodoros)
-    console.log('chartData', chartData)
+    const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
+    const distractionsChartData = distractionsChartDataFor(distractions)
+
+    const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
+      const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
+      if (distractionItem) {
+        Object.assign(pomodoroItem, distractionItem)
+      }
+      return acc.concat([pomodoroItem])
+    }, [])
+
+    console.log('composedData', composedData)
 
     return <div className='content'>
       <h1 class='title'>Statistics</h1>
@@ -33,22 +43,51 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
+              <ResponsiveContainer width='100%' height={100}>
+                <ComposedChart data={composedData}>
+                  {/* <XAxis dataKey='key' /> */}
+                  {/* <YAxis /> */}
+                  {/* <Tooltip /> */}
+                  {/* <Legend /> */}
+                  {/* <CartesianGrid stroke='#f5f5f5' /> */}
+                  {/* <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" /> */}
+                  <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
+                  {/* <Line type='monotone' dataKey='pomodorosCount' stroke='#ff7300' /> */}
+                  <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div className='columns'>
+            <div className='column'>
               You tracked <b>{completedPomodoros.length} pomodoros</b> today!
               <br />
               <ResponsiveContainer width='100%' height={100}>
-                <LineChart width={500} height={100} data={chartData}>
+                <LineChart width={500} height={100} data={pomodorosChartData}>
                   {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
                   {/*
                   <YAxis />
                   <CartesianGrid stroke='#eee' />
                   <Tooltip />
                   */}
-                  <Line type='monotone' dataKey='number' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+                  <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
             <div className='column'>
               <b>{distractions.length} distractions</b> tracked
+              <br />
+              <ResponsiveContainer width='100%' height={100}>
+                <LineChart width={500} height={100} data={distractionsChartData}>
+                  {/* <XAxis dataKey='key' axisLine={false} tickLine={false} /> */}
+                  {/*
+                  <YAxis />
+                  <CartesianGrid stroke='#eee' />
+                  <Tooltip />
+                  */}
+                  <Line type='monotone' dataKey='distractionsCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
           </div>
 
@@ -80,8 +119,31 @@ function pomodorosChartDataFor (pomodoros) {
   return Object.keys(pomodorosByKey)
   .map(key => {
     const pomodoros = pomodorosByKey[key]
-    const number = pomodoros.length
-    return {key, number, pomodoros}
+    const pomodorosCount = pomodoros.length
+    return {key, pomodorosCount, pomodoros}
+  })
+  .sort((a, b) => a.key < b.key ? -1 : 1)
+}
+
+function distractionsChartDataFor (distractions) {
+  let distractionsByKey = distractions.reduce((acc, curr) => {
+    const hour = new Date(curr).getHours()
+    const minute = new Date(curr).getMinutes()
+    const formattedHalfHour = minute < 30 ? '00' : '30'
+    const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
+    // const formattedQuarterHour = minute < 15 ? '00' : (minute < 30 ? '15' : (minute < 45 ? '30' : '45'))
+    // const key = `${hour < 10 ? '0' + hour : hour}:${formattedQuarterHour}`
+    acc[key] = (acc[key] || []).concat([curr])
+    return acc
+  }, {})
+
+  distractionsByKey = fillGaps(distractionsByKey, distractions)
+
+  return Object.keys(distractionsByKey)
+  .map(key => {
+    const distractions = distractionsByKey[key]
+    const distractionsCount = distractions.length
+    return {key, distractionsCount}
   })
   .sort((a, b) => a.key < b.key ? -1 : 1)
 }
