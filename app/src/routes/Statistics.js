@@ -21,7 +21,7 @@ class Statistics extends Component {
       .filter(p => p.completed)
 
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
-    const distractionsChartData = distractionsChartDataFor(distractions)
+    const distractionsChartData = distractionsChartDataFor(distractions.tracked)
 
     const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
       const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
@@ -30,8 +30,6 @@ class Statistics extends Component {
       }
       return acc.concat([pomodoroItem])
     }, [])
-
-    console.log('composedData', composedData)
 
     return <div className='content'>
       <h1 class='title'>Statistics</h1>
@@ -43,7 +41,7 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
-              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.length} distractions</b> today!
+              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.tracked.length} distractions</b> today!
               <br />
               You were also <b>quite productive</b> today, with <b>{todos.filter(t => t.completed).length} tasks completed</b>
               <br />
