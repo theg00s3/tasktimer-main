@@ -64,6 +64,9 @@ class Statistics extends Component {
           <ul>
             {completedPomodoros.map(p => <li>{new Date(p.startedAt).toISOString()}</li>)}
           </ul>
+          <ul>
+            {distractions.tracked.map(d => <li>{new Date(d).toISOString()}</li>)}
+          </ul>
         </div>}
       </div>}
     </div>

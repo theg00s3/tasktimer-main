@@ -6,7 +6,7 @@ export default function distractions (state = defaultState, action) {
   switch (action.type) {
     case TRACK_DISTRACTION: {
       return {
-        lastTracked: new Date(),
+        lastTracked: +new Date(state.lastTracked) > +new Date() - 1000 * 4,
         distractionTrackText: state.tracked.length % 2 === 0 ? 'Being distracted? 😅' : 'Track distraction 💥',
         tracked: state.tracked.concat([action.payload])
       }
