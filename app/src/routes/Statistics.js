@@ -45,11 +45,13 @@ class Statistics extends Component {
             <div className='column'>
               You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.length} distractions</b> today!
               <br />
+              You were also <b>quite productive</b> today, with <b>{todos.filter(t => t.completed).length} tasks completed</b>
+              <br />
               <ResponsiveContainer width='100%' height={100}>
                 <ComposedChart data={composedData}>
                   {/* <XAxis dataKey='key' /> */}
                   {/* <YAxis /> */}
-                  {/* <Tooltip /> */}
+                  <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
                   {/* <Legend /> */}
                   {/* <CartesianGrid stroke='#f5f5f5' /> */}
                   {/* <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" /> */}
@@ -60,11 +62,10 @@ class Statistics extends Component {
               </ResponsiveContainer>
             </div>
           </div>
-          {/*
+
           <ul>
             {completedPomodoros.map(p => <li>{new Date(p.startedAt).toISOString()}</li>)}
           </ul>
-          */}
         </div>}
       </div>}
     </div>

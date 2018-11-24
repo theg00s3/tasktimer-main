@@ -1,4 +1,4 @@
-const development = process.env.NODE_ENV === 'development'
+const development = process.env.NODE_ENV !== 'production'
 
 const commonConfig = require('./webpack-common.config')
 
@@ -10,7 +10,7 @@ module.exports = Object.assign({}, commonConfig, development ? {
     './index.js'
   ],
   devServer: {
-    hot: true
+    hotOnly: true
   },
   devtool: 'eval'
 } : {})
