@@ -9,5 +9,8 @@ module.exports = Object.assign({}, commonConfig, development ? {
     // 'webpack/hot/only-dev-server',
     './index.js'
   ],
+  devServer: {
+    hot: true
+  },
   devtool: 'eval'
 } : {})
