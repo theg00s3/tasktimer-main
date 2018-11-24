@@ -43,7 +43,7 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
-              You tracked <b>{completedPomodoros.length} pomodoros</b> and <b>{distractions.length} distractions</b> today!
+              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.length} distractions</b> today!
               <br />
               <ResponsiveContainer width='100%' height={100}>
                 <ComposedChart data={composedData}>
