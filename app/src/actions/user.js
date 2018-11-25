@@ -31,7 +31,10 @@ export function loadUser () {
       })
       .catch((err) => {
         console.log('window.location.hostname', window.location.hostname)
-        if (window.location.hostname !== 'localhost') dispatch({type: LOAD_USER_ERROR, payload: err})
+        if (window.location.hostname !== 'localhost') {
+          dispatch({type: LOAD_USER_ERROR, payload: err})
+          return
+        }
 
         dispatch({ type: TEST_POMODOROS, payload: null })
         dispatch({ type: TEST_DISTRACTIONS, payload: null })
