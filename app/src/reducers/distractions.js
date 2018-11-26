@@ -6,7 +6,7 @@ export default function distractions (state = defaultState, action) {
   switch (action.type) {
     case TRACK_DISTRACTION: {
       return {
-        lastTracked: +new Date(state.lastTracked) > +new Date() - 1000 * 4,
+        lastTracked: action.payload,
         distractionTrackText: state.tracked.length % 2 === 0 ? 'Being distracted? 😅' : 'Track distraction 💥',
         tracked: state.tracked.concat([action.payload])
       }
@@ -15,7 +15,7 @@ export default function distractions (state = defaultState, action) {
       const now = Date.now() // +new Date()
       const MINUTES = 1000 * 60
       return {
-        lastTracked: new Date(),
+        lastTracked: state.lastTracked,
         distractionTrackText: state.tracked.length % 2 === 0 ? 'Being distracted? 😅' : 'Track distraction 💥',
         tracked: [
           new Date(now - MINUTES * 15),
