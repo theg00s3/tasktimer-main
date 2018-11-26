@@ -1,6 +1,6 @@
 import {TRACK_DISTRACTION, TEST_DISTRACTIONS} from '../actions'
 
-export const defaultState = {lastTracked: null, tracked: []}
+export const defaultState = {lastTracked: null, tracked: [], distractionTrackText: 'Being distracted? 😅'}
 
 export default function distractions (state = defaultState, action) {
   switch (action.type) {
