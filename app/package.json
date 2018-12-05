@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "deploy": "npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./build/ s3://pomodoro.cc",
-    "stack:apply": "up stack plan -v && up stack apply -v",
     "start": "NODE_ENV=development webpack-dev-server --port 9000 --config ./webpack.config.js --hot --progress --colors --history-api-fallback --content-base build-dev",
     "build": "rm build/*; NODE_ENV=production webpack --config webpack-prod.config.js --progress --colors",
     "build-watch": "NODE_ENV=test webpack --progress --colors --watch",
