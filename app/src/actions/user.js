@@ -30,7 +30,6 @@ export function loadUser () {
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
       })
       .catch((err) => {
-        console.log('window.location.hostname', window.location.hostname)
         if (window.location.hostname !== 'localhost') {
           dispatch({type: LOAD_USER_ERROR, payload: err})
           return
