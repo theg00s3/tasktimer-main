@@ -1,5 +1,4 @@
 import timer from './reducers/timer'
-import modal from './reducers/modal'
 import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
@@ -19,7 +18,6 @@ if (window.development) {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combineReducers({
   timer,
-  modal,
   todos,
   pomodoro,
   pomodoros,
@@ -28,7 +26,7 @@ const store = createStore(combineReducers({
   distractions
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'modal', 'todos', 'pomodoros', 'distractions'])
+  persistState(['settings', 'todos', 'pomodoros', 'distractions'])
 ))
 
 export default store

@@ -2,7 +2,7 @@
 import Timer from '../modules/Timer'
 import TimeFormatter from '../modules/TimeFormatter'
 import AnalyticsService from '../modules/AnalyticsService'
-import {NOOP, SHOW_MODAL} from './'
+import {NOOP} from './'
 import NotificationCenter from '../modules/NotificationCenter'
 import NotificationService from '../modules/NotificationService'
 export const START_TIMER = 'START_TIMER'
@@ -16,17 +16,6 @@ const title = 'Pomodoro.cc - Time tracking with the Pomodoro technique'
 
 function noop () {
   return {type: NOOP, payload: {}}
-}
-
-function handleModal (dispatch, getState) {
-  const shown = getState().modal.shown || []
-  const modal = shown.find(s => s.name === 'poll')
-  if (!modal) {
-    AnalyticsService.track('shown-modal', 'poll')
-    dispatch({ type: SHOW_MODAL, payload: 'poll' })
-  } else {
-    console.log('modal already shown', modal)
-  }
 }
 
 export function startTimer (minutes, type) {
@@ -62,7 +51,7 @@ export function endTimer () {
   NotificationCenter.emit('pomodoroEnded')
   NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
 
-  return saveAndDispatch(END_TIMER, handleModal)
+  return saveAndDispatch(END_TIMER)
 }
 
 export function forceEndTimer () {
@@ -73,7 +62,7 @@ export function forceEndTimer () {
 
   Timer.forceEnd()
 
-  return saveAndDispatch(STOP_TIMER, handleModal)
+  return saveAndDispatch(STOP_TIMER)
 }
 
 export function tickTimer (remaining) {

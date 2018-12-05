@@ -1,7 +1,6 @@
 import TopBar from './components/TopBar'
 import WelcomeBar from './components/WelcomeBar'
 import MainFooter from './components/MainFooter'
-import Modal from './components/Modal'
 import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
 import * as actions from './actions'
@@ -22,17 +21,14 @@ class Layout extends Component {
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
   render (state, dispatch) {
-    const {settings, actions, user, modal} = this.props
-    console.log('modal.show', modal.show)
-    const modalBlurredClassName = modal.show ? 'layout is-blurred' : 'layout'
-    return <div className={modalBlurredClassName}>
+    const {settings, actions, user} = this.props
+    return <div>
       <TopBar actions={actions} user={user} />
       <WelcomeBar settings={settings} actions={actions} />
 
       <div className='main-content'>
         {this.props.children}
       </div>
-      <Modal modal={modal} actions={actions} handleClose={actions.acknowledgeWelcome} />
       <MainFooter />
     </div>
   }
@@ -52,7 +48,6 @@ export default connect(
   (state) => {
     return {
       todos: state.todos,
-      modal: state.modal,
       settings: state.settings,
       pomodoro: state.pomodoro,
       timer: state.timer,
