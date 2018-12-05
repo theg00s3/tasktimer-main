@@ -1,7 +1,7 @@
 import Timer from './modules/Timer'
 import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
-import {tickTimer, endTimer, loadUser} from './actions'
+import {tickTimer, resumeTimer, endTimer, loadUser} from './actions'
 
 const {getState, dispatch} = reduxStore
 
@@ -20,6 +20,20 @@ export default function init () {
     dispatch(endTimer())
     playTimerEndSound()
   })
+
+  const {pomodoro} = reduxStore.getState()
+
+  if (pomodoro && pomodoro.startedAt) {
+    if (+new Date(pomodoro.startedAt) + pomodoro.minutes * 60 < Date.now()) {
+      console.log('pomodoro in progress', pomodoro)
+      console.log('resume')
+      dispatch(resumeTimer(pomodoro))
+    } else {
+      console.log('pomodoro out of sync', pomodoro)
+    }
+  } else {
+    console.log('no pomodoro in progress')
+  }
 
   function playTimerEndSound () {
     const state = getState()

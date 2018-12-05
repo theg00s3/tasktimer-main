@@ -33,13 +33,13 @@ export function resumeTimer (pomodoro) {
   if (Timer.isInProgress()) { return noop() }
   let remaining = 0
   if (pomodoro && pomodoro.minutes && pomodoro.startedAt) {
-    let elapsed = (Date.now() - new Date(pomodoro.startedAt).getTime())
+    let elapsed = (Date.now() - +new Date(pomodoro.startedAt))
     elapsed = elapsed / 1000 << 0
     remaining = pomodoro.minutes * 60 - elapsed
   }
   remaining = remaining << 0
   if (remaining <= 0) {
-    return {type: RESET_TIMER, payload: {}}
+    return { type: RESET_TIMER, payload: {} }
   }
   Timer.start(remaining)
   return {type: RESUME_TIMER, payload: {remaining}}

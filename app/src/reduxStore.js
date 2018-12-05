@@ -26,7 +26,7 @@ const store = createStore(combineReducers({
   distractions
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'todos', 'pomodoros', 'distractions'])
+  persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'distractions'])
 ))
 
 export default store
