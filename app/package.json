@@ -56,18 +56,6 @@
   },
   "keywords": [],
   "author": "Christian Fei",
-  "standard": {
-    "env": [
-      "mocha"
-    ],
-    "globals": [
-      "describe",
-      "it",
-      "beforeEach",
-      "afterEach",
-      "expect"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/christian-fei/pomodoro.cc.git"
