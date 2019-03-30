@@ -5,11 +5,9 @@
   "scripts": {
     "deploy": "npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./build/ s3://pomodoro.cc",
     "start": "NODE_ENV=development parcel src/index_template.html",
-    "build": "rm build/*; NODE_ENV=production webpack --config webpack-prod.config.js --progress --colors",
-    "build-watch": "NODE_ENV=test webpack --progress --colors --watch",
+    "build": "NODE_ENV=development parcel build  src/index_template.html",
     "test": "jest",
-    "lint": "standard",
-    "test-watch": "karma start --single-run=false"
+    "lint": "standard"
   },
   "license": "MIT",
   "dependencies": {
