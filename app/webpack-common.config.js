@@ -51,7 +51,7 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: [{
-          loader: 'babel-loader',
+          loader: '@babel/core',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }

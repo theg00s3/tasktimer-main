@@ -8,34 +8,34 @@ describe('settings reducer', () => {
   it('sets default state when not specified', () => {
     expect(
       settings(undefined, dummyAction)
-    ).to.deep.eql(defaultState)
+    ).toStrictEqual(defaultState)
   })
 
   it('toggles specific settings', () => {
     expect(
       settings(defaultState, toggleTickSound())
-    ).to.deep.eql({
+    ).toStrictEqual({
       ...defaultState,
       tickSoundEnabled: false
     })
 
     expect(
       settings(defaultState, toggleRingSound())
-    ).to.deep.eql({
+    ).toStrictEqual({
       ...defaultState,
       ringSoundEnabled: false
     })
 
     expect(
       settings(defaultState, grantNotificationPermission(true))
-    ).to.deep.eql({
+    ).toStrictEqual({
       ...defaultState,
       notificationPermissionGranted: true
     })
 
     expect(
       settings(defaultState, acknowledgeWelcome())
-    ).to.deep.eql({
+    ).toStrictEqual({
       ...defaultState,
       acknlowedgedWelcome: true
     })

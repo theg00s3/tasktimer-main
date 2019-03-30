@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import * as actions from '../actions'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import './Logout.styl'
 
 class Logout extends Component {
   componentDidMount () {

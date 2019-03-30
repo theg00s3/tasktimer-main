@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* global expect */
-
 import Pomodoro from './Pomodoro'
 
 const pomodoroJSON = {
@@ -25,69 +22,62 @@ const MINUTES = 60 * 1000
 describe('Pomodoro', function () {
   it('#toJSON', () => {
     const pomodoro = new Pomodoro(pomodoroJSON)
-    expect(pomodoro.toJSON()).to.deep.eql(pomodoroJSON)
+    expect(pomodoro.toJSON()).toStrictEqual(pomodoroJSON)
   })
 
   describe('#duration', () => {
     it('for not cancelled pomodoro', () => {
       const pomodoro = new Pomodoro(pomodoroJSON)
-      expect(pomodoro.duration()).to.eql(25 * MINUTES)
+      expect(pomodoro.duration()).toEqual(25 * MINUTES)
     })
 
     it('for cancelled pomodoro', () => {
       const pomodoro = new Pomodoro(cancelledPomodoroJSON)
-      expect(pomodoro.duration()).to.eql(5 * MINUTES)
+      expect(pomodoro.duration()).toEqual(5 * MINUTES)
     })
   })
 
   it('#isType', () => {
     const pomodoro = new Pomodoro(pomodoroJSON)
-    expect(pomodoro.isType('pomodoro')).to.be.true
+    expect(pomodoro.isType('pomodoro')).toEqual(true)
   })
 
   describe('#timestamps', () => {
     it('for not cancelled pomodoro', () => {
       const pomodoro = new Pomodoro(pomodoroJSON)
       const timestamps = pomodoro.timestamps()
-      expect(timestamps)
-        .to.have.property('startedAt')
-        .that.deep.eql((new Date(pomodoro.startedAt)).getTime())
-      expect(timestamps)
-        .to.have.property('ended_at')
-        .that.deep.eql((new Date(pomodoro.startedAt)).getTime() + pomodoro.minutes * MINUTES)
+      expect(timestamps.startedAt).toEqual(new Date(pomodoro.startedAt).getTime())
+      expect(timestamps.ended_at).toEqual(new Date(pomodoro.startedAt).getTime() + pomodoro.minutes * MINUTES)
     })
 
     it('for cancelled pomodoro', () => {
       const pomodoro = new Pomodoro(cancelledPomodoroJSON)
       const timestamps = pomodoro.timestamps()
-      expect(timestamps)
-        .to.have.property('startedAt')
-        .that.deep.eql((new Date(pomodoro.startedAt)).getTime())
-      expect(timestamps)
-        .to.have.property('ended_at')
-        .that.deep.eql((new Date(pomodoro.cancelled_at)).getTime())
+      expect(timestamps.startedAt).toEqual(new Date(pomodoro.startedAt).getTime())
+      expect(timestamps.ended_at).toEqual(new Date(pomodoro.cancelled_at).getTime())
     })
   })
 
   it('#isCancelled', () => {
     const instance1 = new Pomodoro(pomodoroJSON)
-    expect(instance1.isCancelled()).to.be.false
+    expect(instance1.isCancelled()).toEqual(false)
 
     const instance2 = new Pomodoro(cancelledPomodoroJSON)
-    expect(instance2.isCancelled()).to.be.true
+    expect(instance2.isCancelled()).toEqual(true)
   })
 
   it('#cancel', () => {
     const pomodoro = new Pomodoro(pomodoroJSON)
-    expect(pomodoro.isCancelled()).to.be.false
+    expect(pomodoro.isCancelled()).toEqual(false)
 
     pomodoro.cancel()
 
-    expect(pomodoro.isCancelled()).to.be.true
-    expect(pomodoro.cancelled_at).to.be.ok
+    expect(pomodoro.isCancelled()).toEqual(true)
+    expect(pomodoro.cancelled_at).toBeDefined()
   })
 
   it('Pomodoro#create', () => {
-    expect(Pomodoro.create({type: 'pomodoro', minutes: 25})).to.be.an.instanceof(Pomodoro)
+    const pomo = Pomodoro.create({type: 'pomodoro', minutes: 25})
+    expect(pomo instanceof Pomodoro).toEqual(true)
   })
 })

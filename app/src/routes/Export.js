@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Link from '../components/utils/Link'
 import * as actions from '../actions'
-import './Export.styl'
 
 class Export extends Component {
   download () {

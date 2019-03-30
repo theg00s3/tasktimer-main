@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import './Support.styl'
 const logo = require('../assets/images/pomodoro.cc.png')
 
 export default class Support extends Component {

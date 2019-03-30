@@ -3,10 +3,10 @@ import TimeFormatter from './TimeFormatter'
 
 describe('TimeFormatter', () => {
   it('formats seconds to timer display', () => {
-    expect(TimeFormatter.formatSeconds(60)).to.equal('01:00')
-    expect(TimeFormatter.formatSeconds(10)).to.equal('00:10')
-    expect(TimeFormatter.formatSeconds(-1)).to.equal('00:00')
-    expect(TimeFormatter.formatSeconds(0)).to.equal('00:00')
-    expect(TimeFormatter.formatSeconds(undefined)).to.equal('00:00')
+    expect(TimeFormatter.formatSeconds(60)).toEqual('01:00')
+    expect(TimeFormatter.formatSeconds(10)).toEqual('00:10')
+    expect(TimeFormatter.formatSeconds(-1)).toEqual('00:00')
+    expect(TimeFormatter.formatSeconds(0)).toEqual('00:00')
+    expect(TimeFormatter.formatSeconds(undefined)).toEqual('00:00')
   })
 })

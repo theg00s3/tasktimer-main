@@ -10,13 +10,13 @@ export const SUBSCRIBED_TO_FRITTATA = 'SUBSCRIBED_TO_FRITTATA'
 
 export function toggleTickSound () {
   AnalyticsService.track('toggle-tick-sound')
-  Sounds.toggleTickSound()
+  // Sounds.toggleTickSound()
   return {type: TOGGLE_TICK_SOUND, payload: {}}
 }
 
 export function toggleRingSound () {
   AnalyticsService.track('toggle-ring-sound')
-  Sounds.toggleRingSound()
+  // Sounds.toggleRingSound()
   return {type: TOGGLE_RING_SOUND, payload: {}}
 }
 

@@ -1,5 +1,5 @@
 import Timer from './modules/Timer'
-import Sounds from './modules/Sounds'
+// import Sounds from './modules/Sounds'
 import reduxStore from './reduxStore'
 import {tickTimer, resumeTimer, endTimer, loadUser} from './actions'
 
@@ -9,7 +9,7 @@ export default function init () {
   Timer.on('tick', (remaining, total) => {
     const state = getState()
     if (state.settings.tickSoundEnabled) {
-      Sounds.startTickingSound()
+      // Sounds.startTickingSound()
     }
     dispatch(tickTimer(remaining))
   })
@@ -37,9 +37,9 @@ export default function init () {
 
   function playTimerEndSound () {
     const state = getState()
-    Sounds.stopTickingSound()
+    // Sounds.stopTickingSound()
     if (state.settings.ringSoundEnabled) {
-      Sounds.startRingingSound()
+      // Sounds.startRingingSound()
     }
   }
 }
