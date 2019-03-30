@@ -3,15 +3,17 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as actions from '../actions'
 
-import {ResponsiveContainer, ComposedChart, LineChart, AreaChart, Bar, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import querystring from 'querystring'
+
+import {ResponsiveContainer, ComposedChart, Bar, Line, Tooltip} from 'recharts'
 
 class Statistics extends Component {
   render () {
     const {user, todos, pomodoros, distractions} = this.props
-    console.log('todos, pomodoros', todos, pomodoros)
 
-    const date = new Date().toISOString().substring(0, 10)
-    console.log('date', date)
+    const qs = querystring.parse(window.location.search.replace('?', ''))
+
+    const date = qs.date || new Date().toISOString().substring(0, 10)
 
     const completedPomodoros = pomodoros
       .filter(Boolean)
@@ -46,14 +48,8 @@ class Statistics extends Component {
               <br />
               <ResponsiveContainer width='100%' height={100}>
                 <ComposedChart data={composedData}>
-                  {/* <XAxis dataKey='key' /> */}
-                  {/* <YAxis /> */}
                   <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
-                  {/* <Legend /> */}
-                  {/* <CartesianGrid stroke='#f5f5f5' /> */}
-                  {/* <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" /> */}
                   <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
-                  {/* <Line type='monotone' dataKey='pomodorosCount' stroke='#ff7300' /> */}
                   <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
                 </ComposedChart>
               </ResponsiveContainer>
@@ -78,8 +74,6 @@ function pomodorosChartDataFor (pomodoros) {
     const minute = new Date(curr.startedAt).getMinutes()
     const formattedHalfHour = minute < 30 ? '00' : '30'
     const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
-    // const formattedQuarterHour = minute < 15 ? '00' : (minute < 30 ? '15' : (minute < 45 ? '30' : '45'))
-    // const key = `${hour < 10 ? '0' + hour : hour}:${formattedQuarterHour}`
     acc[key] = (acc[key] || []).concat([curr])
     return acc
   }, {})
@@ -101,8 +95,6 @@ function distractionsChartDataFor (distractions) {
     const minute = new Date(curr).getMinutes()
     const formattedHalfHour = minute < 30 ? '00' : '30'
     const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
-    // const formattedQuarterHour = minute < 15 ? '00' : (minute < 30 ? '15' : (minute < 45 ? '30' : '45'))
-    // const key = `${hour < 10 ? '0' + hour : hour}:${formattedQuarterHour}`
     acc[key] = (acc[key] || []).concat([curr])
     return acc
   }, {})
@@ -136,9 +128,7 @@ function fillGaps (pomodorosByKey, pomodorosStartedAt) {
     const paddedHour = hour < 10 ? '0' + hour : hour
 
     if (!pomodorosByKey[`${paddedHour}:00`]) pomodorosByKey[`${paddedHour}:00`] = []
-    // if (!pomodorosByKey[`${paddedHour}:15`]) pomodorosByKey[`${paddedHour}:15`] = []
     if (!pomodorosByKey[`${paddedHour}:30`]) pomodorosByKey[`${paddedHour}:30`] = []
-    // if (!pomodorosByKey[`${paddedHour}:45`]) pomodorosByKey[`${paddedHour}:45`] = []
   }
   return pomodorosByKey
 }
