@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-expressions */
-/* global sinon expect describe beforeEach afterEach it */
-
 import Timer from './Timer'
+import sinon from 'sinon'
 let clock
 
 describe('Timer', () => {
@@ -15,35 +13,35 @@ describe('Timer', () => {
 
   describe('behaviour', () => {
     it('#start', () => {
-      expect(Timer.start(25 * 60)).to.be.ok
-      expect(Timer.start('123.2')).not.to.be.ok
-      expect(Timer.start('123')).not.to.be.ok
-      expect(Timer.start([])).not.to.be.ok
-      expect(Timer.start(123.2)).not.to.be.ok
-      expect(Timer.start(-1)).not.to.be.ok
-      expect(Timer.start(0)).not.to.be.ok
+      expect(Timer.start(25 * 60)).toBeTruthy()
+      expect(Timer.start('123.2')).toBeFalsy()
+      expect(Timer.start('123')).toBeFalsy()
+      expect(Timer.start([])).toBeFalsy()
+      expect(Timer.start(123.2)).toBeFalsy()
+      expect(Timer.start(-1)).toBeFalsy()
+      expect(Timer.start(0)).toBeFalsy()
     })
     it('#isInProgress', () => {
       Timer.start(25 * 60)
-      expect(Timer.isInProgress()).to.be.true
+      expect(Timer.isInProgress()).toEqual(true)
       Timer.forceEnd()
-      expect(Timer.isInProgress()).to.be.false
+      expect(Timer.isInProgress()).toEqual(false)
     })
 
     it('#start when in progress is not allowed', () => {
       Timer.start(25 * 60)
-      expect(Timer.start(25 * 60)).not.to.be.ok
+      expect(Timer.start(25 * 60)).toBeFalsy()
     })
 
     it('#forceEnd', () => {
       Timer.start(25 * 60)
-      expect(Timer.forceEnd()).to.eql(0)
+      expect(Timer.forceEnd()).toEqual(0)
     })
 
     it('#getRemaining', () => {
-      expect(Timer.start(25 * 60)).to.be.ok
+      expect(Timer.start(25 * 60)).toBeTruthy()
       clock.tick(1000)
-      expect(Timer.getRemaining()).to.eql(25 * 60 - 1)
+      expect(Timer.getRemaining()).toEqual(25 * 60 - 1)
     })
   })
 
@@ -59,26 +57,26 @@ describe('Timer', () => {
       Timer.on('tick', callback)
       Timer.start(25 * 60)
       clock.tick(100)
-      expect(callback).to.have.been.called
-      expect(callback).to.have.been.calledWith(25 * 60, 25 * 60)
+      expect(callback.called).toBeTruthy()
+      expect(callback.calledWith(25 * 60, 25 * 60)).toBeTruthy()
     })
 
     it('#on "start"', () => {
       Timer.on('start', callback)
       Timer.start(25 * 60)
-      expect(callback.called).to.be.true
-      expect(callback.calledWith(25 * 60)).to.be.true
+      expect(callback.called).toEqual(true)
+      expect(callback.calledWith(25 * 60)).toEqual(true)
     })
 
     it('#on "tick" forceEnds when timer is forceEndped', () => {
       Timer.on('tick', callback)
       Timer.start(25 * 60)
       clock.tick(1000)
-      expect(callback.called).to.be.true
+      expect(callback.called).toEqual(true)
       Timer.forceEnd()
       callback.resetHistory()
       clock.tick(1000)
-      expect(callback.called).not.to.be.true
+      expect(callback.called).not.toEqual(true)
     })
 
     it('#off "tick"', () => {
@@ -87,15 +85,15 @@ describe('Timer', () => {
       callback.resetHistory()
       Timer.off('tick', callback)
       clock.tick(1000)
-      expect(callback.called).not.to.be.true
+      expect(callback.called).not.toEqual(true)
     })
 
     it('#on "end"', () => {
       Timer.on('end', callback)
       Timer.start(1)
-      expect(callback.called).not.to.be.true
+      expect(callback.called).not.toEqual(true)
       clock.tick(1000)
-      expect(callback.called).to.be.true
+      expect(callback.called).toEqual(true)
     })
   })
 })

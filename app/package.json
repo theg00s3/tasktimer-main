@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development webpack-dev-server --port 9000 --config ./webpack.config.js --hot --progress --colors --history-api-fallback --content-base build-dev",
     "build": "rm build/*; NODE_ENV=production webpack --config webpack-prod.config.js --progress --colors",
     "build-watch": "NODE_ENV=test webpack --progress --colors --watch",
-    "test": "karma start",
+    "test": "jest",
     "lint": "standard",
     "test-watch": "karma start --single-run=false"
   },
@@ -46,6 +46,7 @@
     "mini-css-extract-plugin": "^0.4.5",
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.5",
+    "sinon": "^7.3.1",
     "style-loader": "^0.23.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
@@ -83,5 +84,11 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }
