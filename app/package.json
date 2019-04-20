@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "deploy": "NODE_ENV=production npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./build/ s3://pomodoro.cc",
+    "deploy": "NODE_ENV=production npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./dist/ s3://pomodoro.cc",
     "start": "parcel src/index_template.html",
     "build": "parcel build  src/index_template.html",
     "test": "jest",
