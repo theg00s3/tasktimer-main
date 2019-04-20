@@ -1,7 +1,7 @@
 import Buzz from './Buzz'
 
-require('../assets/audio/ring.mp3')
-require('../assets/audio/tick-tock.mp3')
+// require('../assets/audio/ring.mp3')
+// require('../assets/audio/tick-tock.mp3')
 
 export default {
   tickSoundEnabled: tickSoundEnabled,
