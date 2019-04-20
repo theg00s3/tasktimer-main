@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "NODE_ENV=production npm run build; aws s3 cp --recursive --acl public-read --region eu-central-1 ./dist/ s3://pomodoro.cc",
     "start": "parcel src/index.html",
-    "build": "parcel build  src/index.html",
+    "build": "rm -rf dist; parcel build src/index.html",
     "now-build": "NODE_ENV=production npm run build",
     "test": "jest",
     "lint": "standard"
