@@ -17,8 +17,9 @@ class TodoList extends Component {
 
   render () {
     const { todos, actions } = this.props
-    const newTodos = todos.filter(t => !t.completed).filter(t => !t.deleted)
-    const doneTodos = todos.filter(t => t.completed).filter(t => !t.deleted)
+    const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
+    const doneTodos = todos.filter(t => !t.deleted).filter(t => t.completed)
+
     return <div className='todo-list-container'>
       <input
         type='text'
