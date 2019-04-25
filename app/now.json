@@ -11,6 +11,7 @@
     { "src": "/logout", "dest": "/index.html" },
     { "src": "/export", "dest": "/index.html" },
     { "src": "/support", "dest": "/index.html" },
+    { "src": "/statistics", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
