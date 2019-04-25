@@ -7,7 +7,7 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
-class Index extends Component {
+class Main extends Component {
   render () {
     const {timer, todos, settings, pomodoro, distractions, actions} = this.props
     return <div className='content' id='start'>
@@ -29,4 +29,4 @@ export default connect(
   }),
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
-  }))(Index)
+  }))(Main)
