@@ -54,7 +54,8 @@ class Statistics extends Component {
               <br />
               You were also <b>quite productive</b> today, with <b>{completedTodosCount} tasks completed</b>
               <br />
-              <ResponsiveContainer width='100%' height={100}>
+              <br />
+              <ResponsiveContainer width='100%' height={200}>
                 <ComposedChart data={composedData}>
                   <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
                   <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
@@ -63,13 +64,6 @@ class Statistics extends Component {
               </ResponsiveContainer>
             </div>
           </div>
-
-          <ul>
-            {completedPomodoros.map(p => <li>{new Date(p.startedAt).toISOString()}</li>)}
-          </ul>
-          <ul>
-            {distractions.tracked.map(d => <li>{new Date(d).toISOString()}</li>)}
-          </ul>
         </div>}
       </div>
     </div>
