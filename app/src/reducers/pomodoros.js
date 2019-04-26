@@ -17,6 +17,12 @@ export default function pomodoros (state = defaultState, action) {
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 290), completed: true
       }, {
+        minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 260), completed: true
+      }, {
+        minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 235), completed: true
+      }, {
+        minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 210), completed: true
+      }, {
         minutes: 5, type: 'pomodoro', startedAt: new Date(now - MINUTES * 150), completed: true
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 117), completed: true

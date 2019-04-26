@@ -11,9 +11,17 @@ class Statistics extends Component {
   render () {
     const {user, todos, pomodoros, distractions} = this.props
 
+    if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
+
     const qs = querystring.parse(window.location.search.replace('?', ''))
 
     const date = qs.date || new Date().toISOString().substring(0, 10)
+
+    if (!qs.date) {
+      const params = new window.URLSearchParams(window.location.search)
+      params.set(date, date)
+      window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
+    }
 
     const completedTodosCount = todos.filter(t => t.completed).length
     const completedPomodoros = pomodoros
@@ -35,10 +43,9 @@ class Statistics extends Component {
 
     return <div className='content'>
       <h1 class='title'>Statistics</h1>
-      {user && <div>
-        Hello <b>{user.username}</b>
+      <div>
         {completedPomodoros.length === 0 && <div>
-          You haven't completed any pomodoros.
+          You haven't completed any pomodoros on <b>{date}</b>.
         </div>}
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
@@ -64,7 +71,7 @@ class Statistics extends Component {
             {distractions.tracked.map(d => <li>{new Date(d).toISOString()}</li>)}
           </ul>
         </div>}
-      </div>}
+      </div>
     </div>
   }
 }
