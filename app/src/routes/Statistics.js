@@ -15,6 +15,7 @@ class Statistics extends Component {
 
     const date = qs.date || new Date().toISOString().substring(0, 10)
 
+    const completedTodosCount = todos.filter(t => t.completed).length
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
@@ -44,7 +45,7 @@ class Statistics extends Component {
             <div className='column'>
               You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.tracked.length} distractions</b> today!
               <br />
-              You were also <b>quite productive</b> today, with <b>{todos.filter(t => t.completed).length} tasks completed</b>
+              You were also <b>quite productive</b> today, with <b>{completedTodosCount} tasks completed</b>
               <br />
               <ResponsiveContainer width='100%' height={100}>
                 <ComposedChart data={composedData}>

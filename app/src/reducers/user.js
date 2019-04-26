@@ -8,11 +8,9 @@ export default function user (state = defaultState, action) {
       return action.payload
     case LOAD_USER_ERROR:
     case LOGOUT_USER_SUCCESS:
-      return defaultState
     case LOGOUT_USER_ERROR:
       return defaultState
-    default: {
+    default:
       return state
-    }
   }
 }
