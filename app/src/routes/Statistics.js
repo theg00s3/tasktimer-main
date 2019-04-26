@@ -42,10 +42,10 @@ class Statistics extends Component {
     }, [])
 
     return <div className='content'>
-      <h1 class='title'>Statistics</h1>
+      <h1 class='title'>Statistics for {date}</h1>
       <div>
         {completedPomodoros.length === 0 && <div>
-          You haven't completed any pomodoros on <b>{date}</b>.
+          You haven't completed any pomodoros.
         </div>}
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
