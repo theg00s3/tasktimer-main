@@ -6,26 +6,18 @@ export default class Support extends Component {
     return <div className='content support'>
       <img className='support-image' src={logo} />
       <h1>Pomodoro.cc needs your support!</h1>
-      <h3 className='light'>
-                Every donation is very much appreciated.
-              </h3>
-      <h3 className='light'>
-                With your support <strong>you</strong> can help us sustain the service costs and make it possible to continue to provide a free service.
-              </h3>
-      <p>
-                We strongly believe in distractions free work and thus decided <strong>to not show ads</strong>.
-              </p>
 
-      <p>
-        Also, consider donating a coffee in terms of some crypto:
-
-        <br />
+      <h3 className='light1'>
+      Please consider becoming a backer on Patreon!
+      <br />
         <br />
 
-        <a href='litecoin:LbGvb3yyWpo7kqtxzREdcHek9st6tGyqmb' style='padding: 3em'>donate litecoin</a>
+        <a href='https://www.patreon.com/bePatron?u=19605363' data-patreon-widget-type='become-patron-button'>Become a Patron!</a><script async src='https://c6.patreon.com/becomePatronButton.bundle.js' />
+      </h3>
 
-        <a href='bitcoin:35Hy1xYjsuGF47frqA9a8HJKhJQ9rcSV4j' style='padding: 3em'>donate bitcoin</a>
-      </p>
+      <h3 className='light'>Every donation is very much appreciated.</h3>
+      <h3 className='light'>With your support <strong>you</strong> can help us sustain the service costs and make it possible to continue to provide a free service.</h3>
+      <p>We strongly believe in distractions free work and thus decided <strong>to not show ads</strong>.</p>
     </div>
   }
 }
