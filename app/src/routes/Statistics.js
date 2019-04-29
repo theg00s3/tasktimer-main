@@ -29,8 +29,10 @@ class Statistics extends Component {
       .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
+    const trackedDistractions = distractions.tracked.filter(d => new Date(d).toISOString().substring(0, 10) === date)
+
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
-    const distractionsChartData = distractionsChartDataFor(distractions.tracked)
+    const distractionsChartData = distractionsChartDataFor(trackedDistractions)
 
     const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
       const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
@@ -49,7 +51,7 @@ class Statistics extends Component {
         {completedPomodoros.length > 0 && <div>
           <div className='columns'>
             <div className='column'>
-              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{distractions.tracked.length} distractions</b> today!
+              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{trackedDistractions.length} distractions</b> today!
               <br />
               You were also <b>quite productive</b> today, with <b>{completedTodosCount} tasks completed</b>
               <br />
