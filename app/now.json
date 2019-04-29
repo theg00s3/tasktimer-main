@@ -6,13 +6,8 @@
     "src": "package.json", "use": "@now/static-build"
   }],
   "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/login", "dest": "/index.html" },
-    { "src": "/logout", "dest": "/index.html" },
-    { "src": "/export", "dest": "/index.html" },
-    { "src": "/support", "dest": "/index.html" },
-    { "src": "/statistics", "dest": "/index.html" },
     { "handle": "filesystem" },
-    { "src": "/.*", "status": 404, "dest": "/index.html" }
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/*", "status": 404, "dest": "/index.html" }
   ]
 }
