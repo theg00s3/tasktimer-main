@@ -26,9 +26,8 @@ class Statistics extends Component {
     const completedTodosCount = todos.filter(t => t.completed).length
     const completedPomodoros = pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro')
+      .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
-      .filter(p => p.completed)
 
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
     const distractionsChartData = distractionsChartDataFor(distractions.tracked)
