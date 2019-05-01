@@ -1,17 +1,13 @@
 /// <reference types="Cypress" />
 
 context('Landing', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:1234')
-  })
+  beforeEach(() => cy.visit('http://localhost:1234'))
 
-  it('shows welcome message', () => {
-    cy.get('body').should('contain', 'Welcome to pomodoro.cc!')
-  })
+  it('shows welcome message', () =>
+    cy.get('body').should('contain', 'Welcome to pomodoro.cc!'))
 
-  it('shows timer with 00:00', () => {
-    cy.get('body').should('contain', '00:00')
-  })
+  it('shows timer with 00:00', () =>
+    cy.get('body').should('contain', '00:00'))
 
   it('shows buttons to start 25, 15 and 5 minute timer', () => {
     cy.get('.timer-buttons-container').should('contain', '25min')
@@ -19,9 +15,8 @@ context('Landing', () => {
     cy.get('.timer-buttons-container').should('contain', '5min')
   })
 
-  it('shows button for tracking distractions', () => {
-    cy.get('.track-distraction-button').should('contain', 'distract')
-  })
+  it('shows button for tracking distractions', () =>
+    cy.get('.track-distraction-button').should('contain', 'distract'))
 
   it('shows example todolist', () => {
     cy.get('.todo-list-container').should('contain', 'Todo')
