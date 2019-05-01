@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Querying', () => {
+context('Landing', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1234')
   })

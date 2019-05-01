@@ -10,7 +10,7 @@ export default class WelcomeBar extends Component {
     }
     return <div className='welcome-bar-container'>
       <div className='welcome-bar tac'>
-        <div onClick={actions.acknowledgeWelcome} style={{'float': 'right'}} className='icon' tabindex='0'>
+        <div onClick={actions.acknowledgeWelcome} style={{'float': 'right'}} className='icon close-welcome' tabindex='0'>
           <img src={closeIcon} />
         </div>
         <h2 className='no-mt'>Welcome to pomodoro.cc!</h2>
