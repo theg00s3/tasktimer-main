@@ -3,3 +3,4 @@ www
 build
 build-dev
 .DS_Store
+cypress/screenshots
