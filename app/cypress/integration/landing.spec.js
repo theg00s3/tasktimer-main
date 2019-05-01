@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 context('Landing', () => {
-  beforeEach(() => cy.visit('http://localhost:3000'))
+  beforeEach(() => cy.visit('http://localhost:1234'))
 
   it('shows welcome message', () =>
     cy.get('body').should('contain', 'Welcome to pomodoro.cc!'))
