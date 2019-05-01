@@ -7,7 +7,7 @@
     "start": "parcel src/index.html",
     "build": "rm -rf dist; parcel build src/index.html",
     "now-build": "NODE_ENV=production npm run build",
-    "test": "jest",
+    "test": "jest --testRegex '((\\.|/)(test))\\.[jt]sx?$'",
     "cypress": "cypress",
     "lint": "standard"
   },
