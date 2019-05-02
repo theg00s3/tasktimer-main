@@ -6,13 +6,6 @@ context('Landing', () => {
   it('shows welcome message', () =>
     cy.get('body').should('contain', 'Welcome to pomodoro.cc!'))
 
-  it('hides welcome message after clicking on the close button', () => {
-    cy.get('body').should('contain', 'Welcome to pomodoro.cc!')
-    cy.get('#close-welcome-bar').click()
-    cy.wait(500)
-    cy.get('body').should('not.contain', 'Welcome to pomodoro.cc!')
-  })
-
   it('shows support on patreon link', () =>
     cy.get('body').should('contain', 'You can also support us on Patreon!'))
 

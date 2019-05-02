@@ -3,27 +3,39 @@
 context('Timer', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1234')
-    // cy.wait(500)
+    cy.get('#close-welcome-bar').click({force: true})
   })
 
   it('start/stop timer for 25min', () => {
-    cy.get('#minutes-25').click()
+    cy.get('#minutes-25').click({force: true})
     cy.get('#timer').contains(/24:5\d/)
-    cy.get('#minutes-25').click()
+    cy.get('#minutes-25').click({force: true})
     cy.get('#timer').contains('00:00')
   })
 
   it('start/stop timer for 15min', () => {
-    cy.get('#minutes-15').click()
+    cy.get('#minutes-15').click({force: true})
+    cy.scrollTo('top')
     cy.get('#timer').contains(/14:5\d/)
-    cy.get('#minutes-15').click()
+    cy.get('#minutes-15').click({force: true})
     cy.get('#timer').contains('00:00')
   })
 
   it('start/stop timer for 5min', () => {
-    cy.get('#minutes-5').click()
+    cy.get('#minutes-5').click({force: true})
+    cy.scrollTo('top')
     cy.get('#timer').contains(/04:5\d/)
-    cy.get('#minutes-5').click()
+    cy.get('#minutes-5').click({force: true})
+    cy.get('#timer').contains('00:00')
+  })
+
+  it('reloading the page keeps the timer running', () => {
+    cy.get('#minutes-5').click({force: true})
+    cy.scrollTo('top')
+    cy.get('#timer').contains(/04:5\d/)
+    cy.reload()
+    cy.get('#timer').contains(/04:5\d/)
+    cy.get('#minutes-5').click({force: true})
     cy.get('#timer').contains('00:00')
   })
 })
