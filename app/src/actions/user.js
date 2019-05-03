@@ -23,7 +23,7 @@ export function identifyUser (user) {
 export function loadUser () {
   return (dispatch, getState) => {
     dispatch({type: LOAD_USER_REQUEST})
-    window.fetch('https://auth.pomodoro.cc/info', {credentials: 'include'})
+    window.fetch('https://api.pomodoro.cc/info', {credentials: 'include'})
       .then(r => r.json())
       .then(json => {
         identifyUser(json)
@@ -54,7 +54,7 @@ export function loadUser () {
 export function logoutUser () {
   return (dispatch, getState) => {
     dispatch({type: LOGOUT_USER_REQUEST})
-    window.fetch('https://auth.pomodoro.cc/logout', {credentials: 'include'})
+    window.fetch('https://api.pomodoro.cc/logout', {credentials: 'include'})
       .then(() => dispatch({type: LOGOUT_USER_SUCCESS, payload: null}))
       .catch((err) => {
         console.error(LOGOUT_USER_ERROR, err)

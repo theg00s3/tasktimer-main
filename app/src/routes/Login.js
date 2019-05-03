@@ -8,9 +8,9 @@ class Login extends Component {
         <p>
           <strong>Login</strong> to <strong>import and export</strong> your pomodoro.cc settings, pomodoros and todos!
         </p>
-        <a href='https://auth.pomodoro.cc/twitter'>twitter!</a>
+        <a href='https://api.pomodoro.cc/twitter'>twitter!</a>
         <br />
-        <a href='https://auth.pomodoro.cc/github'>github!</a>
+        <a href='https://api.pomodoro.cc/github'>github!</a>
       </div>
     </div>
   }
