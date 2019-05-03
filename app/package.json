@@ -15,7 +15,7 @@
   "dependencies": {
     "notifyjs": "^3.0.0",
     "preact": "^8.4.2",
-    "preact-compat": "^3.18.4",
+    "preact-compat": "^3.18.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^5.1.1",
@@ -29,20 +29,20 @@
   "description": "Install the dependencies first with",
   "main": "src/index.js",
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^23.6.0",
     "babel-preset-preact": "^1.1.0",
     "cypress": "^3.2.0",
     "eslint-plugin-cypress": "^2.2.1",
     "expect": "^23.6.0",
-    "jest": "^24.5.0",
+    "jest": "^24.7.1",
     "now": "^15.0.11",
     "parcel-bundler": "^1.12.3",
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.5",
-    "sinon": "^7.3.1",
+    "sinon": "^7.3.2",
     "stylus": "^0.54.5"
   },
   "optionalDependencies": {
