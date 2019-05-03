@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Layout from './Layout'
 import Main from './routes/Main'
+import Open from './routes/Open'
 import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
 import Login from './routes/Login'
@@ -15,6 +16,7 @@ export default class Root extends Component {
     window.addEventListener('popstate', (event) => {
       const url = event.url || window.location.pathname
       if (url === '/') return this.setState({current: <Main />})
+      if (url === '/open') return this.setState({current: <Open />})
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})

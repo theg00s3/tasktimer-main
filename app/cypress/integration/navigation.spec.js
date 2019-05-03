@@ -8,4 +8,10 @@ context('Navigation', () => {
     cy.get('#close-welcome-bar').click()
     cy.get('body').should('not.contain', 'Welcome to pomodoro.cc!')
   })
+
+  it('shows open stats', () => {
+    cy.get('#open-stats').click()
+    cy.get('body').should('contain', 'Open stats of pomodoro.cc')
+    cy.get('iframe')
+  })
 })
