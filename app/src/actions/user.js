@@ -30,23 +30,23 @@ export function loadUser () {
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
       })
       .catch((err) => {
-        if (window.location.hostname !== 'localhost') {
-          dispatch({type: LOAD_USER_ERROR, payload: err})
-          return
-        }
+        dispatch({type: LOAD_USER_ERROR, payload: err})
+        // if (true || window.location.hostname !== 'localhost') {
+        //   return
+        // }
 
-        dispatch({ type: TEST_POMODOROS, payload: null })
-        dispatch({ type: TEST_DISTRACTIONS, payload: null })
-        dispatch({
-          type: LOAD_USER_SUCCESS,
-          payload: {
-            '_id': '5a9fe4e085d766000c002636',
-            'apikey': 'xxx',
-            'id': '2662706',
-            'avatar': 'https://avatars0.githubusercontent.com/u/2662706?v=4',
-            'username': 'christian-fei'
-          }
-        })
+        // dispatch({ type: TEST_POMODOROS, payload: null })
+        // dispatch({ type: TEST_DISTRACTIONS, payload: null })
+        // dispatch({
+        //   type: LOAD_USER_SUCCESS,
+        //   payload: {
+        //     '_id': '5a9fe4e085d766000c002636',
+        //     'apikey': 'xxx',
+        //     'id': '2662706',
+        //     'avatar': 'https://avatars0.githubusercontent.com/u/2662706?v=4',
+        //     'username': 'christian-fei'
+        //   }
+        // })
       })
   }
 }

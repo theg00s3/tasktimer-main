@@ -1,5 +1,5 @@
 import timer from './timer'
-import {startTimer, tickTimer} from '../actions'
+import {tickTimer} from '../actions'
 
 const dummyAction = {type: 'DUMMY', payload: {}}
 
@@ -8,12 +8,6 @@ describe('timer reducer', () => {
     expect(
       timer(undefined, dummyAction)
     ).toEqual('00:00')
-  })
-
-  it.skip('starts timer', () => {
-    expect(
-      timer(undefined, startTimer(25, 'pomodoro'))
-    ).toEqual('25:00')
   })
 
   it('ticks timer', () => {

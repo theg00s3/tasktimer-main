@@ -25,6 +25,7 @@ class TodoList extends Component {
         type='text'
         onKeyDown={this.addTodo.bind(this)}
         placeholder='What do you need to do?'
+        id='todo-input'
         className='todo-input' />
 
       <h1>Todo</h1>
