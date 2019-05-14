@@ -14,25 +14,24 @@ class Pair extends Component {
       forceTLS: true
     })
     this.channel = this.pusher.subscribe(this.channelId)
-    this.channel.bind('pusher:subscription_succeeded', function (data) {
-      self.setState({
-        connected: true
-      })
-    })
+    this.channel.bind('pusher:subscription_succeeded', () => self.setState({ connected: true }))
     this.channel.bind(`event`, function (data) {
-      console.log('-- event', JSON.stringify(data))
+      console.log('-- event', data)
     })
   }
 
   render () {
     const {actions} = this.props
 
+    const minutes = 25
+    const type = 'pomodoro'
+
     return <div className='content'>
       <h1 class='title'>Pair Programming Pomodoro</h1>
       <h1 class='title'>#<strong>{this.channelId}</strong></h1>
       {this.state.connected ? 'connected' : 'not connected'}
 
-      <button onClick={() => actions.sendTestEvent(this.channelId)} className=''>
+      <button onClick={() => actions.startStopPairTimer(this.channelId, {minutes, type})} className=''>
         send test event
       </button>
     </div>
