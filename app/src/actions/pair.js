@@ -7,9 +7,8 @@ export function sendTestEvent (channel, data = {}) {
     dispatch({type: PAIR_EVENT, payload: null})
     const url = (window.development) ? `http://localhost:3000/pair/${channel}` : `https://api.pomodoro.cc/pair/${channel}`
     window.fetch(url, {method: 'POST', mode: 'no-cors', body: data})
-      .then(r => r.json())
-      .then(json => {
-        return dispatch({type: PAIR_EVENT_SUCCESS, payload: json})
+      .then(() => {
+        return dispatch({type: PAIR_EVENT_SUCCESS, payload: data})
       })
       .catch(err => {
         return dispatch({type: PAIR_EVENT_FAILURE, payload: err})
