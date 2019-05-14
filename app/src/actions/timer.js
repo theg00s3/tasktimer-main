@@ -18,19 +18,32 @@ function noop () {
   return {type: NOOP, payload: {}}
 }
 
-export function startTimer (minutes, type) {
+export function startStopTimer (minutes, type, pair = false) {
+  return (dispatch, getState) => {
+    const {pomodoro} = getState()
+    if (pomodoro.minutes) {
+      forceEndTimer()(dispatch, getState)
+    }
+    if (pomodoro.minutes !== minutes) {
+      startTimer(minutes, type, pair)(dispatch, getState)
+    }
+  }
+}
+
+export function startTimer (minutes, type, pair = false) {
   return (dispatch, getState) => {
     if (Timer.isInProgress()) return noop()
     Timer.start(minutes * 60)
     const startedAt = new Date()
-    const pomodoro = {minutes, type, startedAt}
+    const pomodoro = {minutes, type, startedAt, pair}
     AnalyticsService.track('timer-start', pomodoro)
     dispatch({type: START_TIMER, payload: pomodoro})
   }
 }
 
 export function resumeTimer (pomodoro) {
-  if (Timer.isInProgress()) { return noop() }
+  if (Timer.isInProgress()) return noop()
+
   let remaining = 0
   if (pomodoro && pomodoro.minutes && pomodoro.startedAt) {
     let elapsed = (Date.now() - +new Date(pomodoro.startedAt))
@@ -38,9 +51,8 @@ export function resumeTimer (pomodoro) {
     remaining = pomodoro.minutes * 60 - elapsed
   }
   remaining = remaining << 0
-  if (remaining <= 0) {
-    return { type: RESET_TIMER, payload: {} }
-  }
+  if (remaining <= 0) return { type: RESET_TIMER, payload: {} }
+
   Timer.start(remaining)
   return {type: RESUME_TIMER, payload: {remaining}}
 }
