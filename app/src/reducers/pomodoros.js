@@ -23,13 +23,13 @@ export default function pomodoros (state = defaultState, action) {
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 210), completed: true
       }, {
-        minutes: 5, type: 'pomodoro', startedAt: new Date(now - MINUTES * 150), completed: true
+        minutes: 5, type: 'break', startedAt: new Date(now - MINUTES * 150), completed: true
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 117), completed: true
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 91), completed: true
       }, {
-        minutes: 5, type: 'pomodoro', startedAt: new Date(now - MINUTES * 65), completed: true
+        minutes: 5, type: 'break', startedAt: new Date(now - MINUTES * 65), completed: true
       }, {
         minutes: 25, type: 'pomodoro', startedAt: new Date(now - MINUTES * 59), completed: true
       }, {
