@@ -17,6 +17,8 @@ class Pair extends Component {
     this.channel.bind('pusher:subscription_succeeded', () => self.setState({ connected: true }))
     this.channel.bind(`event`, function (data) {
       console.log('-- event', data)
+      console.log('self.props', self.props)
+      self.props.actions.startStopTimer(data.body.minutes, data.body.type, true)
     })
   }
 
@@ -31,7 +33,7 @@ class Pair extends Component {
       <h1 class='title'>#<strong>{this.channelId}</strong></h1>
       {this.state.connected ? 'connected' : 'not connected'}
 
-      <button onClick={() => actions.startStopPairTimer(this.channelId, {minutes, type})} className=''>
+      <button onClick={() => actions.sendPairRequest(this.channelId, {minutes, type})} className=''>
         send test event
       </button>
     </div>
