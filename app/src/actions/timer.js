@@ -37,6 +37,7 @@ export function startTimer (minutes, type, pair = false) {
     const startedAt = new Date()
     const pomodoro = {minutes, type, startedAt, pair}
     AnalyticsService.track('timer-start', pomodoro)
+    if (pair) AnalyticsService.track('pair-timer-start', pomodoro)
     dispatch({type: START_TIMER, payload: pomodoro})
   }
 }
