@@ -25,9 +25,13 @@ export default function init () {
 
   if (pomodoro && pomodoro.startedAt) {
     if (+new Date(pomodoro.startedAt) + pomodoro.minutes * 60 < Date.now()) {
-      console.log('pomodoro in progress', pomodoro)
-      console.log('resume')
-      dispatch(resumeTimer(pomodoro))
+      if (!/pair/.test(window.location.pathname)) {
+        console.log('pomodoro in progress', pomodoro)
+        console.log('resume')
+        dispatch(resumeTimer(pomodoro))
+      } else {
+        console.log('not resuming on a pair programming pomodoro')
+      }
     } else {
       console.log('pomodoro out of sync', pomodoro)
     }

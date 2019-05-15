@@ -45,7 +45,7 @@ export function resumeTimer (pomodoro) {
   if (Timer.isInProgress()) return noop()
 
   let remaining = 0
-  if (pomodoro && pomodoro.minutes && pomodoro.startedAt) {
+  if (pomodoro && !pomodoro.cancelled && pomodoro.minutes && pomodoro.startedAt) {
     let elapsed = (Date.now() - +new Date(pomodoro.startedAt))
     elapsed = elapsed / 1000 << 0
     remaining = pomodoro.minutes * 60 - elapsed

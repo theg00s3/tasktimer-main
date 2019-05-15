@@ -7,6 +7,22 @@ import Pomodoro from '../components/Pomodoro'
 import './Pair.styl'
 Pusher.logToConsole = true
 
+function getPairStatus (channel) {
+  const url = (window.development)
+  ? `http://localhost:3000/pair/${channel}`
+  : `https://api.pomodoro.cc/pair/${channel}`
+
+  return window.fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(res => res.json())
+}
+
 class Pair extends Component {
   componentDidMount () {
     const self = this
@@ -20,7 +36,10 @@ class Pair extends Component {
     this.channel.bind(`event`, (data) =>
       self.props.actions.startStopTimer(data.pomodoro.minutes, data.pomodoro.type, true))
 
-    this.props.actions.getPairStatus(this.channelId)
+    getPairStatus(this.channelId)
+    .then((pomodoro) => {
+      self.props.actions.resumeTimer(pomodoro)
+    })
   }
 
   componentWillUnmount () {
