@@ -16,7 +16,7 @@ class Pair extends Component {
       forceTLS: true
     })
     this.channel = this.pusher.subscribe(this.channelId)
-    this.channel.bind('pusher:subscription_succeeded', () => self.setState({ connected: true }))
+    this.channel.bind('pusher:subscription_succeeded', () => self.setState({ connected: false }))
     this.channel.bind(`event`, function (data) {
       self.props.actions.startStopTimer(data.pomodoro.minutes, data.pomodoro.type, true)
     })
