@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
 import Pomodoro from '../components/Pomodoro'
+import './Pair.styl'
 Pusher.logToConsole = true
 
 class Pair extends Component {
@@ -38,11 +39,10 @@ class Pair extends Component {
 
     return <div className='content'>
       <h1 class='title'>Pair Programming Pomodoro</h1>
-      <h1 class='title'>#<strong>{this.channelId}</strong></h1>
-
-      <div>
-        {this.state.connected ? 'connected' : 'not connected'}
-      </div>
+      <h1 class='title'>
+        #<strong>{this.channelId}</strong>
+        {this.state.connected ? <span class='indicator connected'>&nbsp;</span> : <span class='indicator not-connected'>&nbsp;</span>}
+      </h1>
 
       <Pomodoro timer={timer} actions={actions} pair channelId={this.channelId} />
     </div>
