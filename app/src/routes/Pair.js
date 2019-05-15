@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
 import TimerButtons from '../components/TimerButtons'
+import Timer from '../components/Timer'
 Pusher.logToConsole = true
 
 class Pair extends Component {
@@ -22,7 +23,7 @@ class Pair extends Component {
   }
 
   render () {
-    const {actions, user} = this.props
+    const {actions, user, timer} = this.props
 
     if (!user) {
       return <div className='content'>
@@ -38,6 +39,7 @@ class Pair extends Component {
         {this.state.connected ? 'connected' : 'not connected'}
       </div>
 
+      <Timer timer={timer} />
       <TimerButtons actions={actions} pair channelId={this.channelId} />
     </div>
   }
@@ -45,6 +47,7 @@ class Pair extends Component {
 
 export default connect(
 (state) => ({
+  timer: state.timer,
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros,
