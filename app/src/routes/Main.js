@@ -12,7 +12,7 @@ class Main extends Component {
     const {timer, todos, settings, pomodoro, distractions, actions} = this.props
     return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
-      <SoundSettings settings={settings} actions={actions} />
+      {/* <SoundSettings settings={settings} actions={actions} /> */}
       <TrackDistraction actions={actions} distractions={distractions} />
       <TodoList todos={todos} actions={actions} />
     </div>
