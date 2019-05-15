@@ -5,10 +5,11 @@ import TimerButtons from './TimerButtons'
 export default class Pomodoro extends Component {
   render () {
     const {timer, actions} = this.props
+    const {pair = false, channelId} = this.props
 
     return <div>
       <Timer timer={timer} />
-      <TimerButtons actions={actions} />
+      <TimerButtons actions={actions} pair={pair} channelId={channelId} />
     </div>
   }
 }

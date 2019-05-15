@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
-import TimerButtons from '../components/TimerButtons'
-import Timer from '../components/Timer'
+import Pomodoro from '../components/Pomodoro'
 Pusher.logToConsole = true
 
 class Pair extends Component {
@@ -20,6 +19,11 @@ class Pair extends Component {
     this.channel.bind(`event`, function (data) {
       self.props.actions.startStopTimer(data.body.minutes, data.body.type, true)
     })
+  }
+
+  componentWillUnmount () {
+    console.log('channel.unbind_all', this.channelId)
+    this.channel.unbind_all()
   }
 
   render () {
@@ -39,8 +43,7 @@ class Pair extends Component {
         {this.state.connected ? 'connected' : 'not connected'}
       </div>
 
-      <Timer timer={timer} />
-      <TimerButtons actions={actions} pair channelId={this.channelId} />
+      <Pomodoro timer={timer} actions={actions} pair channelId={this.channelId} />
     </div>
   }
 }
