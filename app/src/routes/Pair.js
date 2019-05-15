@@ -13,7 +13,7 @@ function getPairStatus (channel) {
   : `https://api.pomodoro.cc/pair/${channel}/status`
 
   return window.fetch(url, {
-    method: 'POST',
+    method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
     headers: {
