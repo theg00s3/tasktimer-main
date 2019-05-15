@@ -22,7 +22,13 @@ class Pair extends Component {
   }
 
   render () {
-    const {actions} = this.props
+    const {actions, user} = this.props
+
+    if (!user) {
+      return <div className='content'>
+        Please login to use the pair pomodoro
+      </div>
+    }
 
     return <div className='content'>
       <h1 class='title'>Pair Programming Pomodoro</h1>
