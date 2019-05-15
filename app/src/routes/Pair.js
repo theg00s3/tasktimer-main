@@ -9,12 +9,17 @@ Pusher.logToConsole = true
 
 function getPairStatus (channel) {
   const url = (window.development)
-  ? `http://localhost:3000/pair/${channel}`
-  : `https://api.pomodoro.cc/pair/${channel}`
+  ? `http://localhost:3000/pair/${channel}/status`
+  : `https://api.pomodoro.cc/pair/${channel}/status`
 
   return window.fetch(url, {
-    method: 'GET',
-    mode: 'cors'
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   })
   .then(res => res.json())
 }
