@@ -28,7 +28,7 @@ class Pair extends Component {
   componentDidMount () {
     const self = this
     this.channelId = window.location.pathname.replace('/pair/', '')
-    this.pusher = new Pusher('d50be9e8b6b4af4885ce', { cluster: 'eu', forceTLS: true })
+    this.pusher = new Pusher('7bfb8a4766daf90ea615', { cluster: 'eu', forceTLS: true })
     this.channel = this.pusher.subscribe(this.channelId)
 
     this.channel.bind('pusher:subscription_succeeded', () =>
