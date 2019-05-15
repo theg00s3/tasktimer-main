@@ -14,11 +14,7 @@ function getPairStatus (channel) {
 
   return window.fetch(url, {
     method: 'GET',
-    mode: 'cors',
-    cache: 'no-cache',
-    headers: {
-      'Accept': 'application/json'
-    }
+    mode: 'cors'
   })
   .then(res => res.json())
 }

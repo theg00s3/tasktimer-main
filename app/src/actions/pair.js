@@ -43,11 +43,7 @@ export function sendPairRequest (channel, data = {minutes: 25, type: 'pomodoro'}
       method: 'POST',
       mode: 'cors',
       body,
-      cache: 'no-cache',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      cache: 'no-cache'
     })
       .then(res => res.json())
       .then(() => {
