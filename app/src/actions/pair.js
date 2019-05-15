@@ -10,7 +10,6 @@ export function sendPairRequest (channel, data = {minutes: 25, type: 'pomodoro'}
       : `https://api.pomodoro.cc/pair/${channel}`
 
     const body = JSON.stringify(data)
-    console.log('body', body)
 
     window.fetch(url, {
       method: 'POST',

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
+import TimerButtons from '../components/TimerButtons'
 Pusher.logToConsole = true
 
 class Pair extends Component {
@@ -16,8 +17,6 @@ class Pair extends Component {
     this.channel = this.pusher.subscribe(this.channelId)
     this.channel.bind('pusher:subscription_succeeded', () => self.setState({ connected: true }))
     this.channel.bind(`event`, function (data) {
-      console.log('-- event', data)
-      console.log('self.props', self.props)
       self.props.actions.startStopTimer(data.body.minutes, data.body.type, true)
     })
   }
@@ -25,17 +24,15 @@ class Pair extends Component {
   render () {
     const {actions} = this.props
 
-    const minutes = 25
-    const type = 'pomodoro'
-
     return <div className='content'>
       <h1 class='title'>Pair Programming Pomodoro</h1>
       <h1 class='title'>#<strong>{this.channelId}</strong></h1>
-      {this.state.connected ? 'connected' : 'not connected'}
 
-      <button onClick={() => actions.sendPairRequest(this.channelId, {minutes, type})} className=''>
-        send test event
-      </button>
+      <div>
+        {this.state.connected ? 'connected' : 'not connected'}
+      </div>
+
+      <TimerButtons actions={actions} pair channelId={this.channelId} />
     </div>
   }
 }
