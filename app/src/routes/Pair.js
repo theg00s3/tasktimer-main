@@ -13,10 +13,13 @@ class Pair extends Component {
     this.channelId = window.location.pathname.replace('/pair/', '')
     this.pusher = new Pusher('d50be9e8b6b4af4885ce', { cluster: 'eu', forceTLS: true })
     this.channel = this.pusher.subscribe(this.channelId)
+
     this.channel.bind('pusher:subscription_succeeded', () =>
       self.setState({ connected: false }))
+
     this.channel.bind(`event`, (data) =>
       self.props.actions.startStopTimer(data.pomodoro.minutes, data.pomodoro.type, true))
+
     this.props.actions.getPairStatus(this.channelId)
   }
 
