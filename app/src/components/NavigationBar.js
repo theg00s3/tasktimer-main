@@ -13,6 +13,7 @@ export default class NavigationBar extends Component {
       <Link to='/export'>Export</Link>
       <Link to='/support'>Support us!</Link>
       <Link to='/open' id='open-stats'>Open</Link>
+      <Link to='/about' id='open-stats'>About</Link>
       {/* <a href='https://medium.com/@pomodoro_cc' target='_blank'>Blog</a> */}
       <User user={user} />
     </div>

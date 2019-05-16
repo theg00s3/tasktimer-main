@@ -4,6 +4,7 @@ import Main from './routes/Main'
 import Open from './routes/Open'
 import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
+import About from './routes/About'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
 import Export from './routes/Export'
@@ -18,6 +19,7 @@ export default class Root extends Component {
     window.addEventListener('popstate', (event) => {
       const url = event.url || window.location.pathname
       if (url === '/') return this.setState({current: <Main />})
+      if (url === '/about') return this.setState({current: <About />})
       if (url === '/open') return this.setState({current: <Open />})
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})

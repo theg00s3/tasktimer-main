@@ -1,5 +1,4 @@
 import TopBar from './components/TopBar'
-import WelcomeBar from './components/WelcomeBar'
 import MainFooter from './components/MainFooter'
 import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
@@ -21,10 +20,9 @@ class Layout extends Component {
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
   render (state, dispatch) {
-    const {settings, actions, user} = this.props
+    const {actions, user} = this.props
     return <div>
       <TopBar actions={actions} user={user} />
-      <WelcomeBar settings={settings} actions={actions} />
 
       <div className='main-content'>
         {this.props.children}

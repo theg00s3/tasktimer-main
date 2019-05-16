@@ -25,11 +25,6 @@ export function grantNotificationPermission (grant) {
   return {type: NOTIFICATION_PERMISSION_GRANT, payload: {grant}}
 }
 
-export function acknowledgeWelcome () {
-  AnalyticsService.track('acknowledge-welcome')
-  return {type: ACKNLOWEDGED_WELCOME, payload: {}}
-}
-
 export function subscribedToFrittata () {
   AnalyticsService.track('subscribed-to-frittata')
   return {type: SUBSCRIBED_TO_FRITTATA, payload: {}}

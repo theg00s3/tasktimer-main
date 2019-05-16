@@ -1,6 +1,6 @@
 /* global expect */
 import settings, {defaultState} from './settings'
-import {toggleTickSound, toggleRingSound, grantNotificationPermission, acknowledgeWelcome} from '../actions'
+import {toggleTickSound, toggleRingSound, grantNotificationPermission} from '../actions'
 
 const dummyAction = {type: '', payload: {}}
 
@@ -31,13 +31,6 @@ describe('settings reducer', () => {
     ).toStrictEqual({
       ...defaultState,
       notificationPermissionGranted: true
-    })
-
-    expect(
-      settings(defaultState, acknowledgeWelcome())
-    ).toStrictEqual({
-      ...defaultState,
-      acknlowedgedWelcome: true
     })
   })
 })
