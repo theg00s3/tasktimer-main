@@ -7,7 +7,6 @@ import FouroFour from './routes/FouroFour'
 import About from './routes/About'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
-import Export from './routes/Export'
 import ChoosePair from './routes/ChoosePair'
 import Pair from './routes/Pair'
 import Statistics from './routes/Statistics'
@@ -24,7 +23,6 @@ export default class Root extends Component {
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
-      if (url === '/export') return this.setState({current: <Export />})
       if (url === '/pair') return this.setState({current: <ChoosePair />})
       if (url.includes('/pair')) return this.setState({current: <Pair />})
       if (url === '/statistics') return this.setState({current: <Statistics />})
