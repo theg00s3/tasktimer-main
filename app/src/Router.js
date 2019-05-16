@@ -24,7 +24,7 @@ export default class Root extends Component {
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
       if (url === '/pair') return this.setState({current: <ChoosePair />})
-      if (url.includes('/pair')) return this.setState({current: <Pair />})
+      if (/\/pair/.test('/pair')) return this.setState({current: <Pair />})
       if (url === '/statistics') return this.setState({current: <Statistics />})
       this.setState({current: <FouroFour />})
     })
