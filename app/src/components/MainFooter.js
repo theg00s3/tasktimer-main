@@ -14,9 +14,12 @@ export default class MainFooter extends Component {
         <p>
           Made with &lt;3 by <a href='https://christianfei.com' target='_blank'>Christian Fei</a>
         </p>
-        <small>
+        <p>
+          &copy; 2014 - {new Date().toISOString().substr(0, 4)} Christian Fei
+        </p>
+        <p>
           This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
-      </small>
+        </p>
       </div>
     </footer>
   }
