@@ -60,7 +60,7 @@ class Pair extends Component {
     }
 
     return <div className='content'>
-      <h1 class='title'>Pair Programming Pomodoro</h1>
+      <h1 class='title'><b>Pair Pomodoro</b></h1>
       <h1 class='title'>
         #<strong>{this.channelId}</strong>
         {this.state.connected ? <span class='indicator connected'>&nbsp;</span> : <span class='indicator not-connected'>&nbsp;</span>}
