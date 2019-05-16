@@ -26,7 +26,7 @@ class Pair extends Component {
         Choose a channel to connect with your colleagues
       </h1>
 
-      <input type='test' className='choose-pair-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Name of the channel' />
+      <input type='test' className='choose-pair-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Channel name' />
     </div>
   }
 }
