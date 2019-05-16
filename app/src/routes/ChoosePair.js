@@ -23,10 +23,10 @@ class Pair extends Component {
     return <div className='content'>
       <h1 class='title'><b>Pair Pomodoro</b></h1>
       <h1 class='title'>
-        Choose a channel to connect with your colleagues
+        <label for='channel-name'>Choose a channel to connect with your colleagues</label>
       </h1>
 
-      <input type='test' className='choose-pair-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Channel name' />
+      <input autofocus type='test' id='channel-name' className='choose-pair-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Channel name' />
     </div>
   }
 }
