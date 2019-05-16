@@ -1,6 +1,5 @@
-/*     */
 import AnalyticsService from '../modules/AnalyticsService'
-import Sounds from '../modules/Sounds'
+// import Sounds from '../modules/Sounds'
 
 export const TOGGLE_TICK_SOUND = 'TOGGLE_TICK_SOUND'
 export const TOGGLE_RING_SOUND = 'TOGGLE_RING_SOUND'
@@ -23,9 +22,4 @@ export function toggleRingSound () {
 export function grantNotificationPermission (grant) {
   AnalyticsService.track('grant-notification-permission')
   return {type: NOTIFICATION_PERMISSION_GRANT, payload: {grant}}
-}
-
-export function subscribedToFrittata () {
-  AnalyticsService.track('subscribed-to-frittata')
-  return {type: SUBSCRIBED_TO_FRITTATA, payload: {}}
 }

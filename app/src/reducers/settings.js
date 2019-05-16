@@ -5,8 +5,7 @@ export const defaultState = {
   ringSoundEnabled: true,
   notificationPermissionGranted: false,
   acknlowedgedWelcome: false,
-  acknowledgeSignupForm: false,
-  subscribedToFrittata: false
+  acknowledgeSignupForm: false
 }
 
 export default function settings (state = defaultState, action) {
@@ -33,12 +32,6 @@ export default function settings (state = defaultState, action) {
       return {
         ...state,
         acknlowedgedWelcome: true
-      }
-    }
-    case SUBSCRIBED_TO_FRITTATA : {
-      return {
-        ...state,
-        subscribedToFrittata: true
       }
     }
   }
