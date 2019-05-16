@@ -4,8 +4,6 @@ import AnalyticsService from '../modules/AnalyticsService'
 export const TOGGLE_TICK_SOUND = 'TOGGLE_TICK_SOUND'
 export const TOGGLE_RING_SOUND = 'TOGGLE_RING_SOUND'
 export const NOTIFICATION_PERMISSION_GRANT = 'NOTIFICATION_PERMISSION_GRANT'
-export const ACKNLOWEDGED_WELCOME = 'ACKNLOWEDGED_WELCOME'
-export const SUBSCRIBED_TO_FRITTATA = 'SUBSCRIBED_TO_FRITTATA'
 
 export function toggleTickSound () {
   AnalyticsService.track('toggle-tick-sound')
