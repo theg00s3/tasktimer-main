@@ -16,6 +16,8 @@ export default class About extends Component {
 
         <p>
           <strong>This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.</strong>
+        </p>
+        <p>
           <strong>All logos and marks contained herein are the property of their respective owners.</strong>
         </p>
 
