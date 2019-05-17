@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@sentry/browser": "^5.2.1",
     "notifyjs": "^3.0.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.5",
