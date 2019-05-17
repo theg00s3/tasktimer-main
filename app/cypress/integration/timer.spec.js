@@ -3,7 +3,6 @@
 context('Timer', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1234')
-    cy.get('#close-welcome-bar').click({})
   })
 
   it('start/stop timer for 25min', () => {

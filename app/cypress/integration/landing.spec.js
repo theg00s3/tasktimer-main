@@ -2,13 +2,6 @@
 
 context('Landing', () => {
   beforeEach(() => cy.visit('http://localhost:1234'))
-
-  it('shows welcome message', () =>
-    cy.get('body').should('contain', 'Welcome to pomodoro.cc!'))
-
-  it('shows support on patreon link', () =>
-    cy.get('body').should('contain', 'You can also support us on Patreon!'))
-
   it('shows timer with 00:00', () =>
     cy.get('body').should('contain', '00:00'))
 
