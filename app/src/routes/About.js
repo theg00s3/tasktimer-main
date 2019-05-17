@@ -9,7 +9,7 @@ export default class About extends Component {
         <p>We can help you to plan your activities for the day, and get things done!</p>
 
         <p>
-          Pomodoro.cc is a tool that leverages the concepts of the <a href='http://pomodorotechnique.com/' target='_blank'>Pomodoro Technique</a>
+          Pomodoro.cc is a tool that leverages the concepts of the Pomodoro Technique
           <br />
           to help you to keep your focus with mind-refreshing breaks.
         </p>
