@@ -49,22 +49,29 @@ class Statistics extends Component {
           You haven't completed any pomodoros.
         </div>}
         {completedPomodoros.length > 0 && <div>
-          <div className='columns'>
-            <div className='column'>
-              You tracked <b>{completedPomodoros.length} pomodoros</b>, and <b>{trackedDistractions.length} distractions</b> today!
-              <br />
-              You were also <b>quite productive</b> today, with <b>{completedTodosCount} tasks completed</b>
-              <br />
-              <br />
-              <ResponsiveContainer width='100%' height={200}>
-                <ComposedChart data={composedData}>
-                  <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
-                  <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
-                  <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-                </ComposedChart>
-              </ResponsiveContainer>
+          <div class='columns'>
+            <div class='column border1 pad tac1'>
+              <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+            </div>
+            <div class='column border1 pad tac1'>
+              <h1 class='no-m'>{trackedDistractions.length}</h1>
+              distractions
             </div>
           </div>
+          <div class='columns'>
+            <div class='column border1 pad tac1'>
+              You were also quite productive today, with {completedTodosCount} tasks completed
+            </div>
+          </div>
+          <br />
+          <br />
+          <ResponsiveContainer width='100%' height={200}>
+            <ComposedChart data={composedData}>
+              <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
+              <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
+              <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+            </ComposedChart>
+          </ResponsiveContainer>
         </div>}
       </div>
     </div>
