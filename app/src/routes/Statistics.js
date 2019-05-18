@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as actions from '../actions'
-
 import querystring from 'querystring'
-
 import {ResponsiveContainer, ComposedChart, Bar, Line, Tooltip} from 'recharts'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import * as actions from '../actions'
+import Link from '../components/utils/Link'
+import './Statistics.styl'
+dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
@@ -17,9 +20,10 @@ class Statistics extends Component {
 
     const date = qs.date || new Date().toISOString().substring(0, 10)
 
+    let dayBefore = dayjs(date).utc().local().subtract(1, 'day').toISOString().substr(0, 10)
+    let dayAfter = dayjs(date).utc().local().add(1, 'day').toISOString().substr(0, 10)
+
     if (!qs.date) {
-      const params = new window.URLSearchParams(window.location.search)
-      params.set(date, date)
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
     }
 
@@ -43,7 +47,11 @@ class Statistics extends Component {
     }, [])
 
     return <div className='content'>
-      <h1 class='title'>Statistics for {date}</h1>
+      <div>
+        <h1 class='title'>Statistics for {date}</h1>
+        <Link to={`/statistics?date=${dayBefore}`}>{dayBefore}</Link> &nbsp;
+        <Link to={`/statistics?date=${dayAfter}`}>{dayAfter}</Link>
+      </div>
       <div>
         {completedPomodoros.length === 0 && <div>
           You haven't completed any pomodoros.

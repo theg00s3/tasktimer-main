@@ -10,7 +10,7 @@ export default class Link extends Component {
     function handleRoute (event) {
       const popStateEvent = new window.PopStateEvent('popstate', {url})
       popStateEvent.url = url
-      window.history.pushState({url}, null, url)
+      window.history.pushState(null, document.title, url)
       window.dispatchEvent(popStateEvent)
     }
 

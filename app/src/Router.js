@@ -25,9 +25,10 @@ export default class Root extends Component {
       if (url === '/logout') return this.setState({current: <Logout />})
       if (url === '/pair') return this.setState({current: <ChoosePair />})
       if (/\/pair/.test(url)) return this.setState({current: <Pair />})
-      if (url === '/statistics') return this.setState({current: <Statistics />})
+      if (/\/statistics/.test(url)) return this.setState({current: <Statistics />})
       this.setState({current: <FouroFour />})
     })
+
     const popStateEvent = new window.PopStateEvent('popstate')
     popStateEvent.url = window.location.pathname
     window.dispatchEvent(popStateEvent)
