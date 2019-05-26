@@ -19,9 +19,10 @@ class Statistics extends Component {
     const qs = querystring.parse(window.location.search.replace('?', ''))
 
     const date = qs.date || new Date().toISOString().substring(0, 10)
+    const today = new Date().toISOString().substring(0, 10)
 
-    let dayBefore = dayjs(date).utc().local().subtract(1, 'day').toISOString().substr(0, 10)
-    let dayAfter = dayjs(date).utc().local().add(1, 'day').toISOString().substr(0, 10)
+    let dayBefore = dayjs(date).subtract(0, 'day').toISOString().substr(0, 10)
+    let dayAfter = dayjs(date).add(2, 'day').toISOString().substr(0, 10)
 
     if (!qs.date) {
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
@@ -49,8 +50,9 @@ class Statistics extends Component {
     return <div className='content'>
       <div>
         <h1 class='title'>Statistics for {date}</h1>
-        <Link to={`/statistics?date=${dayBefore}`}>{dayBefore}</Link> &nbsp;
-        <Link to={`/statistics?date=${dayAfter}`}>{dayAfter}</Link>
+        <Link reload to={`/statistics?date=${dayBefore}`}>&lt; {dayBefore}</Link> &nbsp;
+        {(date !== today)
+          ? <Link reload to={`/statistics?date=${dayAfter}`}>{dayAfter} &gt;</Link> : null}
       </div>
       <div>
         {completedPomodoros.length === 0 && <div>
