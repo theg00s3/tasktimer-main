@@ -60,16 +60,16 @@ class Statistics extends Component {
         </div>}
         {completedPomodoros.length > 0 && <div>
           <div class='columns'>
-            <div class='column border1 pad tac1'>
+            <div class='column pad-v tac'>
               <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
             </div>
-            <div class='column border1 pad tac1'>
+            <div class='column pad-v tac'>
               <h1 class='no-m'>{trackedDistractions.length}</h1>
               distractions
             </div>
           </div>
           <div class='columns'>
-            <div class='column border1 pad tac1'>
+            <div class='column pad-v tac'>
               You were also quite productive today, with {completedTodosCount} tasks completed
             </div>
           </div>
