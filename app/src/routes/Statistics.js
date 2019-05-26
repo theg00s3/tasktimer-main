@@ -50,9 +50,9 @@ class Statistics extends Component {
     return <div className='content'>
       <div>
         <h1 class='title'>Statistics for {date}</h1>
-        <Link reload to={`/statistics?date=${dayBefore}`}>&lt; {dayBefore}</Link> &nbsp;
+        <Link className='stats-navigation' reload to={`/statistics?date=${dayBefore}`}>&lt; {dayBefore}</Link> &nbsp;
         {(date !== today)
-          ? <Link reload to={`/statistics?date=${dayAfter}`}>{dayAfter} &gt;</Link> : null}
+          ? <Link className='stats-navigation' reload to={`/statistics?date=${dayAfter}`}>{dayAfter} &gt;</Link> : null}
       </div>
       <div>
         {completedPomodoros.length === 0 && <div>
