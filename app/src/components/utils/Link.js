@@ -3,11 +3,18 @@ import React, {Component} from 'react'
 export default class Link extends Component {
   render () {
     const url = this.props.to || this.props.href || this.props.url
+    const reload = !!this.props.reload
     const classNames = `link ${this.props.class} ${this.props.className}`
     const id = `${this.props.id}`
+
     return <span tabindex='0' onKeyUp={withEnterKey(handleRoute)} onClick={handleRoute} id={id} class={classNames}>{this.props.children}</span>
 
     function handleRoute (event) {
+      if (reload) {
+        window.location.href = url
+        return
+      }
+
       const popStateEvent = new window.PopStateEvent('popstate', {url})
       popStateEvent.url = url
       window.history.pushState(null, document.title, url)
