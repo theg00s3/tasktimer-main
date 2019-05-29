@@ -1,6 +1,6 @@
 import Pomodoro from '../components/Pomodoro'
 import TodoForm from '../components/TodoForm'
-import SoundSettings from '../components/SoundSettings'
+// import SoundSettings from '../components/SoundSettings'
 import TrackDistraction from '../components/TrackDistraction'
 import * as actions from '../actions'
 import React, {Component} from 'react'
