@@ -28,8 +28,10 @@ class TodoList extends Component {
         id='todo-input'
         className='todo-input' />
 
-      <h1 className='no-m m-t'>Todo</h1>
-      {renderTodoListWith(newTodos, actions)}
+      {newTodos.length === 0 ? null : <div>
+        <h1 className='no-m m-t'>Todo</h1>
+        {renderTodoListWith(newTodos, actions)}
+      </div>}
       <h1 className='no-m m-t'>Done</h1>
       {renderTodoListWith(doneTodos, actions)}
     </div>
