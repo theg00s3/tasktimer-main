@@ -15,12 +15,12 @@ context('Landing', () => {
     cy.get('.track-distraction-button').should('contain', 'distract'))
 
   it('shows example todolist', () => {
-    cy.get('.todo-list-container').should('contain', 'Todo')
-    cy.get('.todo-list-container').should('contain', 'Done')
+    cy.get('.todo-form-container').should('contain', 'Todo')
+    cy.get('.todo-form-container').should('contain', 'Done')
 
-    cy.get('.todo-list').eq(0).should('contain', 'start a 25 minutes timer and get focused')
-    cy.get('.todo-list').eq(0).should('contain', 'take a break, start a 5 minute timer!')
+    cy.get('.todo-form').eq(0).should('contain', 'start a 25 minutes timer and get focused')
+    cy.get('.todo-form').eq(0).should('contain', 'take a break, start a 5 minute timer!')
 
-    cy.get('.todo-list').eq(1).should('contain', 'visit pomodoro.cc')
+    cy.get('.todo-form').eq(1).should('contain', 'visit pomodoro.cc')
   })
 })

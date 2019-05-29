@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import Link from '../components/utils/Link'
-import TodoList from '../components/TodoList'
+import TodoForm from '../components/TodoForm'
 import './Statistics.styl'
 dayjs.extend(utc)
 
@@ -50,15 +50,21 @@ class Statistics extends Component {
 
     return <div className='content'>
       <div className='pad'>
-        <h1 class='title'>Statistics for {date}</h1>
-        <Link className='stats-navigation' reload to={`/statistics?date=${dayBefore}`}>&lt; {dayBefore}</Link> &nbsp;
-        {(date !== today)
-          ? <Link className='stats-navigation' reload to={`/statistics?date=${dayAfter}`}>{dayAfter} &gt;</Link> : null}
-      </div>
-      <div className='pad'>
         {completedPomodoros.length === 0 && <div>
           You haven't completed any pomodoros.
         </div>}
+      </div>}
+      <div className='pad'>
+        {completedPomodoros.length > 0 &&
+        <ResponsiveContainer width='100%' height={200}>
+          <ComposedChart data={composedData}>
+            <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
+            <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
+            <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
+          </ComposedChart>
+        </ResponsiveContainer>}
+      </div>}
+      <div className='pad'>
         {completedPomodoros.length > 0 && <div>
           <div class='columns'>
             <div class='column pad-v tac'>
@@ -69,24 +75,17 @@ class Statistics extends Component {
               distractions
             </div>
           </div>
-          <div class='columns'>
-            <div class='column pad-v tac'>
-              {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
-            </div>
-          </div>
-          <br />
-          <br />
-          <TodoList todos={todos} actions={actions} completable={false} />
-          <br />
-          <br />
-          <ResponsiveContainer width='100%' height={200}>
-            <ComposedChart data={composedData}>
-              <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
-              <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
-              <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-            </ComposedChart>
-          </ResponsiveContainer>
         </div>}
+      </div>
+      <div className='pad'>
+        <div class='columns'>
+          <div class='column pad-v tac'>
+            {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
+          </div>
+        </div>
+      </div>
+      <div className='pad'>
+        <TodoForm todos={todos} actions={actions} editable={false} />
       </div>
     </div>
   }

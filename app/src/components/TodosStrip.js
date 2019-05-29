@@ -12,8 +12,8 @@ export default class TodosStrip extends Component {
     }
     return <div className='todos-strip'>
       <h1>Completed todos ({data.length})</h1>
-      <div className='todo-list-container'>
-        <ul className='todo-list'>
+      <div className='todo-form-container'>
+        <ul className='todo-form'>
           {data.map((todo) => <li className='todo' key={todo.id}>
             <div className='ovh'>
               <span style={{'float': 'left'}}>{todo.text}</span>
