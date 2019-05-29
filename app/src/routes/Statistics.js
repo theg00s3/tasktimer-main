@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import Link from '../components/utils/Link'
+import TodoList from '../components/TodoList'
 import './Statistics.styl'
 dayjs.extend(utc)
 
@@ -28,7 +29,7 @@ class Statistics extends Component {
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
     }
 
-    const completedTodosCount = todos.filter(t => t.completed).length
+    const completedTodos = todos.filter(t => t.completed)
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
@@ -70,9 +71,12 @@ class Statistics extends Component {
           </div>
           <div class='columns'>
             <div class='column pad-v tac'>
-              You were also quite productive today, with {completedTodosCount} tasks completed
+              {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
             </div>
           </div>
+          <br />
+          <br />
+          <TodoList todos={todos} actions={actions} completable={false} />
           <br />
           <br />
           <ResponsiveContainer width='100%' height={200}>
