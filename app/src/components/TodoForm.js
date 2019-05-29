@@ -29,8 +29,8 @@ class TodoForm extends Component {
         id='todo-input'
         className='todo-input' />}
 
-      {(editable || newTodos.length === 0) && <div>
-        <h1 className='no-m m-t'>Todo</h1>
+      {editable && <div>
+        {newTodos.length > 0 && <h1 className='no-m m-t'>Todo</h1>}
         {renderTodoListWith(newTodos, actions)}
       </div>}
 
