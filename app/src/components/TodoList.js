@@ -28,9 +28,9 @@ class TodoList extends Component {
         id='todo-input'
         className='todo-input' />
 
-      <h1>Todo</h1>
+      <h1 className='no-m m-t'>Todo</h1>
       {renderTodoListWith(newTodos, actions)}
-      <h1>Done</h1>
+      <h1 className='no-m m-t'>Done</h1>
       {renderTodoListWith(doneTodos, actions)}
     </div>
   }

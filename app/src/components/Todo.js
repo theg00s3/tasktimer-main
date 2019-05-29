@@ -59,25 +59,24 @@ class Todo extends Component {
 
     return <li className={className} id={`todo-${todo.id}`}>
       <div className='normal-view'>
-        {completable && <span>
-          <input id={`todo-check-${todo.id}`} class='todo-check-checkbox' type='checkbox'
-            defaultChecked={todo.completed}
-            checked={todo.completed}
-            onChange={() => actions.toggleCompleteTodo(todo)} />
-          <label htmlFor={`todo-check-${todo.id}`} className='todo-check-toggle' />
-        </span>}
+        {completable && <button
+          className='complete'
+          onClick={() => actions.toggleCompleteTodo(todo)} />}
+
         <label className='text' onBlur={this.onBlur.bind(this)} onDoubleClick={this.startEditing.bind(this)}>{todo.text}</label>
+
         {deletable && <button
           className='destroy'
           onClick={() => actions.toggleDeleteTodo(todo)} />}
       </div>
       <div className='edit-view'>
-        <input ref='editField'
+        <textarea ref='editField'
           className='edit'
           value={this.state.editText}
           onBlur={this.onBlur.bind(this)}
           onChange={this.onChange.bind(this)}
-          onKeyDown={this.onKeyDown.bind(this)} />
+          onKeyDown={this.onKeyDown.bind(this)}
+          rows={Math.ceil((todo.text || '').length / 36)} />
       </div>
     </li>
   }
