@@ -19,6 +19,6 @@ context('Todolist', () => {
 
   it('complete a todo', () => {
     cy.scrollTo('bottom')
-    cy.get('.todo-list:first').find('.todo-check-checkbox:first').click({force: true})
+    cy.get('.todo-list:first').find('.edit:first').click({force: true})
   })
 })
