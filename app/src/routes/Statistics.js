@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import querystring from 'querystring'
-import {ResponsiveContainer, ComposedChart, Bar, Line, Tooltip} from 'recharts'
+import {ResponsiveContainer, ComposedChart, Bar, Line, Area, Tooltip} from 'recharts'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
@@ -53,7 +53,7 @@ class Statistics extends Component {
         {completedPomodoros.length === 0 && <div>
           You haven't completed any pomodoros.
         </div>}
-      </div>}
+      </div>
       <div className='pad'>
         {completedPomodoros.length > 0 &&
         <ResponsiveContainer width='100%' height={200}>
@@ -63,7 +63,7 @@ class Statistics extends Component {
             <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
           </ComposedChart>
         </ResponsiveContainer>}
-      </div>}
+      </div>
       <div className='pad'>
         {completedPomodoros.length > 0 && <div>
           <div class='columns'>
