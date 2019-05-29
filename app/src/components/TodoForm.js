@@ -25,6 +25,7 @@ class TodoForm extends Component {
       {editable && <input
         type='text'
         onKeyDown={this.addTodo.bind(this)}
+        autoFocus
         placeholder='What do you need to do?'
         id='todo-input'
         className='todo-input' />}
