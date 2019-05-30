@@ -13,7 +13,7 @@ dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
-    const {user, todos, pomodoros, distractions} = this.props
+    const {user, todos, pomodoros, distractions, current} = this.props
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
 
@@ -49,6 +49,10 @@ class Statistics extends Component {
     }, [])
 
     return <div className='content'>
+      <h1 className='title'>Statistics for {date}</h1>
+      <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
+      {(date !== today)
+        ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       <div className='pad'>
         {completedPomodoros.length === 0 && <div>
           You haven't completed any pomodoros.
