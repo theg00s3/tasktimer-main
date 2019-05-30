@@ -52,8 +52,14 @@ class Todo extends Component {
   render () {
     const {todo, actions, completable, editable, deletable} = this.props
 
-    let className = 'todo ' + (todo.completed ? 'completed ' : '')
+    let className = 'todo '
+    className += todo.completable ? 'completable ' : ''
+    className += todo.editable ? 'editable ' : ''
+    className += todo.deletable ? 'deletable ' : ''
+
+    className += todo.completed ? 'completed ' : ''
     className += todo.deleted ? 'deleted ' : ''
+
     className += (this.state.editing ? 'editing ' : '')
     className += ` ${editable ? 'editable' : ''} ${deletable ? 'deletable' : ''} ${completable ? 'completable' : ''}`
 
