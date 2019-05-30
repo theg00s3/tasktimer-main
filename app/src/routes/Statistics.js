@@ -8,6 +8,7 @@ import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
+import paperSheet from '../assets/images/paper-sheet.png'
 import './Statistics.styl'
 dayjs.extend(utc)
 
@@ -61,15 +62,17 @@ class Statistics extends Component {
         {(date !== today)
           ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       </div>
-      <div className='pad'>
+
+      {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
-            {completedPomodoros.length === 0 && <div>
+            <div>
               You haven't completed any pomodoros.
-            </div>}
+              <img className='paper-sheet' src={paperSheet} />
+            </div>
           </div>
         </div>
-      </div>
+      </div>}
       {completedPomodoros.length > 0 &&
       <div className='pad'>
         <ResponsiveContainer width='100%' height={200}>
@@ -80,29 +83,30 @@ class Statistics extends Component {
           </ComposedChart>
         </ResponsiveContainer>
       </div>}
-      {completedPomodoros.length > 0 && <div className='pad'>
-        <div>
-          <div class='columns'>
-            <div class='column pad-v tac'>
-              <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+      {completedPomodoros.length > 0 &&
+        <div className='pad'>
+          <div>
+            <div class='columns'>
+              <div class='column pad-v tac'>
+                <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+              </div>
+              <div class='column pad-v tac'>
+                <img className='paper-sheet' src={paperSheet} />
+              </div>
+              <div class='column pad-v tac'>
+                <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
+              </div>
             </div>
-            <div class='column pad-v tac'>
-              <h1 class='no-m'>{trackedDistractions.length}</h1>
-              distractions
+            <div class='column pad-v'>
+              <div className='tac'>
+                {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
+              </div>
+              {completedTodos.length > 0 && <div className='pad'>
+                <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} />
+              </div>}
             </div>
           </div>
-        </div>
-      </div>}
-      <div className='pad'>
-        <div class='columns'>
-          <div class='column pad-v tac'>
-            {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
-          </div>
-        </div>
-      </div>
-      {completedTodos.length > 0 && <div className='pad'>
-        <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} />
-      </div>}
+        </div>}
     </div>
   }
 }

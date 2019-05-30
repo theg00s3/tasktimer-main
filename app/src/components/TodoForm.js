@@ -29,10 +29,10 @@ class TodoForm extends Component {
         id='todo-input'
         className='todo-input' />}
 
-      {newTodos.length > 0 && showTitles && <h1 className='no-m m-t'>Todo</h1>}
+      {newTodos.length > 0 && showTitles && <h1 className='no-m'>Todo</h1>}
       {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
 
-      {showTitles && <h1 className='no-m m-t'>Done</h1>}
+      {showTitles && <h1 className='no-m'>Done</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
