@@ -16,7 +16,7 @@ class TodoForm extends Component {
   }
 
   render () {
-    const { todos, actions, completable, editable, deletable, showDeleted = false } = this.props
+    const { todos, actions, completable = true, editable = true, deletable = true, showTitles = true, showDeleted = false } = this.props
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
@@ -29,12 +29,10 @@ class TodoForm extends Component {
         id='todo-input'
         className='todo-input' />}
 
-      {editable && <div>
-        {newTodos.length > 0 && <h1 className='no-m m-t'>Todo</h1>}
-        {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
-      </div>}
+      {newTodos.length > 0 && showTitles && <h1 className='no-m m-t'>Todo</h1>}
+      {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
 
-      <h1 className='no-m m-t'>Done</h1>
+      {showTitles && <h1 className='no-m m-t'>Done</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
