@@ -8,6 +8,7 @@ export default class NavigationBar extends Component {
     const {user} = this.props
     return <div className='navigation-bar'>
       <Link to='/'><span className='brand' /></Link>
+      {user && ['christian-fei'].includes(user.username) && <Link to='/statistics'>Statistics</Link>}
       <Link to='/pair' id='pair'>Pair</Link>
       <Link to='/support'>Support us!</Link>
       <Link to='/open' id='open-stats'>Open</Link>
