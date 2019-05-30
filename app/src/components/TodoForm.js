@@ -16,10 +16,9 @@ class TodoForm extends Component {
   }
 
   render () {
-    const { todos, actions, editable } = this.props
-    console.log('editable', editable)
+    const { todos, actions, completable, editable, deletable, showDeleted = false } = this.props
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
-    const doneTodos = todos.filter(t => !t.deleted).filter(t => t.completed)
+    const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
     return <div className='todo-form-container'>
       {editable && <input
@@ -32,18 +31,18 @@ class TodoForm extends Component {
 
       {editable && <div>
         {newTodos.length > 0 && <h1 className='no-m m-t'>Todo</h1>}
-        {renderTodoListWith(newTodos, actions)}
+        {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
       </div>}
 
       <h1 className='no-m m-t'>Done</h1>
-      {renderTodoListWith(doneTodos, actions)}
+      {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
 }
 
 export default TodoForm
 
-export function renderTodoListWith (todos, actions, {completable, editable, deletable} = {completable: true, editable: true, deletable: true}) {
+export function renderTodoListWith (todos, actions, {completable = true, editable = true, deletable = true} = {}) {
   return <ul className='todo-form'>
     {todos.map((todo) => {
       return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} completable={completable} editable={editable} deletable={deletable} />

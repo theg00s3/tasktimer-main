@@ -76,7 +76,7 @@ class Todo extends Component {
           onBlur={this.onBlur.bind(this)}
           onChange={this.onChange.bind(this)}
           onKeyDown={this.onKeyDown.bind(this)}
-          rows={Math.ceil((todo.text || '').length / 36)} />
+          rows={Math.ceil((todo.text || '').length / 30)} />
       </div>
     </li>
   }

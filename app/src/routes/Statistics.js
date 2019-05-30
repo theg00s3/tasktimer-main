@@ -13,7 +13,7 @@ dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
-    const {user, todos, pomodoros, distractions, current} = this.props
+    const {user, todos, pomodoros, distractions} = this.props
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
 
@@ -29,7 +29,11 @@ class Statistics extends Component {
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
     }
 
-    const completedTodos = todos.filter(t => t.completed)
+    const completedTodos = todos
+      .filter(Boolean)
+      .filter(t => t.completed)
+      .filter(t => t.completed_at)
+      .filter(t => new Date(t.completed_at).toISOString().substring(0, 10) === date)
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
@@ -48,28 +52,34 @@ class Statistics extends Component {
       return acc.concat([pomodoroItem])
     }, [])
 
+    console.log('completedTodos', completedTodos)
+
     return <div className='content'>
       <h1 className='title'>Statistics for {date}</h1>
       <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
       {(date !== today)
         ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       <div className='pad'>
-        {completedPomodoros.length === 0 && <div>
-          You haven't completed any pomodoros.
-        </div>}
+        <div class='columns'>
+          <div class='column pad-v tac'>
+            {completedPomodoros.length === 0 && <div>
+              You haven't completed any pomodoros.
+            </div>}
+          </div>
+        </div>
       </div>
+      {completedPomodoros.length > 0 &&
       <div className='pad'>
-        {completedPomodoros.length > 0 &&
         <ResponsiveContainer width='100%' height={200}>
           <ComposedChart data={composedData}>
             <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
             <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
             <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
           </ComposedChart>
-        </ResponsiveContainer>}
-      </div>
-      <div className='pad'>
-        {completedPomodoros.length > 0 && <div>
+        </ResponsiveContainer>
+      </div>}
+      {completedPomodoros.length > 0 && <div className='pad'>
+        <div>
           <div class='columns'>
             <div class='column pad-v tac'>
               <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
@@ -79,18 +89,21 @@ class Statistics extends Component {
               distractions
             </div>
           </div>
-        </div>}
-      </div>
+        </div>
+      </div>}
       <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
             {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
+            <pre>
+              {/* {JSON.stringify(completedTodos, null, 2)} */}
+            </pre>
           </div>
         </div>
       </div>
-      <div className='pad'>
-        <TodoForm todos={todos} actions={actions} editable={false} />
-      </div>
+      {completedTodos.length > 0 && <div className='pad'>
+        <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} destroyable={false} deletable={false} />
+      </div>}
     </div>
   }
 }
