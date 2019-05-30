@@ -95,9 +95,6 @@ class Statistics extends Component {
         <div class='columns'>
           <div class='column pad-v tac'>
             {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
-            <pre>
-              {/* {JSON.stringify(completedTodos, null, 2)} */}
-            </pre>
           </div>
         </div>
       </div>
