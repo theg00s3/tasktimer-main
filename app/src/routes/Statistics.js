@@ -55,10 +55,12 @@ class Statistics extends Component {
     console.log('completedTodos', completedTodos)
 
     return <div className='content'>
-      <h1 className='title'>Statistics for {date}</h1>
-      <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
-      {(date !== today)
-        ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
+      <h1 className='title tac'>Statistics for {date}</h1>
+      <div className='stats-navigation'>
+        <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
+        {(date !== today)
+          ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
+      </div>
       <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
