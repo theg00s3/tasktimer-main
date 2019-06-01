@@ -63,12 +63,21 @@ class Statistics extends Component {
           ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       </div>
 
+      <div className='pad'>
+        <div class='columns'>
+          <div class='column pad-v tac'>
+            <div>
+              <img className='paper-sheet' src={paperSheet} />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
             <div>
               You haven't completed any pomodoros.
-              <img className='paper-sheet' src={paperSheet} />
             </div>
           </div>
         </div>
@@ -83,30 +92,38 @@ class Statistics extends Component {
           </ComposedChart>
         </ResponsiveContainer>
       </div>}
-      {completedPomodoros.length > 0 &&
-        <div className='pad'>
-          <div>
-            <div class='columns'>
-              <div class='column pad-v tac'>
-                <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
-              </div>
-              <div class='column pad-v tac'>
-                <img className='paper-sheet' src={paperSheet} />
-              </div>
-              <div class='column pad-v tac'>
-                <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
-              </div>
+      <div className='pad'>
+        <div>
+          {completedPomodoros.length > 0 && <div class='columns'>
+            <div class='column pad-v tac'>
+              <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
             </div>
-            <div class='column pad-v'>
-              <div className='tac'>
-                {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
-              </div>
-              {completedTodos.length > 0 && <div className='pad'>
-                <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles={false} />
-              </div>}
+            <div class='column pad-v tac'>
+              <img className='paper-sheet' src={paperSheet} />
             </div>
-          </div>
-        </div>}
+            <div class='column pad-v tac'>
+              <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
+            </div>
+          </div>}
+
+          {completedTodos.length === 0 && <div class='column pad-v'>
+            <div className='tac'>
+              You haven't completed any todos.
+            </div>
+          </div>}
+
+          {completedTodos.length > 0 && <div class='column pad-v'>
+            <div className='tac'>
+              You were also quite productive today, with {completedTodos.length} tasks completed
+            </div>
+          </div>}
+
+          {(completedPomodoros.length > 0 || completedTodos.length > 0) &&
+            <div className='pad'>
+              <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles={false} />
+            </div>}
+        </div>
+      </div>
     </div>
   }
 }
