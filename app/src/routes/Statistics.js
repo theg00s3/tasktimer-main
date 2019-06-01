@@ -63,7 +63,7 @@ class Statistics extends Component {
           ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       </div>
 
-      <div className='pad'>
+      {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
             <div>
@@ -71,7 +71,7 @@ class Statistics extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
 
       {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
