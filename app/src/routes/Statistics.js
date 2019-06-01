@@ -102,7 +102,7 @@ class Statistics extends Component {
                 {completedTodos.length === 0 ? 'No tasks completed' : `You were also quite productive today, with ${completedTodos.length} tasks completed`}
               </div>
               {completedTodos.length > 0 && <div className='pad'>
-                <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} />
+                <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles={false} />
               </div>}
             </div>
           </div>

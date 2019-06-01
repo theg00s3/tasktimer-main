@@ -23,7 +23,8 @@ class TodoForm extends Component {
     return <div className='todo-form-container'>
 
       {newTodos.length > 0 && showTitles && <h1 className='no-m'>Todo</h1>}
-      <div className='todo editing' style='padding: 2em;'>
+      {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+      {editable && <div className='todo editing' style='padding: 2em;'>
         {editable && <input
           type='text'
           onKeyDown={this.addTodo.bind(this)}
@@ -31,10 +32,9 @@ class TodoForm extends Component {
           placeholder='What do you need to do?'
           id='todo-input'
           className='todo-input' />}
-      </div>
-      {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+      </div>}
 
-      {showTitles && <h1 className='no-m'>Done</h1>}
+      {doneTodos.length > 0 && showTitles && <h1 className='no-m'>Done</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
