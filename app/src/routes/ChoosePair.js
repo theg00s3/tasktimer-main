@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as actions from '../actions'
-import './ChoosePair.styl'
+import './ChooseTeam.styl'
 
-class Pair extends Component {
+class Team extends Component {
   chooseChannel (event) {
     if (event.keyCode !== 13) return
     const channel = ((event.target && event.target.value) || '').trim()
@@ -16,17 +16,17 @@ class Pair extends Component {
 
     if (!user) {
       return <div className='content'>
-        Please login to use the pair pomodoro
+        Please login to use the team pomodoro
       </div>
     }
 
     return <div className='content'>
-      <h1 class='title'><b>Pair Pomodoro</b></h1>
+      <h1 class='title'><b>Team Pomodoro</b></h1>
       <h1 class='title'>
         <label for='channel-name'>Choose a channel to connect with your colleagues</label>
       </h1>
 
-      <input autofocus type='test' id='channel-name' className='choose-pair-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Channel name' />
+      <input autofocus type='test' id='channel-name' className='choose-team-input' onKeyDown={this.chooseChannel.bind(this)} placeholder='Channel name' />
     </div>
   }
 }
@@ -41,4 +41,4 @@ export default connect(
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
-}))(Pair)
+}))(Team)

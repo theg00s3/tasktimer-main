@@ -7,8 +7,8 @@ import FouroFour from './routes/FouroFour'
 import About from './routes/About'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
-import ChoosePair from './routes/ChoosePair'
-import Pair from './routes/Pair'
+import ChooseTeam from './routes/ChooseTeam'
+import Team from './routes/Team'
 import Statistics from './routes/Statistics'
 
 export default class Root extends Component {
@@ -23,8 +23,8 @@ export default class Root extends Component {
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
-      if (url === '/pair') return this.setState({current: <ChoosePair />})
-      if (/\/pair/.test(url)) return this.setState({current: <Pair />})
+      if (url === '/team') return this.setState({current: <ChooseTeam />})
+      if (/\/team/.test(url)) return this.setState({current: <Team />})
       if (/\/statistics/.test(url)) return this.setState({current: <Statistics current={Date.now()} />})
       this.setState({current: <FouroFour />})
     })

@@ -1,16 +1,16 @@
-export const PAIR_EVENT = 'PAIR_EVENT'
-export const PAIR_EVENT_SUCCESS = 'PAIR_EVENT_SUCCESS'
-export const PAIR_EVENT_FAILURE = 'PAIR_EVENT_FAILURE'
-export const PAIR_STATUS = 'PAIR_STATUS'
-export const PAIR_STATUS_SUCCESS = 'PAIR_STATUS_SUCCESS'
-export const PAIR_STATUS_FAILURE = 'PAIR_STATUS_FAILURE'
+export const TEAM_EVENT = 'TEAM_EVENT'
+export const TEAM_EVENT_SUCCESS = 'TEAM_EVENT_SUCCESS'
+export const TEAM_EVENT_FAILURE = 'TEAM_EVENT_FAILURE'
+export const TEAM_STATUS = 'TEAM_STATUS'
+export const TEAM_STATUS_SUCCESS = 'TEAM_STATUS_SUCCESS'
+export const TEAM_STATUS_FAILURE = 'TEAM_STATUS_FAILURE'
 
-export function sendPairRequest (channel, data = {minutes: 25, type: 'pomodoro'}) {
+export function sendTeamRequest (channel, data = {minutes: 25, type: 'pomodoro'}) {
   return (dispatch, getState) => {
-    dispatch({type: PAIR_EVENT, payload: null})
+    dispatch({type: TEAM_EVENT, payload: null})
     const url = (window.development)
-      ? `http://localhost:3000/pair/${channel}`
-      : `https://api.pomodoro.cc/pair/${channel}`
+      ? `http://localhost:3000/team/${channel}`
+      : `https://api.pomodoro.cc/team/${channel}`
 
     const body = JSON.stringify(data)
 
@@ -26,10 +26,10 @@ export function sendPairRequest (channel, data = {minutes: 25, type: 'pomodoro'}
     })
       .then(res => res.json())
       .then(() => {
-        return dispatch({type: PAIR_EVENT_SUCCESS, payload: data})
+        return dispatch({type: TEAM_EVENT_SUCCESS, payload: data})
       })
       .catch(err => {
-        return dispatch({type: PAIR_EVENT_FAILURE, payload: err})
+        return dispatch({type: TEAM_EVENT_FAILURE, payload: err})
       })
   }
 }

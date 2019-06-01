@@ -4,13 +4,13 @@ import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
 import Pomodoro from '../components/Pomodoro'
-import './Pair.styl'
+import './Team.styl'
 Pusher.logToConsole = true
 
-class Pair extends Component {
+class Team extends Component {
   componentDidMount () {
     const self = this
-    this.channelId = window.location.pathname.replace('/pair/', '')
+    this.channelId = window.location.pathname.replace('/team/', '')
     this.pusher = new Pusher('7bfb8a4766daf90ea615', { cluster: 'eu', forceTLS: true })
     this.channel = this.pusher.subscribe(this.channelId)
 
@@ -22,7 +22,7 @@ class Pair extends Component {
     this.channel.bind(`event`, (data) =>
       self.props.actions.startStopTimer(data.pomodoro.minutes, data.pomodoro.type, true))
 
-    getPairStatus(this.channelId)
+    getTeamStatus(this.channelId)
     .then((pomodoro) => {
       self.props.actions.resumeTimer(pomodoro)
     })
@@ -38,26 +38,26 @@ class Pair extends Component {
 
     if (!user) {
       return <div className='content'>
-        Please login to use the pair pomodoro
+        Please login to use the team pomodoro
       </div>
     }
 
     return <div className='content'>
-      <h1 class='title'><b>Pair Pomodoro</b></h1>
+      <h1 class='title'><b>Team Pomodoro</b></h1>
       <h1 class='title'>
         #<strong>{this.channelId}</strong>
         {this.state.connected ? <span class='indicator connected'>&nbsp;</span> : <span class='indicator not-connected'>&nbsp;</span>}
       </h1>
 
-      <Pomodoro timer={timer} actions={actions} pair channelId={this.channelId} />
+      <Pomodoro timer={timer} actions={actions} team channelId={this.channelId} />
     </div>
   }
 }
 
-function getPairStatus (channel) {
+function getTeamStatus (channel) {
   const url = (window.development)
-  ? `http://localhost:3000/pair/${channel}/status`
-  : `https://api.pomodoro.cc/pair/${channel}/status`
+  ? `http://localhost:3000/team/${channel}/status`
+  : `https://api.pomodoro.cc/team/${channel}/status`
 
   return window.fetch(url, {
     method: 'GET',
@@ -81,4 +81,4 @@ export default connect(
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
-}))(Pair)
+}))(Team)

@@ -18,26 +18,26 @@ function noop () {
   return {type: NOOP, payload: {}}
 }
 
-export function startStopTimer (minutes, type, pair = false) {
+export function startStopTimer (minutes, type, team = false) {
   return (dispatch, getState) => {
     const {pomodoro} = getState()
     if (pomodoro.minutes) {
       forceEndTimer()(dispatch, getState)
     }
     if (pomodoro.minutes !== minutes) {
-      startTimer(minutes, type, pair)(dispatch, getState)
+      startTimer(minutes, type, team)(dispatch, getState)
     }
   }
 }
 
-export function startTimer (minutes, type, pair = false) {
+export function startTimer (minutes, type, team = false) {
   return (dispatch, getState) => {
     if (Timer.isInProgress()) return noop()
     Timer.start(minutes * 60)
     const startedAt = new Date()
-    const pomodoro = {minutes, type, startedAt, pair}
+    const pomodoro = {minutes, type, startedAt, team}
     AnalyticsService.track('timer-start', pomodoro)
-    if (pair) AnalyticsService.track('pair-timer-start', pomodoro)
+    if (team) AnalyticsService.track('team-timer-start', pomodoro)
     dispatch({type: START_TIMER, payload: pomodoro})
   }
 }

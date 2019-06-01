@@ -4,7 +4,7 @@ import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
 import user from './reducers/user'
-import pair from './reducers/pair'
+import team from './reducers/team'
 import distractions from './reducers/distractions'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
@@ -24,7 +24,7 @@ const store = createStore(combineReducers({
   pomodoros,
   settings,
   user,
-  pair,
+  team,
   distractions
 }), composeEnhancers(
   applyMiddleware(...middleware),
