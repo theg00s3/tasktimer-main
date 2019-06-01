@@ -43,11 +43,6 @@
   right 10px
 .todo .complete
   left 10px
-.todo.editing
-  background-image url('/assets/images/pen.png')
-  background-size 1em
-  background-repeat no-repeat
-  background-position 1.1em 50%
 
 .todo.completed .complete
   color color_pomodoro_leaf
@@ -90,6 +85,12 @@ EDIT VIEW
 .todo .edit-view, .todo.editing .normal-view
   display none
 
+.todo.editing
+  background-image url('/assets/images/pen.png')
+  background-size 1em
+  background-repeat no-repeat
+  background-position 1.1em 50%
+
 .todo.editing .edit-view
   display block
   width 360px
@@ -114,4 +115,3 @@ EDIT VIEW
   -webkit-font-smoothing antialiased
   resize none
   background white
-

@@ -21,15 +21,17 @@ class TodoForm extends Component {
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
     return <div className='todo-form-container'>
-      {editable && <input
-        type='text'
-        onKeyDown={this.addTodo.bind(this)}
-        autoFocus
-        placeholder='What do you need to do?'
-        id='todo-input'
-        className='todo-input' />}
 
       {newTodos.length > 0 && showTitles && <h1 className='no-m'>Todo</h1>}
+      <div className='todo editing' style='padding: 2em;'>
+        {editable && <input
+          type='text'
+          onKeyDown={this.addTodo.bind(this)}
+          autoFocus
+          placeholder='What do you need to do?'
+          id='todo-input'
+          className='todo-input' />}
+      </div>
       {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
 
       {showTitles && <h1 className='no-m'>Done</h1>}
