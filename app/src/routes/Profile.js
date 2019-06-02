@@ -43,7 +43,7 @@ class Profile extends Component {
 
       {user.apikey &&
         <div className='pad tac1'>
-          <strong>API key</strong> {user.apikey}
+          <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
         </div>}
 
       <pre style='display: none'>{JSON.stringify(user, null, 2)}</pre>
