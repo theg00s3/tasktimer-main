@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import querystring from 'querystring'
-import {ResponsiveContainer, ComposedChart, Bar, Line, Area, Tooltip} from 'recharts'
+import {ResponsiveContainer, ComposedChart, Bar, Line, Tooltip} from 'recharts'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
@@ -10,11 +10,21 @@ import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import paperSheet from '../assets/images/paper-sheet.png'
 import './Statistics.styl'
+import SubscribeButton from '../components/SubscribeButton'
 dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
     const {user, todos, pomodoros, distractions} = this.props
+
+    if (!user || !user.subscribed) {
+      return <div className='content'>
+        <div className='not-subscribed'>
+          <h1 className='title'>not subscribed</h1>
+          <SubscribeButton user={user} />
+        </div>
+      </div>
+    }
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
 
