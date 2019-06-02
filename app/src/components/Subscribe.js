@@ -23,7 +23,7 @@ export default class Subscribe extends Component {
             Please <Link to='/login'>login</Link> first
           </div>}
 
-        {(!user || (user && user.subscription && user.subscription !== 'active')) && <SubscribeButton user={user} actions={actions} />}
+        <SubscribeButton user={user} actions={actions} />
 
         {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
         {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
