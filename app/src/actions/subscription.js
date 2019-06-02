@@ -14,7 +14,8 @@ export function createSubscription (token) {
     window.fetch(url, {
       method: 'POST',
       body,
-      mode: 'no-cors',
+      cache: 'no-cache',
+      mode: 'cors',
       credentials: 'include',
       headers: {
         'Accept': 'application/json',
@@ -29,8 +30,8 @@ export function createSubscription (token) {
       }
       return dispatch({type: CREATE_SUBSCRIPTION_SUCCESS, payload: data})
     })
-    .catch(err => {
-      return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: 'Something went wrong. Please try again later'})
+    .catch(_ => {
+      return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: 'Something went wrong. Please try again'})
     })
   }
 }

@@ -19,7 +19,8 @@ export default class Subscribe extends Component {
 
         <SubscribeButton user={user} actions={actions} />
 
-        <br />
+        {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
+        {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
 
         <ul className='pro-reasons tal'>
           <h2>What you'll get</h2>
@@ -36,11 +37,6 @@ export default class Subscribe extends Component {
             ⚡️ Access your account data
           </li>
         </ul>
-
-        <br />
-
-        {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
-        {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
       </div>
     </div>
   }
