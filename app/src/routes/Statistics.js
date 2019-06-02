@@ -10,7 +10,7 @@ import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import paperSheet from '../assets/images/paper-sheet.png'
 import './Statistics.styl'
-import SubscribeButton from '../components/SubscribeButton'
+import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
 
 class Statistics extends Component {
@@ -18,12 +18,7 @@ class Statistics extends Component {
     const {user, todos, pomodoros, distractions} = this.props
 
     if (!user || !user.subscribed) {
-      return <div className='content'>
-        <div className='not-subscribed'>
-          <h1 className='title'>not subscribed</h1>
-          <SubscribeButton user={user} />
-        </div>
-      </div>
+      return <Subscribe user={user} />
     }
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null

@@ -40,12 +40,12 @@ export default class SubscribeButton extends Component {
 
     return <div className='payment'>
       <img src={user.avatar} class='user-avatar' />
-      &nbsp; only 1 € / month &nbsp;
+      &nbsp;
+      &nbsp;
 
       <StripeCheckout
         token={this.onToken}
-        stripeKey={stripeKey}
-      />
+        stripeKey={stripeKey} />
 
     </div>
   }
