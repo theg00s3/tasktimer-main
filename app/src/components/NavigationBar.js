@@ -13,7 +13,7 @@ export default class NavigationBar extends Component {
         <Link to='/pro'>Pro</Link>
         <Link to='/team' id='team'>Team</Link>
         <Link to='/support'>Support us!</Link>
-        <Link to='/open' id='open-stats'>Open</Link>
+        {/* <Link to='/open' id='open-stats'>Open</Link> */}
         <Link to='/about' id='open-stats'>About</Link>
         <div class='float-right'>
           {!user && <Link to='/login'>Login</Link>}
