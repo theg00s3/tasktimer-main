@@ -24,7 +24,7 @@ export function loadUser () {
   return (dispatch, getState) => {
     dispatch({type: LOAD_USER_REQUEST})
     const baseUrl = /pomodoro/.test(window.location.hostname) ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
-    const url = baseUrl + '/info'
+    const url = baseUrl + '/user/info'
 
     window.fetch(url, {credentials: 'include'})
       .then(r => r.json())
