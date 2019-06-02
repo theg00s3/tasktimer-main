@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './SubscribeButton.styl'
 import StripeCheckout from 'react-stripe-checkout'
+import pomodoroImage from '../assets/images/pomodoro.cc.png'
 
 export default class SubscribeButton extends Component {
   onToken (token) {
@@ -45,6 +46,13 @@ export default class SubscribeButton extends Component {
 
       <StripeCheckout
         token={this.onToken}
+        email={user.email}
+        label='Pay'
+        image={pomodoroImage}
+        panelLabel='Pay'
+        currency='EUR'
+        amount={100}
+        allowRememberMe={false}
         stripeKey={stripeKey} />
 
     </div>
