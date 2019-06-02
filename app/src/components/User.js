@@ -8,8 +8,9 @@ export default class User extends Component {
     if (!user) return null
     const href = `/profile`
 
-    return <span className='user'>
+    return <span className='user' style='vertical-align: sub;'>
       <Link href={href}>
+        Profile &nbsp;
         <img src={user.avatar} class='user-avatar' />
       </Link>
       &nbsp;
