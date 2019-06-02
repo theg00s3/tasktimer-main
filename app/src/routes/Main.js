@@ -1,6 +1,5 @@
 import Pomodoro from '../components/Pomodoro'
 import TodoForm from '../components/TodoForm'
-// import SoundSettings from '../components/SoundSettings'
 import TrackDistraction from '../components/TrackDistraction'
 import * as actions from '../actions'
 import React, {Component} from 'react'
@@ -9,10 +8,9 @@ import {connect} from 'react-redux'
 
 class Main extends Component {
   render () {
-    const {timer, todos, settings, pomodoro, distractions, actions} = this.props
+    const {timer, todos, pomodoro, distractions, actions} = this.props
     return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
-      {/* <SoundSettings settings={settings} actions={actions} /> */}
       <TrackDistraction actions={actions} distractions={distractions} />
       <TodoForm todos={todos} actions={actions} editable />
     </div>
