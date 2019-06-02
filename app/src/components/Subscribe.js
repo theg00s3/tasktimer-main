@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './Subscribe.styl'
 import SubscribeButton from './SubscribeButton'
+import Link from '../components/utils/Link'
 
 export default class Subscribe extends Component {
   render () {
@@ -16,6 +17,11 @@ export default class Subscribe extends Component {
             <span class='price-frequency'>/mo</span>
           </div>
         </div>
+
+        {!user &&
+          <div className='tac pad'>
+            Please <Link to='/login'>login</Link> first
+          </div>}
 
         <SubscribeButton user={user} actions={actions} />
 
