@@ -17,7 +17,7 @@ class Statistics extends Component {
   render () {
     const {user, todos, pomodoros, distractions, subscription, actions} = this.props
 
-    if (!user || !user.subscribed) {
+    if (!user || !user.customer || !user.subscription) {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
