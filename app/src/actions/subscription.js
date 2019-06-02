@@ -14,8 +14,7 @@ export function createSubscription (token) {
     window.fetch(url, {
       method: 'POST',
       body,
-      mode: 'cors',
-      cache: 'no-cache',
+      mode: 'no-cors',
       credentials: 'include',
       headers: {
         'Accept': 'application/json',

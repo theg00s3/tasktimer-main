@@ -24,7 +24,7 @@ export default class Subscribe extends Component {
         <ul className='pro-reasons tal'>
           <h2>What you'll get</h2>
           <li>
-            ⚡️ Statistics
+            ⚡️ Statistics and Insight
           </li>
           <li>
             ️️️⚡️ Sync pomodoros and todos on all your devices
