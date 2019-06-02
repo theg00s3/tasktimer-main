@@ -11,8 +11,8 @@ export function createSubscription (token) {
 
     const body = JSON.stringify({email: token.email, token: token.id})
     const url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/create-subscription'
-      : 'http://localhost:3000/create-subscription'
+      ? 'https://api.pomodoro.cc/api/create-subscription'
+      : 'http://localhost:3000/api/create-subscription'
 
     window.fetch(url, {
       method: 'POST',
