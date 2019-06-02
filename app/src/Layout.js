@@ -1,4 +1,4 @@
-import TopBar from './components/TopBar'
+import NavigationBar from './components/NavigationBar'
 import MainFooter from './components/MainFooter'
 import NotificationCenter from './modules/NotificationCenter'
 import NotificationService from './modules/NotificationService'
@@ -22,7 +22,7 @@ class Layout extends Component {
   render (state, dispatch) {
     const {actions, user} = this.props
     return <div>
-      <TopBar actions={actions} user={user} />
+      <NavigationBar actions={actions} user={user} />
 
       <div className='main-content'>
         {this.props.children}
