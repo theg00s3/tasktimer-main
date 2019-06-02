@@ -20,7 +20,12 @@ export default class SubscribeButton extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      alert(`We are in business.\n ${data.message}`)
+      console.log('data', data)
+      if (data.error) {
+        alert(`Something went wrong.\n ${data.message || data.error}`)
+        return
+      }
+      alert(`we are in business.\n ${data.message}`)
     })
   }
 
