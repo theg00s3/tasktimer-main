@@ -1,3 +1,5 @@
+import { LOAD_USER_SUCCESS } from '../actions'
+
 export const CREATE_SUBSCRIPTION = 'CREATE_SUBSCRIPTION'
 export const CREATE_SUBSCRIPTION_SUCCESS = 'CREATE_SUBSCRIPTION_SUCCESS'
 export const CREATE_SUBSCRIPTION_FAILURE = 'CREATE_SUBSCRIPTION_FAILURE'
@@ -28,7 +30,8 @@ export function createSubscription (token) {
       if (data.error) {
         return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: data.error})
       }
-      return dispatch({type: CREATE_SUBSCRIPTION_SUCCESS, payload: data})
+      dispatch({type: CREATE_SUBSCRIPTION_SUCCESS, payload: data})
+      dispatch({type: LOAD_USER_SUCCESS, payload: data.user})
     })
     .catch(_ => {
       return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: 'Something went wrong. Please try again'})

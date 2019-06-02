@@ -19,7 +19,7 @@ class Statistics extends Component {
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
 
-    if (!user || !user.customer || !user.subscription) {
+    if (!user || !user.subscription || user.subscription.status !== 'active') {
       console.log('user', user)
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }

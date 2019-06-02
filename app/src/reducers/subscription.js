@@ -19,7 +19,7 @@ export default function subscription (state = defaultState, action) {
     case CREATE_SUBSCRIPTION_SUCCESS : {
       return {
         ...state,
-        successMessage: action.payload
+        successMessage: action.payload && action.payload.message
       }
     }
   }
