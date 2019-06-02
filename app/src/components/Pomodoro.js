@@ -8,7 +8,7 @@ export default class Pomodoro extends Component {
     const {team = false, channelId} = this.props
 
     return <div>
-      <Timer timer={timer} />
+      <Timer actions={actions} timer={timer} />
       <TimerButtons actions={actions} team={team} channelId={channelId} />
     </div>
   }
