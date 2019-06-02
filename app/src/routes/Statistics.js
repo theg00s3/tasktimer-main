@@ -15,10 +15,10 @@ dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
-    const {user, todos, pomodoros, distractions} = this.props
+    const {user, todos, pomodoros, distractions, subscription, actions} = this.props
 
     if (!user || !user.subscribed) {
-      return <Subscribe user={user} />
+      return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
     if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
@@ -204,6 +204,7 @@ export default connect(
   settings: state.settings,
   pomodoros: state.pomodoros,
   distractions: state.distractions,
+  subscription: state.subscription,
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)

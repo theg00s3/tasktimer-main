@@ -3,6 +3,7 @@ import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
+import subscription from './reducers/subscription'
 import user from './reducers/user'
 import team from './reducers/team'
 import distractions from './reducers/distractions'
@@ -25,7 +26,8 @@ const store = createStore(combineReducers({
   settings,
   user,
   team,
-  distractions
+  distractions,
+  subscription
 }), composeEnhancers(
   applyMiddleware(...middleware),
   persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'distractions'])

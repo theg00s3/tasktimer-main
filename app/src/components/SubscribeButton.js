@@ -4,35 +4,8 @@ import StripeCheckout from 'react-stripe-checkout'
 import pomodoroImage from '../assets/images/pomodoro.cc.png'
 
 export default class SubscribeButton extends Component {
-  onToken (token) {
-    console.log('token', token)
-    const stripeToken = token.id
-    const email = token.email
-    const createSubscriptionUrl = /pomodoro/.test(location.href) ? 'https://api.pomodoro.cc/create-subscription' : 'http://localhost:3000/create-subscription'
-    fetch(createSubscriptionUrl, {
-      method: 'POST',
-      body: JSON.stringify({email, stripeToken}),
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('data', data)
-      if (data.error) {
-        alert(`Something went wrong.\n ${data.message || data.error}`)
-        return
-      }
-      alert(`we are in business.\n ${data.message}`)
-    })
-  }
-
   render () {
-    const {user} = this.props
+    const {user, actions} = this.props
     if (!user) {
       return null
     }
@@ -42,11 +15,12 @@ export default class SubscribeButton extends Component {
 
     return <div className='payment'>
       <img src={user.avatar} class='user-avatar' />
+
       &nbsp;
       &nbsp;
 
       <StripeCheckout
-        token={this.onToken}
+        token={token => actions.createSubscription(token)}
         email={user.email}
         label='Pay'
         image={pomodoroImage}
