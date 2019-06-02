@@ -10,8 +10,8 @@ export default class SubscribeButton extends Component {
     fetch(createSubscriptionUrl, {
       method: 'POST',
       body: JSON.stringify({stripeToken}),
-      // mode: 'cors',
-      // cache: 'no-cache',
+      mode: 'cors',
+      cache: 'no-cache',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
