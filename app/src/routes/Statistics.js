@@ -17,11 +17,12 @@ class Statistics extends Component {
   render () {
     const {user, todos, pomodoros, distractions, subscription, actions} = this.props
 
+    if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
+
     if (!user || !user.customer || !user.subscription) {
+      console.log('user', user)
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
-
-    if (!user || (user.username !== 'christian-fei' && user.username !== 'christian_fei')) return null
 
     const qs = querystring.parse(window.location.search.replace('?', ''))
 
