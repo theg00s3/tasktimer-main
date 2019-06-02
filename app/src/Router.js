@@ -28,8 +28,8 @@ export default class Root extends Component {
       if (url === '/team') return this.setState({current: <ChooseTeam />})
       if (/\/team/.test(url)) return this.setState({current: <Team />})
       if (/\/statistics/.test(url)) return this.setState({current: <Statistics current={Date.now()} />})
-      if (/\/pro/.test(url)) return this.setState({current: <Pro current={Date.now()} />})
       if (/\/profile/.test(url)) return this.setState({current: <Profile current={Date.now()} />})
+      if (/\/pro/.test(url)) return this.setState({current: <Pro current={Date.now()} />})
       this.setState({current: <FouroFour />})
     })
 
