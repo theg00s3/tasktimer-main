@@ -1,6 +1,89 @@
+@import '../styles/vars'
+
 .subscribe
   display block
+  border-radius 2em
+  background #f9f9f9
+  padding 3em 1em
+
+.monthly-badge
+  background-color color_pomodoro
+  color white
+  font-size 1rem
+  vertical-align super
+  font-weight bold
+  border-radius 5px
+  padding 0.2rem 0.3rem
+
+.price-choices {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.price-choices {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+.price-choices .price {
+    display: -ms-flexbox;
+    display: flex;
+}
+.price-choices .price {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+.price {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    position: relative;
+}
+.price-symbol {
+    color: inherit;
+    opacity: 0.5;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    padding-top: 0.25em;
+}
+.price>* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 0.8;
+}
+.price-amount {
+    font-size: 4rem;
+    color: inherit;
+    font-weight: bold;
+}
+.price>* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 0.8;
+}
+.price-frequency {
+    opacity: 0.5;
+    color: inherit;
+}
+.price>* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 0.8;
+}
+
 .error-message
-  color red
+  color color_pomodoro
   border 1px solid red
   padding 2em
