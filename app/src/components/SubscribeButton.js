@@ -7,10 +7,11 @@ export default class SubscribeButton extends Component {
   onToken (token) {
     console.log('token', token)
     const stripeToken = token.id
+    const email = token.email
     const createSubscriptionUrl = /pomodoro/.test(location.href) ? 'https://api.pomodoro.cc/create-subscription' : 'http://localhost:3000/create-subscription'
     fetch(createSubscriptionUrl, {
       method: 'POST',
-      body: JSON.stringify({stripeToken}),
+      body: JSON.stringify({email, stripeToken}),
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'include',
