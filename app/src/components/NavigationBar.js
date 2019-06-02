@@ -14,7 +14,6 @@ export default class NavigationBar extends Component {
         <Link to='/support'>Support us!</Link>
         <Link to='/open' id='open-stats'>Open</Link>
         <Link to='/about' id='open-stats'>About</Link>
-        {/* <a href='https://medium.com/@pomodoro_cc' target='_blank'>Blog</a> */}
         <div class='float-right'>
           {!user && <Link to='/login'>Login</Link>}
           <User user={user} />
