@@ -57,7 +57,7 @@ export function loadUser () {
 export function logoutUser () {
   return (dispatch, getState) => {
     dispatch({type: LOGOUT_USER_REQUEST})
-    window.fetch('https://api.pomodoro.cc/logout', {credentials: 'include'})
+    window.fetch('https://api.pomodoro.cc/user/logout', {credentials: 'include'})
       .then(() => dispatch({type: LOGOUT_USER_SUCCESS, payload: null}))
       .catch((err) => {
         console.error(LOGOUT_USER_ERROR, err)
