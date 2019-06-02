@@ -120,7 +120,7 @@ class Statistics extends Component {
 
           {(completedPomodoros.length > 0 || completedTodos.length > 0) &&
             <div className='pad'>
-              <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles={false} />
+              <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>}
         </div>
       </div>
