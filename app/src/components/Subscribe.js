@@ -7,7 +7,7 @@ export default class Subscribe extends Component {
     const {user, subscription, actions} = this.props
     return <div className='content tac'>
       <div className='subscribe'>
-        <h1 className='title'>Pomodoro.cc <span className='monthly-badge'>Monthly</span></h1>
+        <h1 className='title'>Pomodoro.cc <span className='pro-badge'>Pro</span></h1>
 
         <div class='price-choices'>
           <div class='price'>
