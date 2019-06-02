@@ -9,7 +9,7 @@ export default class NavigationBar extends Component {
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
-        {user && ['christian-fei', 'christian_fei'].includes(user.username) && <Link to='/statistics'>Statistics</Link>}
+        {user && user.subscription && user.subscription.status === 'active' && <Link to='/statistics'>Statistics</Link>}
         <Link to='/team' id='team'>Team</Link>
         <Link to='/support'>Support us!</Link>
         <Link to='/open' id='open-stats'>Open</Link>
