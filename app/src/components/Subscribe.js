@@ -21,6 +21,24 @@ export default class Subscribe extends Component {
 
         <br />
 
+        <ul className='pro-reasons tal'>
+          <h2>What you'll get</h2>
+          <li>
+            ⚡️ Statistics
+          </li>
+          <li>
+            ️️️⚡️ Sync pomodoros and todos on all your devices
+          </li>
+          <li>
+            ️️️⚡️ Channel-reservation using the Team Pomodoro
+          </li>
+          <li>
+            ⚡️ Access your account data
+          </li>
+        </ul>
+
+        <br />
+
         {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
         {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
       </div>
