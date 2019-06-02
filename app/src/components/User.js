@@ -12,6 +12,8 @@ export default class User extends Component {
       <Link href={href}>
         <img src={user.avatar} class='user-avatar' />
       </Link>
+      &nbsp;
+      &nbsp;
       <Link href='/logout'>Logout</Link>
     </span>
   }
