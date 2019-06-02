@@ -12,14 +12,15 @@ export default class SubscribeButton extends Component {
       body: JSON.stringify({stripeToken}),
       mode: 'cors',
       cache: 'no-cache',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business.\n ${data.message}`)
-      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert(`We are in business.\n ${data.message}`)
     })
   }
 
