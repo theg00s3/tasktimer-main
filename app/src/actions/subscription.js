@@ -1,4 +1,5 @@
 import { LOAD_USER_SUCCESS } from '../actions'
+import AnalyticsService from '../modules/AnalyticsService'
 
 export const CREATE_SUBSCRIPTION = 'CREATE_SUBSCRIPTION'
 export const CREATE_SUBSCRIPTION_SUCCESS = 'CREATE_SUBSCRIPTION_SUCCESS'
@@ -28,12 +29,15 @@ export function createSubscription (token) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
+        AnalyticsService.track('create-subscription-failure', data.error)
         return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: data.error})
       }
+      AnalyticsService.track('create-subscription-success', data)
       dispatch({type: CREATE_SUBSCRIPTION_SUCCESS, payload: data})
       dispatch({type: LOAD_USER_SUCCESS, payload: data.user})
     })
-    .catch(_ => {
+    .catch(err => {
+      AnalyticsService.track('create-subscription-failure', err)
       return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: 'Something went wrong. Please try again'})
     })
   }
