@@ -31,11 +31,11 @@ export default class SubscribeButton extends Component {
       </div>
     }
 
-    const stripeKey = /pomodoro/.test(location.href) ? 'pk_live_geRcjLp8LZwxhvZZDC3Osyyt00MisZGF5a' : 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
+    let stripeKey = /pomodoro/.test(location.href) ? 'pk_live_geRcjLp8LZwxhvZZDC3Osyyt00MisZGF5a' : 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
+    if (localStorage.stripeTest) stripeKey = 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
 
     return <div className='payment'>
       <img src={user.avatar} class='user-avatar' />
-
       &nbsp; only 1 € / month &nbsp;
 
       <StripeCheckout
