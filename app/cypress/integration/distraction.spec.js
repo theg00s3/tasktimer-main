@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Distraction', () => {
+context.skip('Distraction', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1234')
   })
