@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import querystring from 'querystring'
-import {ResponsiveContainer, ComposedChart, Bar, Line, Tooltip} from 'recharts'
+// import {ResponsiveContainer, ComposedChart, Area, Bar, Line, Tooltip} from 'recharts'
+import {
+  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+} from 'recharts'
+
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
@@ -41,21 +45,24 @@ class Statistics extends Component {
       .filter(t => new Date(t.completed_at).toISOString().substring(0, 10) === date)
     const completedPomodoros = pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
+      // .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
+      .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
     const trackedDistractions = distractions.tracked.filter(d => new Date(d).toISOString().substring(0, 10) === date)
 
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
-    const distractionsChartData = distractionsChartDataFor(trackedDistractions)
+    // const distractionsChartData = distractionsChartDataFor(trackedDistractions)
 
-    const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
-      const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
-      if (distractionItem) {
-        Object.assign(pomodoroItem, distractionItem)
-      }
-      return acc.concat([pomodoroItem])
-    }, [])
+    console.log('pomodorosChartData', pomodorosChartData)
+
+    // const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
+    //   const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
+    //   if (distractionItem) {
+    //     Object.assign(pomodoroItem, distractionItem)
+    //   }
+    //   return acc.concat([pomodoroItem])
+    // }, [])
 
     console.log('completedTodos', completedTodos)
 
@@ -86,16 +93,14 @@ class Statistics extends Component {
           </div>
         </div>
       </div>}
-      {completedPomodoros.length > 0 &&
       <div className='pad'>
-        <ResponsiveContainer width='100%' height={200}>
-          <ComposedChart data={composedData}>
+        <ResponsiveContainer width='100%' height={100}>
+          <LineChart width='100%' height={100} data={pomodorosChartData}>
+            <Line type='monotone' dataKey='value' stroke='#DF2E2E' strokeWidth={2} />
             <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
-            <Bar dataKey='distractionsCount' barSize={20} fill='#413ea0' />
-            <Line type='monotone' dataKey='pomodorosCount' dot={false} stroke='#DF2E2E' strokeWidth={3} />
-          </ComposedChart>
+          </LineChart>
         </ResponsiveContainer>
-      </div>}
+      </div>
       <div className='pad'>
         <div>
           {completedPomodoros.length > 0 && <div class='columns'>
@@ -148,7 +153,7 @@ function pomodorosChartDataFor (pomodoros) {
   .map(key => {
     const pomodoros = pomodorosByKey[key]
     const pomodorosCount = pomodoros.length
-    return {key, pomodorosCount, pomodoros}
+    return {key, pomodorosCount, pomodoros, name: key, value: pomodorosCount}
   })
   .sort((a, b) => a.key < b.key ? -1 : 1)
 }
