@@ -8,7 +8,8 @@ export default class Timer extends Component {
     this.editingSeconds = false
   }
   editMinutes () {
-    console.log('editMinutes')
+    const {timer} = this.props
+    console.log('editMinutes', timer)
     this.setState({
       editingMinutes: !this.state.editingMinutes
     })
@@ -38,9 +39,10 @@ export default class Timer extends Component {
     const [_, minutes, seconds] = timer.match(/(\d+):(\d+)/)
 
     console.log('minutes, seconds', minutes, seconds)
+    const editing = this.state.editingMinutes
     return <div id='timer' className='timer'>
-      {!this.state.editingMinutes && <span onDblClick={this.editMinutes.bind(this)} className='minutes'>{minutes}</span>}
-      {this.state.editingMinutes && <input autoFocus value={minutes} onKeyDown={this.submitMinutes.bind(this)} onDblClick={this.editMinutes.bind(this)} className='minutes'>{minutes}</input>}
+      {!editing && <span onDblClick={this.editMinutes.bind(this)} className='minutes'>{minutes}</span>}
+      {editing && <input autoFocus type='number' value={minutes} onKeyDown={this.submitMinutes.bind(this)} onDblClick={this.editMinutes.bind(this)} className='minutes'>{minutes}</input>}
       :
       {<span onDblClick={this.editSeconds.bind(this)} className='seconds'>{seconds}</span>}
       {/* {this.state.editingSeconds && <input autoFocus value={seconds} onDblClick={this.editSeconds.bind(this)} className='seconds'>{seconds}</input>} */}
