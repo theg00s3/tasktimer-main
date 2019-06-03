@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Todo from './Todo'
 import './TodoForm.styl'
+import Link from '../components/utils/Link'
 
 class TodoForm extends Component {
   addTodo (event) {
@@ -43,7 +44,7 @@ class TodoForm extends Component {
         </div>
       </div>}
 
-      {showTitles && <h1 className='no-m'>Done {percentDoneString !== '0' && <span className={`percent-done ${percentDoneClass}`}>{percentDoneString} %</span>}</h1>}
+      {showTitles && <h1 className='no-m'>Done {percentDoneString !== '0' && <Link to='/statistics' className={`percent-done ${percentDoneClass}`}>{percentDoneString} %</Link>}</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
