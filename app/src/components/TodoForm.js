@@ -22,7 +22,6 @@ class TodoForm extends Component {
 
     const percentDone = (doneTodos.length / Math.max(doneTodos.length + newTodos.length, 1) * 100)
     const percentDoneString = percentDone.toFixed(0)
-    console.log('percentDone', percentDone)
     const percentDoneClass = percentDone <= 33 ? 'percent-done-low' : (percentDone <= 66 ? 'percent-done-mid' : 'percent-done-high')
 
     return <div className='todo-form-container'>
