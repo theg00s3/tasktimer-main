@@ -1,13 +1,13 @@
 import {TRACK_DISTRACTION, TEST_DISTRACTIONS} from '../actions'
 
-export const defaultState = {lastTracked: null, tracked: [], distractionTrackText: 'Being distracted? 😅'}
+export const defaultState = {lastTracked: null, tracked: [], distractionTrackText: 'Track distraction 💥'}
 
 export default function distractions (state = defaultState, action) {
   switch (action.type) {
     case TRACK_DISTRACTION: {
       return {
         lastTracked: action.payload,
-        distractionTrackText: state.tracked.length % 2 === 0 ? 'Being distracted? 😅' : 'Track distraction 💥',
+        distractionTrackText: 'Track distraction 💥',
         tracked: state.tracked.concat([action.payload])
       }
     }
@@ -16,7 +16,7 @@ export default function distractions (state = defaultState, action) {
       const MINUTES = 1000 * 60
       return {
         lastTracked: state.lastTracked,
-        distractionTrackText: state.tracked.length % 2 === 0 ? 'Being distracted? 😅' : 'Track distraction 💥',
+        distractionTrackText: 'Track distraction 💥',
         tracked: [
           new Date(now - MINUTES * 15),
           new Date(now - MINUTES * 45),
