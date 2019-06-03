@@ -28,14 +28,14 @@ export function createPomodoro (pomodoro) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
-        AnalyticsService.track('create-pomodoro-failure', data.error)
+        getState().user && AnalyticsService.track('create-pomodoro-failure', data.error)
         return dispatch({type: CREATE_POMODORO_FAILURE, payload: data.error})
       }
-      AnalyticsService.track('create-pomodoro-success', data)
+      getState().user && AnalyticsService.track('create-pomodoro-success', data)
       dispatch({type: CREATE_POMODORO_SUCCESS, payload: data})
     })
     .catch(err => {
-      AnalyticsService.track('create-pomodoro-failure', err)
+      getState().user && AnalyticsService.track('create-pomodoro-failure', err)
       return dispatch({type: CREATE_POMODORO_FAILURE, payload: 'Something went wrong. Please try again'})
     })
   }
