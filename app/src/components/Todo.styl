@@ -49,26 +49,17 @@
 .todo.completed:hover
   text-decoration inherit
 
+.todo .delete:after, .todo .complete:after
+  font-size 0.75rem
 .todo .delete:hover
   color color_pomodoro
-.todo .delete:after
-  content '×'
-  font-size 1.5rem
-.todo .delete:hover:after
-  content 'delete'
-  font-size 0.75rem
-
 .todo .complete:hover
   color color_pomodoro_leaf
-.todo .complete:hover:after
-  content 'done'
-  font-size 0.75rem
-.todo.completed .complete:hover:after
-  content 'todo'
-  font-size 0.75rem
+
+.todo .delete:after
+  content 'delete'
 .todo .complete:after
-  content '✓'
-  font-size 1.5rem
+  content 'done'
 
 
 
