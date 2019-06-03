@@ -9,7 +9,7 @@ export default class NavigationBar extends Component {
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
-        {user && user.subscription && user.subscription.status === 'active' && <Link to='/statistics'>Statistics</Link>}
+        <Link to='/statistics'>Statistics</Link>
         {(!user || !user.subscription) && <Link className='pro' to='/pro'>Pro</Link>}
         <Link to='/team' id='team'>Team</Link>
         <Link to='/support'>Support us!</Link>
