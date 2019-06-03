@@ -25,14 +25,14 @@ class TodoForm extends Component {
     const percentDoneClass = percentDone <= 33 ? 'percent-done-low' : (percentDone <= 66 ? 'percent-done-mid' : 'percent-done-high')
 
     return <div className='todo-form-container'>
-      {editable && <div className='todo editing' style='padding: 2em;'>
-        {editable && <input
+      {editable && <div className='todo-input-container todo editing'>
+        <input
           type='text'
           onKeyDown={this.addTodo.bind(this)}
           autoFocus
           placeholder='What do you need to do?'
           id='todo-input'
-          className='todo-input' />}
+          className='todo-input' />
       </div>}
 
       {showTitles && <h1 className={`no-m ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
