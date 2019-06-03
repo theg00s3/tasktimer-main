@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Twitter from '../assets/images/twitter.svg'
-import Github from '../assets/images/github.svg'
+import Twitter from '../assets/images/twitter.png'
+import GitHub from '../assets/images/github.png'
 import './Login.styl'
 
 class Login extends Component {
@@ -10,27 +10,26 @@ class Login extends Component {
     const twitterUrl = baseUrl + '/twitter'
     const githubUrl = baseUrl + '/github'
 
-    console.log({twitterUrl, githubUrl})
+    return <div className='login content tac'>
+      <h1 className='title'>Login. One click. Easy.</h1>
+      <h3 className='pad no-signup'>No signup required!</h3>
 
-    return <div className='login content'>
-      <h2 className='title'>Login. One click. Easy.</h2>
-      <div className='pad no-signup'>No signup required!</div>
-      <table>
-        <tr>
-          <td className='tac' style='width: 50%'>
-            <a href={twitterUrl}>
-              <img src={Twitter} />
-              twitter
-            </a>
-          </td>
-          <td className='tac' style='width: 50%'>
-            <a href={githubUrl}>
-              <img src={Github} />
-              github
-            </a>
-          </td>
-        </tr>
-      </table>
+      <div className='columns'>
+        <div className='column tac'>
+          <a className='login-button' href={twitterUrl}>
+            <img src={Twitter} />
+            <br />
+            <h3>Login with Twitter</h3>
+          </a>
+        </div>
+        <div className='column tac'>
+          <a className='login-button' href={githubUrl}>
+            <img src={GitHub} />
+            <br />
+            <h3>Login with GitHub</h3>
+          </a>
+        </div>
+      </div>
     </div>
   }
 }
