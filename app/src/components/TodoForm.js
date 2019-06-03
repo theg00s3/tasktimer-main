@@ -20,6 +20,11 @@ class TodoForm extends Component {
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
+    const percentDone = (doneTodos.length / Math.max(doneTodos.length + newTodos.length, 1) * 100)
+    const percentDoneString = percentDone.toFixed(0)
+    console.log('percentDone', percentDone)
+    const percentDoneClass = percentDone <= 33 ? 'percent-done-low' : (percentDone <= 66 ? 'percent-done-mid' : 'percent-done-high')
+
     return <div className='todo-form-container'>
       {editable && <div className='todo editing' style='padding: 2em;'>
         {editable && <input
@@ -31,10 +36,15 @@ class TodoForm extends Component {
           className='todo-input' />}
       </div>}
 
-      {newTodos.length > 0 && showTitles && <h1 className='no-m'>Todo</h1>}
-      {renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+      {showTitles && <h1 className={`no-m ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
+      {newTodos.length > 0 && renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+      {newTodos.length === 0 && <div className='content'>
+        <div className='todo'>
+          <span className='text all-done'>All done</span>
+        </div>
+      </div>}
 
-      {doneTodos.length > 0 && showTitles && <h1 className='no-m'>Done</h1>}
+      {showTitles && <h1 className='no-m'>Done {percentDoneString !== '0' && <span className={`percent-done ${percentDoneClass}`}>{percentDoneString} %</span>}</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
