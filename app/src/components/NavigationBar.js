@@ -10,7 +10,7 @@ export default class NavigationBar extends Component {
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
         {user && user.subscription && user.subscription.status === 'active' && <Link to='/statistics'>Statistics</Link>}
-        <Link to='/pro'>Pro</Link>
+        <Link className='pro' to='/pro'>Pro</Link>
         <Link to='/team' id='team'>Team</Link>
         <Link to='/support'>Support us!</Link>
         {/* <Link to='/open' id='open-stats'>Open</Link> */}
