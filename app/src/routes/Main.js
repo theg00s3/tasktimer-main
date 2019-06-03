@@ -12,7 +12,7 @@ class Main extends Component {
     return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
       <TrackDistraction actions={actions} distractions={distractions} />
-      <TodoForm todos={todos} actions={actions} editable />
+      <TodoForm todos={todos} actions={actions} editable showStatsLink />
     </div>
   }
 }

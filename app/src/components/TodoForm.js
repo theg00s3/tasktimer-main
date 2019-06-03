@@ -17,7 +17,7 @@ class TodoForm extends Component {
   }
 
   render () {
-    const { todos, actions, completable = true, editable = true, deletable = true, showTitles = true, showDeleted = false } = this.props
+    const { todos, actions, completable = true, editable = true, deletable = true, showTitles = true, showDeleted = false, showStatsLink = false } = this.props
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
@@ -44,7 +44,7 @@ class TodoForm extends Component {
         </div>
       </div>}
 
-      {showTitles && <h1 className='no-m'>Done {percentDoneString !== '0' && <Link to='/statistics' className={`percent-done ${percentDoneClass}`}>{percentDoneString} %</Link>}</h1>}
+      {showTitles && <h1 className='no-m'>Done {showStatsLink && <span className='small vam'><Link to='/statistics' className={`percent-done  ${percentDoneClass}`}>{percentDoneString} %</Link> Show in stats</span>}</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
     </div>
   }
