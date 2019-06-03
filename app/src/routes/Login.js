@@ -2,15 +2,19 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Twitter from '../assets/images/twitter.svg'
 import Github from '../assets/images/github.svg'
+import './Login.styl'
 
 class Login extends Component {
   render () {
     const baseUrl = /pomodoro/.test(window.location.hostname) ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
     const twitterUrl = baseUrl + '/twitter'
     const githubUrl = baseUrl + '/github'
+
     console.log({twitterUrl, githubUrl})
 
     return <div className='login content'>
+      <h2 className='title'>Login. One click. Easy.</h2>
+      <div className='pad no-signup'>No signup required!</div>
       <table>
         <tr>
           <td className='tac' style='width: 50%'>
