@@ -96,7 +96,7 @@ class Statistics extends Component {
       <div className='pad'>
         <ResponsiveContainer width='100%' height={100}>
           <LineChart width='100%' height={100} data={pomodorosChartData}>
-            <Line type='monotone' dataKey='value' stroke='#DF2E2E' strokeWidth={2} />
+            <Line type='monotone' dataKey='value' stroke='#DF2E2E' strokeWidth={2} dot={false} />
             <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
           </LineChart>
         </ResponsiveContainer>
