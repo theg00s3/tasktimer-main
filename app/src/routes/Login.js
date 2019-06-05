@@ -37,10 +37,6 @@ class Login extends Component {
 
 export default connect(
   (state) => ({
-    todos: state.todos,
-    settings: state.settings,
-    pomodoro: state.pomodoro,
-    timer: state.timer
   }),
   (dispatch) => ({
   })
