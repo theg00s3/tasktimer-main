@@ -7,6 +7,7 @@ import subscription from './reducers/subscription'
 import user from './reducers/user'
 import team from './reducers/team'
 import distractions from './reducers/distractions'
+import loading from './reducers/loading'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -27,6 +28,7 @@ const store = createStore(combineReducers({
   user,
   team,
   distractions,
+  loading,
   subscription
 }), composeEnhancers(
   applyMiddleware(...middleware),
