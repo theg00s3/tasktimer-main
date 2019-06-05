@@ -22,7 +22,6 @@ class Statistics extends Component {
     const {user, todos, pomodoros, distractions, subscription, actions} = this.props
 
     if (!user || !user.subscription || user.subscription.status !== 'active') {
-      console.log('user', user)
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
@@ -51,19 +50,6 @@ class Statistics extends Component {
     const trackedDistractions = distractions.tracked.filter(d => new Date(d).toISOString().substring(0, 10) === date)
 
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
-    // const distractionsChartData = distractionsChartDataFor(trackedDistractions)
-
-    console.log('pomodorosChartData', pomodorosChartData)
-
-    // const composedData = pomodorosChartData.reduce((acc, pomodoroItem) => {
-    //   const distractionItem = distractionsChartData.find(({key}) => key === pomodoroItem.key)
-    //   if (distractionItem) {
-    //     Object.assign(pomodoroItem, distractionItem)
-    //   }
-    //   return acc.concat([pomodoroItem])
-    // }, [])
-
-    console.log('completedTodos', completedTodos)
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
