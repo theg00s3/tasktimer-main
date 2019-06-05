@@ -21,10 +21,6 @@ class TodoForm extends Component {
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
 
-    const percentDone = (doneTodos.length / Math.max(doneTodos.length + newTodos.length, 1) * 100)
-    const percentDoneString = percentDone.toFixed(0)
-    const percentDoneClass = percentDone <= 33 ? 'percent-done-low' : (percentDone <= 66 ? 'percent-done-mid' : 'percent-done-high')
-
     return <div className='todo-form-container'>
       {editable && <div className='todo-input-container todo editing'>
         <input
@@ -44,8 +40,10 @@ class TodoForm extends Component {
         </div>
       </div>}
 
-      {showTitles && <h1 className='no-m'>Done {showStatsLink && <span className='small vam'><Link to='/statistics' className={`percent-done  ${percentDoneClass}`}>{percentDoneString} %</Link> Show in stats</span>}</h1>}
+      {showTitles && <h1 className='no-m'>Done</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
+
+      {showStatsLink && <Link className='small vam button' to='/statistics'>Show in stats</Link>}
     </div>
   }
 }
