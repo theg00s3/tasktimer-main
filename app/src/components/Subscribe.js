@@ -26,7 +26,13 @@ export default class Subscribe extends Component {
         <SubscribeButton user={user} actions={actions} />
 
         {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
-        {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
+        {(true || subscription.successMessage) && <div className='success-message'>
+          {subscription.successMessage}
+
+          <br />
+
+          Checkout the <Link to='/statistics'>Statistics</Link> page now!
+        </div>}
 
         <ul className='pro-reasons tal'>
           <h2>What you'll get</h2>

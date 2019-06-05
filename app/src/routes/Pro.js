@@ -13,6 +13,16 @@ class Pro extends Component {
   render () {
     const {user, subscription, actions} = this.props
 
+    if (user && user.subscription && user.subscription.status === 'active') {
+      return <div className='content'>
+        <div className='success-message'>
+          All good, you're already Pro!
+          <br />
+          Visit your <Link to='/statistics'>Statistics</Link> page
+        </div>
+      </div>
+    }
+
     return <div className='content'>
       <Subscribe user={user} subscription={subscription} actions={actions} />
     </div>
