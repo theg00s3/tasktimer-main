@@ -37,6 +37,8 @@ class Statistics extends Component {
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
     }
 
+    actions.getPomodorosForDay(date)
+
     const completedTodos = todos
       .filter(Boolean)
       .filter(t => t.completed)
@@ -45,6 +47,10 @@ class Statistics extends Component {
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
+      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+    const allPomodoros = pomodoros
+      .filter(Boolean)
+      .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
     const trackedDistractions = distractions.tracked.filter(d => new Date(d).toISOString().substring(0, 10) === date)
@@ -93,7 +99,8 @@ class Statistics extends Component {
               <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
             </div>
             <div class='column pad-v tac'>
-              <img className='paper-sheet' src={paperSheet} />
+              All
+              <h1 class='no-m'>{allPomodoros.length}</h1> pomodoros
             </div>
             <div class='column pad-v tac'>
               <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
