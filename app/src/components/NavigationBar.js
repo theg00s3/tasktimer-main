@@ -5,7 +5,7 @@ import './NavigationBar.styl'
 
 export default class NavigationBar extends Component {
   render () {
-    const {user} = this.props
+    const {user, loading} = this.props
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
@@ -15,10 +15,13 @@ export default class NavigationBar extends Component {
         <Link to='/support'>Support us!</Link>
         <Link to='/open' id='open-stats'>Open</Link>
         <Link to='/about' id='open-stats'>About</Link>
-        <div class='float-right'>
+        {loading.loadingUser && <div class='float-right'>
+          <div class='spinner' />
+        </div>}
+        {!loading.loadingUser && <div class='float-right login-container'>
           {!user && <Link to='/login'>Login</Link>}
-          <User user={user} />
-        </div>
+          <User user={user} loading={loading} />
+        </div>}
       </div>
     </nav>
   }

@@ -20,9 +20,9 @@ class Layout extends Component {
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
   render (state, dispatch) {
-    const {actions, user} = this.props
+    const {actions, user, loading} = this.props
     return <div>
-      <NavigationBar actions={actions} user={user} />
+      <NavigationBar actions={actions} user={user} loading={loading} />
 
       <div className='main-content'>
         {this.props.children}
@@ -45,10 +45,8 @@ class Layout extends Component {
 export default connect(
   (state) => {
     return {
-      todos: state.todos,
       settings: state.settings,
-      pomodoro: state.pomodoro,
-      timer: state.timer,
+      loading: state.loading,
       user: state.user
     }
   },
