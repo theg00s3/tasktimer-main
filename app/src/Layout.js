@@ -20,9 +20,9 @@ class Layout extends Component {
     return NotificationService.needsPermission && !settings.notificationPermissionGranted
   }
   render (state, dispatch) {
-    const {actions, user, loading} = this.props
+    const {actions, user, loading, currentUrl} = this.props
     return <div>
-      <NavigationBar actions={actions} user={user} loading={loading} />
+      <NavigationBar actions={actions} user={user} loading={loading} currentUrl={currentUrl} />
 
       <div className='main-content'>
         {this.props.children}

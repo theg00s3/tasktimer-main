@@ -5,22 +5,23 @@ import './NavigationBar.styl'
 
 export default class NavigationBar extends Component {
   render () {
-    const {user, loading} = this.props
+    const {user, loading, currentUrl} = this.props
+
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
-        <Link to='/statistics'>Statistics</Link>
+        <Link className={currentUrl === '/statistics' && 'active'} to='/statistics'>Statistics</Link>
         {(!user || !user.subscription) && <Link className='pro' to='/pro'>Pro</Link>}
-        <Link to='/team' id='team'>Team</Link>
-        <Link to='/support'>Support us!</Link>
-        <Link to='/open' id='open-stats'>Open</Link>
-        <Link to='/about' id='open-stats'>About</Link>
+        <Link className={currentUrl === '/team' && 'active'} to='/team' id='team'>Team</Link>
+        <Link className={currentUrl === '/support' && 'active'} to='/support'>Support us!</Link>
+        <Link className={currentUrl === '/open' && 'active'} to='/open' id='open-stats'>Open</Link>
+        <Link className={currentUrl === '/about' && 'active'} to='/about' id='open-stats'>About</Link>
         {loading.loadingUser && <div class='float-right'>
           <div class='spinner' />
         </div>}
         {!loading.loadingUser && <div class='float-right login-container'>
-          {!user && <Link to='/login'>Login</Link>}
-          <User user={user} loading={loading} />
+          {!user && <Link className={currentUrl === '/login' && 'active'} to='/login'>Login</Link>}
+          <User user={user} loading={loading} active={currentUrl === '/profile'} />
         </div>}
       </div>
     </nav>

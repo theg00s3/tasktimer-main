@@ -16,9 +16,10 @@ import Pro from './routes/Pro'
 export default class Root extends Component {
   constructor () {
     super()
-    this.state = {current: <Main />}
+    this.state = {current: <Main />, currentUrl: '/'}
     window.addEventListener('popstate', (event) => {
       const url = event.url || window.location.pathname
+      this.setState({currentUrl: url})
       if (url === '/') return this.setState({current: <Main />})
       if (url === '/about') return this.setState({current: <About />})
       if (url === '/open') return this.setState({current: <Open />})
@@ -39,7 +40,7 @@ export default class Root extends Component {
   }
 
   render () {
-    return <Layout>
+    return <Layout currentUrl={this.state.currentUrl}>
       {this.state.current}
     </Layout>
   }

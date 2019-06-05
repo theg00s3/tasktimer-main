@@ -4,12 +4,12 @@ import './User.styl'
 
 export default class User extends Component {
   render () {
-    const {user} = this.props
+    const {user, active} = this.props
     if (!user) return null
     const href = `/profile`
 
     return <span className='user' style='vertical-align: sub;'>
-      <Link href={href}>
+      <Link className={active && 'active'} href={href}>
         Profile &nbsp;
         <img src={user.avatar} class='user-avatar' />
       </Link>
