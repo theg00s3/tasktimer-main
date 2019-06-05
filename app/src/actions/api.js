@@ -10,8 +10,8 @@ export function createPomodoro (pomodoro) {
 
     const body = JSON.stringify(pomodoro)
     const url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/api/pomodoro'
-      : 'http://localhost:3000/api/pomodoro'
+      ? 'https://api.pomodoro.cc/pomodoros'
+      : 'http://localhost:3000/pomodoros'
 
     window.fetch(url, {
       method: 'POST',
