@@ -34,19 +34,22 @@ export default class Subscribe extends Component {
           Checkout the <Link to='/statistics'>Statistics</Link> page now!
         </div>}
 
+        <br />
+        <br />
+
         <ul className='pro-reasons tal'>
-          <h2>What you'll get</h2>
-          <li>
+          <h1 class='title tac'>What you'll get</h1>
+          <li className=''>
             ⚡️ Statistics and Insight
           </li>
-          <li>
-            ️️️⚡️ Sync pomodoros and todos on all your devices
+          <li className=''>
+            ️️️⚡️ Sync data between devices
           </li>
-          <li>
-            ️️️⚡️ Channel-reservation using the Team Pomodoro
+          <li className=''>
+            ️️️⚡️ Channel-reservation (Team Pomodoro)
           </li>
-          <li>
-            ⚡️ Access your account data
+          <li className=''>
+            ⚡️ Access your account data via API
           </li>
         </ul>
       </div>

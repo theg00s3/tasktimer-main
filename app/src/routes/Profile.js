@@ -44,7 +44,14 @@ class Profile extends Component {
           <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
         </div>}
 
-      {!user.hasActiveSubscription && <Subscribe user={user} subscription={subscription} actions={actions} />}
+      {!user.hasActiveSubscription &&
+        <div>
+          <div className='pad'>
+            <h1 class='title tac subscribe-to-pro'>Subscribe to Pro!</h1>
+          </div>
+          <Subscribe user={user} subscription={subscription} actions={actions} />
+        </div>
+      }
 
       <pre style='display: none'>{JSON.stringify(user, null, 2)}</pre>
     </div>
