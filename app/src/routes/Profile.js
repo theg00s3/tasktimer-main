@@ -16,8 +16,6 @@ class Profile extends Component {
     if (!user) return null
 
     return <div className='content'>
-      {(!user.subscription || user.subscription.status !== 'active') && <Subscribe user={user} subscription={subscription} actions={actions} />}
-
       <h1 className='title tac'>
         {user.avatar &&
           <img style='width: 30px;border-radius: 50%;' src={user.avatar} />}
@@ -26,7 +24,7 @@ class Profile extends Component {
       </h1>
       {user.subscription &&
         <div className='pad tac1'>
-          <strong>Subscription status</strong> {user.subscription.status === 'active' ? '✅ active' : user.subscription.status}
+          <strong>Subscription status</strong> {user.hasActiveSubscription ? '✅ active' : user.subscription.status}
         </div>}
 
       {user.subscription && user.subscription.start_date &&
@@ -41,10 +39,12 @@ class Profile extends Component {
           <strong>current_period_end</strong> {dayjs(user.subscription.current_period_end * 1000).format('YYYY-MM-DD-THH:mm')}
         </div>}
 
-      {user.apikey &&
+      {user.apikey && user.hasActiveSubscription &&
         <div className='pad tac1'>
           <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
         </div>}
+
+      {!user.hasActiveSubscription && <Subscribe user={user} subscription={subscription} actions={actions} />}
 
       <pre style='display: none'>{JSON.stringify(user, null, 2)}</pre>
     </div>

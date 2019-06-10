@@ -12,7 +12,7 @@ export default class User extends Component {
       <Link className={active && 'active'} href={href}>
         Profile &nbsp;
         <img src={user.avatar} class='user-avatar' />
-        {user.subscription && user.subscription.status === 'active' && <span className='pro-badge small'>Pro</span>}
+        {user.hasActiveSubscription && <span className='pro-badge small'>Pro</span>}
       </Link>
       &nbsp;
       &nbsp;
