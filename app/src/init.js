@@ -1,7 +1,8 @@
 import Timer from './modules/Timer'
 // import Sounds from './modules/Sounds'
+import NotificationService from './modules/NotificationService'
 import reduxStore from './reduxStore'
-import {tickTimer, resumeTimer, endTimer, loadUser} from './actions'
+import {tickTimer, resumeTimer, endTimer, loadUser, grantNotificationPermission} from './actions'
 
 const {getState, dispatch} = reduxStore
 
@@ -14,6 +15,21 @@ export default function init () {
     dispatch(tickTimer(remaining))
   })
 
+  const state = getState()
+
+  const shouldShowNotificationGrant = NotificationService.needsPermission && !state.settings.notificationPermissionGranted
+  if (shouldShowNotificationGrant) {
+    requestNotificationPermission()
+  }
+
+  function requestNotificationPermission () {
+    NotificationService.requestPermission(() => {
+      dispatch(grantNotificationPermission(true))
+    }, () => {
+      dispatch(grantNotificationPermission(false))
+    })
+  }
+
   dispatch(loadUser())
   Timer.on('forceEnd', playTimerEndSound)
   Timer.on('end', () => {
@@ -21,7 +37,7 @@ export default function init () {
     playTimerEndSound()
   })
 
-  const {pomodoro} = reduxStore.getState()
+  const {pomodoro} = state
 
   if (pomodoro && pomodoro.startedAt) {
     if (+new Date(pomodoro.startedAt) + pomodoro.minutes * 60 < Date.now()) {
@@ -40,10 +56,10 @@ export default function init () {
   }
 
   function playTimerEndSound () {
-    const state = getState()
+    // const state = getState()
     // Sounds.stopTickingSound()
-    if (state.settings.ringSoundEnabled) {
-      // Sounds.startRingingSound()
-    }
+    // if (state.settings.ringSoundEnabled) {
+    //   Sounds.startRingingSound()
+    // }
   }
 }
