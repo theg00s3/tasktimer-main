@@ -11,7 +11,11 @@ class Main extends Component {
   render () {
     const {timer, todos, pomodoro, pomodoros = [], user, actions} = this.props
     return <div className='content' id='start'>
-      {user && <PomodorosChart pomodoros={pomodoros} micro />}{user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
+      {user &&
+      <div style='margin: 0 auto; width: 300px;'>
+        <PomodorosChart pomodoros={pomodoros} micro />
+        {user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
+      </div>}
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
       <TodoForm todos={todos} actions={actions} editable showStatsLink />
     </div>
