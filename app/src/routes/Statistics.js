@@ -53,7 +53,8 @@ class Statistics extends Component {
       .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
-    const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
+    const pomodorosChartData = pomodorosChartDataFor(allPomodoros)
+    // const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
@@ -159,8 +160,8 @@ function pomodorosChartDataFor (pomodoros) {
   return Object.keys(pomodorosByKey)
   .map(key => {
     const pomodoros = pomodorosByKey[key]
-    const pomodorosCount = pomodoros.length
-    return {key, pomodorosCount, pomodoros, name: key, value: pomodorosCount}
+    const duration = durationInPomodoros(pomodoros)
+    return {key, duration, pomodoros, name: key, value: duration}
   })
   .sort((a, b) => a.key < b.key ? -1 : 1)
 }
