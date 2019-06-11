@@ -19,7 +19,7 @@ dayjs.extend(utc)
 
 class Statistics extends Component {
   render () {
-    const {user, todos, pomodoros, distractions, subscription, actions} = this.props
+    const {user, todos, pomodoros, subscription, actions} = this.props
 
     if (!user || !user.subscription || user.subscription.status !== 'active') {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
@@ -52,8 +52,6 @@ class Statistics extends Component {
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
-
-    const trackedDistractions = distractions.tracked.filter(d => new Date(d).toISOString().substring(0, 10) === date)
 
     const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
 
