@@ -2,16 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import querystring from 'querystring'
-// import {ResponsiveContainer, ComposedChart, Area, Bar, Line, Tooltip} from 'recharts'
-import {
-  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
-} from 'recharts'
-
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
+import PomodorosChart from '../components/PomodorosChart'
 import paperSheet from '../assets/images/paper-sheet.png'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
@@ -59,8 +55,6 @@ class Statistics extends Component {
       .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
-    const pomodorosChartData = pomodorosChartDataFor(this.state.onlyShowCompleted ? completedPomodoros : allPomodoros)
-
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
@@ -102,12 +96,7 @@ class Statistics extends Component {
       <br />
 
       <div className='pad'>
-        <ResponsiveContainer width='100%' height={120}>
-          <LineChart width='100%' height={120} data={pomodorosChartData}>
-            <Line type='monotone' dataKey='value' stroke='#DF2E2E' strokeWidth={2} dot={false} />
-            <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
-          </LineChart>
-        </ResponsiveContainer>
+        <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />
       </div>
 
       <br />
@@ -166,50 +155,6 @@ function durationInPomodoros (pomodoros) {
   }, 0)
 
   return duration.toFixed(1)
-}
-
-function pomodorosChartDataFor (pomodoros) {
-  let pomodorosByKey = pomodoros.reduce((acc, curr) => {
-    const hour = new Date(curr.startedAt).getHours()
-    const minute = new Date(curr.startedAt).getMinutes()
-    const formattedHalfHour = minute < 30 ? '00' : '30'
-    const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
-    acc[key] = (acc[key] || []).concat([curr])
-    return acc
-  }, {})
-
-  pomodorosByKey = fillGaps(pomodorosByKey, pomodoros.map(p => p.startedAt))
-
-  return Object.keys(pomodorosByKey)
-  .map(key => {
-    const pomodoros = pomodorosByKey[key]
-    const duration = durationInPomodoros(pomodoros)
-    return {key, duration, pomodoros, name: key, value: duration}
-  })
-  .sort((a, b) => a.key < b.key ? -1 : 1)
-}
-
-function range (from, to) {
-  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
-}
-
-function fillGaps (pomodorosByKey, pomodorosStartedAt) {
-  const minHour = pomodorosStartedAt.reduce((min, startedAt) => {
-    const hour = new Date(startedAt).getHours()
-    return min > hour ? hour : min
-  }, new Date(pomodorosStartedAt[0]).getHours())
-  const maxHour = pomodorosStartedAt.reduce((max, startedAt) => {
-    const hour = new Date(startedAt).getHours()
-    return max < hour ? hour : max
-  }, 0)
-
-  for (const hour of range(minHour, maxHour)) {
-    const paddedHour = hour < 10 ? '0' + hour : hour
-
-    if (!pomodorosByKey[`${paddedHour}:00`]) pomodorosByKey[`${paddedHour}:00`] = []
-    if (!pomodorosByKey[`${paddedHour}:30`]) pomodorosByKey[`${paddedHour}:30`] = []
-  }
-  return pomodorosByKey
 }
 
 export default connect(
