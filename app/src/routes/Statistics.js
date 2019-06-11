@@ -94,17 +94,15 @@ class Statistics extends Component {
       </div>
       <div className='pad'>
         <div>
-          {completedPomodoros.length > 0 && <div class='columns'>
+          <div class='columns'>
+            {completedPomodoros.length > 0 &&
+              <div class='column pad-v tac'>
+                <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+              </div>}
             <div class='column pad-v tac'>
-              <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+              <h1 class='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
             </div>
-            <div class='column pad-v tac'>
-              <h1 class='no-m'>{allPomodoros.length}</h1> pomodoros in total
-            </div>
-            <div class='column pad-v tac'>
-              <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
-            </div>
-          </div>}
+          </div>
 
           {completedTodos.length === 0 && <div class='column pad-v'>
             <div className='tac'>
@@ -128,6 +126,26 @@ class Statistics extends Component {
   }
 }
 
+function durationInPomodoros (pomodoros) {
+  const duration = pomodoros.reduce((acc, pomodoro) => {
+    console.log('pomodoro', pomodoro)
+    if (pomodoro.startedAt && pomodoro.cancelledAt) {
+      const diffInMs = Math.abs(new Date(pomodoro.startedAt) - new Date(pomodoro.cancelledAt))
+      const diffInPomodoros = diffInMs / (25 * 60 * 1000)
+      console.log('diffInMs', diffInMs)
+      console.log('diffInPomodoros', diffInPomodoros)
+      return acc + diffInPomodoros
+      /*
+      1 pomo = 1500000ms
+             = 1ms
+      */
+    }
+    return acc + pomodoro.minutes / 25
+  }, 0)
+
+  return duration.toFixed(1)
+}
+
 function pomodorosChartDataFor (pomodoros) {
   let pomodorosByKey = pomodoros.reduce((acc, curr) => {
     const hour = new Date(curr.startedAt).getHours()
@@ -145,27 +163,6 @@ function pomodorosChartDataFor (pomodoros) {
     const pomodoros = pomodorosByKey[key]
     const pomodorosCount = pomodoros.length
     return {key, pomodorosCount, pomodoros, name: key, value: pomodorosCount}
-  })
-  .sort((a, b) => a.key < b.key ? -1 : 1)
-}
-
-function distractionsChartDataFor (distractions) {
-  let distractionsByKey = distractions.reduce((acc, curr) => {
-    const hour = new Date(curr).getHours()
-    const minute = new Date(curr).getMinutes()
-    const formattedHalfHour = minute < 30 ? '00' : '30'
-    const key = `${hour < 10 ? '0' + hour : hour}:${formattedHalfHour}`
-    acc[key] = (acc[key] || []).concat([curr])
-    return acc
-  }, {})
-
-  distractionsByKey = fillGaps(distractionsByKey, distractions)
-
-  return Object.keys(distractionsByKey)
-  .map(key => {
-    const distractions = distractionsByKey[key]
-    const distractionsCount = distractions.length
-    return {key, distractionsCount}
   })
   .sort((a, b) => a.key < b.key ? -1 : 1)
 }
