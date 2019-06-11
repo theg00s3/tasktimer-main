@@ -64,10 +64,14 @@ class Statistics extends Component {
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
+      <br />
+
       <div className='tar'>
         only show completed
         <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
       </div>
+
+      <br />
 
       <div className='stats-navigation'>
         <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
@@ -94,6 +98,9 @@ class Statistics extends Component {
           </div>
         </div>
       </div>}
+
+      <br />
+
       <div className='pad'>
         <ResponsiveContainer width='100%' height={120}>
           <LineChart width='100%' height={120} data={pomodorosChartData}>
@@ -102,6 +109,9 @@ class Statistics extends Component {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      <br />
+
       <div className='pad'>
         <div>
           <div class='columns'>
@@ -113,17 +123,24 @@ class Statistics extends Component {
               <h1 class='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
             </div>
           </div>
+
+          <br />
+
           {completedTodos.length === 0 && <div class='column pad-v'>
             <div className='tac'>
               You haven't completed any todos.
             </div>
           </div>}
 
+          <br />
+
           {completedTodos.length > 0 && <div class='column pad-v'>
             <div className='tac'>
               You were also quite productive today, with {completedTodos.length} tasks completed
             </div>
           </div>}
+
+          <br />
 
           {(completedPomodoros.length > 0 || completedTodos.length > 0) && <div className='pad'>
             <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
