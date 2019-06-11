@@ -6,7 +6,6 @@ import settings from './reducers/settings'
 import subscription from './reducers/subscription'
 import user from './reducers/user'
 import team from './reducers/team'
-import distractions from './reducers/distractions'
 import loading from './reducers/loading'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
@@ -27,12 +26,11 @@ const store = createStore(combineReducers({
   settings,
   user,
   team,
-  distractions,
   loading,
   subscription
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'distractions'])
+  persistState(['settings', 'todos', 'pomodoro', 'pomodoros'])
 ))
 
 export default store

@@ -4,7 +4,7 @@ export const defaultState = {
   loadingUser: false
 }
 
-export default function distractions (state = defaultState, action) {
+export default function loading (state = defaultState, action) {
   switch (action.type) {
     case LOAD_USER_REQUEST:
       return {

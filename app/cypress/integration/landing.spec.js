@@ -11,9 +11,6 @@ context('Landing', () => {
     cy.get('.timer-buttons-container').should('contain', '5min')
   })
 
-  it.skip('shows button for tracking distractions', () =>
-    cy.get('.track-distraction-button').should('contain', 'distract'))
-
   it('shows example todolist', () => {
     cy.get('.todo-form-container').should('contain', 'Todo')
     cy.get('.todo-form-container').should('contain', 'Done')

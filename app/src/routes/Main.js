@@ -1,6 +1,5 @@
 import Pomodoro from '../components/Pomodoro'
 import TodoForm from '../components/TodoForm'
-import TrackDistraction from '../components/TrackDistraction'
 import * as actions from '../actions'
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
@@ -8,10 +7,9 @@ import {connect} from 'react-redux'
 
 class Main extends Component {
   render () {
-    const {timer, todos, pomodoro, distractions, actions} = this.props
+    const {timer, todos, pomodoro, actions} = this.props
     return <div className='content' id='start'>
       <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
-      <TrackDistraction actions={actions} distractions={distractions} />
       <TodoForm todos={todos} actions={actions} editable showStatsLink />
     </div>
   }
@@ -22,7 +20,6 @@ export default connect(
     todos: state.todos,
     settings: state.settings,
     pomodoro: state.pomodoro,
-    distractions: state.distractions,
     timer: state.timer
   }),
   (dispatch) => ({

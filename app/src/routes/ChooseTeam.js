@@ -37,7 +37,6 @@ export default connect(
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros,
-  distractions: state.distractions,
   user: state.user
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
