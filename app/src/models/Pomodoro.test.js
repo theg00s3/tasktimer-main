@@ -9,7 +9,7 @@ const cancelledPomodoroJSON = {
   type: 'pomodoro',
   minutes: 25,
   startedAt: '2016-01-03T21:00:00.000Z',
-  cancelled_at: '2016-01-03T21:05:00.000Z'
+  cancelledAt: '2016-01-03T21:05:00.000Z'
 }
 // const breakJSON = {
 //   type: 'break',
@@ -54,7 +54,7 @@ describe('Pomodoro', function () {
       const pomodoro = new Pomodoro(cancelledPomodoroJSON)
       const timestamps = pomodoro.timestamps()
       expect(timestamps.startedAt).toEqual(new Date(pomodoro.startedAt).getTime())
-      expect(timestamps.ended_at).toEqual(new Date(pomodoro.cancelled_at).getTime())
+      expect(timestamps.ended_at).toEqual(new Date(pomodoro.cancelledAt).getTime())
     })
   })
 
@@ -73,7 +73,7 @@ describe('Pomodoro', function () {
     pomodoro.cancel()
 
     expect(pomodoro.isCancelled()).toEqual(true)
-    expect(pomodoro.cancelled_at).toBeDefined()
+    expect(pomodoro.cancelledAt).toBeDefined()
   })
 
   it('Pomodoro#create', () => {

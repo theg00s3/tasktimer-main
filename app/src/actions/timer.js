@@ -91,7 +91,7 @@ function saveAndDispatch (action, cb = Function.prototype) {
     const pomodoro = getState().pomodoro
 
     if (action === STOP_TIMER) {
-      pomodoro.cancelled_at = new Date()
+      pomodoro.cancelledAt = new Date()
     } else {
       pomodoro.completed = true
     }

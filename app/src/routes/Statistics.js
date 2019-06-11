@@ -42,8 +42,8 @@ class Statistics extends Component {
     const completedTodos = todos
       .filter(Boolean)
       .filter(t => t.completed)
-      .filter(t => t.completed_at)
-      .filter(t => new Date(t.completed_at).toISOString().substring(0, 10) === date)
+      .filter(t => t.completedAt)
+      .filter(t => new Date(t.completedAt).toISOString().substring(0, 10) === date)
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)

@@ -28,8 +28,8 @@ export function addTodo (todo) {
 export function toggleCompleteTodo (todo) {
   const completed = !todo.completed
   const updatedTodo = {...todo, completed}
-  if (completed) updatedTodo.completed_at = new Date()
-  else delete updatedTodo.completed_at
+  if (completed) updatedTodo.completedAt = new Date()
+  else delete updatedTodo.completedAt
   return updateTodo(updatedTodo, 'UPDATE')
 }
 

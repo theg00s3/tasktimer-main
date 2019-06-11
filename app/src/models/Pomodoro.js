@@ -12,12 +12,12 @@ const toTimestamp = (date) => {
 
 class Pomodoro {
   constructor (pomodoro = {}) {
-    const {type, minutes, startedAt, cancelled_at} = pomodoro
+    const {type, minutes, startedAt, cancelledAt} = pomodoro
     this.type = type
     this.minutes = minutes
     this.startedAt = startedAt
-    if (cancelled_at) {
-      this.cancelled_at = cancelled_at
+    if (cancelledAt) {
+      this.cancelledAt = cancelledAt
     }
   }
 
@@ -27,16 +27,16 @@ class Pomodoro {
       minutes: this.minutes,
       startedAt: this.startedAt
     }
-    if (this.cancelled_at) {
-      json.cancelled_at = this.cancelled_at
+    if (this.cancelledAt) {
+      json.cancelledAt = this.cancelledAt
     }
     return json
   }
 
   duration () {
-    const {startedAt, cancelled_at, minutes} = this
-    if (cancelled_at) {
-      return toTimestamp(cancelled_at) - toTimestamp(startedAt)
+    const {startedAt, cancelledAt, minutes} = this
+    if (cancelledAt) {
+      return toTimestamp(cancelledAt) - toTimestamp(startedAt)
     }
     return minutes * MINUTES
   }
@@ -46,25 +46,25 @@ class Pomodoro {
   }
 
   timestamps () {
-    const {startedAt, cancelled_at} = this
+    const {startedAt, cancelledAt} = this
     let timestamps = {
       startedAt: toTimestamp(startedAt),
       ended_at: toTimestamp(startedAt) + this.minutes * MINUTES
     }
-    if (cancelled_at) {
-      timestamps.cancelled_at = toTimestamp(cancelled_at)
-      timestamps.ended_at = timestamps.cancelled_at
+    if (cancelledAt) {
+      timestamps.cancelledAt = toTimestamp(cancelledAt)
+      timestamps.ended_at = timestamps.cancelledAt
     }
     return timestamps
   }
 
   cancel () {
-    this.cancelled_at = nowToISOString()
+    this.cancelledAt = nowToISOString()
   }
 
   isCancelled () {
-    const {cancelled_at} = this
-    return !!cancelled_at
+    const {cancelledAt} = this
+    return !!cancelledAt
   }
 }
 
