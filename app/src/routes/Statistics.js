@@ -18,6 +18,12 @@ import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
 
 class Statistics extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      onlyShowCompleted: true
+    }
+  }
   render () {
     const {user, todos, pomodoros, subscription, actions} = this.props
 
@@ -53,11 +59,16 @@ class Statistics extends Component {
       .filter(p => p.type === 'pomodoro' && p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
-    const pomodorosChartData = pomodorosChartDataFor(allPomodoros)
-    // const pomodorosChartData = pomodorosChartDataFor(completedPomodoros)
+    const pomodorosChartData = pomodorosChartDataFor(this.state.onlyShowCompleted ? completedPomodoros : allPomodoros)
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
+
+      <div className='tar'>
+        only show completed
+        <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
+      </div>
+
       <div className='stats-navigation'>
         <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
         {(date !== today)
@@ -84,8 +95,8 @@ class Statistics extends Component {
         </div>
       </div>}
       <div className='pad'>
-        <ResponsiveContainer width='100%' height={100}>
-          <LineChart width='100%' height={100} data={pomodorosChartData}>
+        <ResponsiveContainer width='100%' height={120}>
+          <LineChart width='100%' height={120} data={pomodorosChartData}>
             <Line type='monotone' dataKey='value' stroke='#DF2E2E' strokeWidth={2} dot={false} />
             <Tooltip labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />
           </LineChart>
@@ -102,7 +113,6 @@ class Statistics extends Component {
               <h1 class='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
             </div>
           </div>
-
           {completedTodos.length === 0 && <div class='column pad-v'>
             <div className='tac'>
               You haven't completed any todos.
@@ -115,10 +125,9 @@ class Statistics extends Component {
             </div>
           </div>}
 
-          {(completedPomodoros.length > 0 || completedTodos.length > 0) &&
-            <div className='pad'>
-              <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
-            </div>}
+          {(completedPomodoros.length > 0 || completedTodos.length > 0) && <div className='pad'>
+            <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
+          </div>}
         </div>
       </div>
     </div>
@@ -127,12 +136,9 @@ class Statistics extends Component {
 
 function durationInPomodoros (pomodoros) {
   const duration = pomodoros.reduce((acc, pomodoro) => {
-    console.log('pomodoro', pomodoro)
     if (pomodoro.startedAt && pomodoro.cancelledAt) {
       const diffInMs = Math.abs(new Date(pomodoro.startedAt) - new Date(pomodoro.cancelledAt))
       const diffInPomodoros = diffInMs / (25 * 60 * 1000)
-      console.log('diffInMs', diffInMs)
-      console.log('diffInPomodoros', diffInPomodoros)
       return acc + diffInPomodoros
       /*
       1 pomo = 1500000ms
