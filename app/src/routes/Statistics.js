@@ -99,8 +99,7 @@ class Statistics extends Component {
               <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
             </div>
             <div class='column pad-v tac'>
-              All
-              <h1 class='no-m'>{allPomodoros.length}</h1> pomodoros
+              <h1 class='no-m'>{allPomodoros.length}</h1> pomodoros in total
             </div>
             <div class='column pad-v tac'>
               <h1 class='no-m'>{trackedDistractions.length}</h1> distractions
