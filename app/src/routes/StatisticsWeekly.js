@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import querystring from 'querystring'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
-import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
-import paperSheet from '../assets/images/paper-sheet.png'
-import './Statistics.styl'
+import './StatisticsWeekly.styl'
 import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
 
@@ -27,71 +24,35 @@ class Statistics extends Component {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
-    const qs = querystring.parse(window.location.search.replace('?', ''))
+    const startOfWeek = dayjs().startOf('week')
+    const endOfWeek = dayjs().endOf('week')
 
-    const date = qs.date || new Date().toISOString().substring(0, 10)
-    const today = new Date().toISOString().substring(0, 10)
+    console.log({startOfWeek, endOfWeek})
 
-    let dayBefore = dayjs(date).subtract(0, 'day').toISOString().substr(0, 10)
-    let dayAfter = dayjs(date).add(2, 'day').toISOString().substr(0, 10)
-
-    if (!qs.date) {
-      window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
-    }
-
-    actions.getPomodorosForDay(date)
+    // actions.getPomodorosForDay(date)
 
     const completedTodos = todos
       .filter(Boolean)
       .filter(t => t.completed)
       .filter(t => t.completedAt)
-      .filter(t => new Date(t.completedAt).toISOString().substring(0, 10) === date)
+      .filter(t => new Date(t.completedAt) > startOfWeek)
+      .filter(t => new Date(t.completedAt) < endOfWeek)
     const completedPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.completed)
       .filter(p => p.startedAt)
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+      .filter(t => new Date(t.startedAt) > startOfWeek)
+      .filter(t => new Date(t.startedAt) < endOfWeek)
     const allPomodoros = pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.startedAt)
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+      .filter(t => new Date(t.startedAt) > startOfWeek)
+      .filter(t => new Date(t.startedAt) < endOfWeek)
 
     return <div className='content'>
-      <h1 className='title tac'>Statistics for {date}</h1>
-
-      <Link to='/statistics/weekly'>Show weekly</Link>
-
-      <br />
-
-      <div className='stats-navigation'>
-        <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
-        {(date !== today)
-          ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
-      </div>
-
-      {completedPomodoros.length === 0 && <div className='pad'>
-        <div class='columns'>
-          <div class='column pad-v tac'>
-            <div>
-              <img className='paper-sheet' src={paperSheet} />
-            </div>
-          </div>
-        </div>
-      </div>}
-
-      {completedPomodoros.length === 0 && <div className='pad'>
-        <div class='columns'>
-          <div class='column pad-v tac'>
-            <div>
-              You haven't completed any pomodoros.
-            </div>
-          </div>
-        </div>
-      </div>}
-
-      <br />
+      <h1 className='title tac'>Statistics for {startOfWeek.toISOString().substr(0, 10)} - {endOfWeek.toISOString().substr(0, 10)}</h1>
 
       <div className='pad'>
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />

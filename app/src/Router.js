@@ -10,6 +10,7 @@ import Logout from './routes/Logout'
 import ChooseTeam from './routes/ChooseTeam'
 import Team from './routes/Team'
 import Statistics from './routes/Statistics'
+import StatisticsWeekly from './routes/StatisticsWeekly'
 import Profile from './routes/Profile'
 import Pro from './routes/Pro'
 
@@ -28,6 +29,7 @@ export default class Root extends Component {
       if (url === '/logout') return this.setState({current: <Logout />})
       if (url === '/team') return this.setState({current: <ChooseTeam />})
       if (/\/team/.test(url)) return this.setState({current: <Team />})
+      if (url === '/statistics/weekly') return this.setState({current: <StatisticsWeekly current={Date.now()} />})
       if (/\/statistics/.test(url)) return this.setState({current: <Statistics current={Date.now()} />})
       if (/\/profile/.test(url)) return this.setState({current: <Profile current={Date.now()} />})
       if (/\/pro/.test(url)) return this.setState({current: <Pro current={Date.now()} />})
