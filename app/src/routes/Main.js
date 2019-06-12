@@ -1,4 +1,5 @@
-import Pomodoro from '../components/Pomodoro'
+import Timer from '../components/Timer'
+import TimerButtons from '../components/TimerButtons'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
@@ -9,14 +10,18 @@ import {connect} from 'react-redux'
 
 class Main extends Component {
   render () {
-    const {timer, todos, pomodoro, pomodoros = [], user, actions} = this.props
+    const {timer, todos, pomodoros = [], user, actions} = this.props
     return <div className='content' id='start'>
+      <Timer actions={actions} timer={timer} />
+
       {user &&
       <div style='margin: 0 auto; width: 300px;'>
         <PomodorosChart pomodoros={pomodoros} micro />
         {user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
       </div>}
-      <Pomodoro timer={timer} pomodoro={pomodoro} actions={actions} />
+
+      <TimerButtons actions={actions} />
+
       <TodoForm todos={todos} actions={actions} editable showStatsLink />
     </div>
   }
@@ -29,6 +34,7 @@ export default connect(
     settings: state.settings,
     pomodoro: state.pomodoro,
     pomodoros: state.pomodoros,
+    team: state.team,
     timer: state.timer
   }),
   (dispatch) => ({
