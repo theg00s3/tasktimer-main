@@ -48,11 +48,14 @@ class Statistics extends Component {
       .filter(t => new Date(t.completedAt).toISOString().substring(0, 10) === date)
     const completedPomodoros = pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro' && p.completed && p.startedAt)
+      .filter(p => p.type === 'pomodoro')
+      .filter(p => p.completed)
+      .filter(p => p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
     const allPomodoros = pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro' && p.startedAt)
+      .filter(p => p.type === 'pomodoro')
+      .filter(p => p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
     return <div className='content'>

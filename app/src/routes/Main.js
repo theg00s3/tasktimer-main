@@ -13,6 +13,8 @@ class Main extends Component {
     const {timer, todos, pomodoros = [], user, actions} = this.props
     const date = new Date().toISOString().substring(0, 10)
     const pomodorosForChart = pomodoros
+      .filter(p => p.type === 'pomodoro')
+      .filter(p => p.completed)
       .filter(p => Date.parse(p.startedAt))
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
@@ -23,7 +25,7 @@ class Main extends Component {
 
       {user && pomodorosForChart.length > 0 &&
       <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
-        <PomodorosChart pomodoros={pomodorosForChart} micro />
+        <PomodorosChart pomodoros={pomodorosForChart} micro onlyShowCompleted />
         see more in <Link to='/statistics'>stats
         </Link>
       </div>}

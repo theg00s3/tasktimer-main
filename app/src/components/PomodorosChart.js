@@ -73,6 +73,10 @@ function fillGaps (pomodorosByKey, pomodorosStartedAt) {
   return pomodorosByKey
 }
 
+function range (from, to) {
+  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
+}
+
 function durationInPomodoros (pomodoros) {
   const duration = pomodoros.reduce((acc, pomodoro) => {
     if (pomodoro.startedAt && pomodoro.cancelledAt) {
@@ -84,12 +88,9 @@ function durationInPomodoros (pomodoros) {
              = 1ms
       */
     }
+    console.log('unhandled', pomodoro)
     return acc + pomodoro.minutes / 25
   }, 0)
 
   return duration.toFixed(1)
-}
-
-function range (from, to) {
-  return Array.from({ length: to - from + 1 }, (_, i) => i + from)
 }
