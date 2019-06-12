@@ -3,12 +3,15 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
 import * as actions from '../actions'
+import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
 import './StatisticsWeekly.styl'
 import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
+dayjs.extend(weekOfYear)
 
 class Statistics extends Component {
   constructor (props) {
@@ -24,12 +27,21 @@ class Statistics extends Component {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
+    const currentWeekNumber = dayjs().week()
+    let weekNumber = parseInt(window.location.pathname.replace('/statistics/weekly/', ''))
+    if (!weekNumber) {
+      window.history.pushState(null, document.title, window.location.pathname + `/${currentWeekNumber}`)
+    }
+
+    weekNumber = weekNumber || currentWeekNumber
+
+    const previousWeekNumber = dayjs().week(weekNumber).subtract(1, 'week').week()
+    const nextWeekNumber = dayjs().week(weekNumber).add(1, 'week').week()
+
     const startOfWeek = dayjs().startOf('week')
     const endOfWeek = dayjs().endOf('week')
 
-    console.log({startOfWeek, endOfWeek})
-
-    // actions.getPomodorosForDay(date)
+    actions.getPomodorosForWeek && actions.getPomodorosForWeek(weekNumber)
 
     const completedTodos = todos
       .filter(Boolean)
@@ -52,7 +64,20 @@ class Statistics extends Component {
       .filter(t => new Date(t.startedAt) < endOfWeek)
 
     return <div className='content'>
-      <h1 className='title tac'>Statistics for {startOfWeek.toISOString().substr(0, 10)} - {endOfWeek.toISOString().substr(0, 10)}</h1>
+      <h1 className='title tac'>Statistics for week <strong>{weekNumber}</strong></h1>
+
+      <br />
+      previousWeekNumber: {previousWeekNumber}
+      <br />
+      currentWeekNumber: {currentWeekNumber}
+      <br />
+      nextWeekNumber: {nextWeekNumber}
+
+      <div className='stats-navigation'>
+        <Link to={`/statistics/weekly/${previousWeekNumber}`} className='statistics-nav-button'>&lt; {previousWeekNumber}</Link>
+        {(weekNumber !== currentWeekNumber)
+          ? <Link to={`/statistics/weekly/${nextWeekNumber}`} className='statistics-nav-button float-right'>{nextWeekNumber} &gt;</Link> : null}
+      </div>
 
       <div className='pad'>
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />
