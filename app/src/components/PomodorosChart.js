@@ -6,9 +6,7 @@ import {
 export default class PomodorosChart extends Component {
   render () {
     const {pomodoros, micro = false} = this.props
-    const date = new Date().toISOString().substring(0, 10)
     const pomodorosForChart = pomodoros
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
     const pomodorosChartData = pomodorosChartDataFor(pomodorosForChart)
 
