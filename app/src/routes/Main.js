@@ -26,8 +26,10 @@ class Main extends Component {
       {user && pomodorosForChart.length > 0 &&
       <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
         <PomodorosChart pomodoros={pomodorosForChart} micro onlyShowCompleted />
-        see more in <Link to='/statistics'>stats
-        </Link>
+        <span className='tara'>
+          see more in &nbsp;
+          <Link to='/statistics'>stats</Link>
+        </span>
       </div>}
 
       <TodoForm todos={todos} actions={actions} editable showStatsLink />

@@ -63,13 +63,6 @@ class Statistics extends Component {
 
       <br />
 
-      <div className='tar'>
-        only show completed
-        <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
-      </div>
-
-      <br />
-
       <div className='stats-navigation'>
         <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
         {(date !== today)
@@ -100,6 +93,11 @@ class Statistics extends Component {
 
       <div className='pad'>
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />
+        <br />
+        <div className='tar'>
+          only show completed
+          <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
+        </div>
       </div>
 
       <br />

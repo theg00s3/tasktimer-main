@@ -10,7 +10,7 @@ export default class PomodorosChart extends Component {
 
     const pomodorosChartData = pomodorosChartDataFor(pomodorosForChart)
 
-    const height = micro ? 30 : 120
+    const height = micro ? 30 : 60
     const width = '100%'
 
     return <ResponsiveContainer
