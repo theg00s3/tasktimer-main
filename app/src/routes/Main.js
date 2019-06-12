@@ -12,6 +12,8 @@ class Main extends Component {
   render () {
     const {timer, todos, pomodoros = [], user, actions} = this.props
     const date = new Date().toISOString().substring(0, 10)
+    debugger
+    console.log(pomodoros.filter(p => !p.createdAt).map(p => p.createdAt))
     const pomodorosForChart = pomodoros
       .filter(p => Date.parse(p.startedAt))
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
