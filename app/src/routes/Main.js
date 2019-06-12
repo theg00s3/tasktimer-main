@@ -11,12 +11,15 @@ import {connect} from 'react-redux'
 class Main extends Component {
   render () {
     const {timer, todos, pomodoros = [], user, actions} = this.props
+    const date = new Date().toISOString().substring(0, 10)
+    const pomodorosForChart = pomodoros
+      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
     return <div className='content' id='start'>
       <Timer actions={actions} timer={timer} />
 
       {user &&
       <div style='margin: 0 auto; width: 300px;'>
-        <PomodorosChart pomodoros={pomodoros} micro />
+        <PomodorosChart pomodoros={pomodorosForChart} micro />
         {user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
       </div>}
 
