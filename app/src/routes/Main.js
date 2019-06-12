@@ -13,7 +13,7 @@ class Main extends Component {
     const {timer, todos, pomodoros = [], user, actions} = this.props
     const date = new Date().toISOString().substring(0, 10)
     const pomodorosForChart = pomodoros
-      .filter(p => new Date(p.startedAt))
+      .filter(p => Date.parse(p.startedAt))
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
     return <div className='content' id='start'>
       <Timer actions={actions} timer={timer} />
