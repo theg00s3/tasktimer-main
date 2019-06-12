@@ -21,10 +21,11 @@ class Main extends Component {
 
       <TimerButtons actions={actions} />
 
-      {user &&
+      {user && pomodorosForChart.length > 0 &&
       <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
         <PomodorosChart pomodoros={pomodorosForChart} micro />
-        {user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
+        see more in <Link to='/statistics'>stats
+        </Link>
       </div>}
 
       <TodoForm todos={todos} actions={actions} editable showStatsLink />
