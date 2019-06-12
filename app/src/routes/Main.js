@@ -12,21 +12,20 @@ class Main extends Component {
   render () {
     const {timer, todos, pomodoros = [], user, actions} = this.props
     const date = new Date().toISOString().substring(0, 10)
-    debugger
-    console.log(pomodoros.filter(p => !p.createdAt).map(p => p.createdAt))
     const pomodorosForChart = pomodoros
       .filter(p => Date.parse(p.startedAt))
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+
     return <div className='content' id='start'>
       <Timer actions={actions} timer={timer} />
 
+      <TimerButtons actions={actions} />
+
       {user &&
-      <div style='margin: 0 auto; width: 300px;'>
+      <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
         <PomodorosChart pomodoros={pomodorosForChart} micro />
         {user && !user.hasActiveSubscrion && <span>See more in <Link to='/statistics'>stats</Link></span>}
       </div>}
-
-      <TimerButtons actions={actions} />
 
       <TodoForm todos={todos} actions={actions} editable showStatsLink />
     </div>
