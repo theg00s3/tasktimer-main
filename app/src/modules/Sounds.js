@@ -1,5 +1,3 @@
-import Buzz from './Buzz'
-
 // require('../assets/audio/ring.mp3')
 // require('../assets/audio/tick-tock.mp3')
 
@@ -13,17 +11,16 @@ export default {
   toggleRingSound: toggleRingSound
 }
 
-const Sound = Buzz.sound
-const ringSound = new Sound('ring', {
-  preload: true,
-  loop: false,
-  formats: ['mp3']
-})
-const tickSound = new Sound('tick-tock', {
-  preload: true,
-  loop: true,
-  formats: ['mp3']
-}).setSpeed(1)
+// const ringSound = new Sound('ring', {
+//   preload: true,
+//   loop: false,
+//   formats: ['mp3']
+// })
+// const tickSound = new Sound('tick-tock', {
+//   preload: true,
+//   loop: true,
+//   formats: ['mp3']
+// }).setSpeed(1)
 
 function tickSoundEnabled () {
   return !tickSound.isMuted()
