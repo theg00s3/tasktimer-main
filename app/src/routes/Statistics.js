@@ -15,6 +15,14 @@ dayjs.extend(utc)
 
 let onceForDate
 
+class StatisticsFilters extends Component {
+  render () {
+    return <div className=''>
+      Filters
+    </div>
+  }
+}
+
 class Statistics extends Component {
   constructor (props) {
     super(props)
@@ -42,8 +50,8 @@ class Statistics extends Component {
     }
 
     if (onceForDate !== date) {
-      actions.getPomodorosForDay(date)
       onceForDate = date
+      actions.getPomodorosForDay(date)
     }
 
     const completedTodos = todos
@@ -99,6 +107,7 @@ class Statistics extends Component {
       <br />
 
       <div className='pad'>
+        <StatisticsFilters />
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
         <br />
         <div className='tar'>
