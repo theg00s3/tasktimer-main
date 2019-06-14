@@ -1,3 +1,4 @@
+import api from './reducers/api'
 import timer from './reducers/timer'
 import todos from './reducers/todos'
 import pomodoro from './reducers/pomodoro'
@@ -19,6 +20,7 @@ if (window.development) {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combineReducers({
+  api,
   timer,
   todos,
   pomodoro,

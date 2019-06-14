@@ -75,7 +75,7 @@ export function getPomodorosForDay (day) {
         return dispatch({type: GET_POMODOROS_FOR_DATE_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-pomodoros-for-day-success', data)
-      dispatch({type: GET_POMODOROS_FOR_DATE_SUCCESS, payload: data})
+      dispatch({type: GET_POMODOROS_FOR_DATE_SUCCESS, payload: {date: day, pomodoros: data}})
     })
     .catch(err => {
       getState().user && AnalyticsService.track('get-pomodoros-for-day-failure', err)
