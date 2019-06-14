@@ -30,6 +30,7 @@ export function loadUser () {
       .then(json => {
         identifyUser(json)
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
+        AnalyticsService.track('load-user-success', json)
       })
       .catch((err) => {
         dispatch({type: LOAD_USER_ERROR, payload: err})
@@ -55,10 +56,14 @@ export function logoutUser () {
   return (dispatch, getState) => {
     dispatch({type: LOGOUT_USER_REQUEST})
     window.fetch('https://api.pomodoro.cc/user/logout', {credentials: 'include'})
-      .then(() => dispatch({type: LOGOUT_USER_SUCCESS, payload: null}))
+      .then(() => {
+        dispatch({type: LOGOUT_USER_SUCCESS, payload: null})
+        AnalyticsService.track('logout-user-success')
+      })
       .catch((err) => {
         console.error(LOGOUT_USER_ERROR, err)
         dispatch({type: LOGOUT_USER_ERROR, payload: err})
+        AnalyticsService.track('logout-user-error', err)
       })
   }
 }
