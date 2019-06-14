@@ -13,6 +13,8 @@ import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
 
+let onceForDate
+
 class Statistics extends Component {
   constructor (props) {
     super(props)
@@ -21,7 +23,7 @@ class Statistics extends Component {
     }
   }
   render () {
-    const {user, todos, pomodoros, subscription, actions} = this.props
+    const {api, user, todos, subscription, actions} = this.props
 
     if (!user || !user.subscription || user.subscription.status !== 'active') {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
@@ -39,20 +41,23 @@ class Statistics extends Component {
       window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
     }
 
-    actions.getPomodorosForDay(date)
+    if (onceForDate !== date) {
+      actions.getPomodorosForDay(date)
+      onceForDate = date
+    }
 
     const completedTodos = todos
       .filter(Boolean)
       .filter(t => t.completed)
       .filter(t => t.completedAt)
       .filter(t => new Date(t.completedAt).toISOString().substring(0, 10) === date)
-    const completedPomodoros = pomodoros
+    const completedPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.completed)
       .filter(p => p.startedAt)
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
-    const allPomodoros = pomodoros
+    const allPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.startedAt)
@@ -94,7 +99,7 @@ class Statistics extends Component {
       <br />
 
       <div className='pad'>
-        <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />
+        <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
         <br />
         <div className='tar'>
           only show completed
@@ -162,6 +167,7 @@ function durationInPomodoros (pomodoros) {
 
 export default connect(
 (state) => ({
+  api: state.api,
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros,
