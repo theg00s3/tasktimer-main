@@ -30,6 +30,7 @@ export function toggleCompleteTodo (todo) {
   const updatedTodo = {...todo, completed}
   if (completed) updatedTodo.completedAt = new Date()
   else delete updatedTodo.completedAt
+  AnalyticsService.track('toggle-complete-todo', todo)
   return updateTodo(updatedTodo, 'UPDATE')
 }
 
@@ -38,6 +39,7 @@ export function toggleDeleteTodo (todo) {
   const updatedTodo = {...todo, deleted}
   if (deleted) updatedTodo.deleted_at = new Date()
   else delete updatedTodo.deleted_at
+  AnalyticsService.track('toggle-delete-todo', todo)
   return updateTodo(updatedTodo, 'DELETE')
 }
 
