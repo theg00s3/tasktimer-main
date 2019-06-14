@@ -53,9 +53,11 @@ export function getPomodorosForDay (day) {
   return (dispatch, getState) => {
     dispatch({type: GET_POMODOROS_FOR_DATE, payload: null})
 
-    const url = /pomodoro/.test(location.href)
+    let url = /pomodoro/.test(location.href)
       ? 'https://api.pomodoro.cc/pomodoros'
       : 'http://localhost:3000/pomodoros'
+
+    url += `?day=${day}`
 
     window.fetch(url, {
       method: 'GET',
