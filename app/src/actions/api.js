@@ -2,7 +2,7 @@ import AnalyticsService from '../modules/AnalyticsService'
 
 export const CREATE_POMODORO = 'CREATE_POMODORO'
 export const CREATE_POMODORO_SUCCESS = 'CREATE_POMODORO_SUCCESS'
-export const CREATE_POMODORO_FAILURE = 'CREATE_POMODORO_FAILURE'
+export const CREATE_POMODORO_ERROR = 'CREATE_POMODORO_ERROR'
 
 export const GET_POMODOROS_FOR_DATE = 'GET_POMODOROS_FOR_DATE'
 export const GET_POMODOROS_FOR_DATE_SUCCESS = 'GET_POMODOROS_FOR_DATE_SUCCESS'
@@ -36,15 +36,15 @@ export function createPomodoro (pomodoro) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
-        getState().user && AnalyticsService.track('create-pomodoro-failure', data.error)
-        return dispatch({type: CREATE_POMODORO_FAILURE, payload: data.error})
+        getState().user && AnalyticsService.track('create-pomodoro-error', data.error)
+        return dispatch({type: CREATE_POMODORO_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('create-pomodoro-success', data)
       dispatch({type: CREATE_POMODORO_SUCCESS, payload: data})
     })
     .catch(err => {
-      getState().user && AnalyticsService.track('create-pomodoro-failure', err)
-      return dispatch({type: CREATE_POMODORO_FAILURE, payload: 'Something went wrong. Please try again'})
+      getState().user && AnalyticsService.track('create-pomodoro-error', err)
+      return dispatch({type: CREATE_POMODORO_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }
@@ -71,14 +71,14 @@ export function getPomodorosForDay (day) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
-        getState().user && AnalyticsService.track('get-pomodoros-for-day-failure', data.error)
+        getState().user && AnalyticsService.track('get-pomodoros-for-day-error', data.error)
         return dispatch({type: GET_POMODOROS_FOR_DATE_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-pomodoros-for-day-success', data)
       dispatch({type: GET_POMODOROS_FOR_DATE_SUCCESS, payload: {date: day, pomodoros: data}})
     })
     .catch(err => {
-      getState().user && AnalyticsService.track('get-pomodoros-for-day-failure', err)
+      getState().user && AnalyticsService.track('get-pomodoros-for-day-error', err)
       return dispatch({type: GET_POMODOROS_FOR_DATE_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
@@ -106,14 +106,14 @@ export function getPomodorosForWeek (week) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
-        getState().user && AnalyticsService.track('get-pomodoros-for-week-failure', data.error)
+        getState().user && AnalyticsService.track('get-pomodoros-for-week-error', data.error)
         return dispatch({type: GET_POMODOROS_FOR_WEEK_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-pomodoros-for-week-success', data)
       dispatch({type: GET_POMODOROS_FOR_WEEK_SUCCESS, payload: data})
     })
     .catch(err => {
-      getState().user && AnalyticsService.track('get-pomodoros-for-week-failure', err)
+      getState().user && AnalyticsService.track('get-pomodoros-for-week-error', err)
       return dispatch({type: GET_POMODOROS_FOR_WEEK_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }

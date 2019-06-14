@@ -3,7 +3,7 @@ import AnalyticsService from '../modules/AnalyticsService'
 
 export const CREATE_SUBSCRIPTION = 'CREATE_SUBSCRIPTION'
 export const CREATE_SUBSCRIPTION_SUCCESS = 'CREATE_SUBSCRIPTION_SUCCESS'
-export const CREATE_SUBSCRIPTION_FAILURE = 'CREATE_SUBSCRIPTION_FAILURE'
+export const CREATE_SUBSCRIPTION_ERROR = 'CREATE_SUBSCRIPTION_ERROR'
 
 export function createSubscription (token) {
   return (dispatch, getState) => {
@@ -29,16 +29,16 @@ export function createSubscription (token) {
     .then(data => {
       console.log('data', data)
       if (data.error) {
-        AnalyticsService.track('create-subscription-failure', data.error)
-        return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: data.error})
+        AnalyticsService.track('create-subscription-error', data.error)
+        return dispatch({type: CREATE_SUBSCRIPTION_ERROR, payload: data.error})
       }
       AnalyticsService.track('create-subscription-success', data)
       dispatch({type: CREATE_SUBSCRIPTION_SUCCESS, payload: data})
       dispatch({type: LOAD_USER_SUCCESS, payload: data.user})
     })
     .catch(err => {
-      AnalyticsService.track('create-subscription-failure', err)
-      return dispatch({type: CREATE_SUBSCRIPTION_FAILURE, payload: 'Something went wrong. Please try again'})
+      AnalyticsService.track('create-subscription-error', err)
+      return dispatch({type: CREATE_SUBSCRIPTION_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }

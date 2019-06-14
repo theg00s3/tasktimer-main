@@ -2,10 +2,10 @@ import AnalyticsService from '../modules/AnalyticsService'
 
 export const TEAM_EVENT = 'TEAM_EVENT'
 export const TEAM_EVENT_SUCCESS = 'TEAM_EVENT_SUCCESS'
-export const TEAM_EVENT_FAILURE = 'TEAM_EVENT_FAILURE'
+export const TEAM_EVENT_ERROR = 'TEAM_EVENT_ERROR'
 export const TEAM_STATUS = 'TEAM_STATUS'
 export const TEAM_STATUS_SUCCESS = 'TEAM_STATUS_SUCCESS'
-export const TEAM_STATUS_FAILURE = 'TEAM_STATUS_FAILURE'
+export const TEAM_STATUS_ERROR = 'TEAM_STATUS_ERROR'
 
 export function sendTeamRequest (channel, data = {minutes: 25, type: 'pomodoro'}) {
   return (dispatch, getState) => {
@@ -33,8 +33,8 @@ export function sendTeamRequest (channel, data = {minutes: 25, type: 'pomodoro'}
         return dispatch({type: TEAM_EVENT_SUCCESS, payload: data})
       })
       .catch(err => {
-        AnalyticsService.track('send-team-request-failure', data)
-        return dispatch({type: TEAM_EVENT_FAILURE, payload: err})
+        AnalyticsService.track('send-team-request-error', data)
+        return dispatch({type: TEAM_EVENT_ERROR, payload: err})
       })
   }
 }

@@ -1,4 +1,4 @@
-import {CREATE_SUBSCRIPTION, CREATE_SUBSCRIPTION_FAILURE, CREATE_SUBSCRIPTION_SUCCESS} from '../actions'
+import {CREATE_SUBSCRIPTION, CREATE_SUBSCRIPTION_ERROR, CREATE_SUBSCRIPTION_SUCCESS} from '../actions'
 
 export const defaultState = {
   errorMessage: '',
@@ -10,7 +10,7 @@ export default function subscription (state = defaultState, action) {
     case CREATE_SUBSCRIPTION : {
       return defaultState
     }
-    case CREATE_SUBSCRIPTION_FAILURE : {
+    case CREATE_SUBSCRIPTION_ERROR : {
       return {
         ...state,
         errorMessage: action.payload
