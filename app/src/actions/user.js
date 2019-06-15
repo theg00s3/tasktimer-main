@@ -39,6 +39,7 @@ export function loadUser () {
           pomodoros.forEach(pomodoro => {
             dispatch(recreatePomodoro(pomodoro))
           })
+          AnalyticsService.track('recreated-old-pomodoros')
           window.localStorage.setItem('recreatedOldPomodoros', true)
         }
       })
