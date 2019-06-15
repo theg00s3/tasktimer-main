@@ -68,10 +68,16 @@ class Statistics extends Component {
   }
 
   render () {
-    const {api, user, todos, subscription, actions} = this.props
+    const {api, user, loading, todos, subscription, actions} = this.props
 
     if (!user || !user.hasActiveSubscription) {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
+    }
+
+    if (loading.loadingPomodorosForDay) {
+      return <div className='content tac'>
+        loading stats...
+      </div>
     }
 
     const qs = querystring.parse(window.location.search.replace('?', ''))
@@ -188,6 +194,7 @@ function durationInPomodoros (pomodoros) {
 export default connect(
 (state) => ({
   api: state.api,
+  loading: state.loading,
   todos: state.todos,
   settings: state.settings,
   pomodoros: state.pomodoros,
