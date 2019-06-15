@@ -71,7 +71,7 @@ class Statistics extends Component {
     let {date} = this.state
     if (!date) {
       date = urlDate
-      this.setState({date})
+      this.changeDate(date)
     }
 
     const completedTodos = todos
