@@ -8,7 +8,6 @@ import * as actions from '../actions'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
-import paperSheet from '../assets/images/paper-sheet.png'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
@@ -83,17 +82,6 @@ class Statistics extends Component {
         {(date !== today)
           ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
       </div>
-
-      {completedPomodoros.length === 0 && <div className='pad'>
-        <div class='columns'>
-          <div class='column pad-v tac'>
-            <div>
-              <img className='paper-sheet' src={paperSheet} />
-            </div>
-          </div>
-        </div>
-      </div>}
-
       {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
