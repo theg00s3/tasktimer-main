@@ -9,7 +9,7 @@ import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
-// import 'flatpickr/dist/themes/material_green.css'
+import 'flatpickr/dist/themes/light.css'
 import Flatpickr from 'react-flatpickr'
 
 dayjs.extend(utc)
@@ -19,16 +19,20 @@ class StatisticsFilters extends Component {
     const {date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
 
     return <div className=''>
-      Day <Flatpickr
+      <span>Day <Flatpickr
         value={new Date(date)}
         onChange={date => {
           onChangeDate(date && date[0])
         }} />
+      </span>
 
-      <div className='tar'>
+      &nbsp;
+      &nbsp;
+
+      <span className='usn' onClick={() => { toggleOnlyShowCompleted() }}>
+        <input type='checkbox' checked={this.props.onlyShowCompleted} />
         only show completed
-        <input type='checkbox' checked={this.props.onlyShowCompleted} onClick={() => { toggleOnlyShowCompleted() }} />
-      </div>
+      </span>
 
     </div>
   }
