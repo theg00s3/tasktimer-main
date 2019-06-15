@@ -73,7 +73,7 @@ class Statistics extends Component {
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
-      <Link to='/statistics/weekly'>Show weekly</Link>
+      {/* <Link to='/statistics/weekly'>Show weekly</Link> */}
 
       <br />
 
