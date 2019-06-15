@@ -103,18 +103,6 @@ class Statistics extends Component {
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
-      {completedPomodoros.length === 0 && <div className='pad'>
-        <div class='columns'>
-          <div class='column pad-v tac'>
-            <div>
-              You haven't completed any pomodoros.
-            </div>
-          </div>
-        </div>
-      </div>}
-
-      <br />
-
       <div className='pad'>
         <StatisticsFilters
           date={date}
@@ -126,6 +114,18 @@ class Statistics extends Component {
 
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
       </div>
+
+      <br />
+
+      {completedPomodoros.length === 0 && <div className='pad'>
+        <div class='columns'>
+          <div class='column pad-v tac'>
+            <div>
+              You haven't completed any pomodoros.
+            </div>
+          </div>
+        </div>
+      </div>}
 
       <br />
 
