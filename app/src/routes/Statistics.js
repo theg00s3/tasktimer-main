@@ -9,21 +9,26 @@ import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
-import 'flatpickr/dist/themes/material_green.css'
+// import 'flatpickr/dist/themes/material_green.css'
 import Flatpickr from 'react-flatpickr'
 
 dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
-    const {date = new Date(), onChangeDate = Function.prototype} = this.props
+    const {date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
 
     return <div className=''>
-      <Flatpickr
+      Day <Flatpickr
         value={new Date(date)}
         onChange={date => {
           onChangeDate(date && date[0])
         }} />
+
+      <div className='tar'>
+        only show completed
+        <input type='checkbox' checked={this.props.onlyShowCompleted} onClick={() => { toggleOnlyShowCompleted() }} />
+      </div>
 
     </div>
   }
@@ -61,7 +66,7 @@ class Statistics extends Component {
   render () {
     const {api, user, todos, subscription, actions} = this.props
 
-    if (!user || !user.subscription || user.subscription.status !== 'active') {
+    if (!user || !user.hasActiveSubscription) {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
@@ -107,14 +112,15 @@ class Statistics extends Component {
       <br />
 
       <div className='pad'>
-        <StatisticsFilters date={date} onChangeDate={this.changeDate.bind(this)} />
+        <StatisticsFilters
+          date={date}
+          onChangeDate={this.changeDate.bind(this)}
+          onlyShowCompleted={this.state.onlyShowCompleted}
+          toggleOnlyShowCompleted={() => this.setState({
+            onlyShowCompleted: !this.state.onlyShowCompleted
+          })} />
 
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
-        <br />
-        <div className='tar'>
-          only show completed
-          <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
-        </div>
       </div>
 
       <br />
