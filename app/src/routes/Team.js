@@ -29,7 +29,6 @@ class Team extends Component {
   }
 
   componentWillUnmount () {
-    console.log('channel.unbind_all', this.channelId)
     this.channel.unbind_all()
   }
 

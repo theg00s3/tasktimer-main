@@ -88,7 +88,6 @@ function durationInPomodoros (pomodoros) {
              = 1ms
       */
     }
-    console.log('unhandled', pomodoro)
     return acc + pomodoro.minutes / 25
   }, 0)
 

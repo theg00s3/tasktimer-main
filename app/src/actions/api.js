@@ -34,7 +34,6 @@ export function createPomodoro (pomodoro) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data', data)
       if (data.error) {
         getState().user && AnalyticsService.track('create-pomodoro-error', data.error)
         return dispatch({type: CREATE_POMODORO_ERROR, payload: data.error})
@@ -71,7 +70,6 @@ export function getPomodorosForDay (day) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data', data)
       if (data.error) {
         getState().user && AnalyticsService.track('get-pomodoros-for-day-error', data.error)
         return dispatch({type: GET_POMODOROS_FOR_DATE_ERROR, payload: data.error})
@@ -106,7 +104,6 @@ export function getPomodorosForWeek (week) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data', data)
       if (data.error) {
         getState().user && AnalyticsService.track('get-pomodoros-for-week-error', data.error)
         return dispatch({type: GET_POMODOROS_FOR_WEEK_ERROR, payload: data.error})

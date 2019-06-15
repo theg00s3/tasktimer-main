@@ -13,7 +13,6 @@ export const LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR'
 export const TEST_POMODOROS = 'TEST_POMODOROS'
 
 export function identifyUser (user) {
-  console.log('identifyUser', user)
   if (user) {
     AnalyticsService.identify(user._id, user)
   }

@@ -27,7 +27,6 @@ export function createSubscription (token) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data', data)
       if (data.error) {
         AnalyticsService.track('create-subscription-error', data.error)
         return dispatch({type: CREATE_SUBSCRIPTION_ERROR, payload: data.error})
