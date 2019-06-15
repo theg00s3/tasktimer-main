@@ -6,6 +6,7 @@ import querystring from 'querystring'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import TodoForm from '../components/TodoForm'
+import toISOSubstring from '../modules/to-iso-substring'
 import PomodorosChart from '../components/PomodorosChart'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
@@ -36,16 +37,6 @@ class StatisticsFilters extends Component {
 
     </div>
   }
-}
-
-function toISOSubstring (date = new Date()) {
-  date = new Date(date)
-  const year = date.getFullYear()
-  let month = date.getMonth() + 1
-  month = month < 10 ? `0${month}` : month
-  let day = date.getDate()
-  day = day < 10 ? `0${day}` : day
-  return `${year}-${month}-${day}`
 }
 
 class Statistics extends Component {

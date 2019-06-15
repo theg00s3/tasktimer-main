@@ -1,4 +1,5 @@
 import AnalyticsService from '../modules/AnalyticsService'
+import toISOSubstring from '../modules/to-iso-substring'
 
 export const CREATE_POMODORO = 'CREATE_POMODORO'
 export const CREATE_POMODORO_SUCCESS = 'CREATE_POMODORO_SUCCESS'
@@ -48,7 +49,7 @@ export function createPomodoro (pomodoro) {
   }
 }
 
-export function getPomodorosForDay (day) {
+export function getPomodorosForDay (day = toISOSubstring()) {
   return (dispatch, getState) => {
     dispatch({type: GET_POMODOROS_FOR_DATE, payload: null})
 

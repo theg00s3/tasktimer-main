@@ -11,11 +11,9 @@ import {connect} from 'react-redux'
 class Main extends Component {
   render () {
     const {api, timer, todos, user, actions} = this.props
-    const date = new Date().toISOString().substring(0, 10)
     const pomodorosForChart = api.pomodorosForDate.pomodoros
       .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
     return <div className='content' id='start'>
       <Timer actions={actions} timer={timer} />

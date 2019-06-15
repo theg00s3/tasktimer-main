@@ -2,6 +2,7 @@ import 'whatwg-fetch'
 
 import AnalyticsService from '../modules/AnalyticsService'
 import { recreatePomodoro } from '.'
+import { getPomodorosForDay } from './api'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
@@ -31,6 +32,7 @@ export function loadUser () {
         identifyUser(json)
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
         AnalyticsService.track('load-user-success', json)
+        getPomodorosForDay()(dispatch, getState)
 
         // window.localStorage.setItem('recreatedOldPomodoros', false)
         if (window.localStorage.recreatedOldPomodoros !== 'true') {
