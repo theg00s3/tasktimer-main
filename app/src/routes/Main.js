@@ -10,11 +10,10 @@ import {connect} from 'react-redux'
 
 class Main extends Component {
   render () {
-    const {timer, todos, pomodoros = [], user, actions} = this.props
+    const {api, timer, todos, user, actions} = this.props
     const date = new Date().toISOString().substring(0, 10)
-    const pomodorosForChart = pomodoros
+    const pomodorosForChart = api.pomodorosForDate.pomodoros
       .filter(p => p.type === 'pomodoro')
-      .filter(p => p.completed)
       .filter(p => Date.parse(p.startedAt))
       .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
 
@@ -39,6 +38,7 @@ class Main extends Component {
 
 export default connect(
   (state) => ({
+    api: state.api,
     user: state.user,
     todos: state.todos,
     settings: state.settings,
