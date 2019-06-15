@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 
 import AnalyticsService from '../modules/AnalyticsService'
+import { recreatePomodoro } from '.'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
@@ -30,6 +31,16 @@ export function loadUser () {
         identifyUser(json)
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
         AnalyticsService.track('load-user-success', json)
+
+        // window.localStorage.setItem('recreatedOldPomodoros', false)
+        if (window.localStorage.recreatedOldPomodoros !== 'true') {
+          const {pomodoros} = getState()
+          console.log('recreate pomodoros.length', pomodoros && pomodoros.length)
+          pomodoros.forEach(pomodoro => {
+            dispatch(recreatePomodoro(pomodoro))
+          })
+          window.localStorage.setItem('recreatedOldPomodoros', true)
+        }
       })
       .catch((err) => {
         dispatch({type: LOAD_USER_ERROR, payload: err})
