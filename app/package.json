@@ -21,6 +21,7 @@
     "pusher-js": "^4.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-flatpickr": "^3.9.0",
     "react-redux": "^5.1.1",
     "react-stripe-checkout": "^2.6.3",
     "recharts": "^1.6.2",

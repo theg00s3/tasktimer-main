@@ -1,34 +1,63 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import querystring from 'querystring'
 import dayjs from 'dayjs'
+import querystring from 'querystring'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
-import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
 import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
-dayjs.extend(utc)
+import 'flatpickr/dist/themes/material_green.css'
+import Flatpickr from 'react-flatpickr'
 
-let onceForDate
+dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
+    const {date = new Date(), onChangeDate = Function.prototype} = this.props
+
     return <div className=''>
-      Filters
+      <Flatpickr
+        value={new Date(date)}
+        onChange={date => {
+          onChangeDate(date && date[0])
+        }} />
+
     </div>
   }
+}
+
+function toISOSubstring (date = new Date()) {
+  date = new Date(date)
+  const year = date.getFullYear()
+  let month = date.getMonth() + 1
+  month = month < 10 ? `0${month}` : month
+  let day = date.getDate()
+  day = day < 10 ? `0${day}` : day
+  return `${year}-${month}-${day}`
 }
 
 class Statistics extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      onlyShowCompleted: false
+      onlyShowCompleted: false,
+      date: undefined
     }
   }
+  changeDate (date) {
+    const {actions} = this.props
+
+    let dateString = toISOSubstring(date)
+    this.setState({
+      date: dateString
+    })
+    actions.getPomodorosForDay(dateString)
+    window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
+  }
+
   render () {
     const {api, user, todos, subscription, actions} = this.props
 
@@ -37,51 +66,34 @@ class Statistics extends Component {
     }
 
     const qs = querystring.parse(window.location.search.replace('?', ''))
+    const urlDate = qs.date || new Date().toISOString().substring(0, 10)
 
-    const date = qs.date || new Date().toISOString().substring(0, 10)
-    const today = new Date().toISOString().substring(0, 10)
-
-    let dayBefore = dayjs(date).subtract(0, 'day').toISOString().substr(0, 10)
-    let dayAfter = dayjs(date).add(2, 'day').toISOString().substr(0, 10)
-
-    if (!qs.date) {
-      window.history.pushState(null, document.title, window.location.pathname + `?date=${date}`)
-    }
-
-    if (onceForDate !== date) {
-      onceForDate = date
-      actions.getPomodorosForDay(date)
+    let {date} = this.state
+    if (!date) {
+      date = urlDate
+      this.setState({date})
     }
 
     const completedTodos = todos
       .filter(Boolean)
       .filter(t => t.completed)
       .filter(t => t.completedAt)
-      .filter(t => new Date(t.completedAt).toISOString().substring(0, 10) === date)
+      .filter(t => toISOSubstring(t.completedAt) === date)
     const completedPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.completed)
       .filter(p => p.startedAt)
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+      .filter(p => toISOSubstring(p.startedAt) === date)
     const allPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
       .filter(p => p.startedAt)
-      .filter(p => new Date(p.startedAt).toISOString().substring(0, 10) === date)
+      .filter(p => toISOSubstring(p.startedAt) === date)
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
-      {/* <Link to='/statistics/weekly'>Show weekly</Link> */}
-
-      <br />
-
-      <div className='stats-navigation'>
-        <Link to={`/statistics?date=${dayBefore}`} className='statistics-nav-button'>&lt; {dayBefore}</Link>
-        {(date !== today)
-          ? <Link to={`/statistics?date=${dayAfter}`} className='statistics-nav-button float-right'>{dayAfter} &gt;</Link> : null}
-      </div>
       {completedPomodoros.length === 0 && <div className='pad'>
         <div class='columns'>
           <div class='column pad-v tac'>
@@ -95,7 +107,8 @@ class Statistics extends Component {
       <br />
 
       <div className='pad'>
-        <StatisticsFilters />
+        <StatisticsFilters date={date} onChangeDate={this.changeDate.bind(this)} />
+
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
         <br />
         <div className='tar'>
