@@ -27,6 +27,7 @@ export default class PomodorosChart extends Component {
           strokeWidth={2}
           dot={false}
           animationDuration={300} />
+
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
       </LineChart>
