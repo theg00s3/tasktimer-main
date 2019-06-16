@@ -22,6 +22,7 @@ export const SWAP_TODO_LOCAL = 'SWAP_TODO_LOCAL'
 export function addTodo (todo) {
   AnalyticsService.track('add-todo', todo)
   return (dispatch, getState) => {
+    if (!todo.createdAt) todo.createdAt = new Date()
     createTodo(todo)(dispatch, getState)
     return dispatch({type: ADD_TODO_SUCCESS, payload: todo})
   }

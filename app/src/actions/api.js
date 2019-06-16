@@ -13,6 +13,10 @@ export const GET_POMODOROS_FOR_DATE = 'GET_POMODOROS_FOR_DATE'
 export const GET_POMODOROS_FOR_DATE_SUCCESS = 'GET_POMODOROS_FOR_DATE_SUCCESS'
 export const GET_POMODOROS_FOR_DATE_ERROR = 'GET_POMODOROS_FOR_DATE_ERROR'
 
+export const GET_TODOS = 'GET_TODOS'
+export const GET_TODOS_SUCCESS = 'GET_TODOS_SUCCESS'
+export const GET_TODOS_ERROR = 'GET_TODOS_ERROR'
+
 export const GET_POMODOROS_FOR_WEEK = 'GET_POMODOROS_FOR_WEEK'
 export const GET_POMODOROS_FOR_WEEK_SUCCESS = 'GET_POMODOROS_FOR_WEEK_SUCCESS'
 export const GET_POMODOROS_FOR_WEEK_ERROR = 'GET_POMODOROS_FOR_WEEK_ERROR'
@@ -45,6 +49,7 @@ export function createPomodoro (pomodoro) {
       }
       getState().user && AnalyticsService.track('create-pomodoro-success', data)
       dispatch({type: CREATE_POMODORO_SUCCESS, payload: data})
+      getPomodorosForDay()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('create-pomodoro-error', err)
@@ -81,6 +86,7 @@ export function createTodo (todo) {
       }
       getState().user && AnalyticsService.track('create-todo-success', data)
       dispatch({type: CREATE_TODO_SUCCESS, payload: data})
+      getTodosForDay()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('create-todo-error', err)
@@ -121,6 +127,42 @@ export function getPomodorosForDay (day = toISOSubstring()) {
     .catch(err => {
       getState().user && AnalyticsService.track('get-pomodoros-for-day-error', err)
       return dispatch({type: GET_POMODOROS_FOR_DATE_ERROR, payload: 'Something went wrong. Please try again'})
+    })
+  }
+}
+
+export function getTodosForDay (day = toISOSubstring()) {
+  return (dispatch, getState) => {
+    dispatch({type: GET_TODOS, payload: null})
+
+    let url = /pomodoro/.test(location.href)
+      ? 'https://api.pomodoro.cc/pomodoros'
+      : 'http://localhost:3000/todos'
+
+    url += `?day=${day}`
+
+    window.fetch(url, {
+      method: 'GET',
+      cache: 'no-cache',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        getState().user && AnalyticsService.track('get-todos-for-day-error', data.error)
+        return dispatch({type: GET_TODOS_ERROR, payload: data.error})
+      }
+      getState().user && AnalyticsService.track('get-todos-for-day-success', data)
+      dispatch({type: GET_TODOS_SUCCESS, payload: {date: day, todos: data}})
+    })
+    .catch(err => {
+      getState().user && AnalyticsService.track('get-todos-for-day-error', err)
+      return dispatch({type: GET_TODOS_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }
