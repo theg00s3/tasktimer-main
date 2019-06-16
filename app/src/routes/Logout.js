@@ -20,12 +20,7 @@ class Logout extends Component {
 }
 
 export default connect(
-  (state) => ({
-    todos: state.todos,
-    settings: state.settings,
-    pomodoro: state.pomodoro,
-    timer: state.timer
-  }),
+  (state) => state,
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
   })

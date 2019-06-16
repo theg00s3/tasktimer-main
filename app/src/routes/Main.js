@@ -35,16 +35,8 @@ class Main extends Component {
 }
 
 export default connect(
-  (state) => ({
-    api: state.api,
-    user: state.user,
-    todos: state.todos,
-    settings: state.settings,
-    pomodoro: state.pomodoro,
-    pomodoros: state.pomodoros,
-    team: state.team,
-    timer: state.timer
-  }),
+  (state) => state,
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
-  }))(Main)
+  })
+)(Main)

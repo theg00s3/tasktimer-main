@@ -32,12 +32,8 @@ class Team extends Component {
 }
 
 export default connect(
-(state) => ({
-  timer: state.timer,
-  todos: state.todos,
-  settings: state.settings,
-  pomodoros: state.pomodoros,
-  user: state.user
-}), (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-}))(Team)
+  (state) => state,
+  (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(Team)

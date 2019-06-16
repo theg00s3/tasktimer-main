@@ -66,13 +66,8 @@ class Profile extends Component {
 }
 
 export default connect(
-(state) => ({
-  todos: state.todos,
-  settings: state.settings,
-  pomodoros: state.pomodoros,
-  subscription: state.subscription,
-  user: state.user,
-  darkMode: state.darkMode
-}), (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-}))(Profile)
+  (state) => state,
+  (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(Profile)

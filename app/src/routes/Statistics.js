@@ -183,14 +183,8 @@ function durationInPomodoros (pomodoros) {
 }
 
 export default connect(
-(state) => ({
-  api: state.api,
-  loading: state.loading,
-  todos: state.todos,
-  settings: state.settings,
-  pomodoros: state.pomodoros,
-  subscription: state.subscription,
-  user: state.user
-}), (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-}))(Statistics)
+  (state) => state,
+  (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(Statistics)

@@ -39,12 +39,8 @@ class Pro extends Component {
 }
 
 export default connect(
-(state) => ({
-  todos: state.todos,
-  settings: state.settings,
-  pomodoros: state.pomodoros,
-  subscription: state.subscription,
-  user: state.user
-}), (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-}))(Pro)
+  (state) => state,
+  (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(Pro)

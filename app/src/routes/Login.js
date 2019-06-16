@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import * as actions from '../actions'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Twitter from '../assets/images/twitter.png'
 import GitHub from '../assets/images/github.png'
@@ -36,8 +38,8 @@ class Login extends Component {
 }
 
 export default connect(
-  (state) => ({
-  }),
+  (state) => state,
   (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
   })
 )(Login)
