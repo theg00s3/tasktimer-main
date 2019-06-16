@@ -136,7 +136,7 @@ export function getTodosForDay (day = toISOSubstring()) {
     dispatch({type: GET_TODOS, payload: null})
 
     let url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/pomodoros'
+      ? 'https://api.pomodoro.cc/todos'
       : 'http://localhost:3000/todos'
 
     url += `?day=${day}`
