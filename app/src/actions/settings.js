@@ -17,7 +17,7 @@ export function toggleRingSound () {
   return {type: TOGGLE_RING_SOUND, payload: {}}
 }
 
-export function grantNotificationPermission (grant) {
+export function grantNotificationPermission ({grant}) {
   AnalyticsService.track('grant-notification-permission')
   return {type: NOTIFICATION_PERMISSION_GRANT, payload: {grant}}
 }

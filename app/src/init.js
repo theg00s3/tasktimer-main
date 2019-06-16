@@ -24,9 +24,9 @@ export default function init () {
 
   function requestNotificationPermission () {
     NotificationService.requestPermission(() => {
-      dispatch(grantNotificationPermission(true))
+      dispatch(grantNotificationPermission({grant: true}))
     }, () => {
-      dispatch(grantNotificationPermission(false))
+      dispatch(grantNotificationPermission({grant: false}))
     })
   }
 

@@ -27,7 +27,7 @@ describe('settings reducer', () => {
     })
 
     expect(
-      settings(defaultState, grantNotificationPermission(true))
+      settings(defaultState, grantNotificationPermission({grant: true}))
     ).toStrictEqual({
       ...defaultState,
       notificationPermissionGranted: true
