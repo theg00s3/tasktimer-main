@@ -21,8 +21,8 @@ class Team extends Component {
     }
 
     return <div className='content'>
-      <h1 class='title'><b>Team Pomodoro</b></h1>
-      <h1 class='title'>
+      <h1 className='title'><b>Team Pomodoro</b></h1>
+      <h1 className='title'>
         <label for='channel-name'>Choose a channel to connect with your colleagues</label>
       </h1>
 

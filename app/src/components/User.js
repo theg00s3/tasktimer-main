@@ -11,7 +11,7 @@ export default class User extends Component {
     return <span className='user' style='vertical-align: sub;'>
       <Link className={active && 'active'} href={href}>
         Profile &nbsp;
-        <img src={user.avatar} class='user-avatar' />
+        <img src={user.avatar} className='user-avatar' />
         {user.hasActiveSubscription && <span className='pro-badge small'>Pro</span>}
       </Link>
       &nbsp;

@@ -92,19 +92,19 @@ class Statistics extends Component {
 
       <div className='pad'>
         <div>
-          <div class='columns'>
+          <div className='columns'>
             {completedPomodoros.length > 0 &&
-              <div class='column pad-v tac'>
-                <h1 class='no-m'>{completedPomodoros.length}</h1> pomodoros
+              <div className='column pad-v tac'>
+                <h1 className='no-m'>{completedPomodoros.length}</h1> pomodoros
               </div>}
-            <div class='column pad-v tac'>
-              <h1 class='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
+            <div className='column pad-v tac'>
+              <h1 className='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
             </div>
           </div>
 
           <br />
 
-          {completedTodos.length === 0 && <div class='column pad-v'>
+          {completedTodos.length === 0 && <div className='column pad-v'>
             <div className='tac'>
               You haven't completed any todos.
             </div>
@@ -112,7 +112,7 @@ class Statistics extends Component {
 
           <br />
 
-          {completedTodos.length > 0 && <div class='column pad-v'>
+          {completedTodos.length > 0 && <div className='column pad-v'>
             <div className='tac'>
               You were also quite productive today, with {completedTodos.length} tasks completed
             </div>

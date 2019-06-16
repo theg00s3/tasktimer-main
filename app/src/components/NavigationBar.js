@@ -16,10 +16,10 @@ export default class NavigationBar extends Component {
         <Link className={currentUrl === '/support' && 'active'} to='/support'>Support us!</Link>
         <Link className={currentUrl === '/open' && 'active'} to='/open' id='open-stats'>Open</Link>
         <Link className={currentUrl === '/about' && 'active'} to='/about' id='open-stats'>About</Link>
-        {loading.loadingUser && <div class='float-right'>
-          <div class='spinner' />
+        {loading.loadingUser && <div className='float-right'>
+          <div className='spinner' />
         </div>}
-        {!loading.loadingUser && <div class='float-right login-container'>
+        {!loading.loadingUser && <div className='float-right login-container'>
           {!user && <Link className={currentUrl === '/login' && 'active'} to='/login'>Login</Link>}
           <User user={user} loading={loading} active={currentUrl === '/profile'} />
         </div>}

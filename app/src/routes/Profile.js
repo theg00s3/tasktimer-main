@@ -54,7 +54,7 @@ class Profile extends Component {
       {!user.hasActiveSubscription &&
         <div>
           <div className='pad'>
-            <h1 class='title tac subscribe-to-pro'>Subscribe to Pro!</h1>
+            <h1 className='title tac subscribe-to-pro'>Subscribe to Pro!</h1>
           </div>
           <Subscribe user={user} subscription={subscription} actions={actions} />
         </div>

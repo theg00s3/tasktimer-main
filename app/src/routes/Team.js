@@ -42,10 +42,10 @@ class Team extends Component {
     }
 
     return <div className='content'>
-      <h1 class='title'><b>Team Pomodoro</b></h1>
-      <h1 class='title'>
+      <h1 className='title'><b>Team Pomodoro</b></h1>
+      <h1 className='title'>
         #<strong>{this.channelId}</strong>
-        {this.state.connected ? <span class='indicator connected'>&nbsp;</span> : <span class='indicator not-connected'>&nbsp;</span>}
+        {this.state.connected ? <span className='indicator connected'>&nbsp;</span> : <span className='indicator not-connected'>&nbsp;</span>}
       </h1>
 
       <Pomodoro timer={timer} actions={actions} team channelId={this.channelId} />

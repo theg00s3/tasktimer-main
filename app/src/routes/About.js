@@ -5,7 +5,7 @@ export default class About extends Component {
   render () {
     return <div className='content'>
       <div className='welcome-bar'>
-        <h1 class='title'>Welcome to pomodoro.cc!</h1>
+        <h1 className='title'>Welcome to pomodoro.cc!</h1>
         <p>We can help you to plan your activities for the day, and get things done!</p>
 
         <p>

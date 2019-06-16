@@ -12,16 +12,16 @@ export default class Subscribe extends Component {
 
         <span>Pomodoro.cc <span className='pro-badge'>Pro</span></span>
 
-        <div class='price-choices'>
-          <div class='price'>
-            <span class='price-symbol'>€</span>
-            <span class='price-amount'>1</span>
-            <span class='price-frequency'>/mo</span>
+        <div className='price-choices'>
+          <div className='price'>
+            <span className='price-symbol'>€</span>
+            <span className='price-amount'>1</span>
+            <span className='price-frequency'>/mo</span>
           </div>
         </div>
 
         {/* <ul className='pro-reasons tal'>
-          <h1 class='title tac'>What you'll get</h1>
+          <h1 className='title tac'>What you'll get</h1>
           <li className=''>
             ⚡️ Statistics and Insight
           </li>

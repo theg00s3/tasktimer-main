@@ -14,7 +14,7 @@ export default class SubscribeButton extends Component {
     if (localStorage.stripeTest) stripeKey = 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
 
     return <div className='subscribe-button'>
-      <img src={user.avatar} class='user-avatar' />
+      <img src={user.avatar} className='user-avatar' />
 
       &nbsp;
       &nbsp;
