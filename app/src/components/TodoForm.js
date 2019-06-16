@@ -32,7 +32,7 @@ class TodoForm extends Component {
           className='todo-input' />
       </div>}
 
-      {showTitles && <h1 className={`no-m ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
+      {showTitles && <h1 className={` ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
       {newTodos.length > 0 && renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
       {newTodos.length === 0 && <div className='content'>
         <div className='todo'>
@@ -40,7 +40,7 @@ class TodoForm extends Component {
         </div>
       </div>}
 
-      {showTitles && <h1 className='no-m'>Done</h1>}
+      {showTitles && <h1 className=''>Done</h1>}
       {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
 
       {showStatsLink && <Link className='small vam button' to='/statistics'>Show in stats</Link>}

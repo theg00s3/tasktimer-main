@@ -4,14 +4,13 @@ import {bindActionCreators} from 'redux'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
-import Link from '../components/utils/Link'
 import './Profile.styl'
 import Subscribe from '../components/Subscribe'
 dayjs.extend(utc)
 
 class Profile extends Component {
   render () {
-    const {user, subscription, actions} = this.props
+    const {user, subscription, actions, darkMode} = this.props
 
     if (!user) return null
 
@@ -44,6 +43,14 @@ class Profile extends Component {
           <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
         </div>}
 
+      {true && <div onClick={() => actions.toggleDarkMode()}>
+        <h1>dark mode: <span>
+          {darkMode.enabled ? 'on' : 'off'}
+        </span></h1>
+
+        <small>click to toggle</small>
+      </div>}
+
       {!user.hasActiveSubscription &&
         <div>
           <div className='pad'>
@@ -64,7 +71,8 @@ export default connect(
   settings: state.settings,
   pomodoros: state.pomodoros,
   subscription: state.subscription,
-  user: state.user
+  user: state.user,
+  darkMode: state.darkMode
 }), (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)
 }))(Profile)

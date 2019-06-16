@@ -5,6 +5,7 @@ import pomodoro from './reducers/pomodoro'
 import pomodoros from './reducers/pomodoros'
 import settings from './reducers/settings'
 import subscription from './reducers/subscription'
+import darkMode from './reducers/dark-mode'
 import user from './reducers/user'
 import team from './reducers/team'
 import loading from './reducers/loading'
@@ -29,10 +30,11 @@ const store = createStore(combineReducers({
   user,
   team,
   loading,
-  subscription
+  subscription,
+  darkMode
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'todos', 'pomodoro', 'pomodoros'])
+  persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'darkMode'])
 ))
 
 export default store

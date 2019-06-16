@@ -8,8 +8,8 @@ import {connect} from 'react-redux'
 
 class Layout extends Component {
   render (state, dispatch) {
-    const {actions, user, loading, currentUrl} = this.props
-    return <div>
+    const {actions, user, loading, currentUrl, darkMode} = this.props
+    return <div className={darkMode.enabled ? 'dark-mode' : ''}>
       <NavigationBar actions={actions} user={user} loading={loading} currentUrl={currentUrl} />
 
       <div className='main-content'>
@@ -26,7 +26,8 @@ export default connect(
     return {
       settings: state.settings,
       loading: state.loading,
-      user: state.user
+      user: state.user,
+      darkMode: state.darkMode
     }
   },
   (dispatch) => { return {actions: bindActionCreators(actions, dispatch)} }
