@@ -43,7 +43,7 @@ class Profile extends Component {
           <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
         </div>}
 
-      {true && <div onClick={() => actions.toggleDarkMode()}>
+      {true && <div className='pad' onClick={() => actions.toggleDarkMode()}>
         <h1>dark mode: <span>
           {darkMode.enabled ? 'on' : 'off'}
         </span></h1>

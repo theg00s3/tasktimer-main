@@ -46,6 +46,9 @@ export default class Subscribe extends Component {
             ️️️⚡️ Sync data between devices
           </li>
           <li className=''>
+            ️️️⚡️ Dark mode
+          </li>
+          <li className=''>
             ️️️⚡️ Channel-reservation (Team Pomodoro)
           </li>
           <li className=''>
