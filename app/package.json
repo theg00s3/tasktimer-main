@@ -9,7 +9,9 @@
     "now-build": "NODE_ENV=production npm run build",
     "test": "jest --testRegex '((\\.|/)(test))\\.[jt]sx?$'",
     "cypress": "cypress",
-    "lint": "standard"
+    "lint": "standard",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "license": "MIT",
   "dependencies": {
@@ -37,8 +39,14 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.1.8",
+    "@storybook/addon-links": "^5.1.8",
+    "@storybook/addons": "^5.1.8",
+    "@storybook/react": "^5.1.8",
     "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
     "babel-preset-preact": "^1.1.0",
+    "css-loader": "^3.0.0",
     "eslint-plugin-cypress": "^2.2.1",
     "expect": "^23.6.0",
     "jest": "^24.8.0",
@@ -47,7 +55,8 @@
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.5",
     "sinon": "^7.3.2",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
   },
   "optionalDependencies": {
     "standard": "^10.0.3"
