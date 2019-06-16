@@ -20,6 +20,16 @@ class Main extends Component {
 
       <TimerButtons actions={actions} />
 
+      {(!user || !user.hasActiveSubscription) &&
+        <div className='pad tac'>
+          Subscribe to <span className='pro-badge'>Pro</span> today!
+          <br />
+          It's just <strong>1 € a month</strong>, and you get
+          <br />
+          <strong>Statistics, Dark Mode, Reserved Team Channels, API access</strong>
+        </div>
+      }
+
       {user && pomodorosForChart.length > 0 &&
       <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
         <PomodorosChart pomodoros={pomodorosForChart} micro onlyShowCompleted />
