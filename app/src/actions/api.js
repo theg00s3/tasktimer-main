@@ -63,7 +63,7 @@ export function createTodo (todo) {
     dispatch({type: CREATE_TODO, payload: null})
 
     const body = JSON.stringify(todo)
-    const url = /todo/.test(location.href)
+    const url = /pomodoro/.test(location.href)
       ? 'https://api.pomodoro.cc/todos'
       : 'http://localhost:3000/todos'
 
