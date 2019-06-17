@@ -40,8 +40,8 @@ export function toggleCompleteTodo (todo) {
 export function toggleDeleteTodo (todo) {
   const deleted = !todo.deleted
   const updatedTodo = {...todo, deleted}
-  if (deleted) updatedTodo.deleted_at = new Date()
-  else delete updatedTodo.deleted_at
+  if (deleted) updatedTodo.deletedAt = new Date()
+  else delete updatedTodo.deletedAt
   AnalyticsService.track('toggle-delete-todo', todo)
   return updateTodo(updatedTodo, 'DELETE')
 }

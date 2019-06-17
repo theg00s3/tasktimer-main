@@ -111,8 +111,8 @@ export function apiGetPomodorosForDay (day = toISOSubstring()) {
       mode: 'cors',
       credentials: 'include',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json'
+        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -147,8 +147,8 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
       mode: 'cors',
       credentials: 'include',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json'
+        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -183,8 +183,8 @@ export function apiGetPomodorosForWeek (week) {
       mode: 'cors',
       credentials: 'include',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json'
+        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
