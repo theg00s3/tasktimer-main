@@ -59,7 +59,7 @@ class Statistics extends Component {
   }
 
   render () {
-    const {api, user, loading, todos, subscription, actions} = this.props
+    const {api, user, loading, subscription, actions} = this.props
 
     if (!user || !user.hasActiveSubscription) {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
@@ -80,7 +80,7 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
-    const completedTodos = todos
+    const completedTodos = api.todos
       .filter(Boolean)
       .filter(t => t.completed)
       .filter(t => t.completedAt)

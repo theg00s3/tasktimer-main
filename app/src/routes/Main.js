@@ -29,7 +29,7 @@ class Main extends Component {
         </span>
       </div>}
 
-      <TodoForm todos={api.todos || todos} actions={actions} editable showStatsLink />
+      <TodoForm todos={user.hasActiveSubscription ? api.todos : todos} actions={actions} editable showStatsLink />
     </div>
   }
 }
