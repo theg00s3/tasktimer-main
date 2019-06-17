@@ -54,7 +54,7 @@ class Statistics extends Component {
     this.setState({
       date: dateString
     })
-    actions.getPomodorosForDay(dateString)
+    actions.apiGetPomodorosForDay(dateString)
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 

@@ -1,6 +1,6 @@
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
-import { createTodo } from '../actions'
+import { apiCreateTodo } from '../actions'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -23,7 +23,7 @@ export function addTodo (todo) {
   AnalyticsService.track('add-todo', todo)
   return (dispatch, getState) => {
     if (!todo.createdAt) todo.createdAt = new Date()
-    createTodo(todo)(dispatch, getState)
+    apiCreateTodo(todo)(dispatch, getState)
     return dispatch({type: ADD_TODO_SUCCESS, payload: todo})
   }
 }

@@ -1,4 +1,4 @@
-import {LOAD_USER_REQUEST, LOAD_USER_ERROR, LOAD_USER_SUCCESS, GET_POMODOROS_FOR_DATE_REQUEST, GET_POMODOROS_FOR_DATE_ERROR, GET_POMODOROS_FOR_DATE_SUCCESS} from '../actions'
+import {LOAD_USER_REQUEST, LOAD_USER_ERROR, LOAD_USER_SUCCESS, API_GET_POMODOROS_FOR_DATE_REQUEST, API_GET_POMODOROS_FOR_DATE_ERROR, API_GET_POMODOROS_FOR_DATE_SUCCESS} from '../actions'
 
 export const defaultState = {
   loadingUser: false,
@@ -18,13 +18,13 @@ export default function loading (state = defaultState, action) {
         ...state,
         loadingUser: false
       }
-    case GET_POMODOROS_FOR_DATE_REQUEST:
+    case API_GET_POMODOROS_FOR_DATE_REQUEST:
       return {
         ...state,
         loadingPomodorosForDay: true
       }
-    case GET_POMODOROS_FOR_DATE_SUCCESS:
-    case GET_POMODOROS_FOR_DATE_ERROR:
+    case API_GET_POMODOROS_FOR_DATE_SUCCESS:
+    case API_GET_POMODOROS_FOR_DATE_ERROR:
       return {
         ...state,
         loadingPomodorosForDay: false

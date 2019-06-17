@@ -1,11 +1,11 @@
 import AnalyticsService from '../modules/AnalyticsService'
-import {createPomodoro, createTodo} from '.'
+import {apiCreatePomodoro, apiCreateTodo} from '.'
 
 export function recreatePomodoro (pomodoro) {
   AnalyticsService.track('recreate-pomodoro', pomodoro)
-  return createPomodoro(pomodoro)
+  return apiCreatePomodoro(pomodoro)
 }
-export function recreateTodo (todo) {
+export function reapiCreateTodo (todo) {
   AnalyticsService.track('recreate-todo', todo)
-  return createTodo(todo)
+  return apiCreateTodo(todo)
 }

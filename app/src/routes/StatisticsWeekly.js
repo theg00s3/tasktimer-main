@@ -41,7 +41,7 @@ class Statistics extends Component {
     const startOfWeek = dayjs().startOf('week')
     const endOfWeek = dayjs().endOf('week')
 
-    actions.getPomodorosForWeek && actions.getPomodorosForWeek(weekNumber)
+    actions.apiGetPomodorosForWeek && actions.apiGetPomodorosForWeek(weekNumber)
 
     const completedTodos = todos
       .filter(Boolean)
