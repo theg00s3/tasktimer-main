@@ -171,9 +171,11 @@ export function apiGetPomodorosForWeek (week) {
   return (dispatch, getState) => {
     dispatch({type: API_GET_POMODOROS_FOR_WEEK, payload: null})
 
-    const url = /pomodoro/.test(location.href)
-      ? `https://api.pomodoro.cc/pomodoros/weekly/${week}`
-      : `http://localhost:3000/pomodoros/weekly/${week}`
+    let url = /pomodoro/.test(location.href)
+      ? `https://api.pomodoro.cc/pomodoros`
+      : `http://localhost:3000/pomodoros`
+
+    url += `?week=${week}`
 
     window.fetch(url, {
       method: 'GET',
