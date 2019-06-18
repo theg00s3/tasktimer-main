@@ -15,6 +15,10 @@ class Main extends Component {
       .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))
 
+    const todosToShow = (user && user.hasActiveSubscription)
+      ? api.todos
+      : todos
+
     return <div className='content' id='start'>
       <Timer actions={actions} timer={timer} />
 
@@ -29,7 +33,7 @@ class Main extends Component {
         </span>
       </div>}
 
-      <TodoForm todos={(user && user.hasActiveSubscription) ? api.todos : todos} actions={actions} editable showStatsLink />
+      <TodoForm todos={todosToShow} actions={actions} editable showStatsLink />
     </div>
   }
 }

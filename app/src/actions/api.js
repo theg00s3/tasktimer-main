@@ -298,10 +298,8 @@ export function apiGetTodolist () {
     dispatch({type: GET_TODOS, payload: null})
 
     let url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/todos'
-      : 'http://localhost:3000/todos'
-
-    url += `?deleted=false`
+      ? 'https://api.pomodoro.cc/todos/list'
+      : 'http://localhost:3000/todos/list'
 
     window.fetch(url, {
       method: 'GET',
