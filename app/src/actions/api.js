@@ -93,7 +93,7 @@ export function apiCreateTodo (todo) {
       }
       getState().user && AnalyticsService.track('create-todo-success', data)
       dispatch({type: API_CREATE_TODO_SUCCESS, payload: data})
-      apiGetTodosForDay()(dispatch, getState)
+      apiGetTodolist()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('create-todo-error', err)
@@ -130,7 +130,7 @@ export function apiUpdateTodo (todo) {
       }
       getState().user && AnalyticsService.track('update-todo-success', data)
       dispatch({type: API_UPDATE_TODO_SUCCESS, payload: data})
-      apiGetTodosForDay()(dispatch, getState)
+      apiGetTodolist()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('update-todo-error', err)
@@ -207,7 +207,7 @@ export function apiCreateTodos (todos) {
         }
         getState().user && AnalyticsService.track('create-todo-success', data)
         dispatch({type: API_CREATE_TODO_SUCCESS, payload: data})
-        apiGetTodosForDay()(dispatch, getState)
+        apiGetTodolist()(dispatch, getState)
       })
       .catch(err => {
         getState().user && AnalyticsService.track('create-todo-error', err)
@@ -262,6 +262,42 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
       : 'http://localhost:3000/todos'
 
     url += `?day=${day}`
+
+    window.fetch(url, {
+      method: 'GET',
+      cache: 'no-cache',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json'
+        // 'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        getState().user && AnalyticsService.track('get-todos-for-day-error', data.error)
+        return dispatch({type: GET_TODOS_ERROR, payload: data.error})
+      }
+      getState().user && AnalyticsService.track('get-todos-for-day-success', data)
+      dispatch({type: GET_TODOS_SUCCESS, payload: {date: day, todos: data}})
+    })
+    .catch(err => {
+      getState().user && AnalyticsService.track('get-todos-for-day-error', err)
+      return dispatch({type: GET_TODOS_ERROR, payload: 'Something went wrong. Please try again'})
+    })
+  }
+}
+
+export function apiGetTodolist () {
+  return (dispatch, getState) => {
+    dispatch({type: GET_TODOS, payload: null})
+
+    let url = /pomodoro/.test(location.href)
+      ? 'https://api.pomodoro.cc/todos'
+      : 'http://localhost:3000/todos'
+
+    url += `?deleted=false`
 
     window.fetch(url, {
       method: 'GET',

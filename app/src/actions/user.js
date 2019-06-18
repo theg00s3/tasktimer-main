@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 
 import AnalyticsService from '../modules/AnalyticsService'
 import { recreatePomodoros, recreateTodos } from '.'
-import { apiGetPomodorosForDay, apiGetTodosForDay } from './api'
+import { apiGetPomodorosForDay, apiGetTodolist } from './api'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
@@ -33,7 +33,7 @@ export function loadUser () {
         dispatch({type: LOAD_USER_SUCCESS, payload: json})
         AnalyticsService.track('load-user-success', json)
         apiGetPomodorosForDay()(dispatch, getState)
-        apiGetTodosForDay()(dispatch, getState)
+        apiGetTodolist()(dispatch, getState)
 
         // window.localStorage.setItem('recreatedOldPomodoros20190617', false)
         if (window.localStorage.recreatedOldPomodoros20190617 !== 'true') {
