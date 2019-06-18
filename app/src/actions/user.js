@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 
 import AnalyticsService from '../modules/AnalyticsService'
-import { recreatePomodoro, reapiCreateTodo } from '.'
+import { recreatePomodoros, recreateTodos } from '.'
 import { apiGetPomodorosForDay, apiGetTodosForDay } from './api'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
@@ -39,9 +39,7 @@ export function loadUser () {
         if (window.localStorage.recreatedOldPomodoros20190617 !== 'true') {
           const {pomodoros} = getState()
           console.log('recreate pomodoros.length', pomodoros && pomodoros.length)
-          pomodoros.forEach(pomodoro => {
-            dispatch(recreatePomodoro(pomodoro))
-          })
+          dispatch(recreatePomodoros(pomodoros))
           AnalyticsService.track('recreated-old-pomodoros')
           window.localStorage.setItem('recreatedOldPomodoros20190617', true)
         }
@@ -49,9 +47,7 @@ export function loadUser () {
         if (window.localStorage.recreatedOldTodos20190617 !== 'true') {
           const {todos} = getState()
           console.log('recreate todos.length', todos && todos.length)
-          todos.forEach(todo => {
-            dispatch(reapiCreateTodo(todo))
-          })
+          dispatch(recreateTodos(todos))
           AnalyticsService.track('recreated-old-todos')
           window.localStorage.setItem('recreatedOldTodos20190617', true)
         }
