@@ -35,21 +35,21 @@ export function loadUser () {
         apiGetPomodorosForDay()(dispatch, getState)
         apiGetTodolist()(dispatch, getState)
 
-        // window.localStorage.setItem('recreatedOldPomodoros20190617', false)
-        if (window.localStorage.recreatedOldPomodoros20190617 !== 'true') {
+        // window.localStorage.setItem('recreatedOldPomodoros20190618', false)
+        if (window.localStorage.recreatedOldPomodoros20190618 !== 'true') {
           const {pomodoros} = getState()
           console.log('recreate pomodoros.length', pomodoros && pomodoros.length)
           dispatch(recreatePomodoros(pomodoros))
           AnalyticsService.track('recreated-old-pomodoros')
-          window.localStorage.setItem('recreatedOldPomodoros20190617', true)
+          window.localStorage.setItem('recreatedOldPomodoros20190618', true)
         }
-        // window.localStorage.setItem('recreatedOldTodos20190617', false)
-        if (window.localStorage.recreatedOldTodos20190617 !== 'true') {
+        // window.localStorage.setItem('recreatedOldTodos20190618', false)
+        if (window.localStorage.recreatedOldTodos20190618 !== 'true') {
           const {todos} = getState()
           console.log('recreate todos.length', todos && todos.length)
           dispatch(recreateTodos(todos))
           AnalyticsService.track('recreated-old-todos')
-          window.localStorage.setItem('recreatedOldTodos20190617', true)
+          window.localStorage.setItem('recreatedOldTodos20190618', true)
         }
       })
       .catch((err) => {
