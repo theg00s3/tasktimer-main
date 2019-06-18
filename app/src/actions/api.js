@@ -12,6 +12,10 @@ export const API_CREATE_TODO = 'API_CREATE_TODO'
 export const API_CREATE_TODO_SUCCESS = 'API_CREATE_TODO_SUCCESS'
 export const API_CREATE_TODO_ERROR = 'API_CREATE_TODO_ERROR'
 
+export const API_UPDATE_TODO = 'API_UPDATE_TODO'
+export const API_UPDATE_TODO_SUCCESS = 'API_UPDATE_TODO_SUCCESS'
+export const API_UPDATE_TODO_ERROR = 'API_UPDATE_TODO_ERROR'
+
 export const API_GET_POMODOROS_FOR_DATE = 'API_GET_POMODOROS_FOR_DATE'
 export const API_GET_POMODOROS_FOR_DATE_SUCCESS = 'API_GET_POMODOROS_FOR_DATE_SUCCESS'
 export const API_GET_POMODOROS_FOR_DATE_ERROR = 'API_GET_POMODOROS_FOR_DATE_ERROR'
@@ -94,6 +98,43 @@ export function apiCreateTodo (todo) {
     .catch(err => {
       getState().user && AnalyticsService.track('create-todo-error', err)
       return dispatch({type: API_CREATE_TODO_ERROR, payload: 'Something went wrong. Please try again'})
+    })
+  }
+}
+
+export function apiUpdateTodo (todo) {
+  return (dispatch, getState) => {
+    dispatch({type: API_UPDATE_TODO, payload: null})
+
+    const body = JSON.stringify(todo)
+    const url = /pomodoro/.test(location.href)
+      ? 'https://api.pomodoro.cc/todos'
+      : 'http://localhost:3000/todos'
+
+    window.fetch(url, {
+      method: 'PATCH',
+      body,
+      cache: 'no-cache',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        getState().user && AnalyticsService.track('update-todo-error', data.error)
+        return dispatch({type: API_UPDATE_TODO_ERROR, payload: data.error})
+      }
+      getState().user && AnalyticsService.track('update-todo-success', data)
+      dispatch({type: API_UPDATE_TODO_SUCCESS, payload: data})
+      apiGetTodosForDay()(dispatch, getState)
+    })
+    .catch(err => {
+      getState().user && AnalyticsService.track('update-todo-error', err)
+      return dispatch({type: API_UPDATE_TODO_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }

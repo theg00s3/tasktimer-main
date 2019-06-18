@@ -1,6 +1,6 @@
 import AnalyticsService from '../modules/AnalyticsService'
 import NotificationCenter from '../modules/NotificationCenter'
-import { apiCreateTodo } from '../actions'
+import { apiCreateTodo, apiUpdateTodo } from '../actions'
 
 export const ADD_TODO_REQUEST = 'ADD_TODO_REQUEST'
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
@@ -52,7 +52,7 @@ export function updateTodo (todo, type = 'UPDATE') {
     NotificationCenter.emit('updateTodo')
     const {todos} = getState()
     const [oldTodo] = todos.filter(({id}) => todo.id === id)
-    // updateTodoApi(todo)(dispatch, getState)
+    apiUpdateTodo(todo)(dispatch, getState)
     return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
   }
 }
