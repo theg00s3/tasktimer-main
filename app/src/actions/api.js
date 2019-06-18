@@ -316,14 +316,14 @@ export function apiGetTodolist () {
     .then(response => response.json())
     .then(data => {
       if (data.error) {
-        getState().user && AnalyticsService.track('get-todos-for-day-error', data.error)
+        getState().user && AnalyticsService.track('get-todolist-error', data.error)
         return dispatch({type: GET_TODOS_ERROR, payload: data.error})
       }
-      getState().user && AnalyticsService.track('get-todos-for-day-success', data)
+      getState().user && AnalyticsService.track('get-todolist-success', data)
       dispatch({type: GET_TODOS_SUCCESS, payload: {todos: data}})
     })
     .catch(err => {
-      getState().user && AnalyticsService.track('get-todos-for-day-error', err)
+      getState().user && AnalyticsService.track('get-todolist-error', err)
       return dispatch({type: GET_TODOS_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
