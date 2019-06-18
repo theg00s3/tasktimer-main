@@ -141,7 +141,7 @@ export function apiUpdateTodo (todo) {
 
 export function apiCreatePomodoros (pomodoros) {
   return (dispatch, getState) => {
-    pomodoros.map(pomodoro => limit(() => {
+    const promises = pomodoros.map(pomodoro => limit(() => {
       dispatch({type: API_CREATE_POMODORO, payload: null})
 
       const body = JSON.stringify(pomodoro)
@@ -175,12 +175,14 @@ export function apiCreatePomodoros (pomodoros) {
         return dispatch({type: API_CREATE_POMODORO_ERROR, payload: 'Something went wrong. Please try again'})
       })
     }))
+
+    Promise.all(promises)
   }
 }
 
 export function apiCreateTodos (todos) {
   return (dispatch, getState) => {
-    todos.map(todo => limit(() => {
+    const promises = todos.map(todo => limit(() => {
       dispatch({type: API_CREATE_TODO, payload: null})
 
       const body = JSON.stringify(todo)
@@ -214,6 +216,8 @@ export function apiCreateTodos (todos) {
         return dispatch({type: API_CREATE_TODO_ERROR, payload: 'Something went wrong. Please try again'})
       })
     }))
+
+    Promise.all(promises)
   }
 }
 
@@ -316,7 +320,7 @@ export function apiGetTodolist () {
         return dispatch({type: GET_TODOS_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-todos-for-day-success', data)
-      dispatch({type: GET_TODOS_SUCCESS, payload: {date: day, todos: data}})
+      dispatch({type: GET_TODOS_SUCCESS, payload: {todos: data}})
     })
     .catch(err => {
       getState().user && AnalyticsService.track('get-todos-for-day-error', err)
