@@ -52,7 +52,7 @@ export function updateTodo (todo, type = 'UPDATE') {
     NotificationCenter.emit('updateTodo')
     const {todos} = getState()
     const [oldTodo] = todos.filter(({id}) => todo.id === id)
-    apiUpdateTodo(todo)(dispatch, getState)
+    apiUpdateTodo({_id: todo._id, text: todo.text, completedAt: todo.completedAt, completed: todo.completed, deleted: todo.deleted, deletedAt: todo.deletedAt})(dispatch, getState)
     return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
   }
 }
