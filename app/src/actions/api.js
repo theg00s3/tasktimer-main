@@ -33,7 +33,7 @@ export function apiCreatePomodoro (pomodoro) {
     dispatch({type: API_CREATE_POMODORO, payload: null})
 
     const body = JSON.stringify(pomodoro)
-    const url = /pomodoro/.test(location.href)
+    const url = window.USE_PROD
       ? 'https://api.pomodoro.cc/pomodoros'
       : 'http://localhost:3000/pomodoros'
 
@@ -70,7 +70,7 @@ export function apiCreateTodo (todo) {
     dispatch({type: API_CREATE_TODO, payload: null})
 
     const body = JSON.stringify(todo)
-    const url = /pomodoro/.test(location.href)
+    const url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos'
       : 'http://localhost:3000/todos'
 
@@ -107,7 +107,7 @@ export function apiUpdateTodo (todo) {
     dispatch({type: API_UPDATE_TODO, payload: null})
 
     const body = JSON.stringify(todo)
-    const url = /pomodoro/.test(location.href)
+    const url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos'
       : 'http://localhost:3000/todos'
 
@@ -145,7 +145,7 @@ export function apiCreatePomodoros (pomodoros) {
       dispatch({type: API_CREATE_POMODORO, payload: null})
 
       const body = JSON.stringify(pomodoro)
-      const url = /pomodoro/.test(location.href)
+      const url = window.USE_PROD
         ? 'https://api.pomodoro.cc/pomodoros'
         : 'http://localhost:3000/pomodoros'
 
@@ -186,7 +186,7 @@ export function apiCreateTodos (todos) {
       dispatch({type: API_CREATE_TODO, payload: null})
 
       const body = JSON.stringify(todo)
-      const url = /pomodoro/.test(location.href)
+      const url = window.USE_PROD
         ? 'https://api.pomodoro.cc/todos'
         : 'http://localhost:3000/todos'
 
@@ -225,7 +225,7 @@ export function apiGetPomodorosForDay (day = toISOSubstring()) {
   return (dispatch, getState) => {
     dispatch({type: API_GET_POMODOROS_FOR_DATE, payload: null})
 
-    let url = /pomodoro/.test(location.href)
+    let url = window.USE_PROD
       ? 'https://api.pomodoro.cc/pomodoros'
       : 'http://localhost:3000/pomodoros'
 
@@ -261,7 +261,7 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
   return (dispatch, getState) => {
     dispatch({type: GET_TODOS, payload: null})
 
-    let url = /pomodoro/.test(location.href)
+    let url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos'
       : 'http://localhost:3000/todos'
 
@@ -297,7 +297,7 @@ export function apiGetTodolist () {
   return (dispatch, getState) => {
     dispatch({type: GET_TODOS, payload: null})
 
-    let url = /pomodoro/.test(location.href)
+    let url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos/list'
       : 'http://localhost:3000/todos/list'
 
@@ -331,7 +331,7 @@ export function apiGetPomodorosForWeek (week) {
   return (dispatch, getState) => {
     dispatch({type: API_GET_POMODOROS_FOR_WEEK, payload: null})
 
-    let url = /pomodoro/.test(location.href)
+    let url = window.USE_PROD
       ? `https://api.pomodoro.cc/pomodoros`
       : `http://localhost:3000/pomodoros`
 

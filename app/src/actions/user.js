@@ -23,7 +23,7 @@ export function identifyUser (user) {
 export function loadUser () {
   return (dispatch, getState) => {
     dispatch({type: LOAD_USER_REQUEST})
-    const baseUrl = /pomodoro/.test(window.location.hostname) ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
+    const baseUrl = /pomodoro/.test(window.location.hostname) || window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
     const url = baseUrl + '/user/info'
 
     window.fetch(url, {credentials: 'include'})
@@ -54,7 +54,7 @@ export function loadUser () {
       })
       .catch((err) => {
         dispatch({type: LOAD_USER_ERROR, payload: err})
-        if (window.location.hostname !== 'localhost') { return }
+        if (window.USE_PROD) { return }
         if (!localStorage.testUser) { return }
 
         dispatch({ type: TEST_POMODOROS, payload: null })
