@@ -3,6 +3,7 @@ import TimerButtons from '../components/TimerButtons'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
+import TweetButton from '../components/TweetButton'
 import * as actions from '../actions'
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
@@ -10,23 +11,32 @@ import {connect} from 'react-redux'
 
 class Main extends Component {
   render () {
-    const {api, timer, todos, user, actions} = this.props
-    const pomodorosForChart = api.pomodorosForDate.pomodoros
+    const {api, timer, todos, pomodoros, user, actions} = this.props
+    let pomodorosToShow = (user && user.hasActiveSubscription)
+      ? api.pomodorosForDate.pomodoros
+      : pomodoros
+
+    pomodorosToShow = pomodorosToShow
       .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))
+      // .filter(p => !p.cancelled)
 
     const todosToShow = (user && user.hasActiveSubscription)
       ? api.todos
       : todos
 
     return <div className='content' id='start'>
+      {pomodorosToShow.length > 0 && <div className='tar pad1'>
+        <TweetButton pomodoros={pomodorosToShow} />
+      </div>}
+
       <Timer actions={actions} timer={timer} />
 
       <TimerButtons actions={actions} />
 
-      {user && pomodorosForChart.length > 0 &&
+      {user && pomodorosToShow.length > 0 &&
       <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
-        <PomodorosChart pomodoros={pomodorosForChart} micro onlyShowCompleted />
+        <PomodorosChart pomodoros={pomodorosToShow} micro onlyShowCompleted />
         <span className='tara'>
           see more in &nbsp;
           <Link to='/statistics'>stats</Link>
