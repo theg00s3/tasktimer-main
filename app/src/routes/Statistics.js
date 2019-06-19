@@ -81,7 +81,7 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
-    const completedTodos = api.todos
+    const completedTodos = api.todosForDate.todos
       .filter(Boolean)
       .filter(t => t.completed)
       .filter(t => t.completedAt)
@@ -158,7 +158,7 @@ class Statistics extends Component {
           <br />
 
           {(completedPomodoros.length > 0 || completedTodos.length > 0) && <div className='pad'>
-            <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
+            <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable deletable={false} showTitles />
           </div>}
         </div>
       </div>

@@ -1,9 +1,13 @@
-import { API_GET_POMODOROS_FOR_DATE_SUCCESS, API_GET_POMODOROS_FOR_DATE_ERROR, GET_TODOS_SUCCESS, GET_TODOS_ERROR, UPDATE_TODO_SUCCESS, UPDATE_TODO_ERROR } from '../actions'
+import { API_GET_POMODOROS_FOR_DATE_SUCCESS, API_GET_POMODOROS_FOR_DATE_ERROR, API_GET_TODOS_FOR_DAY_SUCCESS, API_GET_TODOS_FOR_DAY_ERROR, UPDATE_TODO_SUCCESS, UPDATE_TODO_ERROR } from '../actions'
 
 export const defaultState = {
   pomodorosForDate: {
     date: undefined,
     pomodoros: []
+  },
+  todosForDate: {
+    date: undefined,
+    todos: []
   },
   todos: []
 }
@@ -21,11 +25,11 @@ export default function user (state = defaultState, action) {
       return Object.assign({}, state, {
         pomodorosForDate: defaultState.pomodorosForDate
       })
-    case GET_TODOS_SUCCESS:
+    case API_GET_TODOS_FOR_DAY_SUCCESS:
       return Object.assign({}, state, {
         todos: action.payload.todos
       })
-    case GET_TODOS_ERROR:
+    case API_GET_TODOS_FOR_DAY_ERROR:
       return Object.assign({}, state, {
         todos: defaultState.todos
       })

@@ -20,9 +20,9 @@ export const API_GET_POMODOROS_FOR_DATE = 'API_GET_POMODOROS_FOR_DATE'
 export const API_GET_POMODOROS_FOR_DATE_SUCCESS = 'API_GET_POMODOROS_FOR_DATE_SUCCESS'
 export const API_GET_POMODOROS_FOR_DATE_ERROR = 'API_GET_POMODOROS_FOR_DATE_ERROR'
 
-export const GET_TODOS = 'GET_TODOS'
-export const GET_TODOS_SUCCESS = 'GET_TODOS_SUCCESS'
-export const GET_TODOS_ERROR = 'GET_TODOS_ERROR'
+export const API_GET_TODOS_FOR_DAY = 'API_GET_TODOS_FOR_DAY'
+export const API_GET_TODOS_FOR_DAY_SUCCESS = 'API_GET_TODOS_FOR_DAY_SUCCESS'
+export const API_GET_TODOS_FOR_DAY_ERROR = 'API_GET_TODOS_FOR_DAY_ERROR'
 
 export const API_GET_POMODOROS_FOR_WEEK = 'API_GET_POMODOROS_FOR_WEEK'
 export const API_GET_POMODOROS_FOR_WEEK_SUCCESS = 'API_GET_POMODOROS_FOR_WEEK_SUCCESS'
@@ -259,7 +259,7 @@ export function apiGetPomodorosForDay (day = toISOSubstring()) {
 
 export function apiGetTodosForDay (day = toISOSubstring()) {
   return (dispatch, getState) => {
-    dispatch({type: GET_TODOS, payload: null})
+    dispatch({type: API_GET_TODOS_FOR_DAY, payload: null})
 
     let url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos'
@@ -281,21 +281,21 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
     .then(data => {
       if (data.error) {
         getState().user && AnalyticsService.track('get-todos-for-day-error', data.error)
-        return dispatch({type: GET_TODOS_ERROR, payload: data.error})
+        return dispatch({type: API_GET_TODOS_FOR_DAY_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-todos-for-day-success', data)
-      dispatch({type: GET_TODOS_SUCCESS, payload: {date: day, todos: data}})
+      dispatch({type: API_GET_TODOS_FOR_DAY_SUCCESS, payload: {date: day, todos: data}})
     })
     .catch(err => {
       getState().user && AnalyticsService.track('get-todos-for-day-error', err)
-      return dispatch({type: GET_TODOS_ERROR, payload: 'Something went wrong. Please try again'})
+      return dispatch({type: API_GET_TODOS_FOR_DAY_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }
 
 export function apiGetTodolist () {
   return (dispatch, getState) => {
-    dispatch({type: GET_TODOS, payload: null})
+    dispatch({type: API_GET_TODOS_FOR_DAY, payload: null})
 
     let url = window.USE_PROD
       ? 'https://api.pomodoro.cc/todos/list'
@@ -315,14 +315,14 @@ export function apiGetTodolist () {
     .then(data => {
       if (data.error) {
         getState().user && AnalyticsService.track('get-todolist-error', data.error)
-        return dispatch({type: GET_TODOS_ERROR, payload: data.error})
+        return dispatch({type: API_GET_TODOS_FOR_DAY_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-todolist-success', data)
-      dispatch({type: GET_TODOS_SUCCESS, payload: {todos: data}})
+      dispatch({type: API_GET_TODOS_FOR_DAY_SUCCESS, payload: {todos: data}})
     })
     .catch(err => {
       getState().user && AnalyticsService.track('get-todolist-error', err)
-      return dispatch({type: GET_TODOS_ERROR, payload: 'Something went wrong. Please try again'})
+      return dispatch({type: API_GET_TODOS_FOR_DAY_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }
