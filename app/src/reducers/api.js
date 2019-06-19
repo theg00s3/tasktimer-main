@@ -27,11 +27,14 @@ export default function user (state = defaultState, action) {
       })
     case API_GET_TODOS_FOR_DAY_SUCCESS:
       return Object.assign({}, state, {
-        todos: action.payload.todos
+        todosForDate: {
+          date: action.payload.date,
+          todos: action.payload.todos
+        }
       })
     case API_GET_TODOS_FOR_DAY_ERROR:
       return Object.assign({}, state, {
-        todos: defaultState.todos
+        todosForDate: defaultState.todosForDate
       })
     case UPDATE_TODO_SUCCESS:
       return Object.assign({}, state, {

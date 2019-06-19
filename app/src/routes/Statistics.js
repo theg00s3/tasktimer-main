@@ -81,16 +81,15 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
+    console.log('api.todosForDate.todos', api.todosForDate.todos)
+
     const completedTodos = api.todosForDate.todos
       .filter(Boolean)
-      .filter(t => t.completed)
       .filter(t => t.completedAt)
-      .filter(t => toISOSubstring(t.completedAt) === date)
     const completedPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
-      .filter(p => p.completed)
-      .filter(p => p.startedAt)
+      .filter(p => p.completedAt)
       .filter(p => toISOSubstring(p.startedAt) === date)
     const allPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)

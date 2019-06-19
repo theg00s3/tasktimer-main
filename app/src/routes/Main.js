@@ -12,10 +12,12 @@ import {connect} from 'react-redux'
 class Main extends Component {
   render () {
     const {api, timer, todos, pomodoros, user, actions} = this.props
+
     let pomodorosToShow = (user && user.hasActiveSubscription)
       ? api.pomodorosForDate.pomodoros
       : pomodoros
 
+    console.log('pomodorosToShow', pomodorosToShow)
     pomodorosToShow = pomodorosToShow
       .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))
