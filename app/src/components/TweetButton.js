@@ -4,7 +4,7 @@ import tweetImage from '../assets/images/tweet.png'
 class TweetButton extends Component {
   render () {
     const { pomodoros } = this.props
-    const text = `Today I worked ${pomodoros.length} pomodori for a total of ${(pomodoros.length * 25 / 60).toFixed(1)} hours using the Pomodoro Technique!`
+    const text = `Today I worked ${pomodoros.length} pomodoro for a total of ${(pomodoros.length * 25 / 60).toFixed(1)} hours using the Pomodoro Technique!`
 
     let url = `http://twitter.com/share?text=${text}`
     url += `&url=https://pomodoro.cc`
