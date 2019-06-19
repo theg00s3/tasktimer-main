@@ -1,22 +1,11 @@
 ## requirements
 
-- node 8+ recommended
-
-optional (for deployment)
-
-- `up`
-
-
-## installation
-install the dependencies first with
-
-```
-npm install
-```
+- node 10+ recommended
+- now
 
 ## development
 
-start a local development server for fast feedback with
+spin up local development server
 
 ```
 npm start
@@ -44,11 +33,7 @@ npm run build
 
 ## deployment
 
-with [`up`](https://apex.github.io/up) and aws configured
-
 ```
 npm run deploy
-
-npm run stack:apply
 ```
 
