@@ -33,19 +33,18 @@ class Main extends Component {
         <TweetButton pomodoros={pomodorosToShow} />
       </div>}
 
-      <Timer actions={actions} timer={timer} />
-
-      <TimerButtons actions={actions} />
-
       {user && pomodorosToShow.length > 0 &&
-      <div style='margin: 0 auto; max-width: 330px; width: 100%;'>
+      <div class='hover-container' style='margin: 0 auto; max-width: 330px; width: 100%;'>
         <PomodorosChart pomodoros={pomodorosToShow} micro onlyShowCompleted />
-        <span className='tara'>
+        <span className='tara hover-element'>
           see more in &nbsp;
           <Link to='/statistics'>stats</Link>
         </span>
       </div>}
 
+      <Timer actions={actions} timer={timer} />
+
+      <TimerButtons actions={actions} />
 
       {!user && <div className='tac'>
         Sound settings available to logged in users
