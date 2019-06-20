@@ -18,6 +18,6 @@ export function toggleRingSound () {
 }
 
 export function grantNotificationPermission ({grant}) {
-  AnalyticsService.track('grant-notification-permission')
+  AnalyticsService.track('grant-notification-permission', {grant})
   return {type: NOTIFICATION_PERMISSION_GRANT, payload: {grant}}
 }
