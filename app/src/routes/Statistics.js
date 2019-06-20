@@ -20,7 +20,7 @@ class StatisticsFilters extends Component {
     const {date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
 
     return <div className=''>
-      <span>Day <Flatpickr
+      <span><strong>Day</strong> <Flatpickr
         value={new Date(date)}
         onChange={date => {
           onChangeDate(date && date[0])
@@ -32,7 +32,7 @@ class StatisticsFilters extends Component {
 
       <span className='usn' onClick={() => { toggleOnlyShowCompleted() }}>
         <input type='checkbox' checked={this.props.onlyShowCompleted} />
-        only show completed
+        <strong>only show completed</strong>
       </span>
 
     </div>
@@ -106,6 +106,9 @@ class Statistics extends Component {
           toggleOnlyShowCompleted={() => this.setState({
             onlyShowCompleted: !this.state.onlyShowCompleted
           })} />
+
+        <br />
+        <br />
 
         <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
       </div>
