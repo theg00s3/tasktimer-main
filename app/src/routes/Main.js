@@ -46,7 +46,12 @@ class Main extends Component {
         </span>
       </div>}
 
-      <SoundSettings actions={actions} settings={settings} />
+
+      {!user && <div className='tac'>
+        Sound settings available to logged in users
+      </div>}
+      {user && <SoundSettings actions={actions} settings={settings} />}
+
       <TodoForm todos={todosToShow} actions={actions} editable showStatsLink />
     </div>
   }
