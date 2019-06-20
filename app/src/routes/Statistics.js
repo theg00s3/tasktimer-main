@@ -81,8 +81,6 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
-    console.log('api.todosForDate.todos', api.todosForDate.todos)
-
     const completedTodos = api.todosForDate.todos
       .filter(Boolean)
       .filter(t => t.completedAt)

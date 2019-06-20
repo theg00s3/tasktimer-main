@@ -18,7 +18,6 @@ class Main extends Component {
       ? api.pomodorosForDate.pomodoros
       : pomodoros
 
-    console.log('pomodorosToShow', pomodorosToShow)
     pomodorosToShow = pomodorosToShow
       .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))

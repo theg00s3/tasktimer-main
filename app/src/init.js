@@ -8,11 +8,10 @@ const {getState, dispatch} = reduxStore
 
 export default function init () {
   window.USE_PROD = /pomodoro/.test(window.location.hostname) || localStorage.USE_PROD === 'true'
-  console.log('window.USE_PROD', window.USE_PROD)
+  window.USE_PROD && console.log('window.USE_PROD', window.USE_PROD)
 
   Timer.on('tick', (remaining, total) => {
     const state = getState()
-    console.log('state.settings.tickSoundEnabled', state.settings.tickSoundEnabled)
     if (state.settings.tickSoundEnabled) {
       Sounds.startTickingSound()
     }
