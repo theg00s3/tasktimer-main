@@ -6,13 +6,16 @@ import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import './Profile.styl'
 import Subscribe from '../components/Subscribe'
+import Login from './Login'
 dayjs.extend(utc)
 
 class Profile extends Component {
   render () {
     const {user, subscription, actions, darkMode} = this.props
 
-    if (!user) return null
+    if (!user) {
+      return <Login />
+    }
 
     return <div className='content'>
       <h1 className='title tac'>

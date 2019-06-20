@@ -8,10 +8,11 @@ import * as actions from '../actions'
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import SoundSettings from '../components/SoundSettings'
 
 class Main extends Component {
   render () {
-    const {api, timer, todos, pomodoros, user, actions} = this.props
+    const {api, timer, todos, pomodoros, user, actions, settings} = this.props
 
     let pomodorosToShow = (user && user.hasActiveSubscription)
       ? api.pomodorosForDate.pomodoros
@@ -45,6 +46,7 @@ class Main extends Component {
         </span>
       </div>}
 
+      <SoundSettings actions={actions} settings={settings} />
       <TodoForm todos={todosToShow} actions={actions} editable showStatsLink />
     </div>
   }

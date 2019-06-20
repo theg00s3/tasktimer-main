@@ -1,5 +1,8 @@
-// require('../assets/audio/ring.mp3')
-// require('../assets/audio/tick-tock.mp3')
+const ringSoundSrc = require('../assets/audio/ring.mp3')
+const tickSoundSrc = require('../assets/audio/tick.mp3')
+
+const ringSound = new Audio(ringSoundSrc)
+const tickSound = new Audio(tickSoundSrc)
 
 export default {
   tickSoundEnabled: tickSoundEnabled,
@@ -11,17 +14,6 @@ export default {
   toggleRingSound: toggleRingSound
 }
 
-// const ringSound = new Sound('ring', {
-//   preload: true,
-//   loop: false,
-//   formats: ['mp3']
-// })
-// const tickSound = new Sound('tick-tock', {
-//   preload: true,
-//   loop: true,
-//   formats: ['mp3']
-// }).setSpeed(1)
-
 function tickSoundEnabled () {
   return !tickSound.isMuted()
 }
@@ -31,14 +23,13 @@ function ringSoundEnabled () {
 }
 
 function startTickingSound () {
-  if (tickSound.isPaused()) {
-    tickSound.unmute()
+  if (tickSound.paused) {
     tickSound.play()
   }
 }
 
 function stopTickingSound () {
-  tickSound.stop()
+  tickSound.pause()
 }
 
 function startRingingSound () {
@@ -46,9 +37,11 @@ function startRingingSound () {
 }
 
 function toggleTickSound () {
-  tickSound.toggleMute()
+  if (tickSound.volume === 0) tickSound.volume = 1
+  else tickSound.volume = 0
 }
 
 function toggleRingSound () {
-  ringSound.toggleMute()
+  if (ringSound.volume === 0) ringSound.volume = 1
+  else ringSound.volume = 0
 }

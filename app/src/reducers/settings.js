@@ -1,8 +1,8 @@
 import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT} from '../actions'
 
 export const defaultState = {
-  tickSoundEnabled: true,
-  ringSoundEnabled: true,
+  tickSoundEnabled: false,
+  ringSoundEnabled: false,
   notificationPermissionGranted: false,
   acknowledgeSignupForm: false
 }
