@@ -63,7 +63,10 @@ export function endTimer () {
   document.title = title
 
   NotificationCenter.emit('pomodoroEnded')
-  NotificationService.show('Timer ended', {body: '', icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'})
+  NotificationService.show('Timer ended', {
+    body: '',
+    icon: 'https://pbs.twimg.com/profile_images/632545856428883968/hStIaGPQ_400x400.png'
+  })
 
   return saveAndDispatch(END_TIMER)
 }
