@@ -270,6 +270,7 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
       : 'http://localhost:3000/todos'
 
     url += `?day=${day}`
+    url += `&completed=true`
 
     window.fetch(url, {
       method: 'GET',
