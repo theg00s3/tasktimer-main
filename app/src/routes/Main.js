@@ -24,7 +24,7 @@ class Main extends Component {
       // .filter(p => !p.cancelled)
 
     const todosToShow = (user && user.hasActiveSubscription)
-      ? api.todos
+      ? api.todolist
       : todos
 
     return <div className='content' id='start'>
