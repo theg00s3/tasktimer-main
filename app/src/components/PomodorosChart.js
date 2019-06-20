@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  ResponsiveContainer, LineChart, Line, Tooltip
+  ResponsiveContainer, LineChart, Line, Tooltip, XAxis
 } from 'recharts'
 
 export default class PomodorosChart extends Component {
@@ -8,9 +8,9 @@ export default class PomodorosChart extends Component {
     const {pomodoros, micro = false} = this.props
     const pomodorosForChart = pomodoros
 
-    const pomodorosChartData = pomodorosChartDataFor(pomodorosForChart)
+    const pomodorosChartData = pomodorosChartDataByHalfHourFor(pomodorosForChart)
 
-    const height = micro ? 30 : 60
+    const height = micro ? 30 : 100
     const width = '100%'
 
     return <ResponsiveContainer
@@ -28,13 +28,27 @@ export default class PomodorosChart extends Component {
           dot={false}
           animationDuration={300} />
 
+        {/* <XAxis type='number' scale='time' /> */}
+
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
       </LineChart>
     </ResponsiveContainer>
   }
 }
+
 function pomodorosChartDataFor (pomodoros) {
+  return pomodoros
+  .map(pomodoro => {
+    const key = new Date(pomodoro.startedAt)
+    // .toISOString().substring(11, 16)
+    const duration = durationInPomodoros([pomodoro])
+    return {key, duration, name: key, value: duration}
+  })
+  .sort((a, b) => a.key < b.key ? -1 : 1)
+}
+
+function pomodorosChartDataByHalfHourFor (pomodoros) {
   let pomodorosByKey = pomodoros.reduce((acc, curr) => {
     const hour = new Date(curr.startedAt).getHours()
     const minute = new Date(curr.startedAt).getMinutes()
