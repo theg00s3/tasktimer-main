@@ -9,5 +9,5 @@ function show (title, options) {
   return new window.Notification(title, {
     timeout: 3,
     ...options
-  }).show()
+  })
 }
