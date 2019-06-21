@@ -12,7 +12,7 @@ import SoundSettings from '../components/SoundSettings'
 
 class Main extends Component {
   render () {
-    const {api, timer, todos, pomodoros, user, actions, settings} = this.props
+    const {api, timer, todos, pomodoros, user, actions, settings, loading} = this.props
 
     let pomodorosToShow = (user && user.hasActiveSubscription)
       ? api.pomodorosForDate.pomodoros
@@ -25,7 +25,7 @@ class Main extends Component {
 
     const todosToShow = (user && user.hasActiveSubscription)
       ? api.todolist
-      : todos
+      : (loading.loadingUser ? [] : todos)
 
     return <div className='content' id='start'>
       {pomodorosToShow.length > 0 && <div className='tar pad1'>
@@ -50,7 +50,7 @@ class Main extends Component {
       </div>}
       {user && <SoundSettings actions={actions} settings={settings} />}
 
-      <TodoForm todos={todosToShow} actions={actions} editable showStatsLink />
+      <TodoForm todos={todosToShow} actions={actions} showLoading={loading.loadingTodolist} editable showStatsLink />
     </div>
   }
 }

@@ -17,7 +17,7 @@ class TodoForm extends Component {
   }
 
   render () {
-    const { todos, actions, completable = true, editable = true, deletable = true, showTitles = true, showDeleted = false, showStatsLink = false } = this.props
+    const { todos, actions, completable = true, editable = true, deletable = true, showTitles = true, showDeleted = false, showStatsLink = false, showLoading } = this.props
 
     const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
     const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
@@ -33,18 +33,20 @@ class TodoForm extends Component {
           className='todo-input' />
       </div>}
 
-      {showTitles && <h1 className={` ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
-      {newTodos.length > 0 && renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
-      {newTodos.length === 0 && <div className='content'>
-        <div className='todo'>
-          <span className='text all-done'>All done</span>
-        </div>
-      </div>}
+      <div className={`todo-form-container ${showLoading ? 'loading' : ''}`}>
+        {showTitles && <h1 className={` ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
+        {newTodos.length > 0 && renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+        {newTodos.length === 0 && <div className='content'>
+          <div className='todo'>
+            <span className='text all-done'>All done</span>
+          </div>
+        </div>}
 
-      {showTitles && <h1 className=''>Done</h1>}
-      {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
+        {showTitles && <h1 className=''>Done</h1>}
+        {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
 
-      {showStatsLink && <Link className='small vam button' to='/statistics'>Show in stats</Link>}
+        {showStatsLink && <Link className='small vam button' to='/statistics'>Show in stats</Link>}
+      </div>
     </div>
   }
 }
