@@ -87,13 +87,12 @@ class Statistics extends Component {
     const completedPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
-      .filter(p => p.completedAt)
-      .filter(p => toISOSubstring(p.startedAt) === date)
+      .filter(p => p.completed)
     const allPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
-      .filter(p => p.startedAt)
-      .filter(p => toISOSubstring(p.startedAt) === date)
+
+    const pomodorosToShow = this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
@@ -107,35 +106,29 @@ class Statistics extends Component {
             onlyShowCompleted: !this.state.onlyShowCompleted
           })} />
 
-        <br />
-        <br />
-
-        <PomodorosChart pomodoros={this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros} micro={false} />
+        {pomodorosToShow.length > 0 &&
+          <PomodorosChart pomodoros={pomodorosToShow} micro={false} />}
       </div>
-
-      <br />
-
-      {completedPomodoros.length === 0 && <div className='pad'>
-        <div className='columns'>
-          <div className='column pad-v tac'>
-            <div>
-              You haven't completed any pomodoros.
-            </div>
-          </div>
-        </div>
-      </div>}
 
       <br />
 
       <div className='pad'>
         <div>
           <div className='columns'>
-            {completedPomodoros.length > 0 &&
-              <div className='column pad-v tac'>
-                <h1 className='no-m'>{completedPomodoros.length}</h1> pomodoros
-              </div>}
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInPomodoros(allPomodoros)}</h1> pomodoros in total
+              <h1 className='no-m'>{allPomodoros.length}</h1> all pomodoros
+            </div>
+            <div className='column pad-v tac'>
+              <h1 className='no-m'>{durationInPomodoros(allPomodoros)}</h1>h all
+            </div>
+          </div>
+          <hr style='opacity: 0.2;' />
+          <div className='columns'>
+            <div className='column pad-v tac'>
+              <h1 className='no-m'>{completedPomodoros.length}</h1> completed pomodoros
+            </div>
+            <div className='column pad-v tac'>
+              <h1 className='no-m'>{durationInPomodoros(completedPomodoros)}</h1>h completed
             </div>
           </div>
 
@@ -153,12 +146,9 @@ class Statistics extends Component {
             <div className='tac'>
               You were also quite productive today, with {completedTodos.length} tasks completed
             </div>
-          </div>}
-
-          <br />
-
-          {(completedPomodoros.length > 0 || completedTodos.length > 0) && <div className='pad'>
-            <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable deletable={false} showTitles />
+            <div className='pad'>
+              <TodoForm showDeleted todos={completedTodos} actions={actions} editable={false} completable deletable={false} showTitles />
+            </div>
           </div>}
         </div>
       </div>
