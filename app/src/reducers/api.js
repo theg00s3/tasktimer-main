@@ -3,8 +3,7 @@ import {
   API_GET_POMODOROS_FOR_DATE_ERROR,
   API_GET_TODOS_FOR_DAY_SUCCESS,
   API_GET_TODOS_FOR_DAY_ERROR,
-  UPDATE_TODO_SUCCESS,
-  UPDATE_TODO_ERROR,
+  API_UPDATE_TODO_SUCCESS,
   API_GET_TODOLIST_SUCCESS,
   API_GET_TODOLIST_ERROR
 } from '../actions'
@@ -53,15 +52,13 @@ export default function user (state = defaultState, action) {
       return Object.assign({}, state, {
         todolist: defaultState.todos
       })
-    case UPDATE_TODO_SUCCESS:
+    case API_UPDATE_TODO_SUCCESS:
       return Object.assign({}, state, {
-        todos: state.todos.map(t => {
-          if (t !== action.payload.todo._id) return t
+        todolist: state.todolist.map(t => {
+          if (t !== action.payload._id) return t
           return action.payload.todo
         })
       })
-    case UPDATE_TODO_ERROR:
-      return state
     default:
       return state
   }
