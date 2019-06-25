@@ -28,8 +28,6 @@ export default class PomodorosChart extends Component {
           dot={false}
           animationDuration={300} />
 
-        {/* <XAxis type='number' scale='time' /> */}
-
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
       </LineChart>
@@ -43,6 +41,7 @@ function pomodorosChartDataFor (pomodoros) {
     const key = new Date(pomodoro.startedAt)
     // .toISOString().substring(11, 16)
     const duration = durationInPomodoros([pomodoro])
+    console.log('duration', duration)
     return {key, duration, name: key, value: duration}
   })
   .sort((a, b) => a.key < b.key ? -1 : 1)
