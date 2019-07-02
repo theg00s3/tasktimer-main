@@ -24,7 +24,7 @@ function ringSoundEnabled () {
 
 function startTickingSound () {
   if (tickSound.paused) {
-    tickSound.play()
+    tickSound.play().catch(err => console.error(err))
   }
 }
 
@@ -33,7 +33,7 @@ function stopTickingSound () {
 }
 
 function startRingingSound () {
-  ringSound.play()
+  ringSound.play().catch(err => console.error(err))
 }
 
 function toggleTickSound () {
