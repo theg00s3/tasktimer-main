@@ -6,6 +6,7 @@ export default {
 }
 
 function show (title, options) {
+  if (!window.Notification) return
   return new window.Notification(title, {
     timeout: 3,
     ...options
