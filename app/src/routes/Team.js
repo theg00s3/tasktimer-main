@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import Pusher from 'pusher-js'
 import * as actions from '../actions'
 import Pomodoro from '../components/Pomodoro'
+import TeamPomodoroFeature from '../components/TeamPomodoroFeature'
 import './Team.styl'
 Pusher.logToConsole = true
 
@@ -36,9 +37,7 @@ class Team extends Component {
     const {actions, user, timer} = this.props
 
     if (!user) {
-      return <div className='content'>
-        Please login to use the team pomodoro
-      </div>
+      return <TeamPomodoroFeature />
     }
 
     return <div className='content'>

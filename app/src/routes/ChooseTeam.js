@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as actions from '../actions'
 import './ChooseTeam.styl'
+import TeamPomodoroFeature from '../components/TeamPomodoroFeature'
 
 class Team extends Component {
   chooseChannel (event) {
@@ -15,9 +16,7 @@ class Team extends Component {
     const {user} = this.props
 
     if (!user) {
-      return <div className='content'>
-        Please login to use the team pomodoro
-      </div>
+      return <TeamPomodoroFeature />
     }
 
     return <div className='content'>
