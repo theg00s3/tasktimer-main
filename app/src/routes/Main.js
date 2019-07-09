@@ -28,9 +28,9 @@ class Main extends Component {
       : (loading.loadingUser ? [] : todos)
 
     return <div className='content' id='start'>
-      {pomodorosToShow.length > 0 && <div className='tar pad1'>
+      {/* {pomodorosToShow.length > 0 && <div className='tar pad1'>
         <TweetButton pomodoros={pomodorosToShow} />
-      </div>}
+      </div>} */}
 
       {user && pomodorosToShow.length > 0 &&
       <div class='hover-container' style='margin: 0 auto; max-width: 330px; width: 100%;'>
