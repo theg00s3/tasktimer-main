@@ -13,7 +13,7 @@ dayjs.extend(weekOfYear)
 class Statistics extends Component {
   componentDidMount () {
     const {actions} = this.props
-    actions.apiGetPomodorosDaily && actions.apiGetPomodorosDaily()
+    actions.apiGetAnalysis && actions.apiGetAnalysis()
   }
   render () {
     const {user, api, subscription, actions} = this.props
