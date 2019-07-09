@@ -11,6 +11,10 @@ dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
 class Statistics extends Component {
+  componentDidMount () {
+    const {user, api, subscription, actions} = this.props
+    actions.apiGetPomodorosDaily && actions.apiGetPomodorosDaily()
+  }
   render () {
     const {user, api, subscription, actions} = this.props
 
@@ -41,8 +45,6 @@ class Statistics extends Component {
     //   pomodoros: [{}, {}]
     // }]
     let data = (api.analysis || []).slice(0)
-
-    actions.apiGetPomodorosDaily && actions.apiGetPomodorosDaily()
 
     if (data.length < 2) {
       return <div className='content'>
