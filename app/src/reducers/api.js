@@ -5,7 +5,9 @@ import {
   API_GET_TODOS_FOR_DAY_ERROR,
   API_UPDATE_TODO_SUCCESS,
   API_GET_TODOLIST_SUCCESS,
-  API_GET_TODOLIST_ERROR
+  API_GET_TODOLIST_ERROR,
+  API_GET_POMODOROS_DAILY_SUCCESS,
+  API_GET_POMODOROS_DAILY_ERROR
 } from '../actions'
 
 export const defaultState = {
@@ -17,7 +19,8 @@ export const defaultState = {
     date: undefined,
     todos: []
   },
-  todolist: []
+  todolist: [],
+  analysis: []
 }
 
 export default function user (state = defaultState, action) {
@@ -32,6 +35,14 @@ export default function user (state = defaultState, action) {
     case API_GET_POMODOROS_FOR_DATE_ERROR:
       return Object.assign({}, state, {
         pomodorosForDate: defaultState.pomodorosForDate
+      })
+    case API_GET_POMODOROS_DAILY_SUCCESS:
+      return Object.assign({}, state, {
+        analysis: action.payload
+      })
+    case API_GET_POMODOROS_DAILY_ERROR:
+      return Object.assign({}, state, {
+        analysis: []
       })
     case API_GET_TODOS_FOR_DAY_SUCCESS:
       return Object.assign({}, state, {

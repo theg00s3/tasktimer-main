@@ -32,6 +32,10 @@ export const API_GET_POMODOROS_FOR_WEEK = 'API_GET_POMODOROS_FOR_WEEK'
 export const API_GET_POMODOROS_FOR_WEEK_SUCCESS = 'API_GET_POMODOROS_FOR_WEEK_SUCCESS'
 export const API_GET_POMODOROS_FOR_WEEK_ERROR = 'API_GET_POMODOROS_FOR_WEEK_ERROR'
 
+export const API_GET_POMODOROS_DAILY = 'API_GET_POMODOROS_DAILY'
+export const API_GET_POMODOROS_DAILY_SUCCESS = 'API_GET_POMODOROS_DAILY_SUCCESS'
+export const API_GET_POMODOROS_DAILY_ERROR = 'API_GET_POMODOROS_DAILY_ERROR'
+
 export function apiCreatePomodoro (pomodoro) {
   return (dispatch, getState) => {
     dispatch({type: API_CREATE_POMODORO, payload: null})
@@ -153,7 +157,7 @@ export function apiCreatePomodoros (pomodoros) {
         ? 'https://api.pomodoro.cc/pomodoros'
         : 'http://localhost:3000/pomodoros'
 
-      window.fetch(url, {
+      return window.fetch(url, {
         method: 'POST',
         body,
         cache: 'no-cache',
@@ -364,6 +368,40 @@ export function apiGetPomodorosForWeek (week) {
     .catch(err => {
       getState().user && AnalyticsService.track('get-pomodoros-for-week-error', err)
       return dispatch({type: API_GET_POMODOROS_FOR_WEEK_ERROR, payload: 'Something went wrong. Please try again'})
+    })
+  }
+}
+
+export function apiGetPomodorosDaily (day = toISOSubstring()) {
+  return (dispatch, getState) => {
+    dispatch({type: API_GET_POMODOROS_DAILY, payload: null})
+
+    let url = window.USE_PROD
+      ? 'https://api.pomodoro.cc/pomodoros/daily'
+      : 'http://localhost:3000/pomodoros/daily'
+
+    window.fetch(url, {
+      method: 'GET',
+      cache: 'no-cache',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json'
+        // 'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        getState().user && AnalyticsService.track('get-pomodoros-daily-error', data.error)
+        return dispatch({type: API_GET_POMODOROS_DAILY_ERROR, payload: data.error})
+      }
+      getState().user && AnalyticsService.track('get-pomodoros-daily-success', data)
+      dispatch({type: API_GET_POMODOROS_DAILY_SUCCESS, payload: {date: day, pomodoros: data}})
+    })
+    .catch(err => {
+      getState().user && AnalyticsService.track('get-pomodoros-daily-error', err)
+      return dispatch({type: API_GET_POMODOROS_DAILY_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }
