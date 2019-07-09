@@ -246,7 +246,6 @@ export function apiGetPomodorosForDay (day = toISOSubstring()) {
       credentials: 'include',
       headers: {
         'Accept': 'application/json'
-        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -283,7 +282,6 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
       credentials: 'include',
       headers: {
         'Accept': 'application/json'
-        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -317,7 +315,6 @@ export function apiGetTodolist () {
       credentials: 'include',
       headers: {
         'Accept': 'application/json'
-        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -353,7 +350,6 @@ export function apiGetPomodorosForWeek (week) {
       credentials: 'include',
       headers: {
         'Accept': 'application/json'
-        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
@@ -387,7 +383,6 @@ export function apiGetAnalysis (day = toISOSubstring()) {
       credentials: 'include',
       headers: {
         'Accept': 'application/json'
-        // 'Content-Type': 'application/json'
       }
     })
     .then(response => response.json())
