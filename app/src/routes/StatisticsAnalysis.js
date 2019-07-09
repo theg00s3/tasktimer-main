@@ -37,6 +37,8 @@ class Statistics extends Component {
     return <div className='content'>
       <h1 className='title is-1'>Analysis</h1>
 
+      The list below shows some stats over the whole history of you on pomodoro.cc
+
       {dataWithEmptyDays.map(d => {
         return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
           <strong>{d.day}</strong>
