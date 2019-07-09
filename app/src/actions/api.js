@@ -397,7 +397,7 @@ export function apiGetPomodorosDaily (day = toISOSubstring()) {
         return dispatch({type: API_GET_POMODOROS_DAILY_ERROR, payload: data.error})
       }
       getState().user && AnalyticsService.track('get-pomodoros-daily-success', data)
-      dispatch({type: API_GET_POMODOROS_DAILY_SUCCESS, payload: {date: day, pomodoros: data}})
+      dispatch({type: API_GET_POMODOROS_DAILY_SUCCESS, payload: data})
     })
     .catch(err => {
       getState().user && AnalyticsService.track('get-pomodoros-daily-error', err)
