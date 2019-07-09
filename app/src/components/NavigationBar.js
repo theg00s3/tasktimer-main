@@ -11,6 +11,7 @@ export default class NavigationBar extends Component {
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
         <Link className={currentUrl === '/statistics' && 'active'} to='/statistics'>Statistics</Link>
+        <Link className={currentUrl === '/statistics/analysis' && 'active'} to='/statistics/analysis'>Analysis</Link>
         {(!user || !user.subscription) && <Link className='pro' to='/pro'>Pro</Link>}
         <Link className={currentUrl === '/team' && 'active'} to='/team' id='team'>Team</Link>
         <Link className={currentUrl === '/support' && 'active'} to='/support'>Support us!</Link>
