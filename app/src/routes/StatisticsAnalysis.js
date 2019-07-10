@@ -42,7 +42,9 @@ class Statistics extends Component {
           <strong>{d.day}</strong>
           <br />
           {d.pomodoros.length} pomodoros
-          <div className={`amount pomodoros-${d.pomodoros.length}`} style={`width: ${d.percentage * 100}%`} />
+          <div className={`amount pomodoros-${d.pomodoros.length}`} style={`width: ${d.percentagePomodoros * 100}%`} />
+          {d.todos.length} todos
+          <div className={`amount todos-${d.todos.length}`} style={`width: ${d.percentageTodos * 100}%`} />
         </div>
       })}
     </div>
