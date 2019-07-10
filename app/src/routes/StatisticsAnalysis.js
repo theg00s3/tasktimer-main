@@ -25,14 +25,14 @@ class Statistics extends Component {
     let data = (api.analysis || []).slice(0)
 
     if (data.length < 2) {
-      return <div className='content'>
+      return <div className='content statistics-analysis'>
         <h1 class='title is-1'>
           Not enough data, start a few timers today and please come back tomorrow.
         </h1>
       </div>
     }
 
-    return <div className='content'>
+    return <div className='content statistics-analysis'>
       <h1 className='title is-1'>Analysis</h1>
 
       The list below shows some stats over the whole history of you on pomodoro.cc
