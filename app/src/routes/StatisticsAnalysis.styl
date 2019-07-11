@@ -2,7 +2,6 @@
 .day
   position relative
   padding 1em
-  border-bottom 1px solid lightgrey
 
 .statistics-analysis
   .pomodoros-0
@@ -63,5 +62,19 @@
 
   .amount
     height 1em
-    opacity 0.3
-    // background red
+
+.amount
+  background white
+  position relative
+
+.hover-content
+  opacity 0
+  position absolute
+  width 40em
+  background white
+  display none
+
+.amount:hover .hover-content
+  display block
+  opacity 1
+  background white

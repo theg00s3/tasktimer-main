@@ -37,16 +37,31 @@ class Statistics extends Component {
 
       The list below shows some stats over the whole history of you on pomodoro.cc
 
-      {data.map(d => {
-        return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
-          <strong>{d.day}</strong>
-          <br />
-          {d.pomodoros.length} pomodoros
-          <div className={`amount pomodoros-${d.pomodoros.length}`} style={`width: ${d.percentagePomodoros * 100}%`} />
-          {d.todos.length} todos
-          <div className={`amount todos-${d.todos.length}`} style={`width: ${d.percentageTodos * 100}%`} />
-        </div>
-      })}
+      <div>
+        {data.map(d => {
+          return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
+            <strong>{d.day}</strong>
+            <br />
+            {d.pomodoros.length} pomodoros
+            <div className={`amount pomodoros pomodoros-${d.pomodoros.length}`} style={`z-index: 11000; width: ${d.percentagePomodoros * 100}%`}>
+              <div className='hover-content'>
+                {d.pomodoros.map(t => {
+                  return <div><strong>- {t.startedAt}</strong></div>
+                })}
+              </div>
+            </div>
+
+            {d.todos.length} todos
+            <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`}>
+              <div className='hover-content'>
+                {d.todos.map(t => {
+                  return <div><strong>- {t.text}</strong></div>
+                })}
+              </div>
+            </div>
+          </div>
+        })}
+      </div>
     </div>
   }
 }
