@@ -26,7 +26,14 @@ export function loadUser () {
     const baseUrl = /pomodoro/.test(window.location.hostname) || window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
     const url = baseUrl + '/user/info'
 
-    window.fetch(url, {credentials: 'include'})
+    return window.fetch(url, {
+      credentials: 'include',
+      cache: 'no-cache',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
       .then(r => r.json())
       .then(json => {
         identifyUser(json)
