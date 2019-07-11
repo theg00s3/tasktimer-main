@@ -40,7 +40,10 @@ export default class Subscribe extends Component {
         <ul className='pro-reasons tal'>
           <h1 className='title tac'>What you'll get</h1>
           <li className=''>
-            ⚡️ Statistics and Insight
+            ⚡️ Statistics about your days, weeks and months
+          </li>
+          <li className=''>
+            ⚡️ Analysis of your historic timers and todos
           </li>
           <li className=''>
             ️️️⚡️ Sync data between devices
