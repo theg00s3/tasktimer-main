@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  ResponsiveContainer, LineChart, Line, Tooltip, XAxis
+  ResponsiveContainer, LineChart, Line, Tooltip
 } from 'recharts'
 
 export default class PomodorosChart extends Component {

@@ -7,6 +7,7 @@ import weekOfYear from 'dayjs/plugin/weekOfYear'
 import * as actions from '../actions'
 import './StatisticsAnalysis.styl'
 import Subscribe from '../components/Subscribe'
+import PomodorosChart from '../components/PomodorosChart'
 dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
@@ -43,21 +44,23 @@ class Statistics extends Component {
             <strong>{d.day}</strong>
             <br />
             {d.pomodoros.length} pomodoros
-            <div className={`amount pomodoros pomodoros-${d.pomodoros.length}`} style={`z-index: 11000; width: ${d.percentagePomodoros * 100}%`}>
+            {/* <div className={`amount pomodoros pomodoros-${d.pomodoros.length}`} style={`z-index: 11000; width: ${d.percentagePomodoros * 100}%`}>
               <div className='hover-content'>
                 {d.pomodoros.map(t => {
                   return <div><strong>- {t.startedAt}</strong></div>
                 })}
               </div>
-            </div>
+            </div> */}
+
+            <PomodorosChart pomodoros={d.pomodoros} micro />
 
             {d.todos.length} todos
             <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`}>
-              <div className='hover-content'>
+              {/* <div className='hover-content'>
                 {d.todos.map(t => {
                   return <div><strong>- {t.text}</strong></div>
                 })}
-              </div>
+              </div> */}
             </div>
           </div>
         })}
