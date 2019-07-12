@@ -1,7 +1,6 @@
 import 'whatwg-fetch'
 
 import AnalyticsService from '../modules/AnalyticsService'
-import { recreatePomodoros, recreateTodos } from '.'
 import { apiGetPomodorosForDay, apiGetTodolist } from './api'
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST'
@@ -41,23 +40,6 @@ export function loadUser () {
         AnalyticsService.track('load-user-success', json)
         apiGetPomodorosForDay()(dispatch, getState)
         apiGetTodolist()(dispatch, getState)
-
-        // window.localStorage.setItem('recreatedOldPomodoros20190618', false)
-        if (window.localStorage.recreatedOldPomodoros20190618 !== 'true') {
-          const {pomodoros} = getState()
-          console.log('recreate pomodoros.length', pomodoros && pomodoros.length)
-          dispatch(recreatePomodoros(pomodoros))
-          AnalyticsService.track('recreated-old-pomodoros')
-          window.localStorage.setItem('recreatedOldPomodoros20190618', true)
-        }
-        // window.localStorage.setItem('recreatedOldTodos20190618', false)
-        if (window.localStorage.recreatedOldTodos20190618 !== 'true') {
-          const {todos} = getState()
-          console.log('recreate todos.length', todos && todos.length)
-          dispatch(recreateTodos(todos))
-          AnalyticsService.track('recreated-old-todos')
-          window.localStorage.setItem('recreatedOldTodos20190618', true)
-        }
       })
       .catch((err) => {
         dispatch({type: LOAD_USER_ERROR, payload: err})
