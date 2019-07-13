@@ -110,16 +110,13 @@ class Statistics extends Component {
               <h1 className='no-m'>{allPomodoros.length}</h1> all pomodoros
             </div>
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInPomodoros(allPomodoros)}</h1>h all
+              <h1 className='no-m'>{durationInHours(allPomodoros)}</h1>h all
             </div>
-          </div>
-          <hr style='opacity: 0.2;' />
-          <div className='columns'>
             <div className='column pad-v tac'>
               <h1 className='no-m'>{completedPomodoros.length}</h1> completed pomodoros
             </div>
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInPomodoros(completedPomodoros)}</h1>h completed
+              <h1 className='no-m'>{durationInHours(completedPomodoros)}</h1>h completed
             </div>
           </div>
 
@@ -147,21 +144,21 @@ class Statistics extends Component {
   }
 }
 
-function durationInPomodoros (pomodoros) {
+function durationInHours (pomodoros) {
   const duration = pomodoros.reduce((acc, pomodoro) => {
     if (pomodoro.startedAt && pomodoro.cancelledAt) {
       const diffInMs = Math.abs(new Date(pomodoro.startedAt) - new Date(pomodoro.cancelledAt))
-      const diffInPomodoros = diffInMs / (25 * 60 * 1000)
+      const diffInPomodoros = diffInMs / (60 * 60 * 1000)
       return acc + diffInPomodoros
       /*
       1 pomo = 1500000ms
              = 1ms
       */
     }
-    return acc + pomodoro.minutes / 25
+    return acc + pomodoro.minutes / 60
   }, 0)
 
-  return duration.toFixed(1)
+  return duration.toFixed(2)
 }
 
 export default connect(
