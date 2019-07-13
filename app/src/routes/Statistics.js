@@ -17,24 +17,31 @@ dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
-    const {date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
+    const {analysis = [], date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
 
-    return <div className=''>
-      <span><strong>Day</strong> <Flatpickr
-        value={new Date(date)}
-        onChange={date => {
-          onChangeDate(date && date[0])
-        }} />
-      </span>
+    return <div className='pad'>
+      <div className='pad'>
+        <span><strong>Day</strong> <Flatpickr
+          value={new Date(date)}
+          onChange={date => {
+            onChangeDate(date && date[0])
+          }} />
+        </span>
 
-      &nbsp;
-      &nbsp;
+        &nbsp;
+        &nbsp;
 
-      <span className='usn' onClick={() => { toggleOnlyShowCompleted() }}>
-        <input type='checkbox' checked={this.props.onlyShowCompleted} />
-        <strong>only show completed</strong>
-      </span>
+        <span className='usn' onClick={() => { toggleOnlyShowCompleted() }}>
+          <input type='checkbox' checked={this.props.onlyShowCompleted} />
+          <strong>only show completed</strong>
+        </span>
+      </div>
 
+      <div className='analysis pad'>
+        {analysis.map(a => {
+          return <span onClick={() => onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>&nbsp;</span>
+        })}
+      </div>
     </div>
   }
 }
@@ -56,6 +63,7 @@ class Statistics extends Component {
     })
     actions.apiGetPomodorosForDay(dateString)
     actions.apiGetTodosForDay(dateString)
+    actions.apiGetAnalysis()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
@@ -100,6 +108,7 @@ class Statistics extends Component {
       <div className='pad'>
         <StatisticsFilters
           date={date}
+          analysis={api.analysis}
           onChangeDate={this.changeDate.bind(this)}
           onlyShowCompleted={this.state.onlyShowCompleted}
           toggleOnlyShowCompleted={() => this.setState({

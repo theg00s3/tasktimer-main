@@ -24,27 +24,15 @@ export default class PomodorosChart extends Component {
           type='monotone'
           dataKey='value'
           stroke='#DF2E2E'
-          strokeWidth={2}
+          strokeWidth={3}
           dot={false}
-          animationDuration={300} />
+          animationDuration={500} />
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
       </LineChart>
     </ResponsiveContainer>
   }
-}
-
-function pomodorosChartDataFor (pomodoros) {
-  return pomodoros
-  .map(pomodoro => {
-    const key = new Date(pomodoro.startedAt)
-    // .toISOString().substring(11, 16)
-    const duration = durationInPomodoros([pomodoro])
-    console.log('duration', duration)
-    return {key, duration, name: key, value: duration}
-  })
-  .sort((a, b) => a.key < b.key ? -1 : 1)
 }
 
 function pomodorosChartDataByHalfHourFor (pomodoros) {

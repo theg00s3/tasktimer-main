@@ -368,7 +368,7 @@ export function apiGetPomodorosForWeek (week) {
   }
 }
 
-export function apiGetAnalysis (day = toISOSubstring()) {
+export function apiGetAnalysis () {
   return (dispatch, getState) => {
     dispatch({type: API_GET_ANALYSIS, payload: null})
 
