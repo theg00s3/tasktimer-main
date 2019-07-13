@@ -3,7 +3,7 @@ import './Subscribe.styl'
 import SubscribeButton from './SubscribeButton'
 import Link from '../components/utils/Link'
 
-import AnalysisImage from '../assets/images/analysis.png'
+import AnalyticsImage from '../assets/images/analytics.png'
 import StatisticsImage from '../assets/images/statistics.png'
 import DarkmodeImage from '../assets/images/darkmode.png'
 
@@ -53,10 +53,10 @@ export default class Subscribe extends Component {
             <img src={StatisticsImage} alt='statistics' style='width: 100%; max-width: 700px' />
           </li>
           <li className=''>
-            ⚡️ Analysis of your historic timers and todos
+            ⚡️ Analytics of your historic timers and todos
             <br />
             <br />
-            <img src={AnalysisImage} alt='analysis' style='width: 100%; max-width: 700px' />
+            <img src={AnalyticsImage} alt='analytics' style='width: 100%; max-width: 700px' />
           </li>
           <li className=''>
             ️️️⚡️ Sync data between devices

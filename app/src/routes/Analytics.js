@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import * as actions from '../actions'
-import './StatisticsAnalysis.styl'
+import './Analytics.styl'
 import Subscribe from '../components/Subscribe'
 import PomodorosChart from '../components/PomodorosChart'
 import Streak from '../components/Streak'
@@ -16,7 +16,7 @@ dayjs.extend(weekOfYear)
 class Statistics extends Component {
   componentDidMount () {
     const {actions} = this.props
-    actions.apiGetAnalysis && actions.apiGetAnalysis()
+    actions.apiGetAnalytics && actions.apiGetAnalytics()
   }
   render () {
     const {user, api, subscription, loading, actions} = this.props
@@ -25,10 +25,10 @@ class Statistics extends Component {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
-    if (loading.loadingAnalysis) {
-      return <div className='content statistics-analysis'>
+    if (loading.loadingAnalytics) {
+      return <div className='content statistics-analytics'>
         <h1 class='title is-1'>
-          Loading Analysis
+          Loading Analytics
         </h1>
         <div style='height: 200px; width: 100%;'>
           <svg style='height: 100%; width: 100%;' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' preserveAspectRatio='none'>
@@ -51,25 +51,25 @@ class Statistics extends Component {
         </div>
       </div>
     }
-    let data = (api.analysis || []).slice(0)
+    let data = (api.analytics || []).slice(0)
 
     if (data.length < 2) {
-      return <div className='content statistics-analysis'>
+      return <div className='content statistics-analytics'>
         <h1 class='title is-1'>
           Not enough data, start a few timers today and please come back tomorrow.
         </h1>
       </div>
     }
 
-    return <div className='content statistics-analysis'>
-      <h1 className='title is-1'>Analysis</h1>
+    return <div className='content statistics-analytics'>
+      <h1 className='title is-1'>Analytics</h1>
 
       The list below shows some stats over the whole history of you on pomodoro.cc
 
       <div>
-        <Heatmap analysis={data} />
+        <Heatmap analytics={data} />
 
-        <Streak analysis={data} />
+        <Streak analytics={data} />
 
         {data.map(d => {
           return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>

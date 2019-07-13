@@ -3,10 +3,10 @@ import './Streak.styl'
 
 export default class Streak extends Component {
   render () {
-    const {analysis} = this.props
+    const {analytics} = this.props
 
-    const { longest, average } = calcStreaks(analysis)
-    const avgPomodorosPerDay = getAvgPomodorosPerDay(analysis)
+    const { longest, average } = calcStreaks(analytics)
+    const avgPomodorosPerDay = getAvgPomodorosPerDay(analytics)
 
     return <div className='pad'>
       <div>
@@ -28,8 +28,8 @@ export default class Streak extends Component {
   }
 }
 
-function calcStreaks (analysis) {
-  return analysis.reduce((streak, curr) => {
+function calcStreaks (analytics) {
+  return analytics.reduce((streak, curr) => {
     if (curr.pomodoros.length > 0) {
       streak.current += 1
     } else {
@@ -42,6 +42,6 @@ function calcStreaks (analysis) {
   }, {longest: 0, streaks: [], current: 0, average: 0})
 }
 
-function getAvgPomodorosPerDay (analysis) {
-  return analysis.reduce((sum, a) => sum + a.pomodoros.length, 0) / Math.max(analysis.length, 1)
+function getAvgPomodorosPerDay (analytics) {
+  return analytics.reduce((sum, a) => sum + a.pomodoros.length, 0) / Math.max(analytics.length, 1)
 }

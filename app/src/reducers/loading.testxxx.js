@@ -1,6 +1,6 @@
 /* global expect */
 import loading, {defaultState} from './loading'
-import {LOAD_USER_REQUEST, LOAD_USER_ERROR, API_GET_TODOLIST_SUCCESS, API_GET_TODOLIST_ERROR, API_GET_ANALYSIS_SUCCESS, API_GET_ANALYSIS_ERROR} from '../actions'
+import {LOAD_USER_REQUEST, LOAD_USER_ERROR, API_GET_TODOLIST_SUCCESS, API_GET_TODOLIST_ERROR, API_GET_ANALYTICS_SUCCESS, API_GET_ANALYTICS_ERROR} from '../actions'
 
 describe('loading reducer', () => {
   it('.loadingUser is true when user is being updated', () => {
@@ -23,14 +23,14 @@ describe('loading reducer', () => {
       loading(defaultState, {type: API_GET_TODOLIST_ERROR, payload: null})
     ).toStrictEqual(Object.assign({}, defaultState, {loadingTodolist: false}))
   })
-  it('.loadingAnalysis is true when analysis is being updated', () => {
+  it('.loadingAnalytics is true when analytics is being updated', () => {
     expect(
-      loading(defaultState, {type: API_GET_ANALYSIS_SUCCESS, payload: null})
-    ).toStrictEqual(Object.assign({}, defaultState, {loadingAnalysis: true}))
+      loading(defaultState, {type: API_GET_ANALYTICS_SUCCESS, payload: null})
+    ).toStrictEqual(Object.assign({}, defaultState, {loadingAnalytics: true}))
   })
-  it('.loadingAnalysis is false when analysis loading failed', () => {
+  it('.loadingAnalytics is false when analytics loading failed', () => {
     expect(
-      loading(defaultState, {type: API_GET_ANALYSIS_ERROR, payload: null})
-    ).toStrictEqual(Object.assign({}, defaultState, {loadingAnalysis: false}))
+      loading(defaultState, {type: API_GET_ANALYTICS_ERROR, payload: null})
+    ).toStrictEqual(Object.assign({}, defaultState, {loadingAnalytics: false}))
   })
 })

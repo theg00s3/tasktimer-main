@@ -29,9 +29,9 @@ export const API_GET_POMODOROS_FOR_WEEK = 'API_GET_POMODOROS_FOR_WEEK'
 export const API_GET_POMODOROS_FOR_WEEK_SUCCESS = 'API_GET_POMODOROS_FOR_WEEK_SUCCESS'
 export const API_GET_POMODOROS_FOR_WEEK_ERROR = 'API_GET_POMODOROS_FOR_WEEK_ERROR'
 
-export const API_GET_ANALYSIS = 'API_GET_ANALYSIS'
-export const API_GET_ANALYSIS_SUCCESS = 'API_GET_ANALYSIS_SUCCESS'
-export const API_GET_ANALYSIS_ERROR = 'API_GET_ANALYSIS_ERROR'
+export const API_GET_ANALYTICS = 'API_GET_ANALYTICS'
+export const API_GET_ANALYTICS_SUCCESS = 'API_GET_ANALYTICS_SUCCESS'
+export const API_GET_ANALYTICS_ERROR = 'API_GET_ANALYTICS_ERROR'
 
 export function apiCreatePomodoro (pomodoro) {
   return (dispatch, getState) => {
@@ -283,13 +283,13 @@ export function apiGetPomodorosForWeek (week) {
   }
 }
 
-export function apiGetAnalysis () {
+export function apiGetAnalytics () {
   return (dispatch, getState) => {
-    dispatch({type: API_GET_ANALYSIS, payload: null})
+    dispatch({type: API_GET_ANALYTICS, payload: null})
 
     let url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/analysis'
-      : 'http://localhost:3000/analysis'
+      ? 'https://api.pomodoro.cc/analytics'
+      : 'http://localhost:3000/analytics'
 
     window.fetch(url, {
       method: 'GET',
@@ -303,15 +303,15 @@ export function apiGetAnalysis () {
     .then(response => response.json())
     .then(data => {
       if (data.error) {
-        getState().user && AnalyticsService.track('get-analysis-error', data.error)
-        return dispatch({type: API_GET_ANALYSIS_ERROR, payload: data.error})
+        getState().user && AnalyticsService.track('get-analytics-error', data.error)
+        return dispatch({type: API_GET_ANALYTICS_ERROR, payload: data.error})
       }
-      getState().user && AnalyticsService.track('get-analysis-success', data)
-      dispatch({type: API_GET_ANALYSIS_SUCCESS, payload: data})
+      getState().user && AnalyticsService.track('get-analytics-success', data)
+      dispatch({type: API_GET_ANALYTICS_SUCCESS, payload: data})
     })
     .catch(err => {
-      getState().user && AnalyticsService.track('get-analysis-error', err)
-      return dispatch({type: API_GET_ANALYSIS_ERROR, payload: 'Something went wrong. Please try again'})
+      getState().user && AnalyticsService.track('get-analytics-error', err)
+      return dispatch({type: API_GET_ANALYTICS_ERROR, payload: 'Something went wrong. Please try again'})
     })
   }
 }

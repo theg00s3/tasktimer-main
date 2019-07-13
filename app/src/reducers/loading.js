@@ -8,9 +8,9 @@ import {
   API_GET_POMODOROS_FOR_DATE_REQUEST,
   API_GET_POMODOROS_FOR_DATE_ERROR,
   API_GET_POMODOROS_FOR_DATE_SUCCESS,
-  API_GET_ANALYSIS,
-  API_GET_ANALYSIS_SUCCESS,
-  API_GET_ANALYSIS_ERROR
+  API_GET_ANALYTICS,
+  API_GET_ANALYTICS_SUCCESS,
+  API_GET_ANALYTICS_ERROR
 } from '../actions'
 
 export const defaultState = {
@@ -43,16 +43,16 @@ export default function loading (state = defaultState, action) {
         ...state,
         loadingTodolist: false
       }
-    case API_GET_ANALYSIS:
+    case API_GET_ANALYTICS:
       return {
         ...state,
-        loadingAnalysis: true
+        loadingAnalytics: true
       }
-    case API_GET_ANALYSIS_SUCCESS:
-    case API_GET_ANALYSIS_ERROR:
+    case API_GET_ANALYTICS_SUCCESS:
+    case API_GET_ANALYTICS_ERROR:
       return {
         ...state,
-        loadingAnalysis: false
+        loadingAnalytics: false
       }
     case API_GET_POMODOROS_FOR_DATE_REQUEST:
       return {

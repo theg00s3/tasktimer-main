@@ -18,7 +18,7 @@ dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
-    const {analysis = [], date = new Date(), onChangeDate = Function.prototype} = this.props
+    const {analytics = [], date = new Date(), onChangeDate = Function.prototype} = this.props
 
     return <div className='pad'>
       <div className='pad'>
@@ -30,7 +30,7 @@ class StatisticsFilters extends Component {
         </span>
       </div>
 
-      <Heatmap analysis={analysis} onChangeDate={day => onChangeDate(day)} />
+      <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} />
     </div>
   }
 }
@@ -51,7 +51,7 @@ class Statistics extends Component {
     })
     actions.apiGetPomodorosForDay(dateString)
     actions.apiGetTodosForDay(dateString)
-    actions.apiGetAnalysis()
+    actions.apiGetAnalytics()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
@@ -94,7 +94,7 @@ class Statistics extends Component {
       <div className='pad'>
         <StatisticsFilters
           date={date}
-          analysis={api.analysis}
+          analytics={api.analytics}
           onChangeDate={this.changeDate.bind(this)} />
 
         {allPomodoros.length > 0 &&
