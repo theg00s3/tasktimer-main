@@ -5,7 +5,7 @@ export default class Streak extends Component {
   render () {
     const {analysis} = this.props
 
-    const { longest, average } = calc(analysis)
+    const { longest, average } = calcStreaks(analysis)
 
     return <div className='pad'>
       <div>
@@ -22,7 +22,7 @@ export default class Streak extends Component {
   }
 }
 
-function calc (analysis) {
+function calcStreaks (analysis) {
   return analysis.reduce((streak, curr) => {
     if (curr.pomodoros.length > 0) {
       streak.current += 1
