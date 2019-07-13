@@ -14,12 +14,6 @@ dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
 class Statistics extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      onlyShowCompleted: false
-    }
-  }
   render () {
     const {user, todos, pomodoros, subscription, actions} = this.props
 
@@ -80,12 +74,7 @@ class Statistics extends Component {
       </div>
 
       <div className='pad'>
-        <PomodorosChart pomodoros={this.state.onlyShowCompleted ? completedPomodoros : allPomodoros} micro={false} />
-        <br />
-        <div className='tar'>
-          only show completed
-          <input type='checkbox' checked={this.state.onlyShowCompleted} onClick={() => { this.setState({onlyShowCompleted: !this.state.onlyShowCompleted}) }} />
-        </div>
+        <PomodorosChart pomodoros={allPomodoros} micro={false} />
       </div>
 
       <br />

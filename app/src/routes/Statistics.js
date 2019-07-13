@@ -17,7 +17,7 @@ dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
-    const {analysis = [], date = new Date(), onChangeDate = Function.prototype, toggleOnlyShowCompleted = Function.prototype} = this.props
+    const {analysis = [], date = new Date(), onChangeDate = Function.prototype} = this.props
 
     return <div className='pad'>
       <div className='pad'>
@@ -26,14 +26,6 @@ class StatisticsFilters extends Component {
           onChange={date => {
             onChangeDate(date && date[0])
           }} />
-        </span>
-
-        &nbsp;
-        &nbsp;
-
-        <span className='usn' onClick={() => { toggleOnlyShowCompleted() }}>
-          <input type='checkbox' checked={this.props.onlyShowCompleted} />
-          <strong>only show completed</strong>
         </span>
       </div>
 
@@ -53,7 +45,6 @@ class Statistics extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      onlyShowCompleted: false,
       date: undefined
     }
   }
@@ -103,8 +94,6 @@ class Statistics extends Component {
       .filter(Boolean)
       .filter(p => p.type === 'pomodoro')
 
-    const pomodorosToShow = this.state.onlyShowCompleted ? (completedPomodoros || allPomodoros) : allPomodoros
-
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
@@ -112,14 +101,10 @@ class Statistics extends Component {
         <StatisticsFilters
           date={date}
           analysis={api.analysis}
-          onChangeDate={this.changeDate.bind(this)}
-          onlyShowCompleted={this.state.onlyShowCompleted}
-          toggleOnlyShowCompleted={() => this.setState({
-            onlyShowCompleted: !this.state.onlyShowCompleted
-          })} />
+          onChangeDate={this.changeDate.bind(this)} />
 
-        {pomodorosToShow.length > 0 &&
-          <PomodorosChart pomodoros={pomodorosToShow} micro={false} />}
+        {allPomodoros.length > 0 &&
+          <PomodorosChart pomodoros={allPomodoros} micro={false} />}
       </div>
 
       <br />

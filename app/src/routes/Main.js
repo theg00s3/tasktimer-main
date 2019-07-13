@@ -34,7 +34,7 @@ class Main extends Component {
 
       {user && pomodorosToShow.length > 0 &&
       <div class='hover-container' style='margin: 0 auto; max-width: 330px; width: 100%;'>
-        <PomodorosChart pomodoros={pomodorosToShow} micro onlyShowCompleted />
+        <PomodorosChart pomodoros={pomodorosToShow} micro />
         <span className='tara hover-element'>
           see more in &nbsp;
           <Link to='/statistics'>stats</Link>
