@@ -8,6 +8,7 @@ import * as actions from '../actions'
 import './StatisticsAnalysis.styl'
 import Subscribe from '../components/Subscribe'
 import PomodorosChart from '../components/PomodorosChart'
+import Streak from '../components/Streak'
 dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
@@ -65,6 +66,8 @@ class Statistics extends Component {
       The list below shows some stats over the whole history of you on pomodoro.cc
 
       <div>
+        <Streak analysis={data} />
+
         {data.map(d => {
           return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
             <strong>{d.day}</strong>
