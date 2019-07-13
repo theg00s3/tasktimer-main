@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import './Streak.styl'
+import {
+  ResponsiveContainer, LineChart, Line, Tooltip
+} from 'recharts'
 
 export default class Streak extends Component {
   render () {
@@ -9,6 +12,26 @@ export default class Streak extends Component {
     const avgPomodorosPerDay = getAvgPomodorosPerDay(analytics)
 
     return <div className='pad'>
+      <strong>Below you can see your streak history</strong>
+      <ResponsiveContainer
+        width={'100%'}
+        height={100}>
+        <LineChart
+          width={'100%'}
+          height={100}
+          data={analytics}>
+          <Line
+            type='monotone'
+            dataKey='percentagePomodoros'
+            stroke='#DF2E2E'
+            strokeWidth={3}
+            dot={false}
+            animationDuration={500} />
+        </LineChart>
+      </ResponsiveContainer>
+      <br />
+      <br />
+
       <div>
         <div className='columns'>
           <div className='column pad-v tac'>

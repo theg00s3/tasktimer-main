@@ -71,6 +71,8 @@ class Statistics extends Component {
 
         <Streak analytics={data} />
 
+        <br />
+
         {data.map(d => {
           return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
             <strong>{d.day}</strong>
