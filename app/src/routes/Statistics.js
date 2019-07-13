@@ -39,7 +39,10 @@ class StatisticsFilters extends Component {
 
       <div className='analysis pad'>
         {analysis.map(a => {
-          return <span onClick={() => onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>&nbsp;</span>
+          return <span className='tooltip' onClick={() => onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>
+            &nbsp;
+            {/* <span className='tooltip-content'>{a.day} {a.pomodoros.length}</span> */}
+          </span>
         })}
       </div>
     </div>

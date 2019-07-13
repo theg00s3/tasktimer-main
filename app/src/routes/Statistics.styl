@@ -32,32 +32,62 @@
   border 1px solid #eee
   float left
 .analysis [data-value='0']
-  background lighten(red,100)
+  background lighten(red,45)
 .analysis [data-value='1']
-  background lighten(red,80)
 .analysis [data-value='2']
-  background lighten(red,70)
-.analysis [data-value='3']
-  background lighten(red,60)
-.analysis [data-value='4']
-  background lighten(red,50)
-.analysis [data-value='5']
   background lighten(red,40)
+.analysis [data-value='3']
+.analysis [data-value='4']
+  background lighten(red,37)
+.analysis [data-value='5']
 .analysis [data-value='6']
-  background lighten(red,30)
+  background lighten(red,34)
 .analysis [data-value='7']
-  background lighten(red,20)
 .analysis [data-value='8']
-  background lighten(red,10)
+  background lighten(red,30)
 .analysis [data-value='9']
-  background lighten(red,5)
 .analysis [data-value='10']
-  background lighten(red,5)
+  background lighten(red,20)
 .analysis [data-value='11']
-  background lighten(red,5)
 .analysis [data-value='12']
   background lighten(red,5)
 .analysis [data-value='13']
-  background lighten(red,5)
 .analysis [data-value='14']
-  background lighten(red,5)
+  background lighten(red,0)
+
+
+
+.tooltip
+  display block
+  position relative
+  height 1.2em
+  width 10em
+  border 1px solid gray
+  cursor pointer
+
+  &:hover
+    .tooltip-content
+      display block
+      animation tooltip .7s ease forwards
+
+.tooltip-content
+  display none
+  opacity 0
+  position absolute
+  bottom 1em
+  left 50%
+  transform translateX(-50%)
+  width 100px
+  padding 5px
+  background transparent !important
+
+@keyframes tooltip {
+  0% {
+
+  }
+  100% {
+    opacity 1
+    bottom calc(100% + 30px)
+  }
+}
+
