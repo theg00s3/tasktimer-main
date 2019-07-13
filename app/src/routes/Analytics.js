@@ -26,7 +26,7 @@ class Statistics extends Component {
     }
 
     if (loading.loadingAnalytics) {
-      return <div className='content statistics-analytics'>
+      return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
           Loading Analytics
         </h1>
@@ -54,27 +54,27 @@ class Statistics extends Component {
     let data = (api.analytics || []).slice(0)
 
     if (data.length < 2) {
-      return <div className='content statistics-analytics'>
+      return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
           Not enough data, start a few timers today and please come back tomorrow.
         </h1>
       </div>
     }
 
-    return <div className='content statistics-analytics'>
+    return <div className='content tac statistics-analytics'>
       <h1 className='title is-1'>Analytics</h1>
 
       The list below shows some stats over the whole history of you on pomodoro.cc
 
       <div>
-        <Heatmap analytics={data} />
+        <Heatmap analytics={data} onChangeDate={(date) => { window.location.href = `/analytics#${date}` }} />
 
         <Streak analytics={data} />
 
         <br />
 
         {data.map(d => {
-          return <div className={`day`} data-title={`${d.day} - ${d.pomodoros.length}`}>
+          return <div className={`day`} id={d.day} data-title={`${d.day} - ${d.pomodoros.length}`}>
             <strong>{d.day}</strong>
             <br />
             {d.pomodoros.length} pomodoros
