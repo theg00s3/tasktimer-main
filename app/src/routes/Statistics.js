@@ -12,6 +12,7 @@ import './Statistics.styl'
 import Subscribe from '../components/Subscribe'
 import 'flatpickr/dist/themes/light.css'
 import Flatpickr from 'react-flatpickr'
+import Heatmap from '../components/Heatmap'
 
 dayjs.extend(utc)
 
@@ -29,14 +30,7 @@ class StatisticsFilters extends Component {
         </span>
       </div>
 
-      <div className='analysis pad'>
-        {analysis.map(a => {
-          return <span className='tooltip' onClick={() => onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>
-            &nbsp;
-            {/* <span className='tooltip-content'>{a.day} {a.pomodoros.length}</span> */}
-          </span>
-        })}
-      </div>
+      <Heatmap analysis={analysis} onChangeDate={day => onChangeDate(day)} />
     </div>
   }
 }

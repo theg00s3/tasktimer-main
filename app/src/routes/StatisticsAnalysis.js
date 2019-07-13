@@ -9,6 +9,7 @@ import './StatisticsAnalysis.styl'
 import Subscribe from '../components/Subscribe'
 import PomodorosChart from '../components/PomodorosChart'
 import Streak from '../components/Streak'
+import Heatmap from '../components/Heatmap'
 dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
@@ -66,6 +67,8 @@ class Statistics extends Component {
       The list below shows some stats over the whole history of you on pomodoro.cc
 
       <div>
+        <Heatmap analysis={data} />
+
         <Streak analysis={data} />
 
         {data.map(d => {
