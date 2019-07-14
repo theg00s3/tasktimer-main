@@ -5,7 +5,7 @@ import Link from '../components/utils/Link'
 
 import AnalyticsImage from '../assets/images/analytics.png'
 import StatisticsImage from '../assets/images/statistics.png'
-import DarkmodeImage from '../assets/images/darkmode.png'
+import DarkmodeImage from '../assets/images/darkMode.png'
 
 export default class Subscribe extends Component {
   render () {
@@ -73,7 +73,7 @@ export default class Subscribe extends Component {
             ️️️⚡️ Dark mode
             <br />
             <br />
-            <img src={DarkmodeImage} alt='darkmode' style='width: 100%; max-width: 700px' />
+            <img src={DarkmodeImage} alt='darkMode' style='width: 100%; max-width: 700px' />
           </li>
           <li className=''>
             ️️️⚡️ Channel-reservation (Team Pomodoro)
