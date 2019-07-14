@@ -58,6 +58,9 @@ export default class Signup extends Component {
             ⚡️ Statistics about your days, weeks and months
             <br />
             <br />
+            avoid using Excel to track your time, you can access your historic timers and todos through pomodoro.cc
+            <br />
+            <br />
             <img src={StatisticsImage} alt='statistics' style='width: 100%; max-width: 700px' />
           </li>
           <li className=''>
