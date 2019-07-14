@@ -5,7 +5,7 @@ import Link from '../components/utils/Link'
 
 import AnalyticsImage from '../assets/images/analytics.png'
 import StatisticsImage from '../assets/images/statistics.png'
-import DarkmodeImage from '../assets/images/darkMode.png'
+import DarkmodeImage from '../assets/images/darkmode.png'
 
 export default class Subscribe extends Component {
   render () {
