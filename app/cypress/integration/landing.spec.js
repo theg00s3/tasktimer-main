@@ -15,9 +15,9 @@ context('Landing', () => {
     cy.get('.todo-form-container').should('contain', 'Todo')
     cy.get('.todo-form-container').should('contain', 'Done')
 
-    cy.get('.todo-form').eq(0).should('contain', 'start a 25 minutes timer and get focused')
-    cy.get('.todo-form').eq(0).should('contain', 'take a break, start a 5 minute timer!')
+    cy.get('.todo-form-container').should('contain', 'start a 25 minutes timer and get focused')
+    cy.get('.todo-form-container').should('contain', 'take a break, start a 5 minute timer!')
 
-    cy.get('.todo-form').eq(1).should('contain', 'visit pomodoro.cc')
+    cy.get('.todo-form-container').should('contain', 'visit pomodoro.cc')
   })
 })
