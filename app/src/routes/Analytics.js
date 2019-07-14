@@ -99,7 +99,7 @@ class Statistics extends Component {
 
                 {d.todos.length} todos
                 <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`} />
-                See <Link to={`/statistics?date=${d.day}`}>stats</Link>
+                {d.pomodoros.length > 0 && <span>See <Link to={`/statistics?date=${d.day}`}>stats</Link></span>}
               </div>
             </div>
           })}
