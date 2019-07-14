@@ -6,7 +6,7 @@ import utc from 'dayjs/plugin/utc'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import * as actions from '../actions'
 import './Analytics.styl'
-import Subscribe from '../components/Subscribe'
+import Signup from '../components/Signup'
 import PomodorosChart from '../components/PomodorosChart'
 import Streak from '../components/Streak'
 import Heatmap from '../components/Heatmap'
@@ -23,7 +23,7 @@ class Statistics extends Component {
     const {user, api, subscription, loading, actions} = this.props
 
     if (!user || !user.subscription || user.subscription.status !== 'active') {
-      return <Subscribe user={user} subscription={subscription} actions={actions} />
+      return <Signup user={user} subscription={subscription} actions={actions} />
     }
 
     if (loading.loadingAnalytics) {

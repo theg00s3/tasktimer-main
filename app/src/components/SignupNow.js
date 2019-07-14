@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
-import './Subscribe.styl'
-import SubscribeButton from './SubscribeButton'
-import Link from '../components/utils/Link'
+import './Signup.styl'
+// import SignupButton from './SignupButton'
+// import Link from './utils/Link'
 
-export default class Subscribe extends Component {
+export default class Signup extends Component {
   render () {
-    const {user, subscription, actions} = this.props
+    // const {user, subscription, actions} = this.props
     return <div className='content tac'>
-      <div className='subscribe'>
-        Subscribe to &nbsp;
+      <div className='signup'>
+        Signup to &nbsp;
 
         <span>Pomodoro.cc <span className='pro-badge'>Pro</span></span>
 

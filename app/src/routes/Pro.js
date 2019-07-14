@@ -6,7 +6,7 @@ import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import Link from '../components/utils/Link'
 import './Pro.styl'
-import Subscribe from '../components/Subscribe'
+import Signup from '../components/Signup'
 dayjs.extend(utc)
 
 class Pro extends Component {
@@ -24,7 +24,7 @@ class Pro extends Component {
     }
 
     return <div className='content'>
-      <Subscribe user={user} subscription={subscription} actions={actions} />
+      <Signup user={user} subscription={subscription} actions={actions} />
     </div>
   }
 }

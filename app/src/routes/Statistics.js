@@ -9,7 +9,7 @@ import TodoForm from '../components/TodoForm'
 import toISOSubstring from '../modules/to-iso-substring'
 import PomodorosChart from '../components/PomodorosChart'
 import './Statistics.styl'
-import Subscribe from '../components/Subscribe'
+import Signup from '../components/Signup'
 import 'flatpickr/dist/themes/light.css'
 import Flatpickr from 'react-flatpickr'
 import Heatmap from '../components/Heatmap'
@@ -59,7 +59,7 @@ class Statistics extends Component {
     const {api, user, loading, subscription, actions} = this.props
 
     if (!user || !user.hasActiveSubscription) {
-      return <Subscribe user={user} subscription={subscription} actions={actions} />
+      return <Signup user={user} subscription={subscription} actions={actions} />
     }
 
     const qs = querystring.parse(window.location.search.replace('?', ''))

@@ -1,25 +1,25 @@
 import React, {Component} from 'react'
-import './Subscribe.styl'
-import SubscribeButton from './SubscribeButton'
-import Link from '../components/utils/Link'
+import './Signup.styl'
+import SignupButton from './SignupButton'
+import Link from './utils/Link'
 
 import AnalyticsImage from '../assets/images/analytics.png'
 import StatisticsImage from '../assets/images/statistics.png'
 import DarkmodeImage from '../assets/images/darkmode.png'
 
-export default class Subscribe extends Component {
+export default class Signup extends Component {
   render () {
     const {user, subscription, actions} = this.props
     return <div className='content tac'>
       <div className='pad tac'>
-        Subscribe to <span className='pro-badge'>Pro</span> today!
+        Signup to <span className='pro-badge'>Pro</span> today!
         <br />
         It's just <strong>1 € a month</strong>, and you get
         <br />
         <strong>Statistics, Dark Mode, Reserved Team Channels, API access</strong>
       </div>
 
-      <div className='subscribe'>
+      <div className='signup'>
         <Link to='/pro'>
           <h2 className='title'>Signup for</h2>
           <h1 className='title'>Pomodoro.cc <span className='pro-badge'>Pro</span></h1>
@@ -38,7 +38,7 @@ export default class Subscribe extends Component {
             Please <Link to='/login'>login</Link> first
           </div>}
 
-        <SubscribeButton user={user} actions={actions} />
+        <SignupButton user={user} actions={actions} />
 
         {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
         {subscription.successMessage && <div className='success-message'>

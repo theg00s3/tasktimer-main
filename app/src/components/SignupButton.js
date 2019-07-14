@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import './SubscribeButton.styl'
+import './SignupButton.styl'
 import StripeCheckout from 'react-stripe-checkout'
 import pomodoroImage from '../assets/images/pomodoro.cc.png'
 
-export default class SubscribeButton extends Component {
+export default class SignupButton extends Component {
   render () {
     const {user, actions} = this.props
     if (!user) {
@@ -13,7 +13,7 @@ export default class SubscribeButton extends Component {
     let stripeKey = /pomodoro/.test(location.href) ? 'pk_live_geRcjLp8LZwxhvZZDC3Osyyt00MisZGF5a' : 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
     if (localStorage.stripeTest) stripeKey = 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
 
-    return <div className='subscribe-button'>
+    return <div className='signup-button'>
       <img src={user.avatar} className='user-avatar' />
 
       &nbsp;

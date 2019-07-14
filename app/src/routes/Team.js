@@ -13,7 +13,7 @@ class Team extends Component {
     const self = this
     this.channelId = window.location.pathname.replace('/team/', '')
     this.pusher = new Pusher('7bfb8a4766daf90ea615', { cluster: 'eu', forceTLS: true })
-    this.channel = this.pusher.subscribe(this.channelId)
+    this.channel = this.pusher.signup(this.channelId)
 
     this.channel.bind('pusher:subscription_succeeded', () =>
       self.setState({ connected: true }))

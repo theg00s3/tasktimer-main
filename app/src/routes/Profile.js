@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
 import './Profile.styl'
-import Subscribe from '../components/Subscribe'
+import Signup from '../components/Signup'
 import Login from './Login'
 dayjs.extend(utc)
 
@@ -57,9 +57,9 @@ class Profile extends Component {
       {!user.hasActiveSubscription &&
         <div>
           <div className='pad'>
-            <h1 className='title tac subscribe-to-pro'>Subscribe to Pro!</h1>
+            <h1 className='title tac signup-to-pro'>Signup to Pro!</h1>
           </div>
-          <Subscribe user={user} subscription={subscription} actions={actions} />
+          <Signup user={user} subscription={subscription} actions={actions} />
         </div>
       }
 
