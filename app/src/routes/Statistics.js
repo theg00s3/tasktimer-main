@@ -30,7 +30,7 @@ class StatisticsFilters extends Component {
         </span>
       </div>
 
-      <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} />
+      <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} showCurrent current={date} />
     </div>
   }
 }
