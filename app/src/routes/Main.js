@@ -19,7 +19,7 @@ class Main extends Component {
       : pomodoros
 
     pomodorosToShow = pomodorosToShow
-      .filter(p => p.type === 'pomodoro')
+      // .filter(p => p.type === 'pomodoro')
       .filter(p => Date.parse(p.startedAt))
       // .filter(p => !p.cancelled)
 

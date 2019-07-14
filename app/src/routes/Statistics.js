@@ -76,11 +76,11 @@ class Statistics extends Component {
       .filter(t => t.completedAt)
     const completedPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro')
+      // .filter(p => p.type === 'pomodoro')
       .filter(p => p.completed)
     const allPomodoros = api.pomodorosForDate.pomodoros
       .filter(Boolean)
-      .filter(p => p.type === 'pomodoro')
+      // .filter(p => p.type === 'pomodoro')
 
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
