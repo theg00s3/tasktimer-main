@@ -10,7 +10,15 @@ import DarkmodeImage from '../assets/images/darkmode.png'
 export default class Subscribe extends Component {
   render () {
     const {user, subscription, actions} = this.props
-    return <div className='content1 tac'>
+    return <div className='content tac'>
+      <div className='pad tac'>
+        Subscribe to <span className='pro-badge'>Pro</span> today!
+        <br />
+        It's just <strong>1 € a month</strong>, and you get
+        <br />
+        <strong>Statistics, Dark Mode, Reserved Team Channels, API access</strong>
+      </div>
+
       <div className='subscribe'>
         <Link to='/pro'>
           <h2 className='title'>Signup for</h2>

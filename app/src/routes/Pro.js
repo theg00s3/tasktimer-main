@@ -24,15 +24,6 @@ class Pro extends Component {
     }
 
     return <div className='content'>
-      {(!user || !user.hasActiveSubscription) &&
-        <div className='pad tac'>
-          Subscribe to <span className='pro-badge'>Pro</span> today!
-          <br />
-          It's just <strong>1 € a month</strong>, and you get
-          <br />
-          <strong>Statistics, Dark Mode, Reserved Team Channels, API access</strong>
-        </div>}
-
       <Subscribe user={user} subscription={subscription} actions={actions} />
     </div>
   }
