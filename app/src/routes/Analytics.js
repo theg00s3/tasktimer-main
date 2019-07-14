@@ -10,6 +10,7 @@ import Subscribe from '../components/Subscribe'
 import PomodorosChart from '../components/PomodorosChart'
 import Streak from '../components/Streak'
 import Heatmap from '../components/Heatmap'
+import Link from '../components/utils/Link'
 dayjs.extend(utc)
 dayjs.extend(weekOfYear)
 
@@ -86,18 +87,23 @@ class Statistics extends Component {
 
         <br />
 
-        {data.map(d => {
-          return <div className={`day`} id={d.day} data-title={`${d.day} - ${d.pomodoros.length}`}>
-            <strong>{d.day}</strong>
-            <br />
-            {d.pomodoros.length} pomodoros
+        <div class='columns'>
+          {data.map(d => {
+            return <div className='column is-one-third'>
+              <div className={`day`} id={d.day} data-title={`${d.day} - ${d.pomodoros.length}`}>
+                <strong>{d.day}</strong>
+                <br />
+                {d.pomodoros.length} pomodoros
 
-            <PomodorosChart pomodoros={d.pomodoros} micro />
+                <PomodorosChart pomodoros={d.pomodoros} micro />
 
-            {d.todos.length} todos
-            <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`} />
-          </div>
-        })}
+                {d.todos.length} todos
+                <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`} />
+                See <Link to={`/statistics?date=${d.day}`}>stats</Link>
+              </div>
+            </div>
+          })}
+        </div>
       </div>
     </div>
   }
