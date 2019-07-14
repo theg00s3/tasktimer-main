@@ -5,7 +5,7 @@ import {
   API_GET_TODOLIST,
   API_GET_TODOLIST_SUCCESS,
   API_GET_TODOLIST_ERROR,
-  API_GET_POMODOROS_FOR_DATE_REQUEST,
+  API_GET_POMODOROS_FOR_DATE,
   API_GET_POMODOROS_FOR_DATE_ERROR,
   API_GET_POMODOROS_FOR_DATE_SUCCESS,
   API_GET_ANALYTICS,
@@ -16,7 +16,7 @@ import {
 export const defaultState = {
   loadingUser: false,
   loadingTodolist: false,
-  loadingPomodorosForDay: false
+  loadingPomodorosForDate: false
 }
 
 export default function loading (state = defaultState, action) {
@@ -54,16 +54,16 @@ export default function loading (state = defaultState, action) {
         ...state,
         loadingAnalytics: false
       }
-    case API_GET_POMODOROS_FOR_DATE_REQUEST:
+    case API_GET_POMODOROS_FOR_DATE:
       return {
         ...state,
-        loadingPomodorosForDay: true
+        loadingPomodorosForDate: true
       }
     case API_GET_POMODOROS_FOR_DATE_SUCCESS:
     case API_GET_POMODOROS_FOR_DATE_ERROR:
       return {
         ...state,
-        loadingPomodorosForDay: false
+        loadingPomodorosForDate: false
       }
   }
   return state

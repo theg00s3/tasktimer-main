@@ -62,12 +62,6 @@ class Statistics extends Component {
       return <Subscribe user={user} subscription={subscription} actions={actions} />
     }
 
-    if (loading.loadingPomodorosForDay) {
-      return <div className='content tac'>
-        loading stats...
-      </div>
-    }
-
     const qs = querystring.parse(window.location.search.replace('?', ''))
     const urlDate = qs.date || new Date().toISOString().substring(0, 10)
 
@@ -96,15 +90,15 @@ class Statistics extends Component {
           date={date}
           analytics={api.analytics}
           onChangeDate={this.changeDate.bind(this)} />
-
-        {allPomodoros.length > 0 &&
-          <PomodorosChart pomodoros={allPomodoros} micro={false} />}
       </div>
 
       <br />
 
-      <div className='pad'>
+      {<div className={`pad ${loading.loadingPomodorosForDate && 'loading'}`}>
         <div>
+          {allPomodoros.length > 0 &&
+            <PomodorosChart pomodoros={allPomodoros} micro={false} />}
+
           <div className='columns'>
             <div className='column pad-v tac'>
               <h1 className='no-m'>{allPomodoros.length}</h1> all pomodoros
@@ -139,7 +133,7 @@ class Statistics extends Component {
             </div>
           </div>}
         </div>
-      </div>
+      </div>}
     </div>
   }
 }

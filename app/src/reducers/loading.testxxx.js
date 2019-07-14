@@ -1,6 +1,15 @@
 /* global expect */
 import loading, {defaultState} from './loading'
-import {LOAD_USER_REQUEST, LOAD_USER_ERROR, API_GET_TODOLIST_SUCCESS, API_GET_TODOLIST_ERROR, API_GET_ANALYTICS_SUCCESS, API_GET_ANALYTICS_ERROR} from '../actions'
+import {
+  LOAD_USER_REQUEST,
+  LOAD_USER_ERROR,
+  API_GET_TODOLIST_SUCCESS,
+  API_GET_TODOLIST_ERROR,
+  API_GET_ANALYTICS_SUCCESS,
+  API_GET_ANALYTICS_ERROR,
+  API_GET_POMODOROS_FOR_DATE_SUCCESS,
+  API_GET_POMODOROS_FOR_DATE_ERROR
+} from '../actions'
 
 describe('loading reducer', () => {
   it('.loadingUser is true when user is being updated', () => {
@@ -32,5 +41,15 @@ describe('loading reducer', () => {
     expect(
       loading(defaultState, {type: API_GET_ANALYTICS_ERROR, payload: null})
     ).toStrictEqual(Object.assign({}, defaultState, {loadingAnalytics: false}))
+  })
+  it('.loadingPomodorosForDate is true when analytics is being updated', () => {
+    expect(
+      loading(defaultState, {type: API_GET_POMODOROS_FOR_DATE_SUCCESS, payload: null})
+    ).toStrictEqual(Object.assign({}, defaultState, {loadingPomodorosForDate: true}))
+  })
+  it('.loadingPomodorosForDate is false when analytics loading failed', () => {
+    expect(
+      loading(defaultState, {type: API_GET_POMODOROS_FOR_DATE_ERROR, payload: null})
+    ).toStrictEqual(Object.assign({}, defaultState, {loadingPomodorosForDate: false}))
   })
 })
