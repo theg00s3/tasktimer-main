@@ -12,19 +12,19 @@ export default class Signup extends Component {
     const {user, subscription, actions} = this.props
     return <div className='content tac'>
       <div className='pad tac'>
-        Signup to <span className='pro-badge'>Pro</span> today!
+        <Link to='/pro'>
+          <h1 className='title'>Signup to <span className='pro-badge'>Pro</span> today!</h1>
+        </Link>
+
         <br />
-        It's just <strong>1 € a month</strong>, and you get
+        It's just <strong>1 € a month</strong>!
         <br />
-        <strong>Statistics, Dark Mode, Reserved Team Channels, API access</strong>
+        The benefits for you are
+        <br />
+        <strong>Statistics, Analytics, Dark Mode, Reserved Team Channels, API access</strong>
       </div>
 
       <div className='signup'>
-        <Link to='/pro'>
-          <h2 className='title'>Signup for</h2>
-          <h1 className='title'>Pomodoro.cc <span className='pro-badge'>Pro</span></h1>
-        </Link>
-
         <div className='price-choices'>
           <div className='price'>
             <span className='price-symbol'>€</span>
@@ -35,7 +35,7 @@ export default class Signup extends Component {
 
         {!user &&
           <div className='tac pad'>
-            Please <Link to='/login'>login</Link> first
+            <h1 className='title'>Please <Link to='/login'>login</Link> first</h1>
           </div>}
 
         <SignupButton user={user} actions={actions} />
@@ -53,7 +53,7 @@ export default class Signup extends Component {
         <br />
 
         <ul className='pro-reasons tac'>
-          <h1 className='title tac'>What you'll get</h1>
+          <h1 className='title tac'>Benefits</h1>
           <li className=''>
             ⚡️ Statistics about your days, weeks and months
             <br />
