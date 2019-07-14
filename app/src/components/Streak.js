@@ -7,7 +7,6 @@ export default class Streak extends Component {
     const {analytics} = this.props
 
     const { longest, average } = calcStreaks(analytics)
-    const avgPomodorosPerDay = getAvgPomodorosPerDay(analytics)
 
     return <div className='pad'>
       <strong>Below you can see your streak history</strong>
@@ -22,11 +21,6 @@ export default class Streak extends Component {
           </div>
           <div className='column pad-v tac'>
             <h1 className='no-m'>{average.toFixed(1)}</h1> average streak
-          </div>
-        </div>
-        <div className='columns'>
-          <div className='column pad-v tac'>
-            <h1 className='no-m'>{avgPomodorosPerDay.toFixed(1)}</h1> avg pomodoros / day
           </div>
         </div>
       </div>
@@ -46,8 +40,4 @@ function calcStreaks (analytics) {
     }
     return streak
   }, {longest: 0, streaks: [], current: 0, average: 0})
-}
-
-function getAvgPomodorosPerDay (analytics) {
-  return analytics.reduce((sum, a) => sum + a.pomodoros.length, 0) / Math.max(analytics.length, 1)
 }
