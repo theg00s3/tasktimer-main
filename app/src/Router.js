@@ -6,6 +6,7 @@ import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
 import About from './routes/About'
 import GDPR from './routes/GDPR'
+import TOS from './routes/TOS'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
 import ChooseTeam from './routes/ChooseTeam'
@@ -32,6 +33,7 @@ export default class Root extends Component {
       if (url === '/pro') return this.setState({current: <Pro current={Date.now()} />})
       if (url === '/profile') return this.setState({current: <Profile current={Date.now()} />})
       if (url === '/gdpr') return this.setState({current: <GDPR />})
+      if (url === '/tos') return this.setState({current: <TOS />})
       if (/\/team/.test(url)) return this.setState({current: <Team />})
       if (/\/analytics/.test(url)) return this.setState({current: <Analytics current={Date.now()} />})
       if (/\/statistics/.test(url)) return this.setState({current: <Statistics current={Date.now()} />})
