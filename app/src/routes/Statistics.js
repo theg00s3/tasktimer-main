@@ -108,7 +108,6 @@ class Statistics extends Component {
             <div className='column pad-v tac'>
               <h1 className='no-m'>{allPomodoros.length}<small>p</small></h1>
               completed pomodoros
-              {/* <br /> */}
             </div>
             <div className='column pad-v tac'>
               <h1 className='no-m'>{durationInHours(allPomodoros)}<small>h</small></h1>
@@ -117,7 +116,6 @@ class Statistics extends Component {
             {timerangeInHours && <div className='column pad-v tac'>
               <h1 className='no-m'>{timerangeInHours.toFixed(1)}<small>h</small></h1>
               from {new Date(minDate).toISOString().substring(11, 16)} to {new Date(maxDate).toISOString().substring(11, 16)}
-              {/* <br /> */}
             </div>}
           </div>
 
