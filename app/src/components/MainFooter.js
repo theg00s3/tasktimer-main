@@ -18,6 +18,9 @@ export default class MainFooter extends Component {
           &copy; 2014 - {new Date().toISOString().substr(0, 4)} Christian Fei
         </p>
         <p>
+          <a href='/gdpr'>GDPR privacy policy</a>
+        </p>
+        <p>
           This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.
         </p>
       </div>
