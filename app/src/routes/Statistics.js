@@ -82,6 +82,14 @@ class Statistics extends Component {
       .filter(Boolean)
       // .filter(p => p.type === 'pomodoro')
 
+    let timerangeInHours
+
+    const minDate = Math.min(...completedPomodoros.map(p => +new Date(p.startedAt)))
+    const maxDate = Math.max(...completedPomodoros.map(p => +new Date(p.completedAt || p.startedAt)))
+    if (completedPomodoros.length > 1) {
+      timerangeInHours = dayjs(maxDate).diff(minDate) / 1000 / 60 / 60
+    }
+
     return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
@@ -96,38 +104,48 @@ class Statistics extends Component {
 
       {<div className={`pad ${loading.loadingPomodorosForDate && 'loading'}`}>
         <div>
-          {allPomodoros.length > 0 &&
-            <PomodorosChart pomodoros={allPomodoros} micro={false} />}
-
           <div className='columns'>
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{allPomodoros.length}</h1> all pomodoros
+              <h1 className='no-m'>{allPomodoros.length}<small>p</small></h1>
+              completed pomodoros
+              {/* <br /> */}
             </div>
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInHours(allPomodoros)}</h1>h all
+              <h1 className='no-m'>{durationInHours(allPomodoros)}<small>h</small></h1>
+              focus time
             </div>
-            <div className='column pad-v tac'>
-              <h1 className='no-m'>{completedPomodoros.length}</h1> completed pomodoros
-            </div>
-            <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInHours(completedPomodoros)}</h1>h completed
-            </div>
+            {timerangeInHours && <div className='column pad-v tac'>
+              <h1 className='no-m'>{timerangeInHours.toFixed(1)}<small>h</small></h1>
+              from {new Date(minDate).toISOString().substring(11, 16)} to {new Date(maxDate).toISOString().substring(11, 16)}
+              {/* <br /> */}
+            </div>}
           </div>
 
           <br />
 
-          {completedTodos.length === 0 && <div className='column pad-v'>
+          {allPomodoros.length > 0 && <div>
+            <strong>Pomodoros for {date}</strong>
+            <PomodorosChart pomodoros={allPomodoros} micro={false} />
+          </div>}
+
+          <br />
+
+          {completedTodos.length === 0 && <div className='column'>
             <div className='tac'>
               You haven't completed any todos.
             </div>
           </div>}
 
-          <br />
-
-          {completedTodos.length > 0 && <div className='column pad-v'>
-            <div className='tac'>
-              You were also quite productive today, with {completedTodos.length} tasks completed
+          {completedTodos.length > 0 && <div className='column'>
+            <div className='columns'>
+              <div className='column pad-v tac'>
+                completed <strong>{completedTodos.length}</strong> todos
+              </div>
+              {timerangeInHours && <div className='column pad-v tac'>
+                in <strong>{timerangeInHours.toFixed(1)}</strong> h
+              </div>}
             </div>
+
             <div className='pad'>
               <TodoForm showDeleted showNew={false} todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>
