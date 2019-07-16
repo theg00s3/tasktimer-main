@@ -3,7 +3,7 @@ import './Signup.styl'
 import SignupButton from './SignupButton'
 import Link from './utils/Link'
 
-import AnalyticsImage from '../assets/images/analytics.png'
+import AnalyticsImage from '../assets/images/analytics.gif'
 import StatisticsImage from '../assets/images/statistics.png'
 import DarkmodeImage from '../assets/images/darkmode.png'
 
