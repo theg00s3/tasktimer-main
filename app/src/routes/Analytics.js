@@ -16,8 +16,8 @@ dayjs.extend(weekOfYear)
 
 class Statistics extends Component {
   componentDidMount () {
-    const {actions} = this.props
-    actions.apiGetAnalytics && actions.apiGetAnalytics()
+    const {actions, api} = this.props
+    api.analytics.length === 0 && actions.apiGetAnalytics && actions.apiGetAnalytics()
   }
   render () {
     const {user, api, subscription, loading, actions} = this.props
@@ -52,7 +52,7 @@ class Statistics extends Component {
         </div>
       </div>
     }
-    let data = (api.analytics || []).slice(0)
+    let data = api.analytics
 
     if (data.length < 2) {
       return <div className='content tac statistics-analytics'>
