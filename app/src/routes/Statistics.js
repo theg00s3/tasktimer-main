@@ -49,7 +49,8 @@ class Statistics extends Component {
     this.setState({
       date: dateString
     })
-    actions.apiGetAnalytics()
+
+    api.analytics.length === 0 && actions.apiGetAnalytics()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
@@ -69,8 +70,10 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
-    const todosForDate = (api.analytics.find(({day}) => day === date) || {todos: []}).todos
-    const pomodorosForDate = (api.analytics.find(({day}) => day === date) || {pomodoros: []}).pomodoros
+    const data = api.analytics.find(({day}) => day === date) || {pomodoros: [], todos: []}
+    const todosForDate = data.todos
+    const pomodorosForDate = data.pomodoros
+
     const completedTodos = todosForDate
       .filter(Boolean)
       .filter(t => t.completedAt)
