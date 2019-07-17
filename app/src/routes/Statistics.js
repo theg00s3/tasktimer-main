@@ -49,9 +49,7 @@ class Statistics extends Component {
     this.setState({
       date: dateString
     })
-    actions.apiGetPomodorosForDay(dateString)
-    actions.apiGetTodosForDay(dateString)
-    api.analytics.length === 0 && actions.apiGetAnalytics()
+    actions.apiGetAnalytics()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
@@ -71,14 +69,16 @@ class Statistics extends Component {
       this.changeDate(date)
     }
 
-    const completedTodos = api.todosForDate.todos
+    const todosForDate = (api.analytics.find(({day}) => day === date) || {todos: []}).todos
+    const pomodorosForDate = (api.analytics.find(({day}) => day === date) || {pomodoros: []}).pomodoros
+    const completedTodos = todosForDate
       .filter(Boolean)
       .filter(t => t.completedAt)
-    const completedPomodoros = api.pomodorosForDate.pomodoros
+    const completedPomodoros = pomodorosForDate
       .filter(Boolean)
       // .filter(p => p.type === 'pomodoro')
       .filter(p => p.completed)
-    const allPomodoros = api.pomodorosForDate.pomodoros
+    const allPomodoros = pomodorosForDate
       .filter(Boolean)
       // .filter(p => p.type === 'pomodoro')
 
