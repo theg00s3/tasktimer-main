@@ -17,10 +17,10 @@ export default class Streak extends Component {
       <div>
         <div className='columns'>
           <div className='column pad-v tac'>
-            <h1 className='no-m'>{longest.toFixed(0)}</h1> longest streak
+            <h1 className='no-m'>{longest.toFixed(0)}</h1>days<br /> longest streak
           </div>
           <div className='column pad-v tac'>
-            <h1 className='no-m'>{average.toFixed(1)}</h1> average streak
+            <h1 className='no-m'>{average.toFixed(1)}</h1>days<br /> average streak
           </div>
         </div>
       </div>
