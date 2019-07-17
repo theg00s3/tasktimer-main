@@ -43,7 +43,7 @@ class Statistics extends Component {
     }
   }
   changeDate (date) {
-    const {actions} = this.props
+    const {actions, api} = this.props
 
     let dateString = toISOSubstring(date)
     this.setState({
@@ -51,7 +51,7 @@ class Statistics extends Component {
     })
     actions.apiGetPomodorosForDay(dateString)
     actions.apiGetTodosForDay(dateString)
-    actions.apiGetAnalytics()
+    api.analytics.length === 0 && actions.apiGetAnalytics()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
