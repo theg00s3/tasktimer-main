@@ -52,6 +52,7 @@ class Statistics extends Component {
         </div>
       </div>
     }
+
     let data = api.analytics
 
     if (data.length < 2) {
