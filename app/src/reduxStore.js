@@ -34,7 +34,7 @@ const store = createStore(combineReducers({
   darkMode
 }), composeEnhancers(
   applyMiddleware(...middleware),
-  persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'darkMode'])
+  persistState(['settings', 'todos', 'pomodoro', 'pomodoros', 'darkMode', 'api'])
 ))
 
 export default store
