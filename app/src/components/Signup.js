@@ -55,6 +55,12 @@ export default class Signup extends Component {
         <ul className='pro-reasons tac'>
           <h1 className='title tac'>Benefits</h1>
           <li className=''>
+            ⚡️ Analytics of your historic timers and todos
+            <br />
+            <br />
+            <img src={AnalyticsImage} alt='analytics' style='width: 100%; max-width: 700px' />
+          </li>
+          <li className=''>
             ⚡️ Statistics about your days, weeks and months
             <br />
             <br />
@@ -62,12 +68,6 @@ export default class Signup extends Component {
             <br />
             <br />
             <img src={StatisticsImage} alt='statistics' style='width: 100%; max-width: 700px' />
-          </li>
-          <li className=''>
-            ⚡️ Analytics of your historic timers and todos
-            <br />
-            <br />
-            <img src={AnalyticsImage} alt='analytics' style='width: 100%; max-width: 700px' />
           </li>
           <li className=''>
             ️️️⚡️ Sync data between devices
