@@ -7,7 +7,9 @@ import {
   API_GET_TODOLIST_SUCCESS,
   API_GET_TODOLIST_ERROR,
   API_GET_ANALYTICS_SUCCESS,
-  API_GET_ANALYTICS_ERROR
+  API_GET_ANALYTICS_ERROR,
+  API_CREATE_TODO,
+  UPDATE_TODO_SUCCESS
 } from '../actions'
 
 export const defaultState = {
@@ -62,6 +64,15 @@ export default function user (state = defaultState, action) {
     case API_GET_TODOLIST_ERROR:
       return Object.assign({}, state, {
         todolist: defaultState.todos
+      })
+    case API_CREATE_TODO:
+      return Object.assign({}, state, {
+        todolist: state.todolist.concat([action.payload])
+      })
+    case UPDATE_TODO_SUCCESS:
+      console.log('state.todolist', state.todolist, action.payload.todo)
+      return Object.assign({}, state, {
+        todolist: state.todolist.map(todo => (todo._id === action.payload.todo._id) ? action.payload.todo : todo)
       })
     case API_UPDATE_TODO_SUCCESS:
       return Object.assign({}, state, {

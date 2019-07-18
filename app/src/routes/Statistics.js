@@ -158,7 +158,7 @@ class Statistics extends Component {
             </div>
 
             <div className='pad'>
-              <TodoForm showDeleted showNew={false} todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
+              <TodoForm showNew={false} todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>
           </div>}
         </div>

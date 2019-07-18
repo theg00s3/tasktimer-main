@@ -35,7 +35,7 @@ export const API_GET_ANALYTICS_ERROR = 'API_GET_ANALYTICS_ERROR'
 
 export function apiCreatePomodoro (pomodoro) {
   return (dispatch, getState) => {
-    dispatch({type: API_CREATE_POMODORO, payload: null})
+    dispatch({type: API_CREATE_POMODORO, payload: pomodoro})
 
     const body = JSON.stringify(pomodoro)
     const url = window.USE_PROD
@@ -72,7 +72,7 @@ export function apiCreatePomodoro (pomodoro) {
 
 export function apiCreateTodo (todo) {
   return (dispatch, getState) => {
-    dispatch({type: API_CREATE_TODO, payload: null})
+    dispatch({type: API_CREATE_TODO, payload: todo})
 
     const body = JSON.stringify(todo)
     const url = window.USE_PROD
@@ -109,7 +109,7 @@ export function apiCreateTodo (todo) {
 
 export function apiUpdateTodo (todo) {
   return (dispatch, getState) => {
-    dispatch({type: API_UPDATE_TODO, payload: null})
+    dispatch({type: API_UPDATE_TODO, payload: todo})
 
     const body = JSON.stringify(todo)
     const url = window.USE_PROD
