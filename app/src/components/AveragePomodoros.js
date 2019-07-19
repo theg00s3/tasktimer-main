@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-export default class Heatmap extends Component {
+export default class AveragePomodoros extends Component {
   render () {
     const { analytics } = this.props
     const avgPomodorosPerDay = getAvgPomodorosPerDay(analytics)

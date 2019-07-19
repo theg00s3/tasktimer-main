@@ -47,6 +47,8 @@ class Statistics extends Component {
       </div>
     }
 
+    console.log(JSON.stringify(data.map(d => Object.assign(d, {userId: undefined, todos: []}))))
+
     return <div className='content tac statistics-analytics'>
       <h1 className='title is-1'>Analytics</h1>
 
