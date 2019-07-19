@@ -58,7 +58,7 @@ export default class Signup extends Component {
             ⚡️ Analytics of your historic timers and todos
             <br />
             <br />
-            <img src={AnalyticsImage} alt='analytics' style='width: 100%; max-width: 700px' />
+            <img src={AnalyticsImage} alt='analytics' style={{width: '100%', maxWidth: '700px'}} />
           </li>
           <li className=''>
             ⚡️ Statistics about your days, weeks and months
@@ -67,7 +67,7 @@ export default class Signup extends Component {
             avoid using Excel to track your time, you can access your historic timers and todos through pomodoro.cc
             <br />
             <br />
-            <img src={StatisticsImage} alt='statistics' style='width: 100%; max-width: 700px' />
+            <img src={StatisticsImage} alt='statistics' style={{width: '100%', maxWidth: '700px'}} />
           </li>
           <li className=''>
             ️️️⚡️ Sync data between devices
@@ -76,7 +76,7 @@ export default class Signup extends Component {
             ️️️⚡️ Dark mode
             <br />
             <br />
-            <img src={DarkmodeImage} alt='darkMode' style='width: 100%; max-width: 700px' />
+            <img src={DarkmodeImage} alt='darkMode' style={{width: '100%', maxWidth: '700px'}} />
           </li>
           <li className=''>
             ️️️⚡️ Channel-reservation (Team Pomodoro)
