@@ -128,7 +128,7 @@ class Statistics extends Component {
             </div>
             {timerangeInHours && <div className='column pad-v tac'>
               <h1 className='no-m'>{timerangeInHours.toFixed(1)}<small>h</small></h1>
-              from {new Date(minDate).toISOString().substring(11, 16)} to {new Date(maxDate).toISOString().substring(11, 16)}
+              from {hour(minDate)}:{minute(minDate)} to {hour(maxDate)}:{minute(maxDate)}
             </div>}
           </div>
 
@@ -182,6 +182,18 @@ function durationInHours (pomodoros) {
   }, 0)
 
   return duration.toFixed(2)
+}
+
+function pad (number) {
+  if (number < 10) return '0' + number
+  return number
+}
+
+function minute (date) {
+  return pad(new Date(date).getMinutes())
+}
+function hour (date) {
+  return pad(new Date(date).getHours())
 }
 
 export default connect(
