@@ -45,13 +45,13 @@ class Statistics extends Component {
   }
   changeDate (date) {
     const {actions, api} = this.props
+    api.analytics.length === 0 && actions.apiGetAnalytics()
 
     let dateString = toISOSubstring(date)
     this.setState({
       date: dateString
     })
 
-    api.analytics.length === 0 && actions.apiGetAnalytics()
     window.history.pushState(null, document.title, window.location.pathname + `?date=${dateString}`)
   }
 
@@ -62,7 +62,7 @@ class Statistics extends Component {
       return <Signup user={user} subscription={subscription} actions={actions} />
     }
 
-    if (loading.loadingAnalytics) {
+    if (loading.loadingAnalytics && api.analytics.length === 0) {
       return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
           Loading Statistics

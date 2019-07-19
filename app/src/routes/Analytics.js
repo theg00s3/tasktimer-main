@@ -27,7 +27,7 @@ class Statistics extends Component {
       return <Signup user={user} subscription={subscription} actions={actions} />
     }
 
-    if (loading.loadingAnalytics) {
+    if (loading.loadingAnalytics && api.analytics.length === 0) {
       return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
           Loading Analytics

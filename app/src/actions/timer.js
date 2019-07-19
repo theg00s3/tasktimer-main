@@ -6,6 +6,7 @@ import {NOOP} from './'
 import NotificationCenter from '../modules/NotificationCenter'
 import NotificationService from '../modules/NotificationService'
 import { apiCreatePomodoro, apiGetPomodorosForDay } from '../actions'
+import { apiGetAnalytics } from './api'
 export const START_TIMER = 'START_TIMER'
 export const RESUME_TIMER = 'RESUME_TIMER'
 export const END_TIMER = 'END_TIMER'
@@ -103,6 +104,7 @@ function saveAndDispatch (action, cb = Function.prototype) {
     dispatch({type: action, payload: {pomodoro}})
     AnalyticsService.track('timer-stop', pomodoro)
     apiGetPomodorosForDay()(dispatch, getState)
+    apiGetAnalytics()(dispatch, getState)
     cb(dispatch, getState)
   }
 }
