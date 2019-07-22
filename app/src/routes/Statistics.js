@@ -22,7 +22,7 @@ class StatisticsFilters extends Component {
     const {analytics = [], date = new Date(), onChangeDate = Function.prototype} = this.props
 
     return <div className='pad'>
-      <div className='pad'>
+      <div className='pad-v'>
         <span><strong>Day</strong> <Flatpickr
           value={new Date(date)}
           onChange={date => {
