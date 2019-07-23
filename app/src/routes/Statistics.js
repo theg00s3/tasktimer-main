@@ -126,7 +126,7 @@ class Statistics extends Component {
               focus time
             </div>
             {timerangeInHours && <div className='column pad-v tac'>
-              <h1 className='no-m'>{timerangeInHours.toFixed(1)}<small>h</small></h1>
+              <h1 className='no-m'>~ {parseInt(timerangeInHours, 10)}<small>h</small></h1>
               from {hour(minDate)}:{minute(minDate)} to {hour(maxDate)}:{minute(maxDate)}
             </div>}
           </div>
