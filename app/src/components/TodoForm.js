@@ -19,8 +19,8 @@ class TodoForm extends Component {
   render () {
     const { todos, actions, completable = true, editable = true, deletable = true, showNew = true, showTitles = true, showDeleted = false, showStatsLink = false, showLoading } = this.props
 
-    const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completed)
-    const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completed)
+    const newTodos = todos.filter(t => !t.deleted).filter(t => !t.completedAt)
+    const doneTodos = todos.filter(t => showDeleted ? true : !t.deleted).filter(t => t.completedAt)
 
     return <div className='todo-form-container'>
       {editable && <div className='todo-input-container todo editing'>
@@ -54,6 +54,7 @@ class TodoForm extends Component {
 export default TodoForm
 
 export function renderTodoListWith (todos, actions, {completable = true, editable = true, deletable = true} = {}) {
+  console.log({todos})
   return <ul className='todo-form'>
     {todos.map((todo) => {
       return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} completable={completable} editable={editable} deletable={deletable} />

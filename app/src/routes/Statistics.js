@@ -85,16 +85,15 @@ class Statistics extends Component {
     const pomodorosForDate = data.pomodoros
 
     const completedTodos = todosForDate
-      .filter(Boolean)
-      .filter(t => t.completedAt)
+    .filter(Boolean)
+    .filter(t => t.completedAt)
     const completedPomodoros = pomodorosForDate
-      .filter(Boolean)
-      // .filter(p => p.type === 'pomodoro')
-      .filter(p => p.completed)
+    .filter(Boolean)
+    .filter(p => p.completed)
     const allPomodoros = pomodorosForDate
-      .filter(Boolean)
-      // .filter(p => p.type === 'pomodoro')
+    .filter(Boolean)
 
+    console.log({completedTodos})
     let timerangeInHours
 
     const minDate = Math.min(...completedPomodoros.map(p => +new Date(p.startedAt)))
@@ -158,7 +157,7 @@ class Statistics extends Component {
             </div>
 
             <div className='pad'>
-              <TodoForm showNew={false} todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
+              <TodoForm showNew={false} showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>
           </div>}
         </div>
