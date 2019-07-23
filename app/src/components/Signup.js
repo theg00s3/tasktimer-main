@@ -12,9 +12,7 @@ export default class Signup extends Component {
     const {user, subscription, actions} = this.props
     return <div className='content tac'>
       <div className='pad tac'>
-        <Link to='/pro'>
-          <h1 className='title'>Signup to <span className='pro-badge'>Pro</span> today!</h1>
-        </Link>
+        <h1 className='title'>Signup to <span className='pro-badge'>Pro</span> today!</h1>
 
         <br />
         It's just <strong>1 € a month</strong>!

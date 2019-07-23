@@ -13,7 +13,7 @@ export default class SignupButton extends Component {
     let stripeKey = /pomodoro/.test(location.href) ? 'pk_live_geRcjLp8LZwxhvZZDC3Osyyt00MisZGF5a' : 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
     if (localStorage.stripeTest) stripeKey = 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
 
-    return <div className='signup-button'>
+    return <div className='signup-button pad'>
       <img src={user.avatar} className='user-avatar' />
 
       &nbsp;
