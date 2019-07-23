@@ -70,7 +70,6 @@ export default function user (state = defaultState, action) {
         todolist: state.todolist.concat([action.payload])
       })
     case UPDATE_TODO_SUCCESS:
-      console.log('state.todolist', state.todolist, action.payload.todo)
       return Object.assign({}, state, {
         todolist: state.todolist.map(todo => (todo._id === action.payload.todo._id) ? action.payload.todo : todo)
       })

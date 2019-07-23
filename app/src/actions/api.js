@@ -61,7 +61,7 @@ export function apiCreatePomodoro (pomodoro) {
       }
       getState().user && AnalyticsService.track('create-pomodoro-success', data)
       dispatch({type: API_CREATE_POMODORO_SUCCESS, payload: data})
-      apiGetPomodorosForDay()(dispatch, getState)
+      apiGetAnalytics()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('create-pomodoro-error', err)
@@ -99,6 +99,7 @@ export function apiCreateTodo (todo) {
       getState().user && AnalyticsService.track('create-todo-success', data)
       dispatch({type: API_CREATE_TODO_SUCCESS, payload: data})
       apiGetTodolist()(dispatch, getState)
+      apiGetAnalytics()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('create-todo-error', err)
@@ -136,6 +137,7 @@ export function apiUpdateTodo (todo) {
       getState().user && AnalyticsService.track('update-todo-success', data)
       dispatch({type: API_UPDATE_TODO_SUCCESS, payload: data})
       apiGetTodolist()(dispatch, getState)
+      apiGetAnalytics()(dispatch, getState)
     })
     .catch(err => {
       getState().user && AnalyticsService.track('update-todo-error', err)

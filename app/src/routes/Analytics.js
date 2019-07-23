@@ -47,18 +47,16 @@ class Statistics extends Component {
       </div>
     }
 
-    console.log(JSON.stringify(data.map(d => Object.assign(d, {userId: undefined, todos: []}))))
-
     return <div className='content tac statistics-analytics'>
-      <h1 className='title is-1'>Analytics</h1>
+  <h1 className='title is-1'>Analytics</h1>
 
-      <br />
+  <br />
 
-      <pad className='pad'>
+  <pad className='pad'>
         The list below shows some stats over the whole history of you on pomodoro.cc
       </pad>
 
-      <div className='pad'>
+  <div className='pad'>
         <Heatmap analytics={data} onChangeDate={(date) => { window.location.href = `/analytics#${date}` }} />
 
         <Streak analytics={data} />
@@ -85,7 +83,7 @@ class Statistics extends Component {
           })}
         </div>
       </div>
-    </div>
+</div>
   }
 }
 
