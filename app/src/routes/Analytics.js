@@ -48,15 +48,15 @@ class Statistics extends Component {
     }
 
     return <div className='content tac statistics-analytics'>
-  <h1 className='title is-1'>Analytics</h1>
+      <h1 className='title is-1'>Analytics</h1>
 
-  <br />
+      <br />
 
-  <pad className='pad'>
+      <pad className='pad'>
         The list below shows some stats over the whole history of you on pomodoro.cc
       </pad>
 
-  <div className='pad'>
+      <div className='pad'>
         <Heatmap analytics={data} onChangeDate={(date) => { window.location.href = `/analytics#${date}` }} />
 
         <Streak analytics={data} />
@@ -77,13 +77,13 @@ class Statistics extends Component {
 
                 {d.todos.length} todos
                 <div className={`amount todos todos-${d.todos.length}`} style={`z-index: 10000; width: ${d.percentageTodos * 100}%`} />
-                {d.pomodoros.length > 0 && <span>See <Link to={`/statistics?date=${d.day}`}>stats</Link></span>}
+                <span>See <Link to={`/statistics?date=${d.day}`}>stats</Link></span>
               </div>
             </div>
           })}
         </div>
       </div>
-</div>
+    </div>
   }
 }
 
