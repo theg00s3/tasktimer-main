@@ -11,7 +11,9 @@ class TweetButton extends Component {
     url += `&hashtags=pomodoro,pomodorotechnique`
 
     return <div className='tweet-button-container'>
-      <a class='twitter-share-button' href={url} target='_blank' data-size='large'><img height={24} src={tweetImage} /></a>
+      <a class='twitter-share-button' href={url} target='_blank' data-size='large'>
+        {/* <img height={24} src={tweetImage} /> */}
+      </a>
     </div>
   }
 }
