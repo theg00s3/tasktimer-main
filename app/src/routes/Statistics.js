@@ -22,16 +22,16 @@ class StatisticsFilters extends Component {
     const {analytics = [], date = new Date(), onChangeDate = Function.prototype} = this.props
 
     return <div className='pad'>
+      <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} showCurrent current={date} />
+
       <div className='pad-v'>
-        <span><strong>Day</strong> <Flatpickr
+        <span><strong>Select day</strong> <Flatpickr
           value={new Date(date)}
           onChange={date => {
             onChangeDate(date && date[0])
           }} />
         </span>
       </div>
-
-      <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} showCurrent current={date} />
     </div>
   }
 }

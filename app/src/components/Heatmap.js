@@ -7,6 +7,7 @@ export default class Heatmap extends Component {
     if (analytics.length < 3) return null
     return <div className='heatmap-container'>
       {onChangeDate && <strong>Click on any square below to see the daily stats</strong>}
+      <br />
       <div className='heatmap'>
         {(analytics || []).map(a => {
           return <span className={`tooltip ${showCurrent && current === a.day && 'current'}`} onClick={() => onChangeDate && onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>
