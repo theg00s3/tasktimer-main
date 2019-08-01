@@ -4,6 +4,7 @@ import './Heatmap.styl'
 export default class Heatmap extends Component {
   render () {
     const { analytics, onChangeDate, showCurrent = false, current } = this.props
+    if (analytics.length < 3) return null
     return <div className='heatmap-container'>
       {onChangeDate && <strong>Click on any square below to see the daily stats</strong>}
       <div className='heatmap'>
