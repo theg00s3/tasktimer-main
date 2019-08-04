@@ -15,7 +15,6 @@ class Login extends Component {
     return <div className='login content tac'>
       <h1 className='title'>Login. One click. Easy.</h1>
       <h3 className='pad no-signup'>No signup required!</h3>
-      <h3 className='pad no-signup'>You're getting closer to <strong>Statistics</strong> and <strong>Team Pomodoro</strong>!</h3>
 
       <div className='columns'>
         <div className='column tac'>

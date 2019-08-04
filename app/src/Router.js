@@ -9,8 +9,6 @@ import GDPR from './routes/GDPR'
 import TOS from './routes/TOS'
 import Login from './routes/Login'
 import Logout from './routes/Logout'
-import ChooseTeam from './routes/ChooseTeam'
-import Team from './routes/Team'
 import Statistics from './routes/Statistics'
 import Analytics from './routes/Analytics'
 import Profile from './routes/Profile'
@@ -29,12 +27,10 @@ export default class Root extends Component {
       if (url === '/support') return this.setState({current: <Support />})
       if (url === '/login') return this.setState({current: <Login />})
       if (url === '/logout') return this.setState({current: <Logout />})
-      if (url === '/team') return this.setState({current: <ChooseTeam />})
       if (url === '/pro') return this.setState({current: <Pro current={Date.now()} />})
       if (url === '/profile') return this.setState({current: <Profile current={Date.now()} />})
       if (url === '/gdpr') return this.setState({current: <GDPR />})
       if (url === '/tos') return this.setState({current: <TOS />})
-      if (/\/team/.test(url)) return this.setState({current: <Team />})
       if (/\/analytics/.test(url)) return this.setState({current: <Analytics current={Date.now()} />})
       if (/\/statistics/.test(url)) return this.setState({current: <Statistics current={Date.now()} />})
       this.setState({current: <FouroFour />})

@@ -19,7 +19,7 @@ export default class Signup extends Component {
         <br />
         The benefits for you are
         <br />
-        <strong>Statistics, Analytics, Dark Mode, Reserved Team Channels, API access</strong>
+        <strong>Statistics, Analytics, Dark Mode, API access</strong>
       </div>
 
       <div className='signup'>
@@ -75,9 +75,6 @@ export default class Signup extends Component {
             <br />
             <br />
             <img src={DarkmodeImage} alt='darkMode' style={{width: '100%', maxWidth: '700px'}} />
-          </li>
-          <li className=''>
-            ️️️⚡️ Channel-reservation (Team Pomodoro)
           </li>
           <li className=''>
             ⚡️ Access your account data via API

@@ -3,12 +3,8 @@ import './TimerButtons.styl'
 
 export default class TimerButtons extends Component {
   startStopTimer (minutes, type) {
-    const {actions, team = false, channelId} = this.props
-    if (team && channelId) {
-      actions.sendTeamRequest(channelId, {minutes, type})
-    } else {
-      actions.startStopTimer(minutes, type)
-    }
+    const {actions} = this.props
+    actions.startStopTimer(minutes, type)
   }
 
   render () {

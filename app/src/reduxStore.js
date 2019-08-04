@@ -7,7 +7,6 @@ import settings from './reducers/settings'
 import subscription from './reducers/subscription'
 import darkMode from './reducers/dark-mode'
 import user from './reducers/user'
-import team from './reducers/team'
 import loading from './reducers/loading'
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
@@ -28,7 +27,6 @@ const store = createStore(combineReducers({
   pomodoros,
   settings,
   user,
-  team,
   loading,
   subscription,
   darkMode

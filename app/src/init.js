@@ -47,9 +47,7 @@ export default function init () {
 
   if (pomodoro && pomodoro.startedAt) {
     if (+new Date(pomodoro.startedAt) + pomodoro.minutes * 60 < Date.now()) {
-      if (!/team/.test(window.location.pathname)) {
-        dispatch(resumeTimer(pomodoro))
-      }
+      dispatch(resumeTimer(pomodoro))
     }
   }
 
