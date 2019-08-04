@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Todolist', () => {
+context.skip('Todolist', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1234')
   })
