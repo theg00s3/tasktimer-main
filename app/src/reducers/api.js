@@ -67,15 +67,15 @@ export default function user (state = defaultState, action) {
       })
     case API_CREATE_TODO:
       return Object.assign({}, state, {
-        todolist: state.todolist.concat([action.payload])
+        todolist: (state.todolist || []).concat([action.payload])
       })
     case UPDATE_TODO_SUCCESS:
       return Object.assign({}, state, {
-        todolist: state.todolist.map(todo => (todo._id === action.payload.todo._id) ? action.payload.todo : todo)
+        todolist: (state.todolist || []).map(todo => (todo._id === action.payload.todo._id) ? action.payload.todo : todo)
       })
     case API_UPDATE_TODO_SUCCESS:
       return Object.assign({}, state, {
-        todolist: state.todolist.map(t => {
+        todolist: (state.todolist || []).map(t => {
           if (t !== action.payload._id) return t
           return action.payload.todo
         })
