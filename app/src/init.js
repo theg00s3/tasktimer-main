@@ -14,6 +14,8 @@ export default function init () {
     const state = getState()
     if (state.settings.tickSoundEnabled) {
       Sounds.startTickingSound()
+    } else {
+      Sounds.stopTickingSound()
     }
     dispatch(tickTimer(remaining))
   })
@@ -30,8 +32,10 @@ export default function init () {
       return
     }
     NotificationService.requestPermission(() => {
+      debugger
       dispatch(grantNotificationPermission({grant: true}))
     }, () => {
+      debugger
       dispatch(grantNotificationPermission({grant: false}))
     })
   }
@@ -53,8 +57,8 @@ export default function init () {
 
   function playTimerEndSound () {
     const state = getState()
+    Sounds.stopTickingSound()
     if (state.settings.ringSoundEnabled) {
-      Sounds.stopTickingSound()
       Sounds.startRingingSound()
     }
   }

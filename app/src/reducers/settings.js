@@ -3,8 +3,7 @@ import {TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT} fro
 export const defaultState = {
   tickSoundEnabled: false,
   ringSoundEnabled: false,
-  notificationPermissionGranted: false,
-  acknowledgeSignupForm: false
+  notificationPermissionGranted: false
 }
 
 export default function settings (state = defaultState, action) {
