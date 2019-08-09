@@ -26,32 +26,35 @@ class Profile extends Component {
       </h1>
       {user.subscription &&
         <div className='pad tac1'>
-          <strong>Subscription status</strong> {user.hasActiveSubscription ? '✅ active' : user.subscription.status}
+          <label>Subscription status</label> {user.subscription && user.subscription.status}
         </div>}
 
       {user.subscription && user.subscription.start_date &&
         <div className='pad tac1'>
-          <strong>Customer since</strong> {dayjs(user.subscription.start_date * 1000).format('YYYY-MM-DD')}
+          <label>Customer since</label> {dayjs(user.subscription.start_date * 1000).format('YYYY-MM-DD')}
         </div>}
 
       {user.subscription && user.subscription.current_period_start &&
         <div className='pad tac1'>
-          <strong>current_period_start</strong> {dayjs(user.subscription.current_period_start * 1000).format('YYYY-MM-DD-THH:mm')}
-          <br />
-          <strong>current_period_end</strong> {dayjs(user.subscription.current_period_end * 1000).format('YYYY-MM-DD-THH:mm')}
+          <label>Current Subscription Start</label> {dayjs(user.subscription.current_period_start * 1000).format('YYYY-MM-DD-THH:mm')}
         </div>}
 
-      {user.apikey && user.hasActiveSubscription &&
+      {user.subscription && user.subscription.current_period_end &&
         <div className='pad tac1'>
-          <strong>API key</strong> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
+          <label>Current Subscription End</label> {dayjs(user.subscription.current_period_end * 1000).format('YYYY-MM-DD-THH:mm')}
         </div>}
+
+      {/* {user.apikey && user.hasActiveSubscription &&
+        <div className='pad tac1'>
+          <label>API key</label> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
+        </div>} */}
 
       {user.hasActiveSubscription && <div className='pad' onClick={() => actions.toggleDarkMode()}>
-        <h1>dark mode: <span>
-          {darkMode.enabled ? 'on' : 'off'}
-        </span></h1>
-
+        <h1>Dark mode</h1>
         <small>click to toggle</small>
+        <span>
+          {darkMode.enabled ? 'on' : 'off'}
+        </span>
       </div>}
 
       {!user.hasActiveSubscription &&
