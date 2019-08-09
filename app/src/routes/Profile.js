@@ -51,10 +51,8 @@ class Profile extends Component {
 
       {user.hasActiveSubscription && <div className='pad' onClick={() => actions.toggleDarkMode()}>
         <h1>Dark mode</h1>
-        <small>click to toggle</small>
-        <span>
-          {darkMode.enabled ? 'on' : 'off'}
-        </span>
+        <small>Click to toggle</small>
+        <span>&nbsp; {darkMode.enabled ? 'on' : 'off'}</span>
       </div>}
 
       {!user.hasActiveSubscription &&
