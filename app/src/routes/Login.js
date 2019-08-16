@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Twitter from '../assets/images/twitter.png'
 import GitHub from '../assets/images/github.png'
+import Google from '../assets/images/google.png'
 import './Login.styl'
 
 class Login extends Component {
@@ -11,6 +12,7 @@ class Login extends Component {
     const baseUrl = window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
     const twitterUrl = baseUrl + '/twitter'
     const githubUrl = baseUrl + '/github'
+    const googleUrl = baseUrl + '/google'
 
     return <div className='login content tac'>
       <h1 className='title'>Login. One click. Easy.</h1>
@@ -29,6 +31,13 @@ class Login extends Component {
             <img src={GitHub} />
             <br />
             <h3>Login with GitHub</h3>
+          </a>
+        </div>
+        <div className='column tac'>
+          <a className='login-button' href={googleUrl}>
+            <img src={Google} />
+            <br />
+            <h3>Login with Google</h3>
           </a>
         </div>
       </div>
