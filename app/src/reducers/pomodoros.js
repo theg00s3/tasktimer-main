@@ -1,4 +1,4 @@
-import {STOP_TIMER, END_TIMER, TEST_POMODOROS} from '../actions'
+import { STOP_TIMER, END_TIMER, TEST_POMODOROS } from '../actions'
 
 export const defaultState = []
 

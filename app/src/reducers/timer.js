@@ -1,6 +1,6 @@
 /*     */
 import TimeFormatter from '../modules/TimeFormatter'
-import {START_TIMER, RESUME_TIMER, STOP_TIMER, END_TIMER, TICK_TIMER} from '../actions/timer'
+import { START_TIMER, RESUME_TIMER, STOP_TIMER, END_TIMER, TICK_TIMER } from '../actions/timer'
 
 export default function timer (state = '00:00', action) {
   switch (action.type) {

@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Link from './utils/Link'
 import User from './User'
 import './NavigationBar.styl'
 
 export default class NavigationBar extends Component {
   render () {
-    const {user, loading, currentUrl} = this.props
+    const { user, loading, currentUrl } = this.props
 
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>

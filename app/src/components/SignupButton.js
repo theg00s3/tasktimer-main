@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './SignupButton.styl'
 import StripeCheckout from 'react-stripe-checkout'
 import pomodoroImage from '../assets/images/pomodoro.cc.png'
 
 export default class SignupButton extends Component {
   render () {
-    const {user, actions} = this.props
+    const { user, actions } = this.props
     if (!user) {
       return null
     }

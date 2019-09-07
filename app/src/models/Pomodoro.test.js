@@ -77,7 +77,7 @@ describe('Pomodoro', function () {
   })
 
   it('Pomodoro#create', () => {
-    const pomo = Pomodoro.create({type: 'pomodoro', minutes: 25})
+    const pomo = Pomodoro.create({ type: 'pomodoro', minutes: 25 })
     expect(pomo instanceof Pomodoro).toEqual(true)
   })
 })

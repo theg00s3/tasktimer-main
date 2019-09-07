@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
 import querystring from 'querystring'
 import utc from 'dayjs/plugin/utc'
@@ -19,7 +19,7 @@ dayjs.extend(utc)
 
 class StatisticsFilters extends Component {
   render () {
-    const {analytics = [], date = new Date(), onChangeDate = Function.prototype} = this.props
+    const { analytics = [], date = new Date(), onChangeDate = Function.prototype } = this.props
 
     return <div className='pad'>
       <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} showCurrent current={date} />
@@ -43,11 +43,12 @@ class Statistics extends Component {
       date: undefined
     }
   }
+
   changeDate (date) {
-    const {actions, api} = this.props
+    const { actions, api } = this.props
     api.analytics.length === 0 && actions.apiGetAnalytics()
 
-    let dateString = toISOSubstring(date)
+    const dateString = toISOSubstring(date)
     this.setState({
       date: dateString
     })
@@ -56,7 +57,7 @@ class Statistics extends Component {
   }
 
   render () {
-    const {api, user, loading, subscription, actions} = this.props
+    const { api, user, loading, subscription, actions } = this.props
 
     if (!user || !user.hasActiveSubscription) {
       return <Signup user={user} subscription={subscription} actions={actions} />
@@ -74,26 +75,26 @@ class Statistics extends Component {
     const qs = querystring.parse(window.location.search.replace('?', ''))
     const urlDate = qs.date || new Date().toISOString().substring(0, 10)
 
-    let {date} = this.state
+    let { date } = this.state
     if (!date) {
       date = urlDate
       this.changeDate(date)
     }
 
-    const data = api.analytics.find(({day}) => day === date) || {pomodoros: [], todos: []}
+    const data = api.analytics.find(({ day }) => day === date) || { pomodoros: [], todos: [] }
     const todosForDate = data.todos
     const pomodorosForDate = data.pomodoros
 
     const completedTodos = todosForDate
-    .filter(Boolean)
-    .filter(t => t.completedAt)
+      .filter(Boolean)
+      .filter(t => t.completedAt)
     const completedPomodoros = pomodorosForDate
-    .filter(Boolean)
-    .filter(p => p.completed)
+      .filter(Boolean)
+      .filter(p => p.completed)
     const allPomodoros = pomodorosForDate
-    .filter(Boolean)
+      .filter(Boolean)
 
-    console.log({completedTodos})
+    console.log({ completedTodos })
     let timerangeInHours
 
     const minDate = Math.min(...completedPomodoros.map(p => +new Date(p.startedAt)))

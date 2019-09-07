@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 // import './About.styl'
 
 export default class GDPR extends Component {

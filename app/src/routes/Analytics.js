@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
@@ -18,11 +18,12 @@ dayjs.extend(weekOfYear)
 
 class Statistics extends Component {
   componentDidMount () {
-    const {actions} = this.props
+    const { actions } = this.props
     actions.apiGetAnalytics()
   }
+
   render () {
-    const {user, api, subscription, loading, actions} = this.props
+    const { user, api, subscription, loading, actions } = this.props
 
     if (!user || !user.subscription || user.subscription.status !== 'active') {
       return <Signup user={user} subscription={subscription} actions={actions} />
@@ -37,7 +38,7 @@ class Statistics extends Component {
       </div>
     }
 
-    let data = api.analytics
+    const data = api.analytics
 
     if (data.length < 2) {
       return <div className='content tac statistics-analytics'>

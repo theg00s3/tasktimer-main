@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 export default class Link extends Component {
   render () {
@@ -15,7 +15,7 @@ export default class Link extends Component {
         return
       }
 
-      const popStateEvent = new window.PopStateEvent('popstate', {url})
+      const popStateEvent = new window.PopStateEvent('popstate', { url })
       popStateEvent.url = url
       window.history.pushState(null, document.title, url)
       window.dispatchEvent(popStateEvent)

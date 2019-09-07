@@ -1,5 +1,5 @@
 /*     */
-import {START_TIMER, RESET_TIMER, STOP_TIMER, END_TIMER} from '../actions/timer'
+import { START_TIMER, RESET_TIMER, STOP_TIMER, END_TIMER } from '../actions/timer'
 
 export const defaultState = {}
 

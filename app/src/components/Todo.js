@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {findDOMNode} from 'react-dom'
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import './Todo.styl'
 
 const ESCAPE_KEY = 27
@@ -14,25 +14,25 @@ class Todo extends Component {
   }
 
   startEditing () {
-    const {todo, editable} = this.props
+    const { todo, editable } = this.props
     if (!editable) return
-    this.setState({editing: true, editText: todo.text})
+    this.setState({ editing: true, editText: todo.text })
     setTimeout(function () {
       findDOMNode(this.refs.editField).focus()
     }.bind(this), 100)
   }
 
   onBlur () {
-    this.setState({editing: false, editText: ''})
+    this.setState({ editing: false, editText: '' })
   }
 
   onChange (event) {
     const editText = event.target.value
-    this.setState({editText})
+    this.setState({ editText })
   }
 
   onKeyDown (event) {
-    const {todo, actions} = this.props
+    const { todo, actions } = this.props
     switch (event.keyCode) {
       case ENTER_KEY: {
         actions.updateTodo({
@@ -50,7 +50,7 @@ class Todo extends Component {
   }
 
   render () {
-    const {todo, actions, completable, editable, deletable} = this.props
+    const { todo, actions, completable, editable, deletable } = this.props
 
     let className = 'todo '
     className += todo.completable ? 'completable ' : ''

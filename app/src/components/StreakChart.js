@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   ResponsiveContainer, LineChart, Line
 } from 'recharts'
 
 export default class Streak extends Component {
   render () {
-    const {analytics} = this.props
+    const { analytics } = this.props
 
     return <ResponsiveContainer
       width={'100%'}

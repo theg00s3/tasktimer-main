@@ -35,7 +35,7 @@ class TodoForm extends Component {
 
       {showNew && <div className={`todo-form-container ${showLoading ? 'loading' : ''}`}>
         {showTitles && <h1 className={` ${newTodos.length === 0 ? 'all-done-title' : ''}`}>Todo</h1>}
-        {newTodos.length > 0 && renderTodoListWith(newTodos, actions, {completable, editable, deletable})}
+        {newTodos.length > 0 && renderTodoListWith(newTodos, actions, { completable, editable, deletable })}
         {newTodos.length === 0 && <div className='content'>
           <div className='todo'>
             <span className='text all-done'>All done</span>
@@ -44,7 +44,7 @@ class TodoForm extends Component {
       </div>}
 
       {showTitles && <h1 className=''>Done</h1>}
-      {renderTodoListWith(doneTodos, actions, {completable, editable, deletable})}
+      {renderTodoListWith(doneTodos, actions, { completable, editable, deletable })}
 
       {showStatsLink && <Link className='small vam button' to='/statistics'>Show in stats</Link>}
     </div>
@@ -53,8 +53,8 @@ class TodoForm extends Component {
 
 export default TodoForm
 
-export function renderTodoListWith (todos, actions, {completable = true, editable = true, deletable = true} = {}) {
-  console.log({todos})
+export function renderTodoListWith (todos, actions, { completable = true, editable = true, deletable = true } = {}) {
+  console.log({ todos })
   return <ul className='todo-form'>
     {todos.map((todo) => {
       return <Todo key={todo.id} index={todo.id} todo={todo} todos={todos} actions={actions} completable={completable} editable={editable} deletable={deletable} />

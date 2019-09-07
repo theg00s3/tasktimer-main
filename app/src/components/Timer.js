@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Timer.styl'
 
 export default class Timer extends Component {
@@ -7,14 +7,17 @@ export default class Timer extends Component {
     this.editingMinutes = false
     this.editingSeconds = false
   }
+
   editMinutes () {
     this.setState({ editingMinutes: !this.state.editingMinutes })
   }
+
   editSeconds () {
     this.setState({
       editingSeconds: !this.state.editingSeconds
     })
   }
+
   submitMinutes (event) {
     const { actions } = this.props
 
@@ -23,9 +26,10 @@ export default class Timer extends Component {
     actions.startStopTimer(minutes, 'custom')
     this.setState({ editingMinutes: false })
   }
+
   render () {
-    const {timer} = this.props
-    const [_, minutes, seconds] = timer.match(/(\d+):(\d+)/)
+    const { timer } = this.props
+    const [, minutes, seconds] = timer.match(/(\d+):(\d+)/)
 
     const editing = (this.state || {}).editingMinutes
     return <div id='timer' className='timer'>

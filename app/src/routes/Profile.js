@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
@@ -11,7 +11,7 @@ dayjs.extend(utc)
 
 class Profile extends Component {
   render () {
-    const {user, subscription, actions, darkMode} = this.props
+    const { user, subscription, actions, darkMode } = this.props
 
     if (!user) {
       return <Login />

@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import * as actions from '../actions'
@@ -11,7 +11,7 @@ dayjs.extend(utc)
 
 class Pro extends Component {
   render () {
-    const {user, subscription, actions} = this.props
+    const { user, subscription, actions } = this.props
 
     if (user && user.subscription && user.subscription.status === 'active') {
       return <div className='content'>

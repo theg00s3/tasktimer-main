@@ -5,4 +5,4 @@ import { storiesOf } from '@storybook/react'
 import NavigationBar from '../src/components/NavigationBar'
 
 storiesOf('NavigationBar', module)
-  .add('standard', () => <NavigationBar loading={{loadingUser: false}} />)
+  .add('standard', () => <NavigationBar loading={{ loadingUser: false }} />)

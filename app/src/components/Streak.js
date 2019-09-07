@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Streak.styl'
 import StreakChart from './StreakChart'
 
 export default class Streak extends Component {
   render () {
-    const {analytics} = this.props
+    const { analytics } = this.props
 
     const { longest, average } = calcStreaks(analytics)
 
@@ -39,5 +39,5 @@ function calcStreaks (analytics) {
       streak.current = 0
     }
     return streak
-  }, {longest: 0, streaks: [], current: 0, average: 0})
+  }, { longest: 0, streaks: [], current: 0, average: 0 })
 }

@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './TimerButtons.styl'
 
 export default class TimerButtons extends Component {
   startStopTimer (minutes, type) {
-    const {actions} = this.props
+    const { actions } = this.props
     actions.startStopTimer(minutes, type)
   }
 

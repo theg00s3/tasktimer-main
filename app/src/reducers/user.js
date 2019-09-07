@@ -1,4 +1,4 @@
-import {LOAD_USER_SUCCESS, LOGOUT_USER_SUCCESS, LOAD_USER_ERROR, LOGOUT_USER_ERROR} from '../actions'
+import { LOAD_USER_SUCCESS, LOGOUT_USER_SUCCESS, LOAD_USER_ERROR, LOGOUT_USER_ERROR } from '../actions'
 
 export const defaultState = null
 

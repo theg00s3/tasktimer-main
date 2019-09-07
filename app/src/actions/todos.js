@@ -24,13 +24,13 @@ export function addTodo (todo) {
   return (dispatch, getState) => {
     if (!todo.createdAt) todo.createdAt = new Date()
     apiCreateTodo(todo)(dispatch, getState)
-    return dispatch({type: ADD_TODO_SUCCESS, payload: todo})
+    return dispatch({ type: ADD_TODO_SUCCESS, payload: todo })
   }
 }
 
 export function toggleCompleteTodo (todo) {
   const completed = !todo.completed
-  const updatedTodo = {...todo, completed}
+  const updatedTodo = { ...todo, completed }
   if (completed) updatedTodo.completedAt = new Date()
   else delete updatedTodo.completedAt
   AnalyticsService.track('toggle-complete-todo', todo)
@@ -39,7 +39,7 @@ export function toggleCompleteTodo (todo) {
 
 export function toggleDeleteTodo (todo) {
   const deleted = !todo.deleted
-  const updatedTodo = {...todo, deleted}
+  const updatedTodo = { ...todo, deleted }
   if (deleted) updatedTodo.deletedAt = new Date()
   else delete updatedTodo.deletedAt
   AnalyticsService.track('toggle-delete-todo', todo)
@@ -50,9 +50,9 @@ export function updateTodo (todo, type = 'UPDATE') {
   AnalyticsService.track('update-todo', todo)
   return (dispatch, getState) => {
     NotificationCenter.emit('updateTodo')
-    const {todos} = getState()
-    const [oldTodo] = todos.filter(({_id}) => todo._id === _id)
-    apiUpdateTodo({_id: todo._id, text: todo.text, completedAt: todo.completedAt, completed: todo.completed, deleted: todo.deleted, deletedAt: todo.deletedAt})(dispatch, getState)
-    return dispatch({type: `${type}_TODO_SUCCESS`, payload: {todo, oldTodo}})
+    const { todos } = getState()
+    const [oldTodo] = todos.filter(({ _id }) => todo._id === _id)
+    apiUpdateTodo({ _id: todo._id, text: todo.text, completedAt: todo.completedAt, completed: todo.completed, deleted: todo.deleted, deletedAt: todo.deletedAt })(dispatch, getState)
+    return dispatch({ type: `${type}_TODO_SUCCESS`, payload: { todo, oldTodo } })
   }
 }

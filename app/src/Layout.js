@@ -2,13 +2,13 @@ import NavigationBar from './components/NavigationBar'
 import MainFooter from './components/MainFooter'
 import * as actions from './actions'
 
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class Layout extends Component {
   render (state, dispatch) {
-    const {actions, user, loading, currentUrl, darkMode} = this.props
+    const { actions, user, loading, currentUrl, darkMode } = this.props
     return <div className={darkMode.enabled ? 'dark-mode' : ''}>
       <NavigationBar actions={actions} user={user} loading={loading} currentUrl={currentUrl} />
 
@@ -30,5 +30,5 @@ export default connect(
       darkMode: state.darkMode
     }
   },
-  (dispatch) => { return {actions: bindActionCreators(actions, dispatch)} }
+  (dispatch) => { return { actions: bindActionCreators(actions, dispatch) } }
 )(Layout)

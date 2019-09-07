@@ -22,6 +22,6 @@ function on (topic, callback) {
 }
 function emit (topic, payload) {
   events.on
-  .filter((ev) => { return ev.topic === topic })
-  .forEach(({callback}) => { callback(payload) })
+    .filter((ev) => { return ev.topic === topic })
+    .forEach(({ callback }) => { callback(payload) })
 }

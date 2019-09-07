@@ -2,9 +2,9 @@ import Timer from './modules/Timer'
 import Sounds from './modules/Sounds'
 import NotificationService from './modules/NotificationService'
 import reduxStore from './reduxStore'
-import {tickTimer, resumeTimer, endTimer, loadUser, grantNotificationPermission} from './actions'
+import { tickTimer, resumeTimer, endTimer, loadUser, grantNotificationPermission } from './actions'
 
-const {getState, dispatch} = reduxStore
+const { getState, dispatch } = reduxStore
 
 export default function init () {
   window.USE_PROD = /pomodoro/.test(window.location.hostname) || localStorage.USE_PROD === 'true'
@@ -32,11 +32,9 @@ export default function init () {
       return
     }
     NotificationService.requestPermission(() => {
-      debugger
-      dispatch(grantNotificationPermission({grant: true}))
+      dispatch(grantNotificationPermission({ grant: true }))
     }, () => {
-      debugger
-      dispatch(grantNotificationPermission({grant: false}))
+      dispatch(grantNotificationPermission({ grant: false }))
     })
   }
 
@@ -47,7 +45,7 @@ export default function init () {
     playTimerEndSound()
   })
 
-  const {pomodoro} = state
+  const { pomodoro } = state
 
   if (pomodoro && pomodoro.startedAt) {
     if (+new Date(pomodoro.startedAt) + pomodoro.minutes * 60 < Date.now()) {

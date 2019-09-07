@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Link from './utils/Link'
 import './User.styl'
 
 export default class User extends Component {
   render () {
-    const {user, active} = this.props
+    const { user, active } = this.props
     if (!user) return null
     const href = `/profile`
 

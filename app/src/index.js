@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from 'react-dom'
+import { render } from 'react-dom'
 import Main from './Main'
 import * as Sentry from '@sentry/browser'
 import init from './init'

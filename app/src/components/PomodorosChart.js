@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   ResponsiveContainer, LineChart, Line, Tooltip
 } from 'recharts'
 
 export default class PomodorosChart extends Component {
   render () {
-    const {pomodoros, micro = false} = this.props
+    const { pomodoros, micro = false } = this.props
     const pomodorosForChart = pomodoros
 
     const pomodorosChartData = pomodorosChartDataByHalfHourFor(pomodorosForChart)
@@ -48,12 +48,12 @@ function pomodorosChartDataByHalfHourFor (pomodoros) {
   pomodorosByKey = fillGaps(pomodorosByKey, pomodoros.map(p => p.startedAt))
 
   return Object.keys(pomodorosByKey)
-  .map(key => {
-    const pomodoros = pomodorosByKey[key]
-    const duration = durationInPomodoros(pomodoros)
-    return {key, duration, pomodoros, name: key, value: duration}
-  })
-  .sort((a, b) => a.key < b.key ? -1 : 1)
+    .map(key => {
+      const pomodoros = pomodorosByKey[key]
+      const duration = durationInPomodoros(pomodoros)
+      return { key, duration, pomodoros, name: key, value: duration }
+    })
+    .sort((a, b) => a.key < b.key ? -1 : 1)
 }
 
 function fillGaps (pomodorosByKey, pomodorosStartedAt) {

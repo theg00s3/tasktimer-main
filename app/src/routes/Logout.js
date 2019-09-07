@@ -1,13 +1,14 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import * as actions from '../actions'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class Logout extends Component {
   componentDidMount () {
-    const {logoutUser} = this.props.actions
+    const { logoutUser } = this.props.actions
     logoutUser()
   }
+
   render () {
     return <div className='content'>
       <div className='tac'>

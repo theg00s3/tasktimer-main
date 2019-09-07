@@ -21,7 +21,7 @@ export function identifyUser (user) {
 
 export function loadUser () {
   return (dispatch, getState) => {
-    dispatch({type: LOAD_USER_REQUEST})
+    dispatch({ type: LOAD_USER_REQUEST })
     const baseUrl = /pomodoro/.test(window.location.hostname) || window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
     const url = baseUrl + '/user/info'
 
@@ -30,19 +30,19 @@ export function loadUser () {
       cache: 'no-cache',
       mode: 'cors',
       headers: {
-        'Accept': 'application/json'
+        Accept: 'application/json'
       }
     })
       .then(r => r.json())
       .then(json => {
         identifyUser(json)
-        dispatch({type: LOAD_USER_SUCCESS, payload: json})
+        dispatch({ type: LOAD_USER_SUCCESS, payload: json })
         AnalyticsService.track('load-user-success', json)
         apiGetPomodorosForDay()(dispatch, getState)
         apiGetTodolist()(dispatch, getState)
       })
       .catch((err) => {
-        dispatch({type: LOAD_USER_ERROR, payload: err})
+        dispatch({ type: LOAD_USER_ERROR, payload: err })
         if (window.USE_PROD) { return }
         if (!localStorage.testUser) { return }
 
@@ -50,11 +50,11 @@ export function loadUser () {
         dispatch({
           type: LOAD_USER_SUCCESS,
           payload: {
-            '_id': '5a9fe4e085d766000c002636',
-            'apikey': 'xxx',
-            'id': '2662706',
-            'avatar': 'https://avatars0.githubusercontent.com/u/2662706?v=4',
-            'username': 'christian-fei'
+            _id: '5a9fe4e085d766000c002636',
+            apikey: 'xxx',
+            id: '2662706',
+            avatar: 'https://avatars0.githubusercontent.com/u/2662706?v=4',
+            username: 'christian-fei'
           }
         })
       })
@@ -63,15 +63,15 @@ export function loadUser () {
 
 export function logoutUser () {
   return (dispatch, getState) => {
-    dispatch({type: LOGOUT_USER_REQUEST})
-    window.fetch('https://api.pomodoro.cc/user/logout', {credentials: 'include'})
+    dispatch({ type: LOGOUT_USER_REQUEST })
+    window.fetch('https://api.pomodoro.cc/user/logout', { credentials: 'include' })
       .then(() => {
-        dispatch({type: LOGOUT_USER_SUCCESS, payload: null})
+        dispatch({ type: LOGOUT_USER_SUCCESS, payload: null })
         AnalyticsService.track('logout-user-success')
       })
       .catch((err) => {
         console.error(LOGOUT_USER_ERROR, err)
-        dispatch({type: LOGOUT_USER_ERROR, payload: err})
+        dispatch({ type: LOGOUT_USER_ERROR, payload: err })
         AnalyticsService.track('logout-user-error', err)
       })
   }

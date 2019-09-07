@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './SoundSettings.styl'
 
 export default class SoundSettings extends Component {
   render () {
-    const {actions, settings, darkMode} = this.props
-    const {tickSoundEnabled, ringSoundEnabled} = settings
+    const { actions, settings, darkMode } = this.props
+    const { tickSoundEnabled, ringSoundEnabled } = settings
     return <div className='sound-settings'>
       <button onClick={() => actions.toggleTickSound()} className='ticking-sound-toggle'>
         {darkMode && !darkMode.enabled && <i className={'vam icon volume ' + (tickSoundEnabled ? '' : 'disabled')} />}

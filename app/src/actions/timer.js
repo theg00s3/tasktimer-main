@@ -2,10 +2,10 @@
 import Timer from '../modules/Timer'
 import TimeFormatter from '../modules/TimeFormatter'
 import AnalyticsService from '../modules/AnalyticsService'
-import {NOOP} from './'
+import { NOOP, apiCreatePomodoro, apiGetPomodorosForDay } from './'
 import NotificationCenter from '../modules/NotificationCenter'
 import NotificationService from '../modules/NotificationService'
-import { apiCreatePomodoro, apiGetPomodorosForDay } from '../actions'
+
 import { apiGetAnalytics } from './api'
 export const START_TIMER = 'START_TIMER'
 export const RESUME_TIMER = 'RESUME_TIMER'
@@ -17,12 +17,12 @@ export const TICK_TIMER = 'TICK_TIMER'
 const title = 'Pomodoro.cc - Time tracking with the Pomodoro technique'
 
 function noop () {
-  return {type: NOOP, payload: {}}
+  return { type: NOOP, payload: {} }
 }
 
 export function startStopTimer (minutes, type) {
   return (dispatch, getState) => {
-    const {pomodoro} = getState()
+    const { pomodoro } = getState()
     if (pomodoro.minutes) {
       forceEndTimer()(dispatch, getState)
     }
@@ -37,9 +37,9 @@ export function startTimer (minutes, type) {
     if (Timer.isInProgress()) return noop()
     Timer.start(minutes * 60)
     const startedAt = new Date()
-    const pomodoro = {minutes, type, startedAt}
+    const pomodoro = { minutes, type, startedAt }
     AnalyticsService.track('timer-start', pomodoro)
-    dispatch({type: START_TIMER, payload: pomodoro})
+    dispatch({ type: START_TIMER, payload: pomodoro })
   }
 }
 
@@ -56,7 +56,7 @@ export function resumeTimer (pomodoro) {
   if (remaining <= 0) return { type: RESET_TIMER, payload: {} }
 
   Timer.start(remaining)
-  return {type: RESUME_TIMER, payload: {remaining}}
+  return { type: RESUME_TIMER, payload: { remaining } }
 }
 
 export function endTimer () {
@@ -85,7 +85,7 @@ export function forceEndTimer () {
 export function tickTimer (remaining) {
   const formatted = TimeFormatter.formatSeconds(remaining)
   document.title = `${formatted} - ${title}`
-  return {type: TICK_TIMER, payload: {remaining}}
+  return { type: TICK_TIMER, payload: { remaining } }
 }
 
 function saveAndDispatch (action, cb = Function.prototype) {
@@ -100,7 +100,7 @@ function saveAndDispatch (action, cb = Function.prototype) {
 
     apiCreatePomodoro(pomodoro)(dispatch, getState)
 
-    dispatch({type: action, payload: {pomodoro}})
+    dispatch({ type: action, payload: { pomodoro } })
     AnalyticsService.track('timer-stop', pomodoro)
     apiGetPomodorosForDay()(dispatch, getState)
     apiGetAnalytics()(dispatch, getState)

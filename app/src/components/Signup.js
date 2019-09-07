@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Signup.styl'
 import SignupButton from './SignupButton'
 import Link from './utils/Link'
@@ -9,7 +9,7 @@ import DarkmodeImage from '../assets/images/darkmode.png'
 
 export default class Signup extends Component {
   render () {
-    const {user, subscription, actions} = this.props
+    const { user, subscription, actions } = this.props
     return <div className='content tac'>
       <div className='pad tac'>
         <h1 className='title'>Signup to <span className='pro-badge'>Pro</span> today!</h1>
@@ -56,7 +56,7 @@ export default class Signup extends Component {
             ⚡️ Analytics of your historic timers and todos
             <br />
             <br />
-            <img src={AnalyticsImage} alt='analytics' style={{width: '100%', maxWidth: '700px'}} />
+            <img src={AnalyticsImage} alt='analytics' style={{ width: '100%', maxWidth: '700px' }} />
           </li>
           <li className=''>
             ⚡️ Statistics about your days, weeks and months
@@ -65,7 +65,7 @@ export default class Signup extends Component {
             avoid using Excel to track your time, you can access your historic timers and todos through pomodoro.cc
             <br />
             <br />
-            <img src={StatisticsImage} alt='statistics' style={{width: '100%', maxWidth: '700px'}} />
+            <img src={StatisticsImage} alt='statistics' style={{ width: '100%', maxWidth: '700px' }} />
           </li>
           <li className=''>
             ️️️⚡️ Sync data between devices
@@ -74,7 +74,7 @@ export default class Signup extends Component {
             ️️️⚡️ Dark mode
             <br />
             <br />
-            <img src={DarkmodeImage} alt='darkMode' style={{width: '100%', maxWidth: '700px'}} />
+            <img src={DarkmodeImage} alt='darkMode' style={{ width: '100%', maxWidth: '700px' }} />
           </li>
           <li className=''>
             ⚡️ Access your account data via API

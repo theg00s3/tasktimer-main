@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Support.styl'
 import Productivity from '../assets/images/productivity.jpeg'
 const logo = require('../assets/images/pomodoro.cc.png')

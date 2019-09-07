@@ -1,7 +1,7 @@
 import timer from './timer'
-import {tickTimer} from '../actions'
+import { tickTimer } from '../actions'
 
-const dummyAction = {type: 'DUMMY', payload: {}}
+const dummyAction = { type: 'DUMMY', payload: {} }
 
 describe('timer reducer', () => {
   it('default state is "00:00"', () => {

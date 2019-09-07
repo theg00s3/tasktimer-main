@@ -6,7 +6,7 @@ context.skip('Todolist', () => {
   })
 
   it('add a todo', () => {
-    cy.get('#todo-input').type('Write UAT with Cypress{enter}', {delay: 60})
+    cy.get('#todo-input').type('Write UAT with Cypress{enter}', { delay: 60 })
     cy.get('#todo-input').should('be.empty')
     cy.get('.todo-form:first').should('contain', 'Write UAT with Cypress')
   })
@@ -19,6 +19,6 @@ context.skip('Todolist', () => {
 
   it('complete a todo', () => {
     cy.scrollTo('bottom')
-    cy.get('.todo-form:first').find('.edit:first').click({force: true})
+    cy.get('.todo-form:first').find('.edit:first').click({ force: true })
   })
 })

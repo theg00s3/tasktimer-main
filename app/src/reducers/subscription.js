@@ -1,4 +1,4 @@
-import {CREATE_SUBSCRIPTION, CREATE_SUBSCRIPTION_ERROR, CREATE_SUBSCRIPTION_SUCCESS} from '../actions'
+import { CREATE_SUBSCRIPTION, CREATE_SUBSCRIPTION_ERROR, CREATE_SUBSCRIPTION_SUCCESS } from '../actions'
 
 export const defaultState = {
   errorMessage: '',

@@ -1,8 +1,8 @@
 /* global expect */
-import settings, {defaultState} from './settings'
-import {toggleTickSound, toggleRingSound, grantNotificationPermission} from '../actions'
+import settings, { defaultState } from './settings'
+import { toggleTickSound, toggleRingSound, grantNotificationPermission } from '../actions'
 
-const dummyAction = {type: '', payload: {}}
+const dummyAction = { type: '', payload: {} }
 
 describe('settings reducer', () => {
   it('sets default state when not specified', () => {
@@ -27,7 +27,7 @@ describe('settings reducer', () => {
     })
 
     expect(
-      settings(defaultState, grantNotificationPermission({grant: true}))
+      settings(defaultState, grantNotificationPermission({ grant: true }))
     ).toStrictEqual({
       ...defaultState,
       notificationPermissionGranted: true

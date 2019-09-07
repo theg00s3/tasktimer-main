@@ -1,7 +1,7 @@
 import * as actions from '../actions'
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Link from '../components/utils/Link'
 
 class NotFound extends Component {
