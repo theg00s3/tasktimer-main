@@ -27,7 +27,17 @@ class Profile extends Component {
       {user.subscription &&
         <div className='pad tac1'>
           <label>Subscription status</label> {user.subscription && user.subscription.status}
+          {user.hasActiveSubscription &&
+          <div className='pad'>
+            <span onClick={() => {
+              if (!confirm('Are you sure you want to cancel your subscription to Pomodoro.cc Monthly? Statistics, Analytics and Dark mode will be gone')) return
+              actions.cancelSubscription()
+            }}>Cancel subscription</span>
+          </div>}
         </div>}
+
+      {subscription.successMessage && <div className='success-message'>{subscription.successMessage}</div>}
+      {subscription.errorMessage && <div className='error-message'>{subscription.errorMessage}</div>}
 
       {user.subscription && user.subscription.start_date &&
         <div className='pad tac1'>
