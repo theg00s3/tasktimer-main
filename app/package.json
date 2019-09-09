@@ -34,8 +34,8 @@
   "description": "Install the dependencies first with",
   "main": "src/index.js",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
@@ -52,8 +52,8 @@
     "parcel-bundler": "^1.12.3",
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.5",
-    "sinon": "^7.4.1",
-    "stylus": "^0.54.5",
+    "sinon": "^7.4.2",
+    "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2"
   },
   "optionalDependencies": {
