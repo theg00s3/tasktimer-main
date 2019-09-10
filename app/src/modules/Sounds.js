@@ -23,11 +23,11 @@ function ringSoundEnabled () {
 }
 
 function startTickingSound (settings = { tickSoundEnabled: false }) {
-  tickSound.play()
-    .catch(err => {
-      console.error(err)
-      tickSound.pause()
-    })
+  const promise = tickSound.play()
+  promise && promise.catch(err => {
+    console.error(err)
+    tickSound.pause()
+  })
 }
 
 function stopTickingSound () {
@@ -35,7 +35,8 @@ function stopTickingSound () {
 }
 
 function startRingingSound () {
-  ringSound.play().catch(err => {
+  const promise = ringSound.play()
+  promise && promise.catch(err => {
     console.error(err)
   })
 }
