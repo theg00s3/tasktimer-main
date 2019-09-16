@@ -8,6 +8,7 @@
     "build": "rm -rf dist; parcel build src/index.html",
     "now-build": "NODE_ENV=production npm run build",
     "test": "jest --testRegex '((\\.|/)(test))\\.[jt]sx?$'",
+    "uat": "cypress run",
     "cypress": "cypress",
     "lint": "standard",
     "storybook": "start-storybook -p 6006",
