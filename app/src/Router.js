@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Layout from './Layout'
 import Main from './routes/Main'
-import Open from './routes/Open'
 import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
 import About from './routes/About'
@@ -23,7 +22,6 @@ export default class Root extends Component {
       this.setState({ currentUrl: url })
       if (url === '/') return this.setState({ current: <Main /> })
       if (url === '/about') return this.setState({ current: <About /> })
-      if (url === '/open') return this.setState({ current: <Open /> })
       if (url === '/support') return this.setState({ current: <Support /> })
       if (url === '/login') return this.setState({ current: <Login /> })
       if (url === '/logout') return this.setState({ current: <Logout /> })
