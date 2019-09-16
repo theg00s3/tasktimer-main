@@ -8,6 +8,7 @@ import * as actions from '../actions'
 import TodoForm from '../components/TodoForm'
 import toISOSubstring from '../modules/to-iso-substring'
 import PomodorosChart from '../components/PomodorosChart'
+import TodosChart from '../components/TodosChart'
 import './Statistics.styl'
 import Signup from '../components/Signup'
 import 'flatpickr/dist/themes/light.css'
@@ -137,6 +138,10 @@ class Statistics extends Component {
           {allPomodoros.length > 0 && <div>
             <strong>Pomodoros for {date}</strong>
             <PomodorosChart pomodoros={allPomodoros} micro={false} />
+          </div>}
+          {completedTodos.length > 0 && <div>
+            <strong>Todos for {date}</strong>
+            <TodosChart todos={completedTodos} micro={false} />
           </div>}
 
           <br />
