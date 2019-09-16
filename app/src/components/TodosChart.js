@@ -85,8 +85,8 @@ function range (from, to) {
 
 function durationInPomodoros (todos) {
   const duration = todos.reduce((acc, pomodoro) => {
-    if (pomodoro.completedAt && pomodoro.cancelledAt) {
-      const diffInMs = Math.abs(new Date(pomodoro.completedAt) - new Date(pomodoro.cancelledAt))
+    if (pomodoro.completedAt && pomodoro.createdAt) {
+      const diffInMs = Math.abs(new Date(pomodoro.completedAt) - new Date(pomodoro.createdAt))
       const diffInPomodoros = diffInMs / (25 * 60 * 1000)
       return acc + diffInPomodoros
       /*
