@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  ResponsiveContainer, LineChart, Line, Tooltip
+  ResponsiveContainer, LineChart, Line, Tooltip, XAxis
 } from 'recharts'
 
 export default class TodosChart extends Component {
@@ -30,6 +30,7 @@ export default class TodosChart extends Component {
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => todosChartData[value] && todosChartData[value].key} />}
+        <XAxis dataKey='key' />
       </LineChart>
     </ResponsiveContainer>
   }
