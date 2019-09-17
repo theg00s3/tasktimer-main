@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  ResponsiveContainer, LineChart, Line, Tooltip, XAxis
+  ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis
 } from 'recharts'
 
 export default class PomodorosChart extends Component {
@@ -30,6 +30,7 @@ export default class PomodorosChart extends Component {
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
+        {!micro && <YAxis type='number' domain={[0, 'dataMax']} />}
         {/* <XAxis dataKey='key' /> */}
       </LineChart>
     </ResponsiveContainer>

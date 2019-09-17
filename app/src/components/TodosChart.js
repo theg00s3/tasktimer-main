@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  ResponsiveContainer, LineChart, Line, Tooltip, XAxis
+  ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis
 } from 'recharts'
 
 export default class TodosChart extends Component {
@@ -30,6 +30,7 @@ export default class TodosChart extends Component {
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => todosChartData[value] && todosChartData[value].key} />}
+        {!micro && <YAxis type='number' domain={[0, 'dataMax']} />}
         {/* <XAxis dataKey='key' /> */}
       </LineChart>
     </ResponsiveContainer>
@@ -85,17 +86,13 @@ function range (from, to) {
 }
 
 function durationInPomodoros (todos) {
-  const duration = todos.reduce((acc, pomodoro) => {
-    if (pomodoro.completedAt && pomodoro.createdAt) {
-      const diffInMs = Math.abs(new Date(pomodoro.completedAt) - new Date(pomodoro.createdAt))
+  const duration = todos.reduce((acc, todo) => {
+    if (todo.completedAt && todo.createdAt) {
+      const diffInMs = Math.abs(new Date(todo.completedAt) - new Date(todo.createdAt))
       const diffInPomodoros = diffInMs / (25 * 60 * 1000)
       return acc + diffInPomodoros
-      /*
-      1 pomo = 1500000ms
-             = 1ms
-      */
     }
-    return acc + pomodoro.minutes / 25
+    return acc
   }, 0)
 
   return duration.toFixed(1)
