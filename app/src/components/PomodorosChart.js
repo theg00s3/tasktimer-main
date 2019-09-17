@@ -30,7 +30,7 @@ export default class PomodorosChart extends Component {
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => pomodorosChartData[value] && pomodorosChartData[value].key} />}
-        <XAxis dataKey='key' />
+        {/* <XAxis dataKey='key' /> */}
       </LineChart>
     </ResponsiveContainer>
   }

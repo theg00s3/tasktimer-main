@@ -30,7 +30,7 @@ export default class TodosChart extends Component {
 
         {!micro && <Tooltip
           labelFormatter={(value, name, props) => todosChartData[value] && todosChartData[value].key} />}
-        <XAxis dataKey='key' />
+        {/* <XAxis dataKey='key' /> */}
       </LineChart>
     </ResponsiveContainer>
   }
