@@ -2,6 +2,7 @@
   "name": "app.pomodoro.cc",
   "version": "1.0.0",
   "private": true,
+  "engines": { "node": "12.x" },
   "scripts": {
     "deploy": "now --target production",
     "start": "parcel src/index.html",
