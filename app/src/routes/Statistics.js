@@ -104,15 +104,13 @@ class Statistics extends Component {
       timerangeInHours = dayjs(maxDate).diff(minDate) / 1000 / 60 / 60
     }
 
-    return <div className='content'>
+    return <div className='content tac'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
-      <div className='pad'>
-        <StatisticsFilters
-          date={date}
-          analytics={api.analytics}
-          onChangeDate={this.changeDate.bind(this)} />
-      </div>
+      <StatisticsFilters
+        date={date}
+        analytics={api.analytics}
+        onChangeDate={this.changeDate.bind(this)} />
 
       <br />
 
