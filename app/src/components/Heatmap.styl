@@ -7,6 +7,7 @@
   overflow scroll
   user-select none
 
+
 .heatmap .month > span
   width 2em
   height 2em
@@ -16,6 +17,7 @@
   font-weight bold
   float left
   cursor pointer
+  line-height 1.6
 .heatmap .month [data-value='0']
   background lighten(red,44) !important
 .heatmap .month [data-value='1']
@@ -49,6 +51,8 @@
   background lighten(yellow, 50) !important
   border-color red !important
   border-bottom-color lighten(red,15) !important
+.dark-mode .heatmap .month > span
+  color black !important
 
 .month h3
   display block
