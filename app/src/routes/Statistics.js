@@ -104,7 +104,7 @@ class Statistics extends Component {
       timerangeInHours = dayjs(maxDate).diff(minDate) / 1000 / 60 / 60
     }
 
-    return <div className='content tac'>
+    return <div className='content'>
       <h1 className='title tac'>Statistics for {date}</h1>
 
       <StatisticsFilters
