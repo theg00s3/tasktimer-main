@@ -3,39 +3,62 @@
   display block
   max-width 600px
   width 100%
+  max-height 17em
+  overflow scroll
 
-.heatmap
-  overflow hidden
-.heatmap span
+// .heatmap
+//   overflow hidden
+.heatmap .month > span
   width 2em
   height 2em
-  background red !important
+  background lighten(red,10) !important
   border 1px solid #fff
   border 2px solid transparent !important
+  font-weight bold
   float left
-.heatmap [data-value='0']
+.heatmap .month [data-value='0']
   background lighten(red,44) !important
-.heatmap [data-value='1']
-.heatmap [data-value='2']
+.heatmap .month [data-value='1']
+.heatmap .month [data-value='2']
   background lighten(red,40) !important
-.heatmap [data-value='3']
-.heatmap [data-value='4']
+.heatmap .month [data-value='3']
+.heatmap .month [data-value='4']
   background lighten(red,37) !important
-.heatmap [data-value='5']
-.heatmap [data-value='6']
+.heatmap .month [data-value='5']
+.heatmap .month [data-value='6']
   background lighten(red,34) !important
-.heatmap [data-value='7']
-.heatmap [data-value='8']
+.heatmap .month [data-value='7']
+.heatmap .month [data-value='8']
   background lighten(red,30) !important
-.heatmap [data-value='9']
-.heatmap [data-value='10']
+.heatmap .month [data-value='9']
+.heatmap .month [data-value='10']
+  background lighten(red,25) !important
+.heatmap .month [data-value='11']
+.heatmap .month [data-value='12']
   background lighten(red,20) !important
-.heatmap [data-value='11']
-.heatmap [data-value='12']
-  background lighten(red,5) !important
-.heatmap [data-value='13']
-.heatmap [data-value='14']
-  background lighten(red,0) !important
-.heatmap .current
+.heatmap .month [data-value='13']
+.heatmap .month [data-value='14']
+  background lighten(red,16) !important
+.heatmap .month [data-value='15']
+.heatmap .month [data-value='16']
+  background lighten(red,13) !important
+.heatmap .month [data-value='17']
+.heatmap .month [data-value='18']
+  background lighten(red,10) !important
+.heatmap .month .current
   background lighten(yellow, 50) !important
-  border-bottom-color lighten(red,15)
+  border-color red !important
+  border-bottom-color lighten(red,15) !important
+
+.month h3
+  display block
+  font-size 1em
+  margin 0
+  padding 0
+  text-align-last left
+  font-weight bold
+  text-decoration underline
+.month
+  overflow hidden
+  // border 2px solid red
+  margin 0.3em
