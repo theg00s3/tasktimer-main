@@ -5,9 +5,8 @@
   width 100%
   max-height 17em
   overflow scroll
+  user-select none
 
-// .heatmap
-//   overflow hidden
 .heatmap .month > span
   width 2em
   height 2em
@@ -16,6 +15,7 @@
   border 2px solid transparent !important
   font-weight bold
   float left
+  cursor pointer
 .heatmap .month [data-value='0']
   background lighten(red,44) !important
 .heatmap .month [data-value='1']
@@ -60,5 +60,4 @@
   text-decoration underline
 .month
   overflow hidden
-  // border 2px solid red
   margin 0.3em
