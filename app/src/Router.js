@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Layout from './Layout'
 import Main from './routes/Main'
-import Support from './routes/Support'
 import FouroFour from './routes/FouroFour'
 import About from './routes/About'
 import GDPR from './routes/GDPR'
@@ -22,7 +21,6 @@ export default class Root extends Component {
       this.setState({ currentUrl: url })
       if (url === '/') return this.setState({ current: <Main /> })
       if (url === '/about') return this.setState({ current: <About /> })
-      if (url === '/support') return this.setState({ current: <Support /> })
       if (url === '/login') return this.setState({ current: <Login /> })
       if (url === '/logout') return this.setState({ current: <Logout /> })
       if (url === '/pro') return this.setState({ current: <Pro current={Date.now()} /> })

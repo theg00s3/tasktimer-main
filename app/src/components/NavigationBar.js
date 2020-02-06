@@ -13,7 +13,6 @@ export default class NavigationBar extends Component {
         <Link className={currentUrl === '/analytics' && 'active'} to='/analytics'>Analytics</Link>
         <Link className={currentUrl === '/statistics' && 'active'} to='/statistics'>Statistics</Link>
         {(!user || !user.subscription) && <Link className='pro' to='/pro'>Pro</Link>}
-        <Link className={currentUrl === '/support' && 'active'} to='/support'>Support us!</Link>
         <Link className={currentUrl === '/about' && 'active'} to='/about' id='about'>About</Link>
         {loading.loadingUser && <div className='float-right'>
           <div className='spinner' />
