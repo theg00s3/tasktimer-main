@@ -7,7 +7,6 @@
   overflow scroll
   user-select none
 
-
 .heatmap .month > span
   width 2em
   height 2em
@@ -18,6 +17,13 @@
   float left
   cursor pointer
   line-height 1.6
+
+.heatmap .month > span span
+  opacity 0.2
+  transition all .2s ease
+.heatmap .month > span:hover span,.heatmap .month > span.current span
+  opacity 1
+
 .heatmap .month [data-value='0']
   background lighten(red,44) !important
 .heatmap .month [data-value='1']
@@ -51,8 +57,10 @@
   background lighten(yellow, 50) !important
   border-color red !important
   border-bottom-color lighten(red,15) !important
-.dark-mode .heatmap .month > span
+.dark-mode .heatmap .month > span span
   color black !important
+.dark-mode .heatmap .month > span span
+  background transparent !important
 
 .month h3
   display block

@@ -36,7 +36,7 @@ export default class Heatmap extends Component {
             <h3>{monthYear}</h3>
             {data.map(a => {
               return <span className={`tooltip ${showCurrent && current === a.day && 'current'}`} onClick={() => onChangeDate && onChangeDate(a.day)} title={a.day} data-value={a.pomodoros.length}>
-                {a.day.substring(8)}
+                <span>{a.day.substring(8)}</span>
               </span>
             })}
           </div>
