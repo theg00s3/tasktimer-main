@@ -14,19 +14,32 @@
 .activity
   display block
   margin 1em auto !important
-  max-height 20em
-  max-width 20em
-  overflow-y scroll
-.activity-item
-  display block
+  max-width 30em
+  height 3em
+  overflow hidden
+.activity > *
   position relative
-  padding 0.5em
-  // border-bottom 2px solid color_pomodoro
+  float left
+  margin 0
+  padding 0
+  border 0
+  outline none
+  height 3em
 
 .idle-time
-  margin-top 0.5em
-  margin-bottom 1em
-.activity-type
+  display block
+  background #fefefe
+.activity-item
+  display block
+  background lighten(color_pomodoro, 40%)
+
+.activity > * span
+  font-size 0.8em
   position absolute
-  top 4em
-  left 0.75em
+  opacity 0
+  transition all .3s ease
+  z-index 9000
+.activity > *:hover span
+  opacity 1
+  background white
+  border-bottom 2px solid #333

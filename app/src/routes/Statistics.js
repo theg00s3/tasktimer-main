@@ -114,6 +114,42 @@ class Statistics extends Component {
 
       <br />
 
+      {allPomodoros.length > 0 && <div class='tac container'>
+        <h1>Activity</h1>
+        <ul class='activity'>
+          {allPomodoros
+              .reduce((acc, p, index, array) => {
+                const previous = array[index - 1]
+                let idleTimeInMillis
+                let idleTimeInMinutes
+                if (previous) {
+                  const currentStart = +new Date(p.startedAt)
+                  // const currentEnd = +new Date(p.cancelledAt ? p.cancelledAt : (+new Date(p.startedAt) + p.minutes * 60 * 1000))
+                  const previousEnd = +new Date(previous.cancelledAt ? previous.cancelledAt : (+new Date(previous.startedAt) + previous.minutes * 60 * 1000))
+
+                  idleTimeInMillis = currentStart - previousEnd
+                  idleTimeInMinutes = idleTimeInMillis / 1000 / 60
+                }
+                const start = Math.min(...array.map(p => new Date(p.startedAt)))
+                const end = Math.max(...array.map(p => new Date(p.startedAt)))
+                const dayDuration = end - start
+                const dayDurationInMinutes = parseInt(dayDuration / 1000 / 60, 10)
+
+                return acc.concat([
+                  idleTimeInMinutes && <li class='idle-time' style={{width: `${relativeWidth(idleTimeInMinutes, dayDurationInMinutes)}px`}}>
+                    <span>{humanizeMillis(idleTimeInMillis)}</span>
+                  </li>,
+                  <li class='activity-item' style={{width: `${relativeWidth(durationInMinutes(p), dayDurationInMinutes)}px`}}>
+                    <span>{humanizeMillis(durationInMillis(p))}</span>
+                  </li>
+                ].filter(Boolean))
+              }, [])
+              .map((timelineItem) => {
+                return timelineItem
+              })}
+        </ul>
+      </div>}
+
       {<div className={`pad ${loading.loadingPomodorosForDate && 'loading'}`}>
         <div>
           <div className='columns'>
@@ -164,39 +200,6 @@ class Statistics extends Component {
               <TodoForm showNew={false} showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>
           </div>}
-
-          {allPomodoros.length > 0 && <div class='tac container'>
-            <h1 >Activity</h1>
-            <ul class='activity'>
-              {allPomodoros.map((p, index, array) => {
-                const previous = array[index - 1]
-                let idleTime
-                if (previous) {
-                  const idleTimeInMillis = (+new Date(p.cancelledAt ? p.cancelledAt : (+new Date(p.startedAt) + p.minutes * 60 * 1000)) - +new Date(previous.startedAt))
-                  idleTime = humanizeMillis(idleTimeInMillis)
-                }
-
-                return <li class='activity-item'>
-                  <div class='idle-time'>
-                    {idleTime ? `💤  idle time ${idleTime}` : <span>&nbsp;</span>}
-                  </div>
-
-                  <span class='activity-type'>{p.type === 'pomodoro' ? '🍅' : '✋'}</span>
-                  <date>{new Date(p.startedAt).toISOString().substring(11, 19)}</date>
-                  &nbsp;-&nbsp;
-                  <date>{p.cancelledAt ? `${new Date(p.cancelledAt).toISOString().substring(11, 19)}` : `${new Date(+new Date(p.startedAt) + p.minutes * 60 * 1000).toISOString().substring(11, 19)}`}</date>
-                  <br />
-                  <span>
-                  duration:
-                    <b>
-                      {p.cancelledAt && `~ ${parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)) / 1000 / 60, 10)}min`}
-                      {!p.cancelledAt && `${p.minutes}min`}
-                    </b>
-                  </span>
-                </li>
-              })}
-            </ul>
-          </div>}
         </div>
       </div>}
     </div>
@@ -221,6 +224,21 @@ function durationFormatted (pomodoros) {
   const remainingMinutes = parseInt((durationInHours - fullHours) * 100, 10)
 
   return `${fullHours}h ${remainingMinutes}min`
+}
+
+function relativeWidth (pomodoroDurationInMinutes, wholeDurationInMinutes) {
+  return parseInt(pomodoroDurationInMinutes / wholeDurationInMinutes * 100 * 4, 10)
+}
+
+function durationInMinutes (p) {
+  if (!p.cancelledAt) return p.minutes
+
+  return parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)) / 1000 / 60, 10)
+}
+function durationInMillis (p) {
+  if (!p.cancelledAt) return p.minutes
+
+  return parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)), 10)
 }
 
 function pad (number) {
