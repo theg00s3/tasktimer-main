@@ -1,8 +1,9 @@
-import { TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT } from '../actions'
+import { TOGGLE_TICK_SOUND, TOGGLE_RING_SOUND, NOTIFICATION_PERMISSION_GRANT, CHECK_OUT_PRO } from '../actions'
 
 export const defaultState = {
   tickSoundEnabled: false,
   ringSoundEnabled: false,
+  checkedOutPro: false,
   notificationPermissionGranted: false
 }
 
@@ -24,6 +25,12 @@ export default function settings (state = defaultState, action) {
       return {
         ...state,
         notificationPermissionGranted: !!action.payload.grant
+      }
+    }
+    case CHECK_OUT_PRO : {
+      return {
+        ...state,
+        checkedOutPro: true
       }
     }
   }
