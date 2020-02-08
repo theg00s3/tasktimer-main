@@ -168,14 +168,31 @@ class Statistics extends Component {
           {allPomodoros.length > 0 && <div class='tac container'>
             <h1 >Activity</h1>
             <ul class='activity'>
-              {allPomodoros.map(p => {
+              {allPomodoros.map((p, index, array) => {
+                const previous = array[index - 1]
+                let idleTime
+                if (previous) {
+                  const idleTimeInMillis = (+new Date(p.cancelledAt ? p.cancelledAt : (+new Date(p.startedAt) + p.minutes * 60 * 1000)) - +new Date(previous.startedAt))
+                  idleTime = humanizeMillis(idleTimeInMillis)
+                }
+
                 return <li class='activity-item'>
-                started @ {new Date(p.startedAt).toISOString()}
+                  <div class='idle-time'>
+                    {idleTime ? `💤  idle time ${idleTime}` : <span>&nbsp;</span>}
+                  </div>
+
+                  <span class='activity-type'>{p.type === 'pomodoro' ? '🍅' : '✋'}</span>
+                  <date>{new Date(p.startedAt).toISOString().substring(11, 19)}</date>
+                  &nbsp;-&nbsp;
+                  <date>{p.cancelledAt ? `${new Date(p.cancelledAt).toISOString().substring(11, 19)}` : `${new Date(+new Date(p.startedAt) + p.minutes * 60 * 1000).toISOString().substring(11, 19)}`}</date>
                   <br />
-                  {p.type}
-                  <br />
-                  {p.cancelledAt && `~ ${parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)) / 1000 / 60, 10)}min (cancelled @ ${new Date(p.cancelledAt).toISOString()})`}
-                  {!p.cancelledAt && `${p.minutes}min`}
+                  <span>
+                  duration:
+                    <b>
+                      {p.cancelledAt && `~ ${parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)) / 1000 / 60, 10)}min`}
+                      {!p.cancelledAt && `${p.minutes}min`}
+                    </b>
+                  </span>
                 </li>
               })}
             </ul>
@@ -218,6 +235,22 @@ function hour (date) {
   return pad(new Date(date).getHours())
 }
 
+function humanizeMillis (ms) {
+  if (!ms) return ``
+  const hours = ms / (1000 * 60 * 60)
+  const wholeHours = parseInt(hours, 10)
+  const minutes = ms / (1000 * 60)
+  const wholeMinutes = parseInt(minutes, 10)
+  // const seconds = (minutes - wholeMinutes) * 60
+  // const wholeSeconds = parseInt(seconds, 10)
+  // const wholeMillis = parseInt((seconds - wholeSeconds) * 1000, 10)
+  let humanString = ``
+  if (wholeHours > 0) humanString += `${wholeHours}h `
+  if (wholeMinutes > 0) humanString += `${wholeMinutes}min `
+  // if (wholeSeconds > 0) humanString += `${wholeSeconds}s `
+  // humanString += `${wholeMillis}ms `
+  return humanString
+}
 export default connect(
   (state) => state,
   (dispatch) => ({
