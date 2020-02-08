@@ -122,7 +122,7 @@ class Statistics extends Component {
               completed pomodoros
             </div>
             <div className='column pad-v tac'>
-              <h1 className='no-m'>{durationInHours(allPomodoros)}<small>h</small></h1>
+              <h1 className='no-m'>{durationFormatted(allPomodoros)}</h1>
               focus time
             </div>
             {timerangeInHours && <div className='column pad-v tac'>
@@ -164,14 +164,30 @@ class Statistics extends Component {
               <TodoForm showNew={false} showDeleted todos={completedTodos} actions={actions} editable={false} completable={false} deletable={false} showTitles />
             </div>
           </div>}
+
+          {allPomodoros.length > 0 && <div class='tac container'>
+            <h1 >Activity</h1>
+            <ul class='activity'>
+              {allPomodoros.map(p => {
+                return <li class='activity-item'>
+                started @ {new Date(p.startedAt).toISOString()}
+                  <br />
+                  {p.type}
+                  <br />
+                  {p.cancelledAt && `~ ${parseInt((+new Date(p.cancelledAt) - +new Date(p.startedAt)) / 1000 / 60, 10)}min (cancelled @ ${new Date(p.cancelledAt).toISOString()})`}
+                  {!p.cancelledAt && `${p.minutes}min`}
+                </li>
+              })}
+            </ul>
+          </div>}
         </div>
       </div>}
     </div>
   }
 }
 
-function durationInHours (pomodoros) {
-  const duration = pomodoros.reduce((acc, pomodoro) => {
+function durationFormatted (pomodoros) {
+  const durationInHours = pomodoros.reduce((acc, pomodoro) => {
     if (pomodoro.startedAt && pomodoro.cancelledAt) {
       const diffInMs = Math.abs(new Date(pomodoro.startedAt) - new Date(pomodoro.cancelledAt))
       const diffInPomodoros = diffInMs / (60 * 60 * 1000)
@@ -184,7 +200,10 @@ function durationInHours (pomodoros) {
     return acc + pomodoro.minutes / 60
   }, 0)
 
-  return duration.toFixed(2)
+  const fullHours = parseInt(durationInHours, 10)
+  const remainingMinutes = parseInt((durationInHours - fullHours) * 100, 10)
+
+  return `${fullHours}h ${remainingMinutes}min`
 }
 
 function pad (number) {
