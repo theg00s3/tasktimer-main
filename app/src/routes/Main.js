@@ -28,8 +28,15 @@ class Main extends Component {
       : (loading.loadingUser ? [] : todos)
 
     return <div className='content' id='start'>
-      {!settings.checkedOutPro && <div class='alert'>Check out <Link onClick={() => actions.checkOutPro()} to='/pro'>Pro</Link></div>}
-
+      {/*
+      {!settings.checkedOutPro && <div class='alert tac'>
+        Check out <Link className='white' onClick={() => actions.checkOutPro()} to='/pro'>
+          <span class='tdu'>Pro</span>
+        </Link>!
+        <br />
+        You'll have daily Statistics, Analytics, Dark mode + API access
+      </div>}
+      */}
       {pomodorosToShow.length > 0 && <div className='tar pad1'>
         <TweetButton pomodoros={pomodorosToShow} />
       </div>}
