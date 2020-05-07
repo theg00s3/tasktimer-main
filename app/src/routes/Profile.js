@@ -30,7 +30,7 @@ class Profile extends Component {
           {user.hasActiveSubscription && !user.subscription.cancel_at_period_end &&
           <div className='float-right' style='border-bottom: 1px solid red;'>
             <span onClick={() => {
-              if (!confirm('Are you sure you want to cancel your subscription to Pomodoro.cc Monthly? Statistics, Analytics and Dark mode will be gone')) return
+              if (!confirm('Are you sure you want to cancel your subscription to Task Timer Monthly? Statistics, Analytics and Dark mode will be gone')) return
               actions.cancelSubscription()
             }}>Cancel subscription</span>
           </div>}

@@ -14,7 +14,7 @@ export const STOP_TIMER = 'STOP_TIMER'
 export const RESET_TIMER = 'RESET_TIMER'
 export const TICK_TIMER = 'TICK_TIMER'
 
-const title = 'Pomodoro.cc - Time tracking with the Pomodoro technique'
+const title = 'Task Timer - Time tracking with the Pomodoro technique'
 
 function noop () {
   return { type: NOOP, payload: {} }

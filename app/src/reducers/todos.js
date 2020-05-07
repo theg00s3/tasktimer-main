@@ -14,7 +14,7 @@ const defaultState = [{
   id: 1,
   text: 'take a break, start a 5 minute timer!'
 }, {
-  text: 'visit pomodoro.cc',
+  text: 'visit tasktimers.tk',
   id: 2,
   completed: true
 }]

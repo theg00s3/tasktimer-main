@@ -7,7 +7,7 @@ export default class Signup extends Component {
       <div className='signup'>
         Signup to &nbsp;
 
-        <span>Pomodoro.cc <span className='pro-badge'>Pro</span></span>
+        <span>Task Timer <span className='pro-badge'>Pro</span></span>
 
         <div className='price-choices'>
           <div className='price'>
