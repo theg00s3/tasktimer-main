@@ -65,6 +65,15 @@ class Profile extends Component {
         <span>&nbsp; {darkMode.enabled ? 'on' : 'off'}</span>
       </div>}
 
+      {!user.hasActiveSubscription &&
+        <div>
+          <div className='pad'>
+            <h1 className='title tac signup-to-pro'>Signup to Pro!</h1>
+          </div>
+          <Signup user={user} subscription={subscription} actions={actions} />
+        </div>
+      }
+
       <pre style='display: none'>{JSON.stringify(user, null, 2)}</pre>
     </div>
   }
