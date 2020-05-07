@@ -9,6 +9,7 @@ import DarkmodeImage from '../assets/images/darkmode.png'
 
 export default class Signup extends Component {
   render () {
+    return null
     const { user, subscription, actions } = this.props
     return <div className='content tac'>
       <div className='pad tac'>

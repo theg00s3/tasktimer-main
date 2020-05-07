@@ -1,7 +1,6 @@
 {
   "version": 2,
-  "name": "pomodoro.cc",
-  "alias": "pomodoro.cc",
+  "name": "pomodoro-cc",
   "builds": [{
     "src": "package.json", "use": "@now/static-build"
   }],
