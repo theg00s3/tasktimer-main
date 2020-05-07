@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/browser'
 import init from './init'
 import './index.styl'
 Sentry.init({
-  dsn: 'https://4290a23ad5414f8693127ceba916795e@sentry.io/1462419'
+  dsn: 'https://9aae5ab6d2834abd9bcd4bb4af9d6ea1@o389094.ingest.sentry.io/5226816'
 })
 
 init()

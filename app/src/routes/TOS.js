@@ -8,7 +8,7 @@ export default class TOS extends Component {
 
         <h2>Pomodoro.cc Terms of Service</h2>
         <h3>1. Terms</h3>
-        <p>By accessing the website at <a href='https://pomodoro.cc'>https://pomodoro.cc</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
+        <p>By accessing the website at <a href='https://tasktimer.tk'>https://tasktimer.tk</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
         <h3>2. Use License</h3>
         <ol type='a'>
           <li>Permission is granted to temporarily download one copy of the materials (information or software) on Pomodoro.cc's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:

@@ -9,7 +9,7 @@ import './Login.styl'
 
 class Login extends Component {
   render () {
-    const baseUrl = window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
+    const baseUrl = window.USE_PROD ? 'https://api.tasktimer.tk' : 'http://localhost:3000'
     const twitterUrl = baseUrl + '/twitter'
     const githubUrl = baseUrl + '/github'
     const googleUrl = baseUrl + '/google'

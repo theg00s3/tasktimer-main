@@ -39,7 +39,7 @@ export function apiCreatePomodoro (pomodoro) {
 
     const body = JSON.stringify(pomodoro)
     const url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/pomodoros'
+      ? 'https://api.tasktimer.tk/pomodoros'
       : 'http://localhost:3000/pomodoros'
 
     window.fetch(url, {
@@ -76,7 +76,7 @@ export function apiCreateTodo (todo) {
 
     const body = JSON.stringify(todo)
     const url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/todos'
+      ? 'https://api.tasktimer.tk/todos'
       : 'http://localhost:3000/todos'
 
     window.fetch(url, {
@@ -114,7 +114,7 @@ export function apiUpdateTodo (todo) {
 
     const body = JSON.stringify(todo)
     const url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/todos'
+      ? 'https://api.tasktimer.tk/todos'
       : 'http://localhost:3000/todos'
 
     window.fetch(url, {
@@ -151,7 +151,7 @@ export function apiGetPomodorosForDay (day = toISOSubstring()) {
     dispatch({ type: API_GET_POMODOROS_FOR_DATE, payload: null })
 
     let url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/pomodoros'
+      ? 'https://api.tasktimer.tk/pomodoros'
       : 'http://localhost:3000/pomodoros'
 
     url += `?day=${day}`
@@ -186,7 +186,7 @@ export function apiGetTodosForDay (day = toISOSubstring()) {
     dispatch({ type: API_GET_TODOS_FOR_DAY, payload: null })
 
     let url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/todos'
+      ? 'https://api.tasktimer.tk/todos'
       : 'http://localhost:3000/todos'
 
     url += `?day=${day}`
@@ -222,7 +222,7 @@ export function apiGetTodolist () {
     dispatch({ type: API_GET_TODOLIST, payload: null })
 
     const url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/todos/list'
+      ? 'https://api.tasktimer.tk/todos/list'
       : 'http://localhost:3000/todos/list'
 
     window.fetch(url, {
@@ -255,7 +255,7 @@ export function apiGetPomodorosForWeek (week) {
     dispatch({ type: API_GET_POMODOROS_FOR_WEEK, payload: null })
 
     let url = window.USE_PROD
-      ? `https://api.pomodoro.cc/pomodoros`
+      ? `https://api.tasktimer.tk/pomodoros`
       : `http://localhost:3000/pomodoros`
 
     url += `?week=${week}`
@@ -290,7 +290,7 @@ export function apiGetAnalytics () {
     dispatch({ type: API_GET_ANALYTICS, payload: null })
 
     const url = window.USE_PROD
-      ? 'https://api.pomodoro.cc/analytics'
+      ? 'https://api.tasktimer.tk/analytics'
       : 'http://localhost:3000/analytics'
 
     window.fetch(url, {

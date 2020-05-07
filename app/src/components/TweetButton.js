@@ -7,7 +7,7 @@ class TweetButton extends Component {
     const text = `Today I worked ${pomodoros.length} pomodoro for a total of ${(pomodoros.length * 25 / 60).toFixed(1)} hours using @pomodoro_cc`
 
     let url = `http://twitter.com/share?text=${text}`
-    url += `&url=https://pomodoro.cc`
+    url += `&url=https://tasktimer.tk`
     url += `&hashtags=pomodoro,pomodorotechnique`
 
     return <div className='tweet-button-container'>

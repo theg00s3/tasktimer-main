@@ -13,7 +13,7 @@ export function cancelSubscription () {
     dispatch({ type: CANCEL_SUBSCRIPTION, payload: null })
 
     const url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/subscriptions'
+      ? 'https://api.tasktimer.tk/subscriptions'
       : 'http://localhost:3000/subscriptions'
 
     window.fetch(url, {
@@ -49,7 +49,7 @@ export function createSubscription (token) {
 
     const body = JSON.stringify({ email: token.email, token: token.id })
     const url = /pomodoro/.test(location.href)
-      ? 'https://api.pomodoro.cc/subscriptions'
+      ? 'https://api.tasktimer.tk/subscriptions'
       : 'http://localhost:3000/subscriptions'
 
     window.fetch(url, {

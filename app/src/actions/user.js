@@ -22,7 +22,7 @@ export function identifyUser (user) {
 export function loadUser () {
   return (dispatch, getState) => {
     dispatch({ type: LOAD_USER_REQUEST })
-    const baseUrl = /pomodoro/.test(window.location.hostname) || window.USE_PROD ? 'https://api.pomodoro.cc' : 'http://localhost:3000'
+    const baseUrl = /pomodoro/.test(window.location.hostname) || window.USE_PROD ? 'https://api.tasktimer.tk' : 'http://localhost:3000'
     const url = baseUrl + '/user/info'
 
     return window.fetch(url, {
@@ -64,7 +64,7 @@ export function loadUser () {
 export function logoutUser () {
   return (dispatch, getState) => {
     dispatch({ type: LOGOUT_USER_REQUEST })
-    window.fetch('https://api.pomodoro.cc/user/logout', { credentials: 'include' })
+    window.fetch('https://api.tasktimer.tk/user/logout', { credentials: 'include' })
       .then(() => {
         dispatch({ type: LOGOUT_USER_SUCCESS, payload: null })
         AnalyticsService.track('logout-user-success')

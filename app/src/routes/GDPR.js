@@ -8,7 +8,7 @@ export default class GDPR extends Component {
 
         <h1>Privacy Policy for Pomodoro.cc</h1>
 
-        <p>At Pomodoro.cc, accessible from https://pomodoro.cc/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Pomodoro.cc and how we use it.</p>
+        <p>At Pomodoro.cc, accessible from https://tasktimer.tk/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Pomodoro.cc and how we use it.</p>
 
         <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at crifei93@gmail.com</p>
 
