@@ -19,7 +19,7 @@ class Login extends Component {
       <h3 className='pad no-signup'>No signup required!</h3>
 
       <div className='columns'>
-        <div className='column tac'>
+      <div className='column tac'>
           <a className='login-button' href={twitterUrl}>
             <img src={Twitter} />
             <br />

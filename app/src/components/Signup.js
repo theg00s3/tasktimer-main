@@ -15,7 +15,7 @@ export default class Signup extends Component {
         <h1 className='title'>Signup to <span className='pro-badge'>Pro</span> today!</h1>
 
         <br />
-        It's just <strong>1 € a month</strong>!
+        It's just <strong>$0 a month</strong>!
         <br />
         The benefits for you are
         <br />
@@ -25,8 +25,8 @@ export default class Signup extends Component {
       <div className='signup'>
         <div className='price-choices'>
           <div className='price'>
-            <span className='price-symbol'>€</span>
-            <span className='price-amount'>1</span>
+            <span className='price-symbol'>$</span>
+            <span className='price-amount'>0</span>
             <span className='price-frequency'>/mo</span>
           </div>
         </div>

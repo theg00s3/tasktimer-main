@@ -7,7 +7,7 @@ import { tickTimer, resumeTimer, endTimer, loadUser, grantNotificationPermission
 const { getState, dispatch } = reduxStore
 
 export default function init () {
-  window.USE_PROD = /pomodoro/.test(window.location.hostname) || localStorage.USE_PROD === 'true'
+  window.USE_PROD = true // /pomodoro/.test(window.location.hostname) || localStorage.USE_PROD === 'true'
   window.USE_PROD && console.log('window.USE_PROD', window.USE_PROD)
 
   Timer.on('tick', (remaining, total) => {

@@ -10,8 +10,8 @@ export default class SignupButton extends Component {
       return null
     }
 
-    let stripeKey = /pomodoro/.test(location.href) ? 'pk_live_geRcjLp8LZwxhvZZDC3Osyyt00MisZGF5a' : 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
-    if (localStorage.stripeTest) stripeKey = 'pk_test_YGvkKlL7hsxpF3MEDRIybf0K00gwLTthfY'
+    let stripeKey = /pomodoro/.test(location.href) ? 'pk_live_fw5fb2wIac05VMS5DUepCUcr' : 'pk_live_fw5fb2wIac05VMS5DUepCUcr'
+    if (localStorage.stripeTest) stripeKey = 'pk_live_fw5fb2wIac05VMS5DUepCUcr'
 
     return <div className='signup-button pad'>
       <img src={user.avatar} className='user-avatar' />
@@ -25,8 +25,8 @@ export default class SignupButton extends Component {
         label='Pay'
         image={pomodoroImage}
         panelLabel='Pay'
-        currency='EUR'
-        amount={100}
+        currency='AUD'
+        amount={0}
         allowRememberMe={false}
         stripeKey={stripeKey} />
 

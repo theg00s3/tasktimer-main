@@ -11,8 +11,8 @@ export default class Signup extends Component {
 
         <div className='price-choices'>
           <div className='price'>
-            <span className='price-symbol'>€</span>
-            <span className='price-amount'>1</span>
+            <span className='price-symbol'>$</span>
+            <span className='price-amount'>0</span>
             <span className='price-frequency'>/mo</span>
           </div>
         </div>
