@@ -25,6 +25,10 @@ class Statistics extends Component {
   render () {
     const { user, api, subscription, loading, actions } = this.props
 
+    if (!user) {
+      return <p> Please log in </p>
+    }
+
     if (loading.loadingAnalytics && api.analytics.length === 0) {
       return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
