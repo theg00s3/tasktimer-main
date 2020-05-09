@@ -21,7 +21,6 @@ dayjs.extend(utc)
 class StatisticsFilters extends Component {
   render () {
     const { analytics = [], date = new Date(), onChangeDate = Function.prototype } = this.props
-    user.hasActiveSubscription = true
     return <div className='pad'>
       <Heatmap analytics={analytics} onChangeDate={day => onChangeDate(day)} showCurrent current={date} />
 
