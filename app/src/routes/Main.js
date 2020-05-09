@@ -3,7 +3,6 @@ import TimerButtons from '../components/TimerButtons'
 import Link from '../components/utils/Link'
 import TodoForm from '../components/TodoForm'
 import PomodorosChart from '../components/PomodorosChart'
-import TweetButton from '../components/TweetButton'
 import * as actions from '../actions'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
@@ -28,17 +27,8 @@ class Main extends Component {
       : (loading.loadingUser ? [] : todos)
 
     return <div className='content' id='start'>
-      {/*
-      {!settings.checkedOutPro && <div class='alert tac'>
-        Check out <Link className='white' onClick={() => actions.checkOutPro()} to='/pro'>
-          <span class='tdu'>Pro</span>
-        </Link>!
-        <br />
-        You'll have daily Statistics, Analytics, Dark mode + API access
-      </div>}
-      */}
       {pomodorosToShow.length > 0 && <div className='tar pad1'>
-        <TweetButton pomodoros={pomodorosToShow} />
+        
       </div>}
 
       {user && pomodorosToShow.length > 0 &&

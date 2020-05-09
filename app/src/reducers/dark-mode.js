@@ -3,7 +3,7 @@ export const DISABLE_DARK_MODE = 'DISABLE_DARK_MODE'
 export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
 
 export const defaultState = {
-  enabled: false
+  enabled: true
 }
 
 export default function darkMode (state = defaultState, action) {
