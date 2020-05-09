@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Link from './utils/Link'
 import User from './User'
 import './NavigationBar.styl'
-import * as actions from '../actions'
 
 
 export default class NavigationBar extends Component {

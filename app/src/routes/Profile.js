@@ -24,11 +24,6 @@ class Profile extends Component {
         {user.username}
       </h1>
 
-      {/* {user.apikey && user.hasActiveSubscription &&
-        <div className='pad tac1'>
-          <label>API key</label> <textarea style='outline: none; border: none;' value={user.apikey} cols={5} rows={1} />
-        </div>} */}
-
       <div className='pad' onClick={() => actions.toggleDarkMode()}>
         <h1>Dark mode</h1>
         <small>Click to toggle</small>
