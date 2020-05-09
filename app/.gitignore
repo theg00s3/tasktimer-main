@@ -1,8 +1,4 @@
-npm-debug.log
-www
 build
 build-dev
 .DS_Store
-cypress/screenshots
-cypress/videos
 .now
