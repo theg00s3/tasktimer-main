@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import Link from './utils/Link'
 import User from './User'
 import './NavigationBar.styl'
+import * as actions from '../actions'
+
 
 export default class NavigationBar extends Component {
   render () {
-    const { user, loading, currentUrl } = this.props
-
+    const { user, loading, currentUrl, darkMode } = this.props
     return <nav className='top-bar-container'>
       <div className='navigation-bar'>
         <Link to='/'><span className='brand' /></Link>
@@ -24,3 +25,4 @@ export default class NavigationBar extends Component {
     </nav>
   }
 }
+

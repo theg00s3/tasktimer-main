@@ -58,7 +58,6 @@ class Statistics extends Component {
 
   render () {
     const { api, user, loading, subscription, actions } = this.props
-    user.hasActiveSubscription = true
     if (!user) {
       return <div className='content'>
       <div className='tac'>
