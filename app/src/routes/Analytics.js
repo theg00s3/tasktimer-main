@@ -26,7 +26,13 @@ class Statistics extends Component {
     const { user, api, subscription, loading, actions } = this.props
 
     if (!user) {
-      return <Login />
+      return <div className='content'>
+      <div className='tac'>
+        <p>
+          Please log in.
+        </p>
+      </div>
+      </div>
     }
 
     if (loading.loadingAnalytics && api.analytics.length === 0) {

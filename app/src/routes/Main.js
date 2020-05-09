@@ -14,7 +14,7 @@ class Main extends Component {
   render () {
     const { api, timer, todos, pomodoros, user, actions, settings, loading, darkMode } = this.props
 
-    let pomodorosToShow = (user && user.hasActiveSubscription)
+    let pomodorosToShow = (user)
       ? api.pomodorosForDate.pomodoros
       : pomodoros
 
@@ -23,7 +23,7 @@ class Main extends Component {
       .filter(p => Date.parse(p.startedAt))
       // .filter(p => !p.cancelled)
 
-    const todosToShow = (user && user.hasActiveSubscription)
+    const todosToShow = (user)
       ? api.todolist
       : (loading.loadingUser ? [] : todos)
 
