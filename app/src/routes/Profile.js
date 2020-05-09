@@ -16,7 +16,7 @@ class Profile extends Component {
     if (!user) {
       return <Login />
     }
-
+    user.hasActiveSubscription = true
     return <div className='content'>
       <h1 className='title tac'>
         {user.avatar &&
