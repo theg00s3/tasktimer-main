@@ -33,7 +33,7 @@ class Profile extends Component {
       <div className='pad' onClick={() => actions.toggleDarkMode()}>
         <h1>Dark mode</h1>
         <small>Click to toggle</small>
-        <span>&nbsp; {darkMode.enabled ? 'on' : 'off'}</span>
+        <span>&nbsp; {darkMode.enabled ? 'off' : 'on'}</span>
       </div>
       <pre style='display: none'>{JSON.stringify(user, null, 2)}</pre>
     </div>

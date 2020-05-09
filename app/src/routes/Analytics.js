@@ -15,7 +15,6 @@ import Link from '../components/utils/Link'
 import LoadingWave from '../components/LoadingWave'
 dayjs.extend(utc)
 dayjs.extend(weekOfYear)
-
 class Statistics extends Component {
   componentDidMount () {
     const { actions } = this.props
@@ -24,7 +23,7 @@ class Statistics extends Component {
 
   render () {
     const { user, api, subscription, loading, actions } = this.props
-
+    
     if (!user) {
       return <div className='content'>
       <div className='tac'>
@@ -34,7 +33,7 @@ class Statistics extends Component {
       </div>
       </div>
     }
-
+    user.hasActiveSubscription = true
     if (loading.loadingAnalytics && api.analytics.length === 0) {
       return <div className='content tac statistics-analytics'>
         <h1 class='title is-1'>
