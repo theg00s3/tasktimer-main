@@ -27,7 +27,6 @@ const store = createStore(combineReducers({
   settings,
   user,
   loading,
-  subscription,
   darkMode
 }), composeEnhancers(
   applyMiddleware(...middleware),
