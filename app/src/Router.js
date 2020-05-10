@@ -10,7 +10,6 @@ import Logout from './routes/Logout'
 import Statistics from './routes/Statistics'
 import Analytics from './routes/Analytics'
 import Profile from './routes/Profile'
-import Pro from './routes/Pro'
 
 export default class Root extends Component {
   constructor () {
