@@ -49,7 +49,7 @@
     "babel-preset-preact": "^1.1.0",
     "css-loader": "^3.4.2",
     "eslint-plugin-cypress": "^2.8.1",
-    "expect": "^25.1.0",
+    "expect": "^26.0.1",
     "jest": "^26.0.1",
     "now": "^15.8.7",
     "parcel-bundler": "^1.12.4",
