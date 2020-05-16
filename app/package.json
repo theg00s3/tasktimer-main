@@ -45,7 +45,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "babel-jest": "^26.0.1",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "babel-preset-preact": "^2.0.0",
     "css-loader": "^3.4.2",
     "eslint-plugin-cypress": "^2.8.1",
