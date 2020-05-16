@@ -4,7 +4,7 @@ orbs:
 
 # build job parameters as a template
 defaults: &defaults
-  working_directory: ~/pomodoro.cc
+  working_directory: ~/tasktimer-main
   docker:
     - image: node:10
     - image: mongo:3.4
@@ -28,7 +28,7 @@ jobs:
           root: ~/
           paths:
             # - .cache
-            - pomodoro.cc
+            - tasktimer-main
 
   test_app:
     <<: *defaults
