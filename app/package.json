@@ -55,7 +55,7 @@
     "parcel-bundler": "^1.12.4",
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.7",
-    "sinon": "^7.5.0",
+    "sinon": "^9.0.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2"
   },
