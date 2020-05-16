@@ -1,0 +1,50 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+
+# build job parameters as a template
+defaults: &defaults
+  working_directory: ~/tasktimer-main
+  docker:
+    - image: node:10
+    - image: mongo:3.4
+
+jobs:
+  workspace:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: pwd
+      - run: ls
+      - restore_cache:
+          keys:
+          - v2-deps-{{ .Branch }}-
+          - v2-deps-
+      - run: npm install
+      - run: cd app ; npm install
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            # - .cache
+            - tasktimer-main
+
+  test_app:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: test_app
+          command: |
+            cd app
+            npm t
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - workspace
+      - test_app:
+          requires:
+            - workspace
