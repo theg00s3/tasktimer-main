@@ -48,7 +48,7 @@
     "babel-loader": "^8.1.0",
     "babel-preset-preact": "^2.0.0",
     "css-loader": "^3.5.3",
-    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-cypress": "^2.11.1",
     "expect": "^26.0.1",
     "jest": "^26.0.1",
     "now": "^19.0.1",
