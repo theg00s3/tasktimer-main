@@ -51,7 +51,7 @@
     "eslint-plugin-cypress": "^2.11.1",
     "expect": "^26.0.1",
     "jest": "^26.0.1",
-    "now": "^19.1.0",
+    "now": "^19.1.1",
     "parcel-bundler": "^1.12.4",
     "r2": "git+https://github.com/mikeal/r2.git",
     "react-loader": "^2.4.7",
