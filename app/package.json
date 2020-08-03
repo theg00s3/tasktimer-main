@@ -44,7 +44,7 @@
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
-    "babel-jest": "^26.2.1",
+    "babel-jest": "^26.2.2",
     "babel-loader": "^8.1.0",
     "babel-preset-preact": "^2.0.0",
     "css-loader": "^3.6.0",
