@@ -32,7 +32,7 @@
     "redux-localstorage": "0.4.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "whatwg-fetch": "^3.2.0"
+    "whatwg-fetch": "^3.3.1"
   },
   "description": "Install the dependencies first with",
   "main": "src/index.js",
