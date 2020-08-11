@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@sentry/browser": ">5.12.1",
-    "dayjs": "^1.8.32",
+    "dayjs": "^1.8.33",
     "preact": "^8.5.3",
     "preact-compat": "^3.18.5",
     "react": "^16.13.1",
