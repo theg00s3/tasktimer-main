@@ -57,7 +57,7 @@
     "react-loader": "^2.4.7",
     "sinon": "^9.1.0",
     "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^4.0.0"
   },
   "optionalDependencies": {
     "standard": "^14.3.4"
