@@ -47,7 +47,7 @@
     "babel-jest": "^26.5.2",
     "babel-loader": "^8.1.0",
     "babel-preset-preact": "^2.0.0",
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.3.0",
     "eslint-plugin-cypress": "^2.11.2",
     "expect": "^26.5.3",
     "jest": "^26.5.3",
