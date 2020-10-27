@@ -26,7 +26,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-flatpickr": "^3.10.6",
-    "react-redux": "^6.0.1",
+    "react-redux": "^7.2.2",
     "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-localstorage": "0.4.1",
