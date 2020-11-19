@@ -60,7 +60,7 @@
     "stylus-loader": "^3.0.2"
   },
   "optionalDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^16.0.3"
   },
   "standard": {
     "env": [
