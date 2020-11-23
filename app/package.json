@@ -37,7 +37,7 @@
   "description": "Install the dependencies first with",
   "main": "src/index.js",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.7",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
     "@storybook/addon-actions": "^5.3.19",
